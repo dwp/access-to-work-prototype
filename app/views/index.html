@@ -1,41 +1,5 @@
 {% extends "layouts/main.html" %}
 
-{% block header %}
-
-{{
-  dwpHeader({
-      serviceName: "Access to Work",
-      serviceHref: '/index',
-      container: true
-  })
-}}
-
-{{ govukServiceNavigation({
-  navigation: [
-    {
-      href: "/index",
-      text: "Home",
-      active: true
-    },
-    {
-      href: "/prototypes",
-      text: "View prototypes"
-    }
-  ]
-}) }}
-
-{% endblock %}
-
-{% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Prototype"
-    },
-    html: 'This is a prototype. It is not a real service.'
-  }) }}
-{% endblock %}
-
-
 {% set pageName="Home" %}
 
 {% block content %}
@@ -43,45 +7,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
+
     <h1 class="govuk-heading-xl">
-      {{ serviceName }} prototype
+      {{ serviceName }}
     </h1>
 
-    <p class="govuk-body-l">This is the home page for navigating the Access to Work (AtW) prototype.</p>
-
-    <p class="govuk-body">This prototype documents the AtWIS service which forms part of the Access to Work service.</p>
-
-    <p class="govuk-body"> <a href="/prototypes" class="govuk-link">View prototypes</a></p>
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <h2 class="govuk-heading-l">Older prototype versions (Pre-April 2025)</h2>
-
-    <p class="govuk-body">In April 2025 a new prototype was made to address a number of areas from the old prototype:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>update the version of the prototype kit to the latest version</li>
-      <li>update the components to the latest versions to align with upcoming GDS Design System changes</li>
-      <li>streamline the prototype to a simpler version without historical versioning from previous design stages</li>
-    </ul>
-
-    <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          View older versions of the Access to Work prototype
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        <p class="govuk-body">To view previous versions of the prototype, click on the link to the hosted prototype and enter the username and password credentials to gain access.</p>
-        <p class="govuk-body"> <a href="https://atwis-csi-prototype.herokuapp.com/" class="govuk-link">Access to Work prototype link (Pre-April 2025)</a></p>
-          <p class="govuk-body">Username: atw-atwis</p>
-          <p class="govuk-body">Password: siwta-wta</p>
-       
-      </div>
-    </details>
-
+    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
   </div>
 </div>
-
-
 
 {% endblock %}
