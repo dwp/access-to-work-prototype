@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "John Goldsmith",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Search"
+    },
+    {
+      href: "/v1/referrals",
+      text: "Referrals",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Referral complete – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleText: "Referral complete"
+    }) }}
+
+    <p class="govuk-body">We’ve sent {{ data['first-name'] }} {{ data['last-name'] }}'s referral to 
+      {% if data['provider']=='Reed In Partnership, HLF/2183, Halifax Crossfield House'%}Reed In Partnership{% endif %}
+      {% if data['provider']=='Reed In Partnership, HKH/19414, Harrow Kings House'%}Reed In Partnership{% endif %}
+      {% if data['provider']=='Maximus, HLF/2184, Halifax Crossfield House'%}Maximus{% endif %}
+      {% if data['provider']=='Maximus, HKH/19415, Harrow Kings House'%}Maximus{% endif %}
+      {% if not data['provider']%}Maximus{% endif %}.</p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      {% if data['provider']=='Reed In Partnership, HLF/2183, Halifax Crossfield House'%}Reed In Partnership{% endif %}
+      {% if data['provider']=='Reed In Partnership, HKH/19414, Harrow Kings House'%}Reed In Partnership{% endif %}
+      {% if data['provider']=='Maximus, HLF/2184, Halifax Crossfield House'%}Maximus{% endif %}
+      {% if data['provider']=='Maximus, HKH/19415, Harrow Kings House'%}Maximus{% endif %}
+      {% if not data['provider']%}Maximus{% endif %}
+       will contact {{ data['first-name'] }} {{ data['last-name'] }} to arrange the workplace assessment.
+    </p>
+
+
+{{ govukButton({
+  "text": "Return to referrals",
+  href: "/v1/referrals"
+}) }}
+                                    
+  </div>
+</div>
+
+{% endblock %}

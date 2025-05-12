@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Access to Work",
+      serviceHref: '/index',
+      container: true
+  })
+}}
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "/index",
+      text: "Home"
+    },
+    {
+      href: "/prototypes",
+      text: "View prototypes",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Prototypes – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Prototypes
+      </h1>
+
+      <p>This page documents the prototypes which form the Access to Work (AtW) service.</p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">
+        AtWIS prototype
+      </h2>
+
+      <p>The AtWIS prototype is the part of the service which is used by agents to manage cases, applications and documents.</p>
+
+      <p class="govuk-body"> <a href="/atwis-version-history" class="govuk-link">View AtWIS prototype</a></p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    </div>
+  </div>
+
+{% endblock %}
