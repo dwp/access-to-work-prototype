@@ -31,6 +31,15 @@
 }) }}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+{% endblock %}
+
 {% block pageTitle %}
   Referrals – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
