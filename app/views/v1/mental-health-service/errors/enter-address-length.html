@@ -1,0 +1,141 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "John Goldsmith",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Search"
+    },
+    {
+      href: "/v1/referrals",
+      text: "Referrals",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Enter an address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Address line 1 must be 30 characters or less",
+            href: "#address-line-1"
+          },
+          {
+            text: "Town or city must be 30 characters or less",
+            href: "#address-town"
+          }
+        ]
+      }) }}
+
+      <h1 class="govuk-heading-l">
+        Enter an address
+      </h1>
+
+      <form action="#" method="post" novalidate>
+
+      {{ govukInput({
+        label: {
+          text: "Address line 1"
+        },
+        id: "address-line-1",
+        name: "address-line-1",
+        autocomplete: "address-line1",
+        value: "Abcdefghijklmnopqrstuvwxyz123456",
+        errorMessage: {
+          text: "Address line 1 must be 30 characters or less"
+        }
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Address line 2 (optional)"
+        },
+        id: "address-line-2",
+        name: "address-line-2",
+        autocomplete: "address-line2"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Town or city"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "address-town",
+        name: "address-town",
+        autocomplete: "address-level2",
+        value: "Abcdefghijklmnopqrstuvwxyz123456",
+        errorMessage: {
+          text: "Town or city must be 30 characters or less"
+        }
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "County (optional)"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "address-county",
+        name: "address-county"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Postcode"
+        },
+        classes: "govuk-input--width-10",
+        id: "address-postcode",
+        name: "address-postcode",
+        autocomplete: "postal-code"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+          
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}
