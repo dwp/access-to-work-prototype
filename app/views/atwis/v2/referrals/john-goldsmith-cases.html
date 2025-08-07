@@ -1,0 +1,317 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Al Ó Catháin",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Unallocated"
+    },
+    {
+      href: "../all-advisors",
+      text: "All advisors",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Search"
+    },
+    {
+      href: "../team-lead-referral-history/referrals-history",
+      text: "Referrals"
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  All advisors – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">
+        Case Manager: John Goldsmith
+      </h1>
+
+      {% set otherCasesHtml %}
+<h2 class="govuk-heading-l">Other cases</h2>
+
+{{ govukSelect({
+  id: "sort",
+  name: "sort",
+  label: {
+    text: "Type of case"
+  },
+  items: [
+    {
+      value: "Any",
+      text: "Any",
+      selected: true
+    },
+    {
+      value: "New application",
+      text: "New application"
+    },
+    {
+      value: "Renewal",
+      text: "Renewal"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Request a new other case"
+}) }}
+
+<h3 class="govuk-heading-m">Cases</h3>
+
+{{ govukTable({
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Type of case"
+    },
+    {
+      text: "Date submitted"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "New application"
+      },
+      {
+        text: "3 June 2025, 10:41am"
+      }
+    ]
+  ]
+}) }}
+{% endset -%}
+
+{% set priorityCasesHtml %}
+<h2 class="govuk-heading-l">Past week</h2>
+{{ govukTable({
+  head: [
+    {
+      text: "Case manager"
+    },
+    {
+      text: "Cases opened"
+    },
+    {
+      text: "Cases closed"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "24"
+      },
+      {
+        text: "18"
+      }
+    ],
+    [
+      {
+        text: "Paul Farmer"
+      },
+      {
+        text: "16"
+      },
+      {
+        text: "20"
+      }
+    ],
+    [
+      {
+        text: "Rita Patel"
+      },
+      {
+        text: "24"
+      },
+      {
+        text: "27"
+      }
+    ]
+  ]
+}) }}
+{% endset -%}
+
+{% set csiCasesHtml %}
+<h2 class="govuk-heading-l">Past month</h2>
+{{ govukTable({
+  head: [
+    {
+      text: "Case manager"
+    },
+    {
+      text: "Cases opened"
+    },
+    {
+      text: "Cases closed"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "98"
+      },
+      {
+        text: "95"
+      }
+    ],
+    [
+      {
+        text: "Paul Farmer"
+      },
+      {
+        text: "122"
+      },
+      {
+        text: "131"
+      }
+    ],
+    [
+      {
+        text: "Rita Patel"
+      },
+      {
+        text: "126"
+      },
+      {
+        text: "142"
+      }
+    ]
+  ]
+}) }}
+{% endset -%}
+
+{% set documentsHtml %}
+<h2 class="govuk-heading-l">Past year</h2>
+{{ govukTable({
+  head: [
+    {
+      text: "Case manager"
+    },
+    {
+      text: "Cases opened"
+    },
+    {
+      text: "Cases closed"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "1380"
+      },
+      {
+        text: "1472"
+      }
+    ],
+    [
+      {
+        text: "Paul Farmer"
+      },
+      {
+        text: "1129"
+      },
+      {
+        text: "1083"
+      }
+    ],
+    [
+      {
+        text: "Rita Patel"
+      },
+      {
+        text: "1539"
+      },
+      {
+        text: "1265"
+      }
+    ]
+  ]
+}) }}
+{% endset -%}
+
+
+{{ govukTabs({
+  items: [
+    {
+      label: "Other cases (1)",
+      id: "other-cases",
+      panel: {
+        html: otherCasesHtml
+      }
+    },
+    {
+      label: "Priority cases (0)",
+      id: "priority-cases",
+      panel: {
+        html: priorityCasesHtml
+      }
+    },
+    {
+      label: "CSI cases (0)",
+      id: "csi-cases",
+      panel: {
+        html: csiCasesHtml
+      }
+    },
+    {
+      label: "Documents (0)",
+      id: "documents",
+      panel: {
+        html: documentsHtml
+      }
+    }
+  ]
+}) }}
+
+    </div>
+  </div>
+
+{% endblock %}

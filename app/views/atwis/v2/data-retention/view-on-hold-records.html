@@ -1,0 +1,272 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Louise Patrick",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Unallocated"
+    },
+    {
+      href: "#",
+      text: "All advisors"
+    },
+    {
+      href: "search",
+      text: "Search"
+    },
+    {
+      href: "../v2/referrals",
+      text: "Referrals"
+    },
+    {
+      href: "manage-data",
+      text: "Manage data",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  View on hold records – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        View all records on hold
+      </h1>
+
+      <p class="govuk-body">Showing <strong>1</strong> to <strong>10</strong> of <strong>10</strong> results</p>
+
+      </div>
+    </div>
+
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Name"
+        },
+        {
+          text: "URN"
+        },
+        {
+          text: "Case type"
+        },
+        {
+          text: "Date placed on hold"
+        },
+        {
+          text: "Reason for hold"
+        }
+      ],
+      rows: [
+        [
+          {
+            html: "<a href='customer-record' class='govuk-link'>John Adams</a>"
+          },
+          {
+            text: "123456789"
+          },
+          {
+            html: "Application <br>Renewal <br> CSI claim"
+          },
+          {
+            text: "7 Jul 2025"
+          },
+          {
+            text: "Fraud investigation"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Jane Doe</a>"
+          },
+          {
+            text: "134567890"
+          },
+          {
+            html: "Renewal"
+          },
+          {
+            text: "16 Jun 2025"
+          },
+          {
+            text: "Criminal case review"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Mark Williams</a>"
+          },
+          {
+            text: "145678901"
+          },
+          {
+            html: "CSI claim"
+          },
+          {
+            text: "1 Jun 2025"
+          },
+          {
+            text: "Performance measurement"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Stacey Smith</a>"
+          },
+          {
+            text: "156789012"
+          },
+          {
+            html: "AtW claim"
+          },
+          {
+            text: "26 May 2025"
+          },
+          {
+            text: "Customer feedback or complaint"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Lauren Thompson</a>"
+          },
+          {
+            text: "167890123"
+          },
+          {
+            html: "Digital claim <br>AtW claim"
+          },
+          {
+            text: "3 May 2025"
+          },
+          {
+            text: "Fraud investigation"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Paul Lawrence</a>"
+          },
+          {
+            text: "178901234"
+          },
+          {
+            html: "CSI application <br>CSI claim"
+          },
+          {
+            text: "2 Feb 2025"
+          },
+          {
+            text: "Criminal case review"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Stephen McCullen</a>"
+          },
+          {
+            text: "189012345"
+          },
+          {
+            html: "Application"
+          },
+          {
+            text: "10 Jan 2025"
+          },
+          {
+            text: "Customer feedback or complaint"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Pauline Bradbury</a>"
+          },
+          {
+            text: "190123456"
+          },
+          {
+            html: "Renewal"
+          },
+          {
+            text: "22 Dec 2024"
+          },
+          {
+            text: "Fraud investigation"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Akeem Sanjiv</a>"
+          },
+          {
+            text: "101234567"
+          },
+          {
+            html: "Digital claim"
+          },
+          {
+            text: "21 Nov 2024"
+          },
+          {
+            text: "Customer feedback or complaint"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>Marco Silva</a>"
+          },
+          {
+            text: "112345678"
+          },
+          {
+            html: "Application <br>Renewal <br> CSI claim"
+          },
+          {
+            text: "1 Nov 2024"
+          },
+          {
+            text: "Performance measurement"
+          }
+        ]
+      ]
+    }) }}
+
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Louise Patrick",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Unallocated"
+    },
+    {
+      href: "#",
+      text: "All advisors"
+    },
+    {
+      href: "search",
+      text: "Search"
+    },
+    {
+      href: "../v2/referrals",
+      text: "Referrals"
+    },
+    {
+      href: "manage-data",
+      text: "Manage data",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Manage data – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+{% if data['investigation-status'] == "Yes" %}
+
+{% set deletionStatusTagHtml =  "<strong class='govuk-tag govuk-tag--green'>Active</strong>" %}
+
+{% elif data['why-pause-deletion'] %}
+
+{% set deletionStatusTagHtml =  "<strong class='govuk-tag govuk-tag--red'>On hold</strong>" %}
+
+{% else %}
+
+{% set deletionStatusTagHtml =  "<strong class='govuk-tag govuk-tag--green'>Active</strong>" %}
+
+      {% endif %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Stop customer data being deleted
+      </h1>
+
+      <p class="govuk-body">You can <a href="view-on-hold-records" class="govuk-link">view all on-hold records</a> to check which customer records are on hold and reset the deletion date.</p>
+
+      <p class="govuk-body">Or you can use the search to find a customer record and stop their data being deleted.</p>
+
+
+      <form class="form" action="#" method="post">
+
+        <h2 class="govuk-heading-m">
+          Find a customer
+        </h2>
+
+        {{ govukInput({
+          label: {
+            text: "Enter a URN (Unique Reference Number)"
+          },
+          id: "enter-manage-data-urn",
+          name: "enter-manage-data-urn",
+          value: data['enter-manage-data-urn']
+        }) }}
+        
+        {{ govukButton({
+          text: "Search"
+        }) }}
+        
+        </form>
+
+        {% if data['enter-manage-data-urn'] %}
+
+        <h2 class="govuk-heading-m">
+          Search results
+        </h2>
+
+        <p class="govuk-body"><strong>1 result</strong> found for <strong>'{{ data['enter-manage-data-urn'] }}'</strong></p>
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "URN"
+            },
+            {
+              text: "National Insurance number"
+            },
+            {
+              text: "Retention status"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "<a href='customer-record' class='govuk-link'>John Adams</a>"
+              },
+              {
+                text: "123456789"
+              },
+              {
+                text: "AB123456C"
+              },
+              {
+                html: deletionStatusTagHtml
+              }
+            ]
+          ]
+        }) }}
+
+
+        {% endif %}
+
+      </div>
+    </div>
+
+{% endblock %}
