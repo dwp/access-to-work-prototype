@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Temporary support – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/temporary-support-answer" method="post">
+
+        {{ govukRadios({
+          name: "temporary-support",
+          fieldset: {
+            legend: {
+              text: "Will you need a support worker on a temporary basis?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, you have a broken arm and need a note-taker for a short period of time"
+          },
+          items: [
+            {
+              value: "Yes, I need a support worker on a temporary basis",
+              text: "Yes, I need a support worker on a temporary basis"
+            },
+            {
+              value: "No, I need a support worker on a permanent basis",
+              text: "No, I need a support worker on a permanent basis"
+            },
+            {
+              value: "I am not sure",
+              text: "I am not sure"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}
