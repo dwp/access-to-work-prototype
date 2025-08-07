@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your telephone number – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../contact/email-address" method="post">
+
+      <h1 class="govuk-heading-l">
+        What is your telephone number?
+      </h1>
+
+      <p class="govuk-body">We will use this to check your identity.</p>
+
+      <p class="govuk-body">
+        <a href="../contact/email-address-identity-adjustment" class="govuk-link">I find it difficult to hear or speak on the telephone</a>
+      </p>
+
+      {{ govukInput({
+        "label": {
+          "text": "UK Telephone number"
+        },
+        "name": "your-telephone-number",
+        "classes": "govuk-!-width-two-thirds",
+        "type": "tel"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

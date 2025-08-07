@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How does your conditions and idsabilities affect you? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../conditions-disabilities/check-answers-condition" method="post">
+
+      <h1 class="govuk-heading-l">
+        Your conditions or disabilities at work
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Your conditions or disabilities"
+            },
+            value: {
+              text: data['condition-disability-name']
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "affect-at-work",
+        maxlength: 1000,
+        rows: "10",
+        label: {
+          text: "How do your conditions or disabilities affect you at work?",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "You can include things like work activities you find difficult, and how you are affected on a day-to-day basis"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

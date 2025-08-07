@@ -1,0 +1,139 @@
+  {% if data['which-type-support-worker'] == 'British Sign Language (BSL) interpreter' %}
+      <h2 class="govuk-heading-m">
+        British Sign Language (BSL) interpreter
+      </h2>
+      {% endif %}
+
+      {% if data['support-worker-type'] %}
+      <h2 class="govuk-heading-m">
+        {{ data['support-worker-type'] }}
+      </h2>
+      {% endif %}
+
+      {% if data['know-support-worker'] == 'No' %}
+      <h2 class="govuk-heading-m">
+        Support worker provider
+      </h2>
+      {% endif %}
+
+
+      {% set summaryRows = [] %}
+
+      {% if data['need-support-worker'] == 'Yes' %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you know what type of support worker you need?"
+          },
+          value: {
+            text: data['know-support-worker']
+          }
+        }
+        ]) %}
+         {% endif %}
+
+        {% if data['which-type-support-worker'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Which type of support worker do you need?"
+            },
+            value: {
+              text: data['which-type-support-worker']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-worker-type'] %}
+      {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "What type of support worker do you need?"
+        },
+        value: {
+          text: data['support-worker-type']
+        }
+      }
+      ]) %}
+      {% endif %}
+
+      {% if data['support-worker-help'] and data['which-type-support-worker'] == "British Sign Language (BSL) interpreter" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How will the British Sign Language (BSL) interpreter help you at work?"
+            },
+            value: {
+              text: data['support-worker-help']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-worker-help'] and data['which-type-support-worker'] == "A different type of support worker" %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How will the " + data['support-worker-type'] + " help you at work?"
+          },
+          value: {
+            text: data['support-worker-help']
+          }
+        }
+      ]) %}
+    {% endif %}
+
+      {% if data['temporary-support'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Will you need this support worker on a temporary basis?"
+            },
+            value: {
+              text: data['temporary-support']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-temporarily'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Will you need this support worker on a temporary basis?"
+            },
+            value: {
+              text: data['support-temporarily']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-how-long'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How long do you need a support worker for?"
+            },
+            value: {
+              text: data['support-how-long']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-worker-hours'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How many hours per week do you need this support at work?"
+          },
+          value: {
+            text: data['support-worker-hours']
+          }
+        }
+      ]) %}
+    {% endif %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}

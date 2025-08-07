@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Any other jobs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/support-other-jobs-answer" method="post">
+
+     
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "support-for-other-jobs",
+        fieldset: {
+          legend: {
+            text: "Are you applying for support for any other jobs?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "This means jobs that are not classed as civil service employment"
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+</form>
+                                    
+    </div>
+
+    {% include "apply/v1/includes/get-help" %}
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Not eligible – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        You may not be eligible
+      </h1>
+
+      <p class="govuk-body">
+        Based on your answers, you may not be eligible for Access to Work.
+      </p>
+
+      <p class="govuk-body">To be eligible for Access to Work, you must:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>have a physical or mental health condition or disability that means you need support to do your job, or get to and from work</li>
+        <li>be 16 or over</li>
+        <li>be in paid work (or be about to start or return to paid work)</li>
+        <li>live and work (or be about to start or return to work) in England, Scotland or Wales – there is a <a href="#" class="govuk-link">different system in Northern Ireland</a></li>
+      </ul>
+
+                                    
+    </div>
+
+
+  {% include "apply/v1/includes/get-help" %}
+  </div>
+
+  <script>
+    document.getElementByName("eligibleRedirect").addEventListener("click", eligibleFunction);
+
+    function eligibleFunction() {
+      var checkboxes = Array.from(document.getElementsByName("eligibility"));
+      var linkHref = "#";
+      var count = 0;
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked ) {
+          count++;
+        }
+      }
+      if (count == 4) {
+        linkHref = "#";
+        }
+      document.location.href = linkHref;
+    }
+
+</script>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

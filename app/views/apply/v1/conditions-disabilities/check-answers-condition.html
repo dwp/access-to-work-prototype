@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers conditions and disabilities– {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Your conditions or disabilities
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Health conditions or disabilities"
+            },
+            value: {
+              text: data['condition-disability-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../conditions-disabilities/your-conditions-disabilities",
+                  text: "Change",
+                  visuallyHiddenText: "Health conditions or disabilities"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "How does your condition or disability affect you at work?"
+            },
+            value: {
+              text: data['affect-at-work']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../conditions-disabilities/affect-you-at-work",
+                  text: "Change",
+                  visuallyHiddenText: "How does your condition or disbaility affect you at work?"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form class="form" action="../task-list" method="post">
+
+      <input type="hidden" name="answers-checked-condition-disabilities" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}
