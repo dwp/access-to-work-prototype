@@ -1,0 +1,177 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Conditions and disabilities – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block header %}
+
+{% set html %}
+  <p class="govuk-body">We use some essential cookies to make this service work.</p>
+  <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+{% endset %}
+
+{{ govukCookieBanner({
+  ariaLabel: "Cookies on Claim money back from Access to Work",
+  messages: [
+    {
+      headingText: "Cookies on Claim money back from Access to Work",
+      html: html,
+      actions: [
+        {
+          text: "Accept analytics cookies",
+          type: "button"
+        },
+        {
+          text: "Reject analytics cookies",
+          type: "button"
+        },
+        {
+          text: "View cookies",
+          href: "#"
+        }
+      ]
+    }
+  ]
+}) }}
+
+  {{ govukHeader() }}
+
+ <section aria-label="Service information" class="govuk-service-navigation govuk-!-text-align-right"
+  data-module="govuk-service-navigation">
+  <div class="govuk-width-container">
+    <div class="govuk-service-navigation__container">
+      <span class="govuk-service-navigation__service-name" style="float: right;">
+        <a href="#" class="govuk-service-navigation__link">
+          Claim money back from Access to Work
+        </a>
+      </span>
+      <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+        <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
+          Menu
+        </button>
+        <ul class="govuk-service-navigation__list" id="navigation">
+          <li class="govuk-service-navigation__item govuk-!-padding-right-9">
+            <a class="govuk-service-navigation__link" href="#">
+
+            </a>
+          </li>
+
+          <li class="govuk-service-navigation__item govuk-!-padding-right-9">
+            <a class="govuk-service-navigation__link" href="#">
+
+            </a>
+          </li>
+
+          <li class="govuk-service-navigation__item govuk-!-padding-right-9">
+            <a class="govuk-service-navigation__link" href="#">
+
+            </a>
+          </li>
+
+          <li class="govuk-service-navigation__item govuk-!-padding-right-9">
+            <a class="govuk-service-navigation__link" href="#">
+
+            </a>
+          </li>
+
+          <li class="govuk-service-navigation__item govuk-!-padding-right-9">
+            <a class="govuk-service-navigation__link" href="#">
+
+            </a>
+          </li>
+
+          <li class="govuk-service-navigation__item govuk-!-padding-right-7">
+            <a class="govuk-service-navigation__link" href="#">
+
+            </a>
+          </li>
+
+          <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">The person or company we need to pay</h1>
+
+      {{ govukInput({
+        label: {
+          text: "Full name"
+        },
+        hint: {
+          text: "This can be the name of a person or company"
+        },
+        name: "claim-name-bluejay"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email address"
+        },
+        hint: {
+          text: "We'll only use this to let them know we've paid them"
+        },
+        name: "claim-address-bluejay"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+      
+    </div>
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{{ govukFooter({
+  meta: {
+    items: [
+      {
+        href: "#",
+        text: "Accessibility statement"
+      },
+      {
+        href: "#",
+        text: "Cookies"
+      },
+      {
+        href: "#",
+        text: "Privacy policy"
+      }
+    ]
+  }
+}) }}
+
+{% endblock %}

@@ -1,0 +1,653 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "John Goldsmith",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "search",
+      text: "Search"
+    },
+    {
+      href: "../v2/referrals",
+      text: "Referrals",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Referrals – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/referral-type-answer" method="post">
+
+        {{ govukRadios({
+          name: "send-new-referral",
+          value: data['referral-type'],
+          fieldset: {
+            legend: {
+              text: "Send a new referral",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          "hint": {
+            "text": "Select the type of referral you want to send"
+          },
+          items: [
+            {
+              value: "Workplace Assessment",
+              text: "Workplace Assessment"
+            },
+            {
+              value: "Mental health support service (MHSS)",
+              text: "Mental health support service (MHSS)"
+            }
+          ]
+        }) }}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+        </form>
+
+    </div>
+  </div>
+
+  <h2 class="govuk-heading-m">Your referral history</h2>
+
+  <p class="govuk-body">The following table shows the 20 most recent referrals you have sent over the last 30 days.</p>
+
+  <p class="govuk-body">
+    To find more details on referrals you can <a href="referral-search" class="govuk-link">search for a referral record</a>.
+  </p>
+  
+  {{ govukTable({
+    attributes: {
+      "data-module": "moj-sortable-table"
+    },
+    firstCellIsHeader: true,
+    head: [
+      {
+        text: "Name"
+      },
+      {
+        text: "Referral type"
+      },
+      {
+        text: "Provider"
+      },
+      {
+        text: "Code"
+      },
+      {
+        text: "Date sent",
+        attributes: {
+          "aria-sort": "none"
+        }
+      },
+      {
+        text: "Status"
+      },
+      {
+        text: "Reason"
+      }
+    ],
+    rows: [
+      [
+        {
+          html: "<a href='view-customer-record' class='govuk-link'>Anita Pavone</a>"
+        },
+        {
+          text: "MHSS"
+        },
+        {
+          text: "Ingeus"
+        },
+        {
+          text: "HKH/19427"
+        },
+        {
+          text: "4 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/04"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Erna Dumitru</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HKH/19424"
+        },
+        {
+          text: "4 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/04"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+        },
+        {
+          "text": ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Aaron Fisher</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HLF/2184"
+        },
+        {
+          text: "3 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/03"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--light-blue'>In progress</strong>"
+        },
+        {
+          "text": ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Okan Valero</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HKH/19414"
+        },
+        {
+          text: "3 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/03"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--red'>Rejected</strong>"
+        },
+        {
+          "text": "Provision unavailable"
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Lester Johnson</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HKH/19414"
+        },
+        {
+          text: "2 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/02"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--green'>Completed</strong>"
+        },
+        {
+          "text": ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Mark Smith</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Reed In Partnership"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "2 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/02"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Hayley Morton</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Ingeus"
+        },
+        {
+          "text": "HKH/19427"
+        },
+        {
+          text: "2 Jun 2025",
+          attributes: {
+            "data-sort-value": "2025/06/02"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--yellow'>Cancelled</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Elliot Howe</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Reed In Partnership"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "1 June 2025",
+          attributes: {
+            "data-sort-value": "2025/06/01"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Molly Boyer</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "31 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/31"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Asad Ochoa</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Ingeus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "31 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/31"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--light-blue'>In progress</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Kacie Wilkins</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Reed In Partnership"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "31 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/31"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--yellow'>Cancelled</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Donald Navarro</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Ingeus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "30 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/30"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--light-blue'>In progress</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Lucille Joseph</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Ingeus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "30 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/30"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--red'>Rejected</strong>"
+        },
+        {
+          text: "Citizen not eligible"
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Hugo Nixon</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Reed In Partnership"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "30 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/30"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--light-blue'>In progress</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Greta Weiss</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "30 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/30"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--green'>Completed</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Sid Stafford</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Reed In Partnership"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "30 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/30"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--red'>Rejected</strong>"
+        },
+        {
+          text: "Excluded"
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Isla Hubbard</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "29 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/29"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--grey'>Pending</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Bryan Molina</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Reed In Partnership"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "29 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/29"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--yellow'>Cancelled</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Hanna Roman</a>"
+        },
+        {
+          "text": "Workplace assessment"
+        },
+        {
+          "text": "Maximus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "29 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/29"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--green'>Completed</strong>"
+        },
+        {
+          text: ""
+        }
+      ],
+      [
+        {
+          html: "<a href='#' class='govuk-link'>Nathaniel Rivas</a>"
+        },
+        {
+          "text": "MHSS"
+        },
+        {
+          "text": "Ingeus"
+        },
+        {
+          "text": "HLF/2183"
+        },
+        {
+          text: "28 May 2025",
+          attributes: {
+            "data-sort-value": "2025/05/28"
+          }
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--grey'>Pending</strong>"
+        },
+        {
+          text: ""
+        }
+      ]
+    ]
+  }) }}
+                                    
+
+{% endblock %}

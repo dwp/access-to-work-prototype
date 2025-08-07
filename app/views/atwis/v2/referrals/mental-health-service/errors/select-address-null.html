@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "John Goldsmith",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Search"
+    },
+    {
+      href: "#",
+      text: "Referrals",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Select an address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select an address",
+            href: "#addresses-select"
+          }
+        ]
+      }) }}
+
+      <h1 class="govuk-heading-l">
+        Select an address
+      </h1>
+
+      <p class="govuk-body">6 addresses found for <strong>{{ data['postcode'] }}</strong> and <strong>{{ data['building-number'] }}</strong>. <a href="../v1/workplace-assessment/find-address" class="govuk-link">Search again</a></p>
+      
+      <form action="#" method="post" novalidate>
+
+      {{ govukRadios({
+        "classes": "govuk-radios--small",
+        "name": "addresses-select",
+        "fieldset": {
+          "legend": {
+            "text": ""
+          }
+        },
+        "items": [
+          {
+            "value": "1 Washington Street, Worcester, AB1 2CD",
+            "text": "1 Washington Street, Worcester, AB1 2CD"
+          },
+          {
+            "value": "10 Washington Street, Worcester, AB1 2CD",
+            "text": "10 Washington Street, Worcester, AB1 2CD"
+          },
+          {
+            "value": "11 Washington Street, Worcester, AB1 2CD",
+            "text": "11 Washington Street, Worcester, AB1 2CD"
+          },
+          {
+            "value": "101 Washington Street, Worcester, AB1 2CD",
+            "text": "101 Washington Street, Worcester, AB1 2CD"
+          },
+          {
+            "value": "110 Washington Street, Worcester, AB1 2CD",
+            "text": "110 Washington Street, Worcester, AB1 2CD"
+          },
+          {
+            "value": "111 Washington Street, Worcester, AB1 2CD",
+            "text": "111 Washington Street, Worcester, AB1 2CD"
+          }
+        ],
+        "errorMessage": {
+          "text": "Select an address"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Use this address"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">Enter address manually</a>.
+      </p>
+          
+          
+
+    </div>
+  </div>
+
+{% endblock %}
