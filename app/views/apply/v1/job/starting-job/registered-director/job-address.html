@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Find address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../registered-director/job-select-address" method="post">
+
+      <h1 class="govuk-heading-l">What will your workplace address be?</h1>
+
+      <p class="govuk-body">If you will work in different locations, provide the address where you will work most often.</p>
+
+      <p class="govuk-body">
+        <a href="/show-address-row" class="govuk-link">I do not know my workplace address</a>
+      </p>
+
+        {{ govukInput({
+          label: {
+            text: "Postcode"
+          },
+          classes: "govuk-input--width-10",
+          name: "postcode-job-address-registered-director-starting-job"
+        }) }}
+
+      {{ govukButton({
+        text: "Find address"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

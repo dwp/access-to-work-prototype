@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Specialist equipment needs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Specialist equipment
+      </h1>
+
+      <p class="govuk-body">Access to Work can provide things like:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>specialist equipment, like adapted keyboards and mouse alternatives</li>
+          <li>assistive software, like screen readers</li>
+          <li>another type of specialist equipment to support your condition</li>
+        </ul>
+
+      <form class="form" action="/need-specialist-equipment-answer" method="post">
+
+      {{ govukRadios({
+        name: "need-specialist-equipment",
+        fieldset: {
+          legend: {
+            text: "Do you need specialist equipment to support you with your condition at work?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "dont know",
+            text: "I don't know"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

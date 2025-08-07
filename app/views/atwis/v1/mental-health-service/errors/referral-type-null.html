@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "John Goldsmith",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Search"
+    },
+     {
+      href: "../referrals",
+      text: "Referrals",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Referral type – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select a type of mental health support service referral",
+              href: "#referral-type"
+            }
+          ]
+        }) }}
+
+      {{ govukRadios({
+        name: "referral-type",
+        fieldset: {
+          legend: {
+            text: "What type of mental health support service referral do you want to send?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Authority referral",
+            text: "Authority referral",
+            hint: {
+              text: "Application allocated to a case manager"
+            }
+          },
+          {
+            value: "Self referral",
+            text: "Self-referral",
+            hint: {
+              text: "Application made directly to a provider"
+            }
+          }
+        ],
+        "errorMessage": {
+          "text": "Select a type of mental health support service referral"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}
