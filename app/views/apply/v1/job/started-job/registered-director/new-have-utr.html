@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you have a Unique Taxpayer Reference? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Unique Taxpayer Reference (UTR)</h1>
+
+      <p class="govuk-body">A Unique Taxpayer Reference is a 10-digit number, for example, 1234567890. It will be on tax returns and other letters about tax. It may be called a ‘tax reference’, ‘UTR’ or appear next to the heading ‘official use’.<p>
+
+      <p class="govuk-body">Get advice on <a href="#" class="govuk-link">how to find your UTR (opens in a new tab)</a>.</p>
+
+      <form class="form" action="/have-utr-answer-registered-director" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "have-utr-registered-director",
+          fieldset: {
+            legend: {
+              text: "Do you have a Unique Taxpayer Reference?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Select address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Select your workplace address
+      </h1>
+
+      <form action="../employed/hybrid-worker" method="post" novalidate>
+
+        <p class="govuk-body govuk-!-font-weight-bold">10 addresses found for {{ data['postcode-job-address'] }}</p>
+     
+        {{ govukSelect({
+          id: "job-address-select",
+          name: "job-address-select",
+          label: {
+            text: "Select an address"
+          },
+          items: [
+          {
+            value: "10 addresses found",
+            text: "10 addresses found"
+          },
+            {
+              value: "1 Imaginary Street, London",
+              text: "1 Imaginary Street, London"
+            },
+            {
+              value: "2 Imaginary Street, London",
+              text: "2 Imaginary Street, London"
+            },
+            {
+              value: "3 Imaginary Street, London",
+              text: "3 Imaginary Street, London"
+            },
+            {
+              value: "4 Imaginary Street, London",
+              text: "4 Imaginary Street, London"
+            },
+            {
+              value: "5 Imaginary Street, London",
+              text: "5 Imaginary Street, London"
+            },
+            {
+              value: "6 Imaginary Street, London",
+              text: "6 Imaginary Street, London"
+            },
+            {
+              value: "7 Imaginary Street, London",
+              text: "7 Imaginary Street, London"
+            },
+            {
+              value: "8 Imaginary Street, London",
+              text: "8 Imaginary Street, London"
+            },
+            {
+              value: "9 Imaginary Street, London",
+              text: "9 Imaginary Street, London"
+            },
+            {
+              value: "10 Imaginary Street, London",
+              text: "10 Imaginary Street, London"
+            }
+          ]
+        }) }}
+
+        <p class="govuk-body">
+          <a href="../employed/address-details.html" class="govuk-link">I cannot find my workplace address in the list</a>
+        </p>
+                                    
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+          
+    <p class="govuk-body">
+      <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+   {% include "apply/v1/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}
