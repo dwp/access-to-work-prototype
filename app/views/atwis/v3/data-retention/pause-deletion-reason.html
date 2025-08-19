@@ -1,0 +1,122 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Louise Patrick",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "#",
+      text: "Unallocated"
+    },
+    {
+      href: "#",
+      text: "All advisors"
+    },
+    {
+      href: "search",
+      text: "Search"
+    },
+    {
+      href: "../v2/referrals",
+      text: "Referrals"
+    },
+    {
+      href: "manage-data",
+      text: "Manage data",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Why stop data deletion – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="customer-record" method="post">
+  
+        {{ govukCheckboxes({
+          name: "why-pause-deletion",
+          fieldset: {
+            legend: {
+              text: "Why do you need to stop this data from being deleted?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+            {
+              value: "criminal case review",
+              text: "Criminal case review"
+            },
+            {
+              value: "customer feedback or complaint",
+              text: "Customer feedback or complaint"
+            },
+            {
+              value: "fraud investigation",
+              text: "Fraud investigation"
+            },
+            {
+              value: "performance measurement",
+              text: "Performance measurement (auditing)"
+            },
+            {
+              value: "overpayments",
+              text: "Overpayments including civil proceedings and recovery from estates"
+            },
+            {
+              value: "debt management",
+              text: "Debt management including compensation recovery"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      </div>
+    </div>
+
+{% endblock %}

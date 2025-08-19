@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "John Goldsmith",
+      container: true
+  })
+}}
+
+
+{{ govukServiceNavigation({
+  "serviceName": "Access to Work",
+  "serviceUrl": "/index",
+  navigation: [
+    {
+      href: "#",
+      text: "Your cases"
+    },
+    {
+      href: "search",
+      text: "Search",
+      active: true
+    },
+    {
+      href: "../v2/referrals",
+      text: "Referrals"
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Referrals – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/search-type-answer" method="post">
+
+        {{ govukRadios({
+          name: "search-type",
+          fieldset: {
+            legend: {
+              text: "Select what to search for",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          "hint": {
+            "text": "Select the type of case you wish to search for"
+          },
+          items: [
+            {
+              value: "New applications, renewals, CSI or documents",
+              text: "New applications, renewals, CSI or documents"
+            },
+            {
+              value: "Referrals",
+              text: "Referrals"
+            }
+          ]
+        }) }}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+        </form>
+
+    </div>
+  </div>
+                  
+
+{% endblock %}

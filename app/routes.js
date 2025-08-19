@@ -813,9 +813,9 @@ router.post('/investigation-status-answer', function(request, response) {
 
     var investigationStatus = request.session.data['investigation-status']
     if (investigationStatus == "yes"){
-        response.redirect("/atwis/v2/data-retention/customer-record")
+        response.redirect("/atwis/v3/data-retention/customer-record")
     } else {
-        response.redirect("/atwis/v2/data-retention/customer-record")
+        response.redirect("/atwis/v3/data-retention/customer-record")
     }
 })
 
