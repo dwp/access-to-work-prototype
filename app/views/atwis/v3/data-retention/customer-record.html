@@ -126,7 +126,7 @@
         Cases
       </h2>
 
-      {% if not data['why-pause-deletion'] or data['investigation-status'] == "Yes" %}
+      {% if not data['why-pause-deletion'] %}
       <form class="form" action="pause-deletion-reason" method="post">
       {{ govukTable({
         firstCellIsHeader: true,
@@ -141,7 +141,7 @@
         rows: [
           [
             {
-              text: "Application"
+              text: "ATW Applications"
             },
             {
               text: "7 July 2027"
@@ -149,7 +149,7 @@
           ],
         [
             {
-              text: "Renewal"
+              text: "Renewals"
             },
             {
               text: "7 July 2027"
@@ -157,7 +157,7 @@
           ],
         [
             {
-              text: "Document"
+              text: "ATW claims"
             },
             {
               text: "7 July 2032"
@@ -165,10 +165,99 @@
           ],
         [
             {
-              text: "CSI claim"
+              text: "Digital claims"
             },
             {
               text: "7 July 2027"
+            }
+            ],
+        [
+            {
+              text: "CSI applications"
+            },
+            {
+              text: "7 July 2027"
+            }
+          ],
+        [
+            {
+              text: "CSI claims"
+            },
+            {
+              text: "7 July 2027"
+            }
+          ]
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+  {{ govukButton({
+    text: "Stop the deletion of data"
+  }) }}
+
+  <a class="govuk-link" href="manage-data">Return to manage data</a>
+</div>
+
+
+       {% elif data['investigation-status'] == "Yes" %}
+
+       {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Case type"
+          },
+          {
+            text: "Deletion date"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "ATW applications"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "Renewals"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "ATW claims"
+            },
+            {
+              text: "10 October 2032"
+            }
+          ],
+        [
+            {
+              text: "Digital claims"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "CSI applications"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "CSI claims"
+            },
+            {
+              text: "10 October 2027"
             }
           ]
         ]
@@ -202,7 +291,7 @@
         rows: [
           [
             {
-              text: "Application"
+              text: "ATW Applications"
             },
             {
               text: "On hold"
@@ -210,7 +299,7 @@
           ],
         [
             {
-              text: "Renewal"
+              text: "Renewals"
             },
             {
               text: "On hold"
@@ -218,7 +307,7 @@
           ],
         [
             {
-              text: "Document"
+              text: "ATW claims"
             },
             {
               text: "On hold"
@@ -226,7 +315,23 @@
           ],
         [
             {
-              text: "CSI claim"
+              text: "Digital claims"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "CSI applications"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "CSI claims"
             },
             {
               text: "On hold"
