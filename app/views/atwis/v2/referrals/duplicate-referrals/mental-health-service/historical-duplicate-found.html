@@ -104,7 +104,7 @@
           text: "4 Jun 2025"
         },
         {
-          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+          html: "<strong class='govuk-tag govuk-tag--red'>Rejected</strong>"
         },
         {
           text: ""
@@ -119,7 +119,7 @@
       <form action="/send-new-referral-anyway-mhss" method="post" novalidate>
 
         {{ govukWarningText({
-          text: "Check DiSC and Sharepoint for details",
+          text: "Check DiSC and Sharepoint for a 6 month report",
           iconFallbackText: "Warning"
         }) }}
 
@@ -138,7 +138,7 @@
             },
             {
               value: "no",
-              text: "No, cancel the new referral"
+              text: "No, the applicant is not eligible for further MHSS support"
             }
           ]
         }) }}
