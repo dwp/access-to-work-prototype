@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Access to Work",
+      serviceHref: '/index',
+      container: true
+  })
+}}
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "/index",
+      text: "Home"
+    },
+    {
+      href: "/prototypes",
+      text: "View prototypes",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  AtW Claims v1 – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Claim money back from AtW version 1 - page index
+      </h1>
+
+      <p>
+        This page documents the pages and user journeys which forms claim money back from AtW service. 
+      </p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">
+        One login
+      </h2>
+
+      <p>The claims portal is changing it's login and ID verifaction and moving to One login to ensure login is simpler and more secure.</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            View a breakdown of pages within the One Login journey
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          <h2 class="govuk-heading-m">
+            Page index
+          </h2>
+
+          <h2 class="govuk-heading-m">
+            Logging in with One login
+          </h2>
+
+            <ul class="govuk-list">
+              <li>
+                <a href="start" class="govuk-link">Start page</a>
+              </li>
+            </ul>
+            
+        </div>
+      </details>
+
+      <p class="govuk-body"> <a href="start" class="govuk-link">View claims journey</a></p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+    </div>
+  </div>
+
+{% endblock %}

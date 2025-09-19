@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Sign in to {{ serviceName }} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+  serviceName: "Claim money back from Access to Work",
+  serviceUrl: "/index"
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set html %}
+        <p class="govuk-notification-banner__heading">
+          GOV.UK One Login is the new way to sign in to government services
+        </p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
+      <h1 class="govuk-heading-l">Sign in to your Access to Work account with GOV.UK One Login</h1>
+
+      <p class="govuk-body">The way you sign in to your Access to Work account has changed. You will now need to sign in with GOV.UK One Login. You can create a GOV.UK One Login if you do not already have one.</p>
+
+      <form action="sign-in-ol" method="post" novalidate>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+          
+    </form>
+    
+  </div>
+  </div>
+
+{% endblock %}
