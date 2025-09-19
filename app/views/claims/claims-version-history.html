@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Access to Work",
+      serviceHref: '/index',
+      container: true
+  })
+}}
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "/index",
+      text: "Home"
+    },
+    {
+      href: "/prototypes",
+      text: "View prototypes",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Claim moeny back from AtW version history – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Claim money back from AtW version history
+      </h1>
+
+      <p>
+        Below are the versions of the claims prototype starting from September 2025, each version documents changes made from the previous version.
+      </p>
+
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Claim money back from AtW prototype versions</caption>
+
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+          
+            <th scope="col" class="govuk-table__header">Version</th>
+            <th scope="col" class="govuk-table__header">Date created</th>
+            <th scope="col" class="govuk-table__header">Details</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+          
+          </tr>
+        </thead>
+      
+        <tbody class="govuk-table__body">
+      
+          <tr class="govuk-table__row">
+          
+            <th scope="row" class="govuk-table__header">1.0</th>
+            <td class="govuk-table__cell">September 2025</td>
+            <td class="govuk-table__cell">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>updated the claims prototype to the latest Gov.uk branding</li>
+                <li>upgraded the prototype to run on the latest version of the Gov.uk prototype kit as previous versions were outdated</li> 
+              </ul>
+            </td>
+            <td class="govuk-table__cell"><a href="../claims/v1/index" class="govuk-link">View v1.0</a></td>
+            
+          </tr>
+        
+        </tbody>
+      </table>
+
+       
+      
+                                    
+
+
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}
