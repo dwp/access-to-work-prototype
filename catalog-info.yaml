@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: prototype.interface.access-to-work-prototype
-  title: access-to-work-prototype
+  title: Access-to-Work-Prototype
   description: |
     TODO: add description for access-to-work-prototype.
 
