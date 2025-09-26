@@ -1,0 +1,70 @@
+// nhs frontend - https://github.com/nhsuk/nhsuk-frontend
+@use "node_modules/nhsuk-frontend/packages/components/card/_index.scss";
+
+$nhsuk-include-font-face:false;
+
+@import '../../../node_modules/nhsuk-frontend/packages/components/card/_card.scss';
+
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
+$color_nhsuk-white: #f8f8f8; // Override the card background colour
+
+// Override colors of the links on the NHS Cards
+$nhsuk-link-color: #1d70b8;
+$nhsuk-link-hover-color: #003078;
+$nhsuk-link-active-color: #0b0c0c;
+$nhsuk-link-visited-color: #4c2c92;
+
+// Override the default size, as the NHS design makees the below changes for @media (min-width: 40.0625em)
+// ol, ul, .nhsuk-list {
+// font-size: 19px;
+//  font-size: 1.128rem;
+//}
+@media (min-width: 40.0625em) {
+  ol {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
+
+.nhsuk-card:hover {
+  border-color: #b1b4b6; // or any color you want for hover
+}
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px 24px; // 0px row gap, 20px column gap
+  margin-top: 20px;
+}
+
+
+.nhsuk-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  min-height: 100px;
+  box-sizing: border-box;
+  padding-bottom: 0px;
+  padding-top: 27px;
+  padding-left: 27px;
+  padding-right: 27px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #d8dde0;
+  border-right: 1px solid #d8dde0;
+  border-left: 1px solid #d8dde0;
+}
+
+.nhsuk-card__heading {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+
+.card {
+  margin: 0 !important;
+}

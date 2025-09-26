@@ -24,7 +24,7 @@
 
  <div class="govuk-back-link-and-translation govuk-width-container">
 
-  <div class="language-switcher govuk-!-margin-top-2">
+  <div class="language-switcher govuk-!-margin-top-3">
     <span class="govuk-body-s">English&nbsp;|&nbsp;
     <a href="#" class="govuk-link">Cymraeg</a></span>
   </div>
@@ -49,27 +49,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set html %}
-        <p class="govuk-notification-banner__heading">
-          GOV.UK One Login is the new way to sign in to government services
-        </p>
-      {% endset %}
+      <h1 class="govuk-heading-l">You have signed out</h1>
 
-      {{ govukNotificationBanner({
-        html: html
-      }) }}
+      <p class="govuk-body">To go back, <a href="sign-in" class="govuk-link">sign in to your GOV.UK One Login</a>.</p>
 
-      <h1 class="govuk-heading-l">Sign in to your Access to Work account with GOV.UK One Login</h1>
-
-      <p class="govuk-body">The way you sign in to your Access to Work account has changed. You will now need to sign in with GOV.UK One Login. You can create a GOV.UK One Login if you do not already have one.</p>
-
-      <form action="sign-in-ol" method="post" novalidate>
-
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-          
-    </form>
+      <p class="govuk-body">Or <a href="https://www.gov.uk/" class="govuk-link">go to the GOV.UK homepage</a>.</p>
     
   </div>
   </div>

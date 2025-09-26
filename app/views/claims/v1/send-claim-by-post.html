@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Sign in to {{ serviceName }} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+  serviceName: "Claim money back from Access to Work",
+  serviceUrl: "/index"
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+
+  <div class="language-switcher govuk-!-margin-top-3">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Send your claim by post</h1>
+
+      <p class="govuk-body">If you cannot claim online, you can send Access to Work claims by post.</p>
+
+      <p class="govuk-body">You'll need to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>fill in the paper claim form we sent with your Access to Work award letter</li>
+          <li>include any receipts or invoices we ask for in the claims form</li>
+          <li>pears</li>
+        </ul>
+
+      <p class="govuk-body">You can <a href="#" class="govuk-link">contact Access to Work</a> to get a paper claim form if you need one.</p>
+
+      <h2 class="govuk-heading-s">You should post your claim to Access to Work:</h2>
+
+      <p class="govuk-body">Access to Work Service Centre <br> Harrow Jobcentre <br> Mail Handling Site A <br> Wolverhampton <br> WV98 1JE</p>
+
+      <p class="govuk-body">You'll get a text message or email to let you know when we've received your claim form.</p>
+    
+  </div>
+  </div>
+
+{% endblock %}
