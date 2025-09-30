@@ -1,0 +1,352 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../sign-out",
+    oneLoginLink: "/test-one-login",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "../account-home"
+    },
+    {
+      text: "Submitted claims",
+      href: "recent-claims"
+    }
+  ]
+}) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Recent claims</h1>
+
+      <p class="govuk-body">Claims made in the past 3 months.</p>
+
+      <p class="govuk-body">When we’ve paid a claim, the payment will show in your <a href="#" class="govuk-link">payments</a>. The claim will remain here for up to 3 months even after the payment has been made.</p>
+
+      </div>
+  </div>
+
+
+    <div class="govuk-grid-column-full-width govuk-!-margin-top-5">
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Claims returned for review</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          {{ govukTable({
+              firstCellIsHeader: true,
+              head: [
+                {
+                  text: "Claim type"
+                },
+                {
+                  text: "Date submitted"
+                },
+                {
+                  text: "Support type"
+                },
+                {
+                  text: "Person or company we need to pay"
+                },
+                {
+                  text: "Cost",
+                  format: "numeric"
+                },
+                {
+                  text: "",
+                    format: "numeric"
+                },
+                {
+                  text: "",
+                    format: "numeric"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    text: "Support worker"
+                  },
+                  {
+                    text: "12 August 2025"
+                  },
+                  {
+                    text: "BSL Interpretor"
+                  },
+                  {
+                    text: "John Doe"
+                  },
+                  {
+                    text: "£285.00",
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Change contact</a></p>',
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Edit claim</a></p>',
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Travel to and from work"
+                  },
+                  {
+                    text: "1 August 2025"
+                  },
+                  {
+                    text: "Taxi journey"
+                  },
+                  {
+                    text: "ABC Taxis"
+                  },
+                  {
+                    text: "£56.00",
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Change contact</a></p>',
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Edit claim</a></p>',
+                    format: "numeric"
+                  }
+                ]
+              ]
+            }) }}
+        </div>
+      </div>
+    
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Claims waiting for countersign</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          {{ govukTable({
+              firstCellIsHeader: true,
+              head: [
+                {
+                  text: "Claim type"
+                },
+                {
+                  text: "Date submitted"
+                },
+                {
+                  text: "Support type"
+                },
+                {
+                  text: "Person or company we need to pay"
+                },
+                {
+                  text: "Cost",
+                  format: "numeric"
+                },
+                {
+                  text: "",
+                    format: "numeric"
+                },
+                {
+                  text: "",
+                    format: "numeric"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    text: "Adaptation to a vehicle"
+                  },
+                  {
+                    text: "15 September 2025"
+                  },
+                  {
+                    text: "Steering wheel adaptation"
+                  },
+                  {
+                    text: "Transport adaptations Ltd."
+                  },
+                  {
+                    text: "£862.00",
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Change contact</a></p>',
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">View claim</a></p>',
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Adaptation to a vehicle"
+                  },
+                  {
+                    text: "3 September 2025"
+                  },
+                  {
+                    text: "Car pedal adaptation"
+                  },
+                  {
+                    text: "Transport adaptations Ltd."
+                  },
+                  {
+                    text: "£250.00",
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Change contact</a></p>',
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">View claim</a></p>',
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Specialist equipment"
+                  },
+                  {
+                    text: "25 September 2025"
+                  },
+                  {
+                    text: "Dragon screen reader software"
+                  },
+                  {
+                    text: "Digital Accessibility Foundation"
+                  },
+                  {
+                    text: "£380.00",
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Change contact</a></p>',
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">View claim</a></p>',
+                    format: "numeric"
+                  }
+                ]
+              ]
+            }) }}
+        </div>
+      </div>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Claims ready for payment</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          {{ govukTable({
+              firstCellIsHeader: true,
+              head: [
+                {
+                  text: "Claim type"
+                },
+                {
+                  text: "Date submitted"
+                },
+                {
+                  text: "Support type"
+                },
+                {
+                  text: "Person or company we need to pay"
+                },
+                {
+                  text: "Cost",
+                  format: "numeric"
+                },
+                {
+                  text: "",
+                    format: "numeric"
+                },
+                {
+                  text: "",
+                    format: "numeric"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    text: "Travel during work"
+                  },
+                  {
+                    text: "30 July 2025"
+                  },
+                  {
+                    text: "Train journey"
+                  },
+                  {
+                    text: "LNER"
+                  },
+                  {
+                    text: "£236.00",
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">Change contact</a></p>',
+                    format: "numeric"
+                  },
+                  {
+                    html: '<p class="govuk-body"><a href="#" class="govuk-link">View claim</a></p>',
+                    format: "numeric"
+                  }
+                ]
+              ]
+            }) }}
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

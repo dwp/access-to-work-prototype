@@ -59,6 +59,25 @@
 
 {% block content %}
 
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% set html %}
+        <h3 class="govuk-notification-banner__heading">
+          The way you sign in to your Access to Work account is changing.
+        </h3>
+        <p class="govuk-body">From 26 November, you will need to sign in with GOV.UK One Login. You can create a <a class="govuk-notification-banner__link" href="create-sign-in-ol" target="_blank">GOV.UK One Login (opens in a new tab)</a> if you do not already have one.</p>
+
+        <p class="govuk-body">Find out more about GOV.UK One login by reading our <a class="govuk-notification-banner__link" href="#">frequently asked questions (opens in a new tab)</a>.</p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
+    </div>
+    </div>
+
 <span class="govuk-caption-xl">Joe Bloggs</span>
       <h1 class="govuk-heading-xl">Account home</h1>
 
@@ -78,7 +97,7 @@
   <div class="card">
     <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
               <div class="nhsuk-card__content nhsuk-card__content--secondary">
-                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">Recent claims</a> </h2>
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="recent-claims/recent-claims">Recent claims</a> </h2>
                 <p class="nhsuk-card__description">Claims made in the past 3 months</p>
               </div>
         </div>
