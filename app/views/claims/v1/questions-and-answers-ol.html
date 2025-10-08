@@ -1,0 +1,138 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        GOV.UK One Login questions and answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        What is GOV.UK One Login?
+      </h2>
+
+      <p class="govuk-body">GOV.UK One Login lets you sign in to government services using the same email address and password.</p>
+
+      <p class="govuk-body">In future you’ll be able to use it to access all services on <a href="https://www.gov.uk/" class="govuk-link">GOV.UK</a>.</p>
+
+
+      <h2 class="govuk-heading-m">
+        What do I need to create a GOV.UK One Login?
+      </h2>
+
+      <p class="govuk-body">You'll need:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an email address (we recommend using your work email if you’re using the service for work)</li>
+          <li>a way to get security codes – either an authenticator app or a mobile phone number</li>
+        </ul>
+
+
+      <h2 class="govuk-heading-m">
+          How long does it take?
+      </h2>
+
+      <p class="govuk-body">Creating a GOV.UK One Login takes a few minutes.</p>
+
+
+      <h2 class="govuk-heading-m">
+        Do I need to do anything before 26 November 2025?
+      </h2>
+
+      <p class="govuk-body">You cannot sign in to Access to Work with GOV.UK One Login before 26 November, but you can <a href="create-sign-in-ol" class="govuk-link">create a GOV.UK One Login account</a> if you do not already have one.</p>
+
+      <p class="govuk-body">The first time you sign in with GOV.UK One Login, you’ll also be asked to add your first name and last name to complete your user profile.</p>
+
+
+      <h2 class="govuk-heading-m">
+        I already have a GOV.UK One Login account. Can I use it for Access to Work?
+      </h2>
+
+      <p class="govuk-body">Yes. If you already use GOV.UK One Login for another government service, you can use it to sign into Access to Work from 26 November 2025.</p>
+
+      <h2 class="govuk-heading-m">
+        Should I use the same email address as my current Access to Work account?  
+      </h2>
+
+      <p class="govuk-body">Using the same email address for GOV.UK One Login will make it simpler, but it’s not essential.</p>
+
+      <h2 class="govuk-heading-m">
+        I’m having problems signing up to GOV.UK Login. What should I do?
+      </h2>
+
+      <p class="govuk-body">Ensure your email, password and security code have been entered correctly.</p>
+
+      <p class="govuk-body">If the problems continue, contact <a href="https://signin.account.gov.uk/contact-us" class="govuk-link">GOV.UK One Login</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        Is GOV.UK One Login safe?
+      </h2>
+
+      <p class="govuk-body">Yes. The GOV.UK One Login service is designed to be secure.</p>
+
+      <p class="govuk-body">To help keep your account safe:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>create a strong password using 3 random words - you can include numbers, symbols or spaces</li>
+          <li>don’t reuse passwords</li>
+          <li>keep your password private</li>
+        </ul>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "claims/v1/includes/footer" %}
+{% endblock %}
