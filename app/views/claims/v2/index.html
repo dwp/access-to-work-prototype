@@ -1,0 +1,185 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "Access to Work",
+      serviceHref: '/index',
+      container: true
+  })
+}}
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "/index",
+      text: "Home"
+    },
+    {
+      href: "/prototypes",
+      text: "View prototypes",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  AtW Claims v2 – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Claim money back from AtW version 2 - page index
+      </h1>
+
+      <p>
+        This page documents the pages and user journeys which forms claim money back from AtW service. 
+      </p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">
+        One login
+      </h2>
+
+      <p>The claims portal is changing it's login and ID verifaction and moving to One login to ensure login is simpler and more secure.</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            View a breakdown of pages within the One Login journey
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          <h2 class="govuk-heading-m">
+            Page index
+          </h2>
+
+          <h2 class="govuk-heading-m">
+            Logging in with One login
+          </h2>
+
+            <ul class="govuk-list">
+              <li>
+                <a href="start" class="govuk-link">Start page</a>
+              </li>
+              <li>
+                <a href="sign-in" class="govuk-link">Sign in to Access to Work with One Login page</a>
+              </li>
+              <li>
+                <a href="sign-in-ol" class="govuk-link">Sign in with One Login page</a>
+              </li>
+              <li>
+                <a href="create-sign-in-ol" class="govuk-link">Create account / sign in to One Login page</a>
+              </li>
+            </ul>
+
+             <h2 class="govuk-heading-m">
+            Sign out of One Login
+          </h2>
+
+            <ul class="govuk-list">
+              <li>
+                <a href="account-home" class="govuk-link">Claims account portal</a>
+              </li>
+              <li>
+                <a href="sign-out" class="govuk-link">Sign out page</a>
+              </li>
+                <li>
+                <a href="service-timeout" class="govuk-link">Service timeout page</a>
+              </li>
+            </ul>
+
+            <h2 class="govuk-heading-m">
+            Unable to login
+          </h2>
+
+            <ul class="govuk-list">
+              <li>
+                <a href="send-claim-by-post" class="govuk-link">Failed IDV page</a>
+              </li>
+              <li>
+                <a href="no-disc-record" class="govuk-link">No DISC record page</a>
+              </li>
+            </ul>
+
+            <h2 class="govuk-heading-m">
+            One Login questions and answers
+          </h2>
+
+            <ul class="govuk-list">
+              <li>
+                <a href="questions-and-answers-ol" class="govuk-link">One login questions and answers</a>
+              </li>
+            </ul>
+        </div>
+      </details>
+
+      <p class="govuk-body"> <a href="start" class="govuk-link">View One Login journey</a></p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">
+        View recent claims
+      </h2>
+
+      <p>The claims portal allows users to submit, view and update their claims associated with their Access to Work grant.</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            View a breakdown of pages within the view recent claims journey
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          <h2 class="govuk-heading-m">
+            Page index
+          </h2>
+
+            <h2 class="govuk-heading-m">
+            Viewing recent claims
+          </h2>
+
+            <ul class="govuk-list">
+              <li>
+                <a href="account-home" class="govuk-link">Claims account portal</a>
+              </li>
+              <li>
+                <a href="recent-claims/recent-claims" class="govuk-link">Recent claims page</a>
+              </li>
+            </ul>
+            
+        </div>
+      </details>
+
+      <p class="govuk-body"> <a href="account-home" class="govuk-link">View recent claims journey</a></p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Account home – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "../v1/account-home"
+    }
+  ]
+}) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% set html %}
+        <h3 class="govuk-notification-banner__heading">
+          The way you sign in to Access to Work is changing.
+        </h3>
+        <p class="govuk-body">From 26 November, you will need to sign in with <a class="govuk-notification-banner__link" href="create-sign-in-ol" target="_blank">GOV.UK One Login (opens in a new tab)</a>. You can create a GOV.UK One Login account if you do not already have one.</p>
+
+        <p class="govuk-body">You can find out more information on our <a class="govuk-notification-banner__link" href="questions-and-answers-ol">GOV.UK One Login questions and answers page (opens in a new tab)</a>.</p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
+    </div>
+    </div>
+
+<span class="govuk-caption-xl">Joe Bloggs</span>
+      <h1 class="govuk-heading-xl">Account home</h1>
+
+<div class="nhs-card-wrapper">
+<div class="cards-grid">
+  <div class="card">
+    <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
+      <div class="nhsuk-card__content nhsuk-card__content--secondary">
+        <h2 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="start-claim/claim-type">Start a claim</a>
+        </h2>
+        <p class="nhsuk-card__description">Claim money back from your grant</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
+              <div class="nhsuk-card__content nhsuk-card__content--secondary">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="recent-claims/recent-claims">Recent claims</a> </h2>
+                <p class="nhsuk-card__description">Claims made in the past 3 months</p>
+              </div>
+        </div>
+  </div>
+
+  <div class="card">
+    <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
+              <div class="nhsuk-card__content nhsuk-card__content--secondary">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">Payments</a> </h2>
+                <p class="nhsuk-card__description">Check the progress of payments, including any rejected payments</p>
+              </div>
+        </div>
+  </div>
+
+
+<div class="card">
+    <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
+              <div class="nhsuk-card__content nhsuk-card__content--secondary">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="personal-details/personal-details">Personal details</a> </h2>
+                <p class="nhsuk-card__description">View and update your details.</p>
+              </div>
+        </div>
+  </div>
+
+  <div class="card">
+    <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
+              <div class="nhsuk-card__content nhsuk-card__content--secondary">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="claim-by-post/claim-by-post">How to claim by post</a> </h2>
+                <p class="nhsuk-card__description">Get a claim form and send it by post if you cannot claim online</p>
+              </div>
+        </div>
+  </div>
+
+   <div class="card">
+    <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
+              <div class="nhsuk-card__content nhsuk-card__content--secondary">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">Grant summary</a> </h2>
+                <p class="nhsuk-card__description">Your grant total, how much you have left and when you'll need to renew</p>
+              </div>
+        </div>
+  </div>
+</div>
+</div>
+
+{% include "claims/v1/includes/get-help" %}
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "claims/v2/includes/footer" %}
+{% endblock %}
+
