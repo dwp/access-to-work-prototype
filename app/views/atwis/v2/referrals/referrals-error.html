@@ -3,32 +3,31 @@
 {% block header %}
 
 {{
-  dwpHeader({
-      serviceName: "John Goldsmith",
-      container: true
-  })
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "John Goldsmith",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "referrals",
+              items: [
+                  {
+                      href: "#",
+                      text: "Your cases"
+                  },
+                  {
+                      href: "search",
+                      text: "Search"
+                  },
+                  {
+                      href: "referrals",
+                      text: "Referrals"
+                  }
+              ]
+          }  
+        })
 }}
-
-
-{{ govukServiceNavigation({
-  "serviceName": "Access to Work",
-  "serviceUrl": "/index",
-  navigation: [
-    {
-      href: "#",
-      text: "Your cases"
-    },
-    {
-      href: "#",
-      text: "Search"
-    },
-     {
-      href: "referrals",
-      text: "Referrals",
-      active: true
-    }
-  ]
-}) }}
 {% endblock %}
 
 {% block beforeContent %}

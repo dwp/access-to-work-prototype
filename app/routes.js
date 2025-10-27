@@ -830,3 +830,334 @@ router.post('/investigation-status', function (req, res) {
     }
    
   })
+
+  
+router.post('/remove-home-number-answer-claim', function(request, response) {
+  const removeHomeNumber = request.body['remove-home-number-claim'];
+
+  // Save the user's answer to the session
+  request.session.data['remove-home-number-claim'] = removeHomeNumber;
+
+  // If they confirmed removal, clear the phone number
+  if (removeHomeNumber === 'yes') {
+    request.session.data['your-home-number-claim'] = null; // or delete it
+  }
+
+  // Redirect back to the summary page
+  response.redirect("/claims/v2/personal-details/telephone-numbers");
+})
+
+
+router.post('/remove-mobile-number-answer-claim', function(request, response) {
+  const removeMobileNumber = request.body['remove-mobile-number-claim'];
+
+  // Save the user's answer to the session
+  request.session.data['remove-mobile-number-claim'] = removeMobileNumber;
+
+  // If they confirmed removal, clear the phone number
+  if (removeMobileNumber === 'yes') {
+    request.session.data['your-mobile-number-claim'] = null; // or delete it
+  }
+
+  // Redirect back to the summary page
+  response.redirect("/claims/v2/personal-details/telephone-numbers");
+})
+
+router.post('/claims-summary', function(request, response) {
+
+    var vehicleAdaptationsClaims = request.session.data['add-another-claim']
+    if (vehicleAdaptationsClaims == "yes"){
+        response.redirect("/claims/v2/start-claim/vehicle-adaptations/your-vehicle-adaptation")
+    } else {
+        response.redirect("/claims/v2/start-claim/vehicle-adaptations/adaptation-cost")
+    }
+})
+
+router.post('/remove-vehicle-adaption-claim-answer', function(request, response) {
+
+    var removeVehicleAdaptationsClaim = request.session.data['remove-vehicle-adaptation-claim']
+    if (removeVehicleAdaptationsClaim == "yes"){
+        response.redirect("/claims/v2/start-claim/vehicle-adaptations/claims-summary")
+    } else {
+        response.redirect("/claims/v2/start-claim/vehicle-adaptations/claims-summary")
+    }
+})
+
+router.post('/add-another-invoice-answer', function(request, response) {
+
+    var addAnotherInvoice = request.session.data['add-another-claim']
+    if (addAnotherInvoice == "yes"){
+        response.redirect("/claims/v2/start-claim/vehicle-adaptations/uploads")
+    } else {
+        response.redirect("/claims/v2/start-claim/vehicle-adaptations/who-to-pay")
+    }
+})
+
+router.post('/claim-other-journeys-answer', function(request, response) {
+
+    var addOtherMonth = request.session.data['claim-other-journeys']
+    if (addOtherMonth == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/claim-month")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/total-cost")
+    }
+})
+
+router.post('/add-another-invoice-taxi-answer', function(request, response) {
+
+    var addAnotherInvoice = request.session.data['add-another-claim-taxi']
+    if (addAnotherInvoice == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/uploads")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/uploads-summary")
+    }
+})
+
+router.post('/claim-other-journeys-taxi-answer', function(request, response) {
+
+    var addOtherMonth = request.session.data['claim-other-journeys-taxi']
+    if (addOtherMonth == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/uploads")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/payee")
+    }
+})
+
+
+router.post('/select-payee-taxi-answer', function(request, response) {
+
+    var selectPayee = request.session.data['payee-select-taxi']
+    if (selectPayee == "Kings Taxis"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/existing-account-details")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/who-to-pay")
+    }
+})
+
+router.post('/employment-status-taxi-answer', function(request, response) {
+
+    var employmentStatus = request.session.data['employment-status-taxi']
+    if (employmentStatus == "Employed"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/workplace-contact")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/check-your-answers")
+    }
+})
+
+router.post('/claim-type-answer', function(request, response) {
+
+        var claimType = request.session.data['claim-type']
+        if (claimType == "vehicle adaptation"){
+            response.redirect("/claims/v2/start-claim/vehicle-adaptations/about-your-grant")
+        } else if (claimType == "travel to work"){
+            response.redirect("/claims/v2/start-claim/travel-to-work/about-your-grant")
+        } else if (claimType == "specialist equipment"){
+            response.redirect("/claims/v2/start-claim/specialist-equipment/about-your-grant")
+        } else if (claimType == "support worker"){
+            response.redirect("/claims/v2/start-claim/support-worker/about-your-grant")
+        } else if (claimType == "travel during work"){
+            response.redirect("/claims/v2/start-claim/travel-during-work/about-your-grant")
+        } else if (claimType == "something else"){
+            response.redirect("/claims/v2/start-claim/something-else/unable-to-claim")
+        }
+    })
+
+    router.post('/journey-type-answer', function(request, response) {
+
+    var journeyType = request.session.data['journey-type']
+    if (journeyType == "taxi"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/claim-month")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/claim-instructions")
+    }
+})
+
+  router.post('/select-payee-details-answer', function(request, response) {
+
+    var payeeDetails = request.session.data['select-payee-details']
+    if (payeeDetails == "Lloyds bank"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/employment-status")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/taxi/who-to-pay")
+    }
+})
+
+ router.post('/mileage-or-journey-answer', function(request, response) {
+
+    var mileageOrJourney = request.session.data['mileage-or-journey']
+    if (mileageOrJourney == "journeys"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/claim-month")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/claim-month-mileage")
+    }
+})
+
+router.post('/claim-other-journeys-month-answer', function(request, response) {
+
+    var addOtherMonthLift = request.session.data['claim-other-journeys-month']
+    if (addOtherMonthLift == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/claim-month")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/total-journeys")
+    }
+})
+
+router.post('/employment-status-lift-answer', function(request, response) {
+
+    var employmentStatus = request.session.data['employment-status-lift']
+    if (employmentStatus == "Employed"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/workplace-contact")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/check-your-answers")
+    }
+})
+
+router.post('/claim-other-mileage-month-answer', function(request, response) {
+
+    var addOtherMonthLift = request.session.data['claim-other-mileage-month']
+    if (addOtherMonthLift == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/claim-month-mileage")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-to-work/lift/total-mileage")
+    }
+})
+
+router.post('/claims-summary-specialist-equipment', function(request, response) {
+
+    var specialistEquipmentClaims = request.session.data['add-another-claim-specialist-equipment']
+    if (specialistEquipmentClaims == "yes"){
+        response.redirect("/claims/v2/start-claim/specialist-equipment/your-specialist-equipment")
+    } else {
+        response.redirect("/claims/v2/start-claim/specialist-equipment/specialist-equipment-cost")
+    }
+})
+
+router.post('/upload-other-files-specialist-equipment-answer', function(request, response) {
+
+    var addOtherFileUpload = request.session.data['upload-other-files-specialist-equipment']
+    if (addOtherFileUpload == "yes"){
+        response.redirect("/claims/v2/start-claim/specialist-equipment/uploads")
+    } else {
+        response.redirect("/claims/v2/start-claim/specialist-equipment/payee")
+    }
+})
+
+router.post('/select-payee-specialist-equipment-answer', function(request, response) {
+
+    var selectPayee = request.session.data['payee-select-specialist-equipment']
+    if (selectPayee == "Kings Equipment"){
+        response.redirect("/claims/v2/start-claim/specialist-equipment/existing-account-details")
+    } else {
+        response.redirect("/claims/v2/start-claim/specialist-equipment/who-to-pay")
+    }
+})
+
+ router.post('/select-payee-details-specialist-equipment-answer', function(request, response) {
+
+    var payeeDetails = request.session.data['select-payee-details-specialist-equipment']
+    if (payeeDetails == "Lloyds bank"){
+        response.redirect("/claims/v2/start-claim/specialist-equipment/check-your-answers")
+    } else {
+        response.redirect("/claims/v2/start-claim/specialist-equipment/check-your-answers")
+    }
+})
+
+router.post('/support-worker-add-other-month-answer', function(request, response) {
+
+    var addOtherMonth = request.session.data['add-other-month-support-worker']
+    if (addOtherMonth == "yes"){
+        response.redirect("/claims/v2/start-claim/support-worker/claim-month")
+    } else {
+        response.redirect("/claims/v2/start-claim/support-worker/total-cost")
+    }
+})
+
+router.post('/add-another-invoice-support-worker-answer', function(request, response) {
+
+    var addAnotherInvoice = request.session.data['add-another-invoice-support-worker']
+    if (addAnotherInvoice == "yes"){
+        response.redirect("/claims/v2/start-claim/support-worker/uploads")
+    } else {
+        response.redirect("/claims/v2/start-claim/support-worker/payee")
+    }
+})
+
+router.post('/select-payee-support-worker-answer', function(request, response) {
+
+    var selectPayee = request.session.data['payee-select-support-worker']
+    if (selectPayee == "The Support Worker Network"){
+        response.redirect("/claims/v2/start-claim/support-worker/existing-account-details")
+    } else {
+        response.redirect("/claims/v2/start-claim/support-worker/who-to-pay")
+    }
+})
+
+router.post('/select-payee-details-support-worker-answer', function(request, response) {
+
+    var payeeDetails = request.session.data['select-payee-details-support-worker']
+    if (payeeDetails == "Lloyds bank"){
+        response.redirect("/claims/v2/start-claim/support-worker/check-your-answers")
+    } else {
+        response.redirect("/claims/v2/start-claim/support-worker/payment-details")
+    }
+})
+
+router.post('/employment-status-support-worker-answer', function(request, response) {
+
+    var employmentStatus = request.session.data['employment-status-support-worker']
+    if (employmentStatus == "Employed"){
+        response.redirect("/claims/v2/start-claim/support-worker/workplace-contact")
+    } else {
+        response.redirect("/claims/v2/start-claim/support-worker/check-your-answers")
+    }
+})
+
+router.post('/travel-during-work-add-other-month-answer', function(request, response) {
+
+    var addOtherMonth = request.session.data['add-other-month-travel-during-work']
+    if (addOtherMonth == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-during-work/claim-month")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-during-work/total-miles")
+    }
+})
+
+router.post('/add-another-invoice-travel-during-work-answer', function(request, response) {
+
+    var addAnotherInvoice = request.session.data['add-another-invoice-travel-during-work']
+    if (addAnotherInvoice == "yes"){
+        response.redirect("/claims/v2/start-claim/travel-during-work/uploads")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-during-work/payee")
+    }
+})
+
+router.post('/select-payee-travel-during-work-answer', function(request, response) {
+
+    var selectPayee = request.session.data['payee-select-travel-during-work']
+    if (selectPayee == "A to B Travel Support"){
+        response.redirect("/claims/v2/start-claim/travel-during-work/existing-account-details")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-during-work/who-to-pay")
+    }
+})
+
+router.post('/select-payee-details-travel-during-work-answer', function(request, response) {
+
+    var payeeDetails = request.session.data['select-payee-details-travel-during-work']
+    if (payeeDetails == "Lloyds bank"){
+        response.redirect("/claims/v2/start-claim/travel-during-work/check-your-answers")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-during-work/payment-details")
+    }
+})
+
+router.post('/employment-status-travel-during-work-answer', function(request, response) {
+
+    var employmentStatus = request.session.data['employment-status-travel-during-work']
+    if (employmentStatus == "Employed"){
+        response.redirect("/claims/v2/start-claim/travel-during-work/workplace-contact")
+    } else {
+        response.redirect("/claims/v2/start-claim/travel-during-work/check-your-answers")
+    }
+})

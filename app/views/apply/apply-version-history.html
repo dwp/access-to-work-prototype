@@ -2,13 +2,12 @@
 
 {% block header %}
 
-{{
-  dwpHeader({
-      serviceName: "Access to Work",
-      serviceHref: '/index',
-      container: true
-  })
-}}
+{{ dwpHeader({
+  serviceName: "Access to Work",
+  serviceHref: '/index',
+  container: true,
+  classes: "govuk-header--blue"
+}) }}
 
 {{ govukServiceNavigation({
   navigation: [

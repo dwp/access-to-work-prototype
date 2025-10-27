@@ -3,40 +3,41 @@
 {% block header %}
 
 {{
-  dwpHeader({
-      serviceName: "Al Ó Catháin",
-      container: true
-  })
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "referrals",
+              items: [
+                   {
+                      href: "#",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "#",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors",
+                      active: true
+                    },
+                    {
+                      href: "#",
+                      text: "Search"
+                    },
+                    {
+                      href: "../team-lead-referral-history/referrals-history",
+                      text: "Referrals"
+                    }
+              ]
+          }  
+        })
 }}
 
-
-{{ govukServiceNavigation({
-  "serviceName": "Access to Work",
-  "serviceUrl": "/index",
-  navigation: [
-    {
-      href: "#",
-      text: "Your cases"
-    },
-    {
-      href: "#",
-      text: "Unallocated"
-    },
-    {
-      href: "../all-advisors",
-      text: "All advisors",
-      active: true
-    },
-    {
-      href: "#",
-      text: "Search"
-    },
-    {
-      href: "../team-lead-referral-history/referrals-history",
-      text: "Referrals"
-    }
-  ]
-}) }}
 {% endblock %}
 
 {% block pageTitle %}

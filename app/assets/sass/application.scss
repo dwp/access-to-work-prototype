@@ -8,3 +8,9 @@
 $govuk-new-typography-scale: true;
 
 @import "_nhs-card-overrides";
+
+
+.govuk-header--blue {
+  background-color: #1d70b8;
+  color: white;
+}

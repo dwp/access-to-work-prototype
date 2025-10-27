@@ -3,44 +3,43 @@
 {% block header %}
 
 {{
-  dwpHeader({
-      serviceName: "Louise Patrick",
-      container: true
-  })
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Louise Patrick",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "manage-data",
+              items: [
+                   {
+                      href: "#",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "#",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "#",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../v2/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
 }}
-
-
-{{ govukServiceNavigation({
-  "serviceName": "Access to Work",
-  "serviceUrl": "/index",
-  navigation: [
-    {
-      href: "#",
-      text: "Your cases"
-    },
-    {
-      href: "#",
-      text: "Unallocated"
-    },
-    {
-      href: "#",
-      text: "All advisors"
-    },
-    {
-      href: "search",
-      text: "Search"
-    },
-    {
-      href: "../v3/referrals",
-      text: "Referrals"
-    },
-    {
-      href: "manage-data",
-      text: "Manage data",
-      active: true
-    }
-  ]
-}) }}
 {% endblock %}
 
 {% block beforeContent %}
