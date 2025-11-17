@@ -1161,3 +1161,254 @@ router.post('/employment-status-travel-during-work-answer', function(request, re
         response.redirect("/claims/v2/start-claim/travel-during-work/check-your-answers")
     }
 })
+
+router.post('/sent-rejection-letter-answer', function(request, response) {
+
+    var sentLetter = request.session.data['sent-letter']
+    if (sentLetter == "yes"){
+        response.redirect("/atwis/v3/csi/reject-case/case-rejected-confirmation")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+router.post('/find-applicant-answer', function(request, response) {
+
+    var findApplicant = request.session.data['found-applicant']
+    if (findApplicant == "yes"){
+        response.redirect("/atwis/v3/csi/add-ni-number/add-ni-number")
+    } else {
+        response.redirect("/atwis/v3/csi/contact-applicant/how-to-contact-applicant")
+    }
+})
+
+router.post('/how-to-contact-applicant-answer', function(request, response) {
+
+    var contactApplicant = request.session.data['how-to-contact-applicant']
+    if (contactApplicant == "email"){
+        response.redirect("/atwis/v3/csi/contact-applicant/email/email-applicant")
+    } else {
+        response.redirect("/atwis/v3/csi/contact-applicant/telephone/telephone-applicant")
+    }
+})
+
+router.post('/sent-email-answer', function(request, response) {
+
+    var sentEmail = request.session.data['sent-email']
+    if (sentEmail == "yes"){
+        response.redirect("/atwis/v3/csi/contact-applicant/email/email-sent")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+router.post('/applicant-answer-phone-answer', function(request, response) {
+
+    var phoneAnswer = request.session.data['applicant-answer-phone']
+    if (phoneAnswer == "yes"){
+        response.redirect("/atwis/v3/csi/contact-applicant/telephone/telephone-call-made")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+router.post('/add-ni-number-answer', function(request, response) {
+
+    var addNiNumber = request.session.data['ni-number-found']
+    if (addNiNumber == "yes"){
+        response.redirect("/atwis/v3/csi/appointee/have-appointee")
+    } else {
+        response.redirect("/atwis/v3/csi/appointee/have-appointee")
+    }
+})
+
+router.post('/have-appointee-answer', function(request, response) {
+
+    var haveAppointee = request.session.data['have-appointee']
+    if (haveAppointee == "yes"){
+        response.redirect("/atwis/v3/csi/appointee/appointee-details")
+    } else {
+        response.redirect("/atwis/v3/csi/check-details/check-personal-details")
+    }
+})
+
+router.post('/how-to-contact-applicant-check-details-answer', function(request, response) {
+
+    var contactApplicant = request.session.data['how-to-contact-applicant-check-details']
+    if (contactApplicant == "email"){
+        response.redirect("/atwis/v3/csi/contact-applicant-check-details/email/email-applicant")
+    } else {
+        response.redirect("/atwis/v3/csi/contact-applicant-check-details/telephone/telephone-applicant")
+    }
+})
+
+router.post('/applicant-answer-phone-check-details-answer', function(request, response) {
+
+    var phoneAnswer = request.session.data['applicant-answer-phone-check-details']
+    if (phoneAnswer == "no"){
+        response.redirect("/atwis/v3/csi/contact-applicant-check-details/telephone/telephone-call-made")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+router.post('/sent-email-check-details-answer', function(request, response) {
+
+    var sentEmail = request.session.data['sent-email-check-details']
+    if (sentEmail == "yes"){
+        response.redirect("/atwis/v3/csi/contact-applicant-check-details/email/email-sent")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+
+router.post('/check-personal-details', function (req, res) {
+  // Just go to next page
+  res.redirect('/atwis/v3/csi/check-details/check-company-details');
+});
+
+router.post('/check-company-details', function (req, res) {
+  // Just go to next page
+  res.redirect('/atwis/v3/csi/check-details/check-interview-details');
+});
+
+router.post('/check-company-details', function (req, res) {
+  // Just go to next page
+  res.redirect('/check-interview-details');
+});
+
+
+router.post('/check-interview-details', function (req, res) {
+  const q1 = req.session.data['do-details-match'];
+  const q2 = req.session.data['are-details-complete'];
+  const q3 = req.session.data['are-details-complete-interview-details'];
+
+  if (q1 === 'no' || q2 === 'no' || q3 === 'no') {
+    res.redirect('/atwis/v3/csi/contact-applicant-check-details/how-to-contact-applicant');
+  } else {
+    res.redirect('/atwis/v3/csi/send-confirmation-email/send-confirmation-email');
+  }
+});
+
+router.post('/have-you-sent-the-email-confirmation-answer', function(request, response) {
+
+    var sentEmail = request.session.data['have-you-sent-the-email-confirmation']
+    if (sentEmail == "yes"){
+        response.redirect("/atwis/v3/csi/print-send-claim-form/print-send-claim-form")
+    } else {
+        response.redirect("/atwis/v3/csi/print-send-claim-form/print-send-claim-form")
+    }
+})
+
+router.post('/have-you-printed-and-sent-the-claim-form-answer', function(request, response) {
+
+    var claimForm = request.session.data['have-you-printed-and-sent-the-claim-form']
+    if (claimForm == "yes"){
+        response.redirect("/atwis/v3/csi/confirm-with-employer/confirm-with-employer")
+    } else {
+        response.redirect("/atwis/v3/csi/confirm-with-employer/confirm-with-employer")
+    }
+})
+
+router.post('/confirmation-method-with-employer-answer', function(request, response) {
+
+        var claimType = request.session.data['confirmation-method-with-employer']
+        if (claimType == "email"){
+            response.redirect("/atwis/v3/csi/confirm-with-employer/email/email-employer")
+        } else if (claimType == "telephone"){
+            response.redirect("/atwis/v3/csi/confirm-with-employer/telephone/telephone-employer")
+        } else if (claimType == "record a response"){
+            response.redirect("/atwis/v3/csi/confirm-with-employer/record-response/did-interview-happen")
+        }
+    })
+
+    router.post('/sent-email-employer-check-answer', function(request, response) {
+
+    var sentEmail = request.session.data['sent-email-employer-check']
+    if (sentEmail == "yes"){
+        response.redirect("/atwis/v3/csi/confirm-with-employer/email/email-sent")
+    } else {
+        response.redirect("/atwis/v3/csi/confirm-with-employer/record-response/did-interview-happen")
+    }
+})
+
+router.post('/is-employer-available-answer', function(request, response) {
+
+    var employerAvailability = request.session.data['is-employer-available']
+    if (employerAvailability == "yes"){
+        response.redirect("/atwis/v3/csi/confirm-with-employer/telephone/telephone-call-made")
+    } else {
+        response.redirect("/atwis/v3/csi/confirm-with-employer/record-response/did-interview-happen")
+    }
+})
+
+router.post('/did-interview-happen-answer', function(request, response) {
+
+    var didInterviewHappen = request.session.data['did-interview-happen']
+    if (didInterviewHappen == "yes"){
+        response.redirect("/atwis/v3/csi/tasks-completed")
+    } else {
+        response.redirect("/atwis/v3/csi/more-information/need-to-contact-applicant")
+    }
+})
+
+router.post('/need-to-contact-applicant-more-info-answer', function(request, response) {
+
+    var contactApplicant = request.session.data['need-to-contact-applicant-more-info']
+    if (contactApplicant == "yes"){
+        response.redirect("/atwis/v3/csi/more-information/how-to-contact-applicant")
+    } else {
+        response.redirect("/atwis/v3/csi/more-information/support-worker-cancellation-fee")
+    }
+})
+
+router.post('/how-to-contact-applicant-more-info-answer', function(request, response) {
+
+    var contactApplicant = request.session.data['how-to-contact-applicant-more-info']
+    if (contactApplicant == "email"){
+        response.redirect("/atwis/v3/csi/more-information/email/email-applicant")
+    } else {
+        response.redirect("/atwis/v3/csi/more-information/telephone/telephone-applicant")
+    }
+})
+
+    router.post('/sent-email-more-info-answer', function(request, response) {
+
+    var sentEmail = request.session.data['sent-email-more-info']
+    if (sentEmail == "yes"){
+        response.redirect("/atwis/v3/csi/more-information/email/email-sent")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+router.post('/applicant-answer-phone-more-info-answer', function(request, response) {
+
+    var phoneAnswer = request.session.data['applicant-answer-phone-more-info']
+    if (phoneAnswer == "no"){
+        response.redirect("/atwis/v3/csi/more-information/telephone/telephone-call-made")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})
+
+router.post('/support-worker-cancellation-fee-answer', function(request, response) {
+
+    var supportWorkerCancellationFee = request.session.data['support-worker-cancellation-fee']
+    if (supportWorkerCancellationFee == "yes"){
+        response.redirect("/atwis/v3/csi/more-information/cancellation-fee")
+    } else {
+        response.redirect("/atwis/v3/csi/more-information/reject-the-case")
+    }
+})
+
+router.post('/reject-the-case-more-info-answer', function(request, response) {
+
+    var rejectCase = request.session.data['reject-the-case-more-info']
+    if (rejectCase == "yes"){
+        response.redirect("/atwis/v3/csi/reject-case/reject-case")
+    } else {
+        response.redirect("/atwis/v3/csi/user-case")
+    }
+})

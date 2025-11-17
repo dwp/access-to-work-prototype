@@ -1,0 +1,189 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "your-cases",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "#",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "#",
+                      text: "Search"
+                    },
+                    {
+                      href: "#",
+                      text: "Referrals"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Send a confirmation email – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="color:white !important;">
+          Brian Brobbey
+        </h1>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Advisor</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">John Doe</h2>
+
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Specialism</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">CSI</h2>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3 class="govuk-heading-l">Send a confirmation email</h3>
+
+      <p class="govuk-body">Send an email to <strong>Brian Brobbey</strong> to confirm that their application has been approved.</p>
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Applicant name"
+                },
+                value: {
+                  text: "Brian Brobbey"
+                }
+              },
+              {
+                key: {
+                  text: "Support cost"
+                },
+                value: {
+                  text: "100.00"
+                }
+              },
+              {
+                key: {
+                  text: "Interview date"
+                },
+                value: {
+                  text: "17 December 2025"
+                }
+              },
+              {
+                key: {
+                  text: "Company name"
+                },
+                value: {
+                  text: "DWP Digital"
+                }
+              },
+              {
+                key: {
+                  text: "Reference"
+                },
+                value: {
+                  text: "DORVV8RZY"
+                }
+              }
+            ]
+          }) }}
+
+          <p class="govuk-body">Include in the email that:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>they can confirm their booking for an interpreter or support worker</li>
+              <li>we will contact the employer after the interview</li>
+              <li>they should contact us if anything changes</li>
+            </ul>
+
+            {{ govukButton({
+              text: "Open new email",
+              classes: "govuk-button--secondary"
+            }) }}
+
+        <form class="form" action="/have-you-sent-the-email-confirmation-answer" method="post">
+
+            {{ govukRadios({
+              classes: "govuk-radios--inline",
+              name: "have-you-sent-the-email-confirmation",
+              fieldset: {
+                legend: {
+                  text: "Have you sent the email?",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes"
+                },
+                {
+                  value: "no",
+                  text: "No"
+                }
+              ]
+            }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        </form>
+
+        <p class="govuk-body"><a href="../user-case.html" class="govuk-link">Return to tasks</a></p>
+     
+  </div>
+  </div>
+{% endblock %}

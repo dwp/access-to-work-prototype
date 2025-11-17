@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "your-cases",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "#",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "#",
+                      text: "Search"
+                    },
+                    {
+                      href: "#",
+                      text: "Referrals"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Do you need to contact the applicant? – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="color:white !important;">
+          Brian Brobbey
+        </h1>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Advisor</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">John Doe</h2>
+
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Specialism</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">CSI</h2>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/need-to-contact-applicant-more-info-answer" method="post">
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "need-to-contact-applicant-more-info",
+        fieldset: {
+          legend: {
+            text: "Do you need to contact the applicant for more information?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        </form>
+
+        <p class="govuk-body"><a href="../user-case.html" class="govuk-link">Return to tasks</a></p>
+     
+  </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "your-cases",
+              items: [
+                   {
+                      href: "your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "#",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "#",
+                      text: "Search"
+                    },
+                    {
+                      href: "#",
+                      text: "Referrals"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Your cases – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{
+        dwpQuickReference({
+            ariaLabel: "User information",
+            primaryReference: {
+                text: 'User name:',
+                value: 'Al Ó Catháin'
+            },
+            secondaryReference: {
+                text: 'Your role and permissions:',
+                textDisplay: true,
+                value: 'Case manager team leader'
+            }
+        })
+}}
+
+      {{ 
+      dwpHorizontalNavigation({
+            selectedItem: "your-other-cases",
+            items: [
+                {
+                  text: "Your other cases (0)",
+                  href: "your-other-cases",
+                  id: "your-other-cases"
+                },
+                {
+                  text: "Your priority cases (0)",
+                  href: "your-priority-cases",
+                  id: "your-priority-cases"
+                },
+                {
+                  text: "Your CSI cases (0)",
+                  href: "your-csi-cases",
+                  id: "your-csi-cases"
+                },
+                {
+                  text: "Your documents (0)",
+                  href: "your-documents",
+                  id: "your-documents"
+                }
+            ]
+        })
+}}
+
+<div class="govuk-tabs__panel">
+    <h2 class="govuk-heading-m">Your other cases (0)</h2>
+
+          {{ govukSelect({
+            id: "case-type",
+            name: "case-type",
+            label: {
+              text: "Type of case"
+            },
+            items: [
+              {
+                value: "any",
+                text: "Any",
+                selected: true
+              },
+              {
+                value: "priority cases",
+                text: "Priority cases"
+              },
+              {
+                value: "CSI cases",
+                text: "CSI cases"
+              },
+              {
+                value: "documents",
+                text: "Documents"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Request a new case"
+          }) }}
+
+    </div>
+  </div>
+  </div>
+
+{% endblock %}
