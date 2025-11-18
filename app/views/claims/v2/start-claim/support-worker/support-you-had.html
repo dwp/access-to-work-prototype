@@ -1,0 +1,259 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Month of claim – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Support you had in [Month] + [Year]
+      </h1>
+
+      <form action="total-support" method="post" novalidate>
+
+        {{ govukCheckboxes({
+          name: "week-1",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Week beginning 1 [Month]",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "day-1",
+              text: "Monday 1 [Month]"
+            },
+            {
+              value: "day-2",
+              text: "Tuesday 2 [Month]"
+            },
+            {
+              value: "day-3",
+              text: "Wednesday 3 [Month]"
+            },
+            {
+              value: "day-4",
+              text: "Thursday 4 [Month]"
+            },
+            {
+              value: "day-5",
+              text: "Friday 5 [Month]"
+            },
+            {
+              value: "day-6",
+              text: "Saturday 6 [Month]"
+            },
+            {
+              value: "day-7",
+              text: "Sunday 7 [Month]"
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "week-2",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Week beginning 8 [Month]",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "day-8",
+              text: "Monday 8 [Month]"
+            },
+            {
+              value: "day-9",
+              text: "Tuesday 9 [Month]"
+            },
+            {
+              value: "day-10",
+              text: "Wednesday 10 [Month]"
+            },
+            {
+              value: "day-11",
+              text: "Thursday 11 [Month]"
+            },
+            {
+              value: "day-12",
+              text: "Friday 12 [Month]"
+            },
+            {
+              value: "day-13",
+              text: "Saturday 13 [Month]"
+            },
+            {
+              value: "day-14",
+              text: "Sunday 14 [Month]"
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "week-3",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Week beginning 15 [Month]",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "day-15",
+              text: "Monday 15 [Month]"
+            },
+            {
+              value: "day-16",
+              text: "Tuesday 16 [Month]"
+            },
+            {
+              value: "day-17",
+              text: "Wednesday 17 [Month]"
+            },
+            {
+              value: "day-18",
+              text: "Thursday 18 [Month]"
+            },
+            {
+              value: "day-19",
+              text: "Friday 19 [Month]"
+            },
+            {
+              value: "day-20",
+              text: "Saturday 20 [Month]"
+            },
+            {
+              value: "day-21",
+              text: "Sunday 21 [Month]"
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "week-4",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Week beginning 22 [Month]",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "day-22",
+              text: "Monday 22 [Month]"
+            },
+            {
+              value: "day-23",
+              text: "Tuesday 23 [Month]"
+            },
+            {
+              value: "day-24",
+              text: "Wednesday 24 [Month]"
+            },
+            {
+              value: "day-25",
+              text: "Thursday 25 [Month]"
+            },
+            {
+              value: "day-26",
+              text: "Friday 26 [Month]"
+            },
+            {
+              value: "day-27",
+              text: "Saturday 27 [Month]"
+            },
+            {
+              value: "day-28",
+              text: "Sunday 28 [Month]"
+            }
+          ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "week-5",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Week beginning 29 [Month]",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "day-29",
+              text: "Monday 29 [Month]"
+            },
+            {
+              value: "day-30",
+              text: "Tuesday 30 [Month]"
+            }
+          ]
+        }) }}
+      
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

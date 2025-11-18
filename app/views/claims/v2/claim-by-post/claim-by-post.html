@@ -1,0 +1,115 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "../account-home"
+    },
+    {
+      text: "How to claim by post",
+      href: "claim-by-post"
+    }
+  ]
+}) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        How to claim by post
+      </h1>
+
+      <p class="govuk-body">If you cannot make claims online, you can send Access to Work claims by post.</p>
+
+      <p class="govuk-body">You'll need to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>fill in the paper claim form that was sent with your Access to Work award letter</li>
+          <li>include any receipts or invoices we ask for in the claims form</li>
+        </ul>
+
+        <p class="govuk-body">You can <a href="#" class="govuk-link">contact Access to Work</a> to get a paper claim form if you need one.</p>
+
+        <div class="govuk-inset-text">
+          <h2 class="govuk-heading-m">Send your claim to Access to Work</h2>
+
+          <ul class="govuk-list">
+            <li>
+              Access to Work Service Centre
+            </li>
+            <li>
+              Harrow Jobcentre
+            </li>
+            <li>
+              Mail Handling Site A
+            </li>
+            <li>
+              Wolverhampton
+            </li>
+            <li>
+              WV98 1JE
+            </li>
+          </ul>
+        </div>
+
+        <p class="govuk-body">You'll receive a text message or email to let you know when we've got your claim form.</p>
+
+      <form action="../account-home" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Return to account home"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

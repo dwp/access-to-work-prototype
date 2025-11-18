@@ -1,0 +1,96 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="payee-postcode" method="post" novalidate>
+
+      <h1 class="govuk-heading-l">
+        The person or company we need to pay
+      </h1>
+
+      {{ govukInput({
+          label: {
+            text: "Full name"
+          },
+            hint: {
+              text: "This can be the name of a person or company"
+            },
+          id: "payee-full-name-claim-specialist-equipment",
+          name: "payee-full-name-claim-specialist-equipment"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+            hint: {
+              text: "We'll only use this to let them know we've paid them"
+            },
+          id: "payee-email-address-specialist-equipment-claim",
+          name: "payee-email-address-specialist-equipment-claim"
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

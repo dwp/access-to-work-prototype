@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  About your grant – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        About your grant
+      </h1>
+
+      <h2 class="govuk-heading-m">Your support starts from 21 February 2022 and is available until 21 February 2025.</h2>
+
+      <p class="govuk-body">If your needs change then you need to <a href="#" class="govuk-link">contact us</a>.</p>
+
+      <h2 class="govuk-heading-m">Support you can get</h2>
+       
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Agreed support and cost"
+            },
+            value: {
+              text: "£20.00 per journey"
+            }
+          },
+          {
+            key: {
+              text: "Total cost of support"
+            },
+            value: {
+              text: "£31285.71"
+            }
+          },
+          {
+            key: {
+              text: "Total amount you or your employer have agreed to contribute"
+            },
+            value: {
+              text: "£0.00"
+            }
+          },
+          {
+            key: {
+              text: "Total amount Access to Work will contribute"
+            },
+            value: {
+              text: "£31285.71"
+            }
+          },
+          {
+            key: {
+              text: "Amount of grant left"
+            },
+            value: {
+              text: "£31285.71"
+            }
+          }
+        ]
+      }) }}
+
+      <form action="what-youll-need" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

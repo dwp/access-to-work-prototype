@@ -1,0 +1,96 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Declaration
+      </h1>
+
+      <p class="govuk-body">By submitting this claim, I confirm that:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the information I have given is complete and correct</li>
+          <li>this is the only claim I have made for these costs</li>
+          <li>I am only claiming for agreed support</li>
+          <li>I will let DWP know if my circumstances change whilst I am getting Access to Work</li>
+        </ul>
+
+        <p class="govuk-body">I understand and agree that DWP may recover any money wrongly paid to me because I did not either</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>provide correct or complete information</li>
+          <li>report a change in my circumstances</li>
+        </ul>
+
+        <p class="govuk-body">I understand if I give wrong or incomplete information, or I do not report changes as they happen, I may:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>be prosecuted</li>
+          <li>need to pay a financial penalty</li>
+          <li>have my Access to Work grant reduced or stopped</li>
+        </ul>
+
+      <form action="claim-submitted" method="post" novalidate>
+
+      {{ govukButton({
+        text: "I agree - submit my claim"
+      }) }}
+          
+    </form>
+    
+  </div>
+  </div>
+
+{% endblock %}

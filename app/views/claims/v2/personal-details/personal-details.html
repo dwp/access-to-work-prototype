@@ -1,0 +1,236 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "../account-home"
+    },
+    {
+      text: "Personal details",
+      href: "personal-details"
+    }
+  ]
+}) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Personal details
+      </h1>
+       
+{% set summaryRows = [] %}
+
+    {% if data['first-name-claim'] or data['last-name-claim']%}
+      {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Full name"
+            },
+            value: {
+              text: (data['first-name-claim']) + ' ' + (data['last-name-claim'])
+            }
+          }
+    ]) %}
+
+    {% else %}
+
+     {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Full name"
+            },
+            value: {
+              text: "Joe Bloggs"
+            }
+          }
+    ]) %}
+
+    {% endif %}
+
+    {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Access to Work number"
+            },
+            value: {
+              text: "12345678"
+            }
+          }
+    ]) %}
+
+    {% if data['email-claims'] %}
+      {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: (data['email-claims'])
+            }
+          }
+    ]) %}
+
+    {% else %}
+
+     {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "joe.bloggs@gmail.com"
+            }
+          }
+    ]) %}
+
+    {% endif %}
+
+    {% if data['your-home-number-claim'] %}
+      {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Home telephone number"
+            },
+            value: {
+              text: (data['your-home-number-claim'])
+            }
+          }
+    ]) %}
+
+    {% else %}
+
+     {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Home telephone number"
+            },
+            value: {
+              text: "Not given"
+            }
+          }
+    ]) %}
+
+    {% endif %}
+
+    {% if data['your-mobile-number-claim'] %}
+      {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Mobile number"
+            },
+            value: {
+              text: (data['your-mobile-number-claim'])
+            }
+          }
+    ]) %}
+
+    {% else %}
+
+     {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Mobile number"
+            },
+            value: {
+              text: "Not given"
+            }
+          }
+    ]) %}
+
+    {% endif %}
+
+    {% if data['address-select-claims'] %}
+      {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Address"
+            },
+            value: {
+              text: data['address-select-claims'] + data['postcode-claims']
+            }
+          }
+    ]) %}
+
+    {% else %}
+
+     {% set summaryRows = summaryRows.concat([
+           {
+            key: {
+              text: "Address"
+            },
+            value: {
+              text: "1 Imaginary Street, London, Greater London, AA1 1BB"
+            }
+          }
+    ]) %}
+
+    {% endif %}
+
+    {{ govukSummaryList({ rows: summaryRows }) }}
+
+
+
+
+      <p>You must let us know if these details change. If you tell us about a change, your new details will take a few days to show in your account.</p>
+
+      <form action="change-personal-details" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Change personal details"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

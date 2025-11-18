@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Declaration
+      </h1>
+
+      <p class="govuk-body">By requesting a change to your personal details, you are agreeing that:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the details you have given is correct</li>
+          <li>Access to Work may check and confirm these details with employers, suppliers or providers</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">
+        If you’ve told us about a new home address
+      </h2>
+
+      <p class="govuk-body">This may affect the amount of grant you're awarded. If your new address affects your grant, we’ll contact you.</p>
+
+      <form action="new-details-submitted" method="post" novalidate>
+
+      {{ govukButton({
+        text: "I agree - update personal details"
+      }) }}
+          
+    </form>
+    
+  </div>
+  </div>
+
+{% endblock %}

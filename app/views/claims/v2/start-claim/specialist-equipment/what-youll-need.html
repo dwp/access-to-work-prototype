@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        What you'll need to send a claim
+      </h1>
+
+      <p class="govuk-body">You can claim for more than one piece of specialist equipment.</p>
+
+      <p class="govuk-body">You'll need to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>tell us the date you purchased the equipment - you can find this on the receipt or invoice</li>
+          <li>send us an invoice or receipt for the equipment you're claiming for</li>
+          <li>tell us the details of the person or company we need to pay, including their bank details if we've not paid them before</li>
+        </ul>
+
+        {{ govukInsetText({
+          text: "The person or company who needs paying back could be anyone who paid for your equipment. This includes yourself, a friend, a family member, your employer or the company who provided the equipment."
+        }) }}
+
+      <form action="your-specialist-equipment" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Start a claim"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

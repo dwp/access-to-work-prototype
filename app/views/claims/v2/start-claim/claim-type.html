@@ -1,0 +1,132 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "../account-home"
+    },
+    {
+      text: "What type of support are you claiming for?",
+      href: "claim-type"
+    }
+  ]
+}) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="/claim-type-answer" method="post" novalidate>
+
+        {{ govukRadios({
+          name: "claim-type",
+          fieldset: {
+            legend: {
+              text: "What type of support are you claiming for?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "vehicle adaptation",
+              text: "Adaptation to a vehicle",
+              hint: {
+                html: "British Rubble Ltd. <br> Support from 21 February 2022 to 21 Feburary 2029"
+              }
+            },
+            {
+              value: "travel to work",
+              text: "Travel to or from work",
+              hint: {
+                html: "Singer Music <br> Support from 21 February 2022 to 21 Feburary 2025 <br> £20.00 per journey"
+              }
+            },
+            {
+              value: "specialist equipment",
+              text: "Specialist equipment",
+              hint: {
+                html: "Stones R Us <br> Support from 21 February 2022 to 21 Feburary 2029"
+                }
+              },
+            {
+              value: "support worker",
+              text: "Support worker",
+              hint: {
+                html: "British Rubbish Ltd. <br> Support from 12 December 2024 to 10 December 2027 <br> £18.00 per hour"
+                }
+              },
+            {
+              value: "travel during work",
+              text: "Travel during work",
+              hint: {
+                html: "Travellling people <br> Support from 21 February December 2023 to 19 February 2026"
+              }
+            },
+              {
+                divider: "or"
+              },
+              {
+                value: "something else",
+                text: "Something else"
+              }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

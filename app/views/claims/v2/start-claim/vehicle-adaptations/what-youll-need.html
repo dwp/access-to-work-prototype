@@ -27,18 +27,10 @@
 }) }}
 
  <div class="govuk-back-link-and-translation govuk-width-container">
-  {{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Home",
-      href: "../account-home"
-    },
-    {
-      text: "How to claim by post",
-      href: "claim-by-post"
-    }
-  ]
-}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 
   <div class="language-switcher">
     <span class="govuk-body-s">English&nbsp;|&nbsp;
@@ -65,47 +57,26 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        How to claim by post
+        What you'll need to make a claim
       </h1>
-
-      <p class="govuk-body">If you cannot make claims online, you can send Access to Work claims by post.</p>
 
       <p class="govuk-body">You'll need to:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>fill in the paper claim form that was sent with your Access to Work award letter</li>
-          <li>include any receipts or invoices we ask for in the claims form</li>
+          <li>tell us the date on the invoice</li>
+          <li>send us an invoice or receipt that shows the cost of the adaptation</li>
+          <li>tell us the details of the person or company we need to pay,including their bank details if we've not paid them before</li>
         </ul>
 
-        <p class="govuk-body">You can <a href="#" class="govuk-link">contact Access to Work</a> to get a paper claim form if you need one.</p>
+        <p class="govuk-body">You can claim for more than one adaptation in a single claim if the work was carried out by the same person or company.</p>
 
-        <div class="govuk-inset-text">
-          <h2 class="govuk-heading-m">Send your claim to Access to Work</h2>
+        {{ govukInsetText({
+          text: "If different people or companies carried out the work you'll need to make a separate claim for each."
+        }) }}
 
-          <ul class="govuk-list">
-            <li>
-              Access to Work Service Centre
-            </li>
-            <li>
-              Harrow Jobcentre
-            </li>
-            <li>
-              Mail Handling Site A
-            </li>
-            <li>
-              Wolverhampton
-            </li>
-            <li>
-              WV98 1JE
-            </li>
-          </ul>
-        </div>
-
-        <p class="govuk-body">You'll receive a text message or email to let you know when we've got your claim form.</p>
-
-      <form action="../account-home" method="post" novalidate>
+      <form action="your-vehicle-adaptation" method="post" novalidate>
 
         {{ govukButton({
-          text: "Return to account home"
+          text: "Start a claim"
         }) }}
 
       </form>

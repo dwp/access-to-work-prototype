@@ -1,0 +1,312 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Claims summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="../declaration" method="post" novalidate>
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+     {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Taxi travel claim information"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Month of travel"
+              },
+              value: {
+                text: data['claim-month-month'] + " " + data['claim-month-year']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "claim-month#claim-month-month",
+                    text: "Change",
+                    visuallyHiddenText: "month of travel"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Days journeys were made in XXX"
+              },
+              value: {
+                text: ""
+              },
+              actions: {
+                items: [
+                  {
+                    href: "number-of-journeys",
+                    text: "Change",
+                    visuallyHiddenText: "number of journeys"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Total number of journeys"
+              },
+              value: {
+                text: "X journeys"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "number-of-journeys",
+                    text: "Change",
+                    visuallyHiddenText: "total number of journeys"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Total cost of journeys"
+              },
+              value: {
+                text: data['taxi-total-cost']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "total-cost#taxi-total-cost",
+                    text: "Change",
+                    visuallyHiddenText: "total cost"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Receipts or invoices uploaded"
+              },
+              value: {
+                text: data['invoice-upload-taxi']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "uploads",
+                    text: "Change",
+                    visuallyHiddenText: "receipt or invoice upload"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Details of person or company being paid"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Name"
+              },
+              value: {
+                text: data['payee-full-name-claim']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "who-to-pay#payee-full-name-claim",
+                    text: "Change",
+                    visuallyHiddenText: "payee name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email address"
+              },
+              value: {
+                text: data['payee-email-address-claim']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "who-to-pay#payee-email-address-claim",
+                    text: "Change",
+                    visuallyHiddenText: "payee email address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Address"
+              },
+              value: {
+                text: data['address-select-claims'] + " ," + data['payee-postcode']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payee-postcode",
+                    text: "Change",
+                    visuallyHiddenText: "payee address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Name on bank account"
+              },
+              value: {
+                text: data['name-on-account']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payment-details#name-on-account",
+                    text: "Change",
+                    visuallyHiddenText: "name on bank account"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Sort code"
+              },
+              value: {
+                text: data['sort-code']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payment-details#sort-code",
+                    text: "Change",
+                    visuallyHiddenText: "sort code"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Account number"
+              },
+              value: {
+                text: data['account-number']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payment-details#account-number",
+                    text: "Change",
+                    visuallyHiddenText: "account number"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukInsetText({
+          html: "<p class='govuk-body'>You can change these details to <a href='#' class='govuk-link'>pay a person or company we've paid before</a>.</p>"
+        }) }}
+
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Employment details"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Employment status"
+              },
+              value: {
+                text: data['employment-status-taxi']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "employment-status#employment-status-taxi",
+                    text: "Change",
+                    visuallyHiddenText: "employment status"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

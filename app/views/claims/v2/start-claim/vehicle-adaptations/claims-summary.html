@@ -1,0 +1,136 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Claims summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full-width-from-desktop">
+
+      <form action="/claims-summary" method="post" novalidate>
+
+      <h1 class="govuk-heading-l">
+        You've told us you want to claim for X adaptation
+      </h1>
+
+      {{ govukSummaryList({
+          card: {
+          },
+          rows: [
+            {
+              key: {
+                html: '<span id="current-date"></span>'
+              },
+              value: {
+                text: data['adaptation-name']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "your-vehicle-adaptation",
+                    text: "Change",
+                    visuallyHiddenText: "change"
+                  },
+                  {
+                    href: "remove-claim",
+                    text: "Remove",
+                    visuallyHiddenText: "remove"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "add-another-claim",
+            fieldset: {
+              legend: {
+                text: "Do you need to claim for another vehicle adaptation?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+
+<script>
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  document.getElementById('current-date').textContent = formattedDate;
+</script>
+
+
+    </div>
+  </div>
+{% endblock %}

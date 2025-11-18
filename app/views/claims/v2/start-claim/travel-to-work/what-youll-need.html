@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        What you'll need to send your claim
+      </h1>
+
+      <p class="govuk-body">You'll need to tell us the:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>dates that you travelled to or from work</li>
+          <li>name and email address of a workplace contact who we can ask to confirm each journey you're claiming for</li>
+          <li>details of the person or company who needs paying back, including bank details if we've not paid them before</li>
+        </ul>
+
+        {{ govukInsetText({
+          text: "The person or company who needs paying back could be yourself, a family member or friend, your employer or a transport company."
+        }) }}
+
+        <h2 class="govuk-heading-m">
+        If you're claiming for travel by taxi
+      </h2>
+
+      <p class="govuk-body">You'll need to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>tell us how many journeys you made each day</li>
+          <li>tell us the total cost of your work travel you're claiming for</li>
+          <li>send us an invoice or receipt for any journeys you're claiming for</li>
+        </ul>
+
+        <p class="govuk-body">You can either send us:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>a receipt or invoice that contains all the journeys you're claiming for</li>
+          <li>separate receipts and invoices for each single journey</li>
+        </ul>
+
+         <h2 class="govuk-heading-m">
+        If you're claiming for lifts from a friend, colleague or family member
+      </h2>
+
+      <p class="govuk-body">You'll need to tell us the total mileage travelled or the total number of journeys on each date.</p>
+
+      <form action="journey-type" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Start a claim"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

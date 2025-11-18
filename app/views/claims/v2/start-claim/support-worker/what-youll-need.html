@@ -1,0 +1,97 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        What you'll need to make a claim
+      </h1>
+
+      <p class="govuk-body">You'll need to send a claim for each type of support you get. For example, if you use a British Sign Language interpretor and have a driver, you'll need to send 2 claims.</p>
+
+      <p class="govuk-body">If different people or companies paid for your support, you'll also need to send separate claims for each.</p>
+
+      <p class="govuk-body">You'll need:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the dates you had support</li>
+          <li>to tell us how many hours of support you had on each date</li>
+          <li>the name and email address of the person or company who we can ask to confirm the support you're claiming for</li>
+          <li>the details of the person or company who needs paying, including bank details if we've not paid them before</li>
+        </ul>
+
+        {{ govukInsetText({
+          text: "The person or company who needs paying back could be anyone who paid for your support worker costs. This includes yourself, a friend, a family member, or your employer."
+        }) }}
+
+        <p class="govuk-body">You'll need to send us an invoice or receipt for any support worker costs you're claiming for.</p>
+
+        <h2 class="govuk-heading-m">
+                If you are self-employed or owrk at the same organisation as the person providing the support
+              </h2>
+
+              <p class="govuk-body">You'll need to send us a digital copy of a signed timesheet or payslip for the person who provided your support.</p>
+
+      <form action="support-name" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Start a claim"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

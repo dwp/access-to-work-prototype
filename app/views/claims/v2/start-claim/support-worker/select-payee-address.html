@@ -1,0 +1,135 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Change personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Select {{ data['payee-full-name-support-worker-claim'] }}'s address
+      </h1>
+
+      <form action="payment-details" method="post" novalidate>
+
+        <p class="govuk-body govuk-!-font-weight-bold">10 addresses found for {{ data['payee-postcode-support-worker'] }}  <a href="payee-postcode" class="govuk-link">Change</a></p>
+     
+        {{ govukSelect({
+          id: "address-select--support-worker-claims",
+          name: "address-select-support-worker-claims",
+          label: {
+            text: "Select an address"
+          },
+          items: [
+          {
+            value: "10 addresses found",
+            text: "10 addresses found"
+          },
+            {
+              value: "1 Imaginary Street, London",
+              text: "1 Imaginary Street, London"
+            },
+            {
+              value: "2 Imaginary Street, London",
+              text: "2 Imaginary Street, London"
+            },
+            {
+              value: "3 Imaginary Street, London",
+              text: "3 Imaginary Street, London"
+            },
+            {
+              value: "4 Imaginary Street, London",
+              text: "4 Imaginary Street, London"
+            },
+            {
+              value: "5 Imaginary Street, London",
+              text: "5 Imaginary Street, London"
+            },
+            {
+              value: "6 Imaginary Street, London",
+              text: "6 Imaginary Street, London"
+            },
+            {
+              value: "7 Imaginary Street, London",
+              text: "7 Imaginary Street, London"
+            },
+            {
+              value: "8 Imaginary Street, London",
+              text: "8 Imaginary Street, London"
+            },
+            {
+              value: "9 Imaginary Street, London",
+              text: "9 Imaginary Street, London"
+            },
+            {
+              value: "10 Imaginary Street, London",
+              text: "10 Imaginary Street, London"
+            }
+          ]
+        }) }}
+
+        <p class="govuk-body">
+          <a href="cant-find-address" class="govuk-link">I can't find {{ data['payee-full-name-support-worker-claim'] }}'s address in the list</a>
+        </p>
+                                    
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+      </div>
+
+{% endblock %}
