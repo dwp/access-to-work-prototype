@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How many hours do you work? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../self-employed/work-days" method="post">
+
+        <h1 class="govuk-heading-l">How many hours do you work per week?</h1>
+
+      <p class="govuk-body">If your hours can be different each week, give an estimate of the number of hours that you work on average.</p>
+
+        {{ govukInput({
+          label: {
+            text: ""
+          },
+          classes: "govuk-input--width-3",
+          name: "work-hours-self-employed",
+          suffix: {
+            text: "hours per week"
+          },
+          spellcheck: false
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

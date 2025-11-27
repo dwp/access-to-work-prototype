@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your conditions and disabilities – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../conditions-disabilities/affect-you-at-work" method="post">
+
+      <h1 class="govuk-heading-l">
+        Conditions and disabilities
+      </h1>
+
+      <p class="govuk-body">You do not have to be medically diagnosed with a health condition or disability to be eligible for Access to Work support.</p>
+
+      <p class="govuk-body">Conditions and disabilities can include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a physical disability</li>
+        <li>a mental health condition</li>
+        <li>a hearing or sight impairment</li>
+        <li>a learning disability or difference (including neurodivergence)</li>
+        <li>an illness</li>
+        <li>a temporary condition</li>
+        <li>a developmental condition</li>
+        <li>any other condition, disability or illness</li>
+      </ul>
+
+      {{ govukCharacterCount({
+        name: "condition-disability-name",
+        maxlength: 300,
+        label: {
+          text: "What are the names of the conditions or disabilities you have?",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "You can include one or more. You can give information about how your conditions or disabilities affect you in the next step."
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

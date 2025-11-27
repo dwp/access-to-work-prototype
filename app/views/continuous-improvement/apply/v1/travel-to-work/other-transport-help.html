@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Travel support – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="how-many-journeys" method="post">
+
+        <h1 class="govuk-heading-l">
+          Travel to work support
+        </h1>
+
+        {{ govukInput({
+          label: {
+            text: "What support do you need to travel to work?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "For example, community bus service"
+          },
+          classes: "govuk-input--width-20",
+          id: "support-needed-travel",
+          name: "support-needed-travel"
+        }) }}
+  
+
+        {{ govukCharacterCount({
+          name: "other-transport-help",
+          id: "other-transport-help",
+          maxlength: 500,
+          rows: 10,
+          label: {
+            text: "How will support to travel to work meet your needs?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "You could include the effect of not having any support, or what you find difficult about travelling to work"
+          }
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

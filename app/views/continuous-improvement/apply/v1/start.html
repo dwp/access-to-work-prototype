@@ -1,0 +1,370 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page - {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Benefits",
+        href: "#"
+      },
+      {
+        text: "Benefits and financial support if you're disabled or have a health condition"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        {{ serviceName }}: get support if you have a disability or health condition
+      </h1>
+
+      <p class="govuk-body">Contents</p>
+
+      <ul class="govuk-list govuk-!-margin-bottom-6">
+        <li>
+          – <a class="govuk-link" href="#">What Access to Work is</a>
+        </li>
+        <li>
+          – <a class="govuk-link" href="#">Eligibility</a>
+        </li>
+        <li>
+           – Apply for an Access to Work grant
+        </li>
+        <li>
+          – <a class="govuk-link" href="#">After you apply for the grant</a>
+        </li>
+        <li>
+          – <a class="govuk-link" href="#">Claiming money from your grant</a>
+        </li>
+        <li>
+          – <a class="govuk-link" href="#">Renew your grant</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-bottom-6">
+
+    <h2 class="govuk-heading-l">
+      Apply for an Access to Work grant
+    </h2>
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">Check you’re eligible</a> before you apply.
+    </p>
+
+    {{ govukInsetText({
+      text: "If you’re a civil servant, your employer will provide support instead of Access to Work. Contact them directly to arrange this."
+    }) }}
+
+    <p class="govuk-body">
+      You can apply for Access to Work online or by phone.
+    </p>
+
+    <p class="govuk-body">You’ll need to give:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your contact details</li>
+        <li>your workplace address and postcode</li>
+        <li>information about how your condition affects your work and what support you think you need</li>
+        <li>details of a workplace contact who can confirm you work there, if you’re employed (they will not be contacted without your permission)</li>
+        <li>your <a href="#" class="govuk-link">Unique Taxpayer Reference (UTR) number</a>, if you’re self-employed</li>
+      </ul>
+
+      {{ govukInsetText({
+        text: "If you need the form in other formats, such as braille, large print or audio CD, call the Access to Work helpline."
+      }) }}
+
+      <h3 class="govuk-heading-m">
+        Apply online
+      </h3>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "../v1/eligibility/check-eligible",
+        isStartButton: true
+      }) }}
+
+      <h3 class="govuk-heading-m">
+        Apply by phone
+      </h3>
+
+      <p class="govuk-body">
+        You can apply by calling the Access to Work helpline. Make sure you have all the necessary details with you when you call.
+      </p>
+
+      <h4 class="govuk-heading-s">
+        Access to Work helpline
+      </h4>
+
+
+        <p class="govuk-body">
+          Telephone: 0800 121 7479
+          <br>
+          Textphone: 0800 121 7579
+          <br>
+          <a href="#" class="govuk-link">Relay UK</a> (if you cannot hear or speak on the phone): 18001 then 0800 121 7479
+          <br>
+          British Sign Language (BSL) <a href="#" class="govuk-link">video relay service</a> if you’re on a computer - find out how to <a href="#" class="govuk-link">use the service on mobile or tablet</a>
+          <br>
+          Monday to Friday, 9am to 5pm
+          <br>
+          <a href="#" class="govuk-link">Find out about call charges</a>
+        </p>
+
+        {{ govukPagination({
+          previous: {
+            labelText: "Eligibility",
+            href: "#"
+          },
+          next: {
+            labelText: "After you apply for the grant",
+            href: "#"
+          }
+        }) }}
+
+        <p class="govuk-body govuk-!-margin-bottom-8">
+        <a href="#" class="govuk-link">View a printable version of the whole guide</a>
+        </p>
+
+        <aside class="govuk-prototype-kit-common-templates-related-items govuk-!-margin-bottom-8" role="complementary">
+          <h4 class="govuk-heading-s" id="subsection-title">
+            Explore the topic
+          </h4>
+          <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list govuk-!-font-size-16">
+              <li>
+                <a class="govuk-link govuk-!-font-weight-bold"href="#">
+                  Benefits and financial support if you're looking for work
+                </a>
+              </li>
+              <li>
+                <a class="govuk-link govuk-!-font-weight-bold"href="#">
+                  Benefits and financial support if you're disabled or have a health condition
+                </a>
+              </li>
+              <li>
+                <a class="govuk-link govuk-!-font-weight-bold"href="#">
+                  Disability equipment and transport
+                </a>
+              </li>
+              <li>
+                <a class="govuk-link govuk-!-font-weight-bold"href="#">
+                  Work and disabled people
+                </a>
+              </li>
+              <li>
+                <a class="govuk-link govuk-!-font-weight-bold"href="#">
+                  Recruiting and hiring
+                </a>
+              </li>
+              <li>
+                <a class="govuk-link govuk-!-font-weight-bold"href="#">
+                  Finding a job
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <h4 class="govuk-heading-s">
+          Elsewhere on the web
+        </h4>
+
+        <p class="govuk-body">
+          <a href="#" class="govuk-link">Access to Work video guides with British Sign Language</a>
+          </p>
+
+    </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">
+        Related content
+      </h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <a href="#">
+              Easy read: get support in work if you have a disability or health condition (Access to Work)
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Reasonable adjustments for workers with disabilities or health conditions
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Definition of disability under the Equality Act 2010
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Disability rights
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Looking for work if you're disabled
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+{{ govukFooter({
+  navigation: [
+    {
+      title: "Services and information",
+      width: "two-thirds",
+      columns: 2,
+      items: [
+        {
+          href: "#",
+          text: "Benefits"
+        },
+        {
+          href: "#",
+          text: "Births, death, marriages and care"
+        },
+        {
+          href: "#",
+          text: "Business and self-employed"
+        },
+        {
+          href: "#",
+          text: "Childcare and parenting"
+        },
+        {
+          href: "#",
+          text: "Citizenship and living in the UK"
+        },
+        {
+          href: "#",
+          text: "Crime, justice and the law"
+        },
+        {
+          href: "#",
+          text: "Disabled people"
+        },
+        {
+          href: "#",
+          text: "Driving and transport"
+        },
+        {
+          href: "#",
+          text: "Education and learning"
+        },
+        {
+          href: "#",
+          text: "Employing people"
+        },
+        {
+          href: "#",
+          text: "Environment and countryside"
+        },
+        {
+          href: "#",
+          text: "Housing and local services"
+        },
+        {
+          href: "#",
+          text: "Money and tax"
+        },
+        {
+          href: "#",
+          text: "Passports, travel and living abroad"
+        },
+        {
+          href: "#",
+          text: "Visas and immigration"
+        },
+        {
+          href: "#",
+          text: "Working, jobs and pensions"
+        }
+      ]
+    },
+    {
+      title: "Government activity",
+      width: "one-third",
+      items: [
+        {
+          href: "#",
+          text: "Departments"
+        },
+        {
+          href: "#",
+          text: "News"
+        },
+        {
+          href: "#",
+          text: "Guidance and regulation"
+        },
+        {
+          href: "#",
+          text: "Research and statistics"
+        },
+        {
+          href: "#",
+          text: "Policy papers and consultations"
+        },
+        {
+          href: "#",
+          text: "Transparency"
+        },
+        {
+          href: "#",
+          text: "How government works"
+        },
+        {
+          href: "#",
+          text: "Get involved"
+        }
+      ]
+    }
+  ]
+}) }}
+
+{% endblock %}

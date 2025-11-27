@@ -1,34 +1,35 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
+
 {{
         dwpHeader({
             serviceName: "Access to Work",
             serviceHref: '/index',
-            action: "Al Ó Catháin",
+            action: "Louise Patrick",
             actionHref: "#",
             container: true,
             navigation: {
               selectedItem: "manage-data",
               items: [
                    {
-                      href: "../your-cases",
+                      href: "#",
                       text: "Your cases"
                     },
                     {
-                      href: "../unallocated/unallocated-main-page",
+                      href: "#",
                       text: "Unallocated"
                     },
                     {
-                      href: "../all-advisors",
+                      href: "#",
                       text: "All advisors"
                     },
                     {
-                      href: "../search/search",
+                      href: "search",
                       text: "Search"
                     },
                     {
-                      href: "../referrals/referrals",
+                      href: "../v2/referrals",
                       text: "Referrals"
                     },
                     {

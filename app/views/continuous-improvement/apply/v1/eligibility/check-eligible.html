@@ -1,0 +1,114 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check if you are eligible – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+    serviceName: "Apply for Access to Work",
+    serviceUrl: "/apply/v1/eligibility/check-eligible"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../eligibility/check-eligible" method="post">
+
+     
+{{ govukCheckboxes({
+  "name": "eligibility",
+  "fieldset": {
+    "legend": {
+      "text": "Check if you are eligible",
+      "isPageHeading": true,
+      "classes": "govuk-fieldset__legend--l"
+    }
+  },
+  "hint": {
+    "text": "Select all that apply to you"
+  },
+  "items": [
+    {
+      "value": "condition",
+      "text": "I have a physical or mental health condition or disability that means I need support to do my job, or to get to and from work"
+    },
+    {
+      "value": "age",
+      "text": "I am aged 16 or over"
+    },
+    {
+      "value": "work",
+      "text": "I am in paid work (or about to start or return to work) in England, Scotland or Wales
+      "
+    },
+    {
+      "value": "location",
+      "text": "I live in England, Scotland or Wales"
+    },
+    {
+      "divider": "or"
+    },
+    {
+      "value": "none",
+      "text": "None of these",
+      "behaviour": "exclusive"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue",
+  id: "eligibleRedirect"
+}) }}
+                                    
+     </div>
+
+    {% include "apply/v1/includes/get-help" %}
+
+  </div>
+
+  <script>
+    document.getElementById("eligibleRedirect").addEventListener("click", eligibleFunction);
+
+    function eligibleFunction(e) {
+      e.preventDefault();
+      var checkboxes = Array.from(document.getElementsByName("eligibility"));
+      var linkHref = "../eligibility/ineligible";
+      var count = 0;
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked ) {
+          count++;
+        }
+      }
+      if (count == 4) {
+        linkHref = "../eligibility/are-you-a-civil-servant";
+        }
+      document.location.href = linkHref;
+    }
+
+</script>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

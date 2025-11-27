@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Add another job – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">You have added 1 job</h1>
+
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          rows: [
+            [
+              {
+                text: data['job-title-registered-director-starting-job']
+              },
+              {
+                html: "<a href='../registered-director/check-answers-registered-director' class='govuk-link govuk-!-padding-right-5'>Change</a> <a href='../registered-director/remove-job' class='govuk-link'>Remove</a>",
+                classes: "govuk-table__cell--numeric govuk-!-width-one-tenth"
+              }
+            ]
+          ]
+        }) }}
+
+        <form class="form" action="/another-job-answer-registered-director-starting-job" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "add-another-job-registered-director-starting-job",
+          fieldset: {
+            legend: {
+              text: "Do you need to add another job?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list.html" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

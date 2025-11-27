@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Which days will you work? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../self-employed/job-address" method="post">
+
+        {{ govukCheckboxes({
+          name: "work-days-self-employed-starting-job",
+          fieldset: {
+            legend: {
+              text: "Which days of the week will you work?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Monday",
+              text: "Monday"
+            },
+            {
+              value: "Tuesday",
+              text: "Tuesday"
+            },
+            {
+              value: "Wednesday",
+              text: "Wednesday"
+            },
+            {
+              value: "Thursday",
+              text: "Thursday"
+            },
+            {
+              value: "Friday",
+              text: "Friday"
+            },
+            {
+              value: "Saturday",
+              text: "Saturday"
+            },
+            {
+              value: "Sunday",
+              text: "Sunday"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

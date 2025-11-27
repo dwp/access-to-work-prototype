@@ -1,0 +1,70 @@
+  <h2 class="govuk-heading-m">
+        Specialist equipment
+      </h2>
+
+
+      {% set summaryRows = [] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you need specialist equipment to support you with your condition at work?"
+          },
+          value: {
+            text: data['need-specialist-equipment']
+          }
+        }
+        ]) %}
+
+        {% if data['need-specialist-equipment'] == 'Yes' %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Do you know what specialist equipment you need?"
+            },
+            value: {
+              text: data['know-specialist-equipment']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+        {% if data['specialist-equipment-type'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "What type of specialist equipment do you need?"
+            },
+            value: {
+              text: data['specialist-equipment-type']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['another-item'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you need to add another item?"
+          },
+          value: {
+            text: data['another-item']
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    {% if data['specialist-equipment-help'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How will this equipment help you at work?"
+          },
+          value: {
+            text: data['specialist-equipment-help']
+          }
+        }
+      ]) %}
+    {% endif %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}

@@ -10,31 +10,27 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "../../../your-cases",
+              selectedItem: "your-cases",
               items: [
                    {
-                      href: "../../../your-cases",
+                      href: "../your-cases",
                       text: "Your cases"
                     },
                     {
-                      href: "../../../unallocated/unallocated-main-page",
+                      href: "#",
                       text: "Unallocated"
                     },
                     {
-                      href: "../../../all-advisors",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
-                      href: "../../../search/search",
+                      href: "#",
                       text: "Search"
                     },
                     {
-                      href: "../../../referrals/referrals",
+                      href: "#",
                       text: "Referrals"
-                    },
-                    {
-                      href: "../../../data-retention/manage-data",
-                      text: "Manage data"
                     }
               ]
           }  
@@ -73,7 +69,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l" style="color:white !important;">
-          Alan Ferguson
+          Brian Brobbey
         </h1>
       </div>
 
@@ -98,7 +94,7 @@
 
       <h3 class="govuk-heading-l">Email the applicant</h3>
 
-      <p class="govuk-body">Send an email to <strong>Alan Ferguson</strong> to ask for more information about their application. <br>The reference number is <strong>MDMBXJW0</strong>.</p>
+      <p class="govuk-body">Send an email to <strong>Brian Brobbey</strong> to ask for more information about their application. <br>The reference number is <strong>MDMBXJW0</strong>.</p>
 
       {{ govukButton({
         text: "Open new email",
@@ -106,7 +102,7 @@
       }) }}
 
       {{ govukInsetText({
-        html: "Alan Ferguson <br> 27 August 1998 <br> AB1 2CD"
+        html: "Brian Brobbey <br> 27 August 1998 <br> AB1 2CD"
       }) }}
 
       <form class="form" action="/sent-email-answer" method="post">

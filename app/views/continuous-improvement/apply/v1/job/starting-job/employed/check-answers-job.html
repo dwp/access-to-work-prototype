@@ -1,0 +1,357 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers employed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers: job at {{data['company-name-starting-job']}}</h1>
+
+    <h2 class="govuk-heading-m">Employment details</h2>
+
+    {% set summaryRows = [] %}
+ 
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Employment status"
+        },
+        value: {
+          text: data['job-status-starting-job']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employment-status#job-status",
+              text: "Change",
+              visuallyHiddenText: "employment status"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Company or organisation name"
+        },
+        value: {
+          text: data['company-name-starting-job']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/company#company-name-starting-job",
+              text: "Change",
+              visuallyHiddenText: "company name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Job title"
+        },
+        value: {
+          text: data['job-title-starting-job']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/job-title#job-title-starting-job",
+              text: "Change",
+              visuallyHiddenText: "job title"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Job description"
+        },
+        value: {
+          text: data['job-description-starting-job']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/job-description#job-description-starting-job",
+              text: "Change",
+              visuallyHiddenText: "job description"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "When will you be starting your new job at" + ' ' + data['company-name-starting-job'] + "?"
+        },
+        value: {
+          text: data['start-date-starting-job-day'] + '/' + data['start-date-starting-job-month'] + '/' + data['start-date-starting-job-year']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/start-date#start-date#start-date-starting-job-day",
+              text: "Change",
+              visuallyHiddenText: "start date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "How many hours will you work per week?"
+        },
+        value: {
+          text: data['work-hours-starting-job']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/work-hours#work-hours-starting-job",
+              text: "Change",
+              visuallyHiddenText: "work hours"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Do you know which days of the week you will be working for" + ' ' + data['company-name-starting-job'] + "?"
+        },
+        value: {
+          text: data['days-will-work']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/days-will-work#days-will-work",
+              text: "Change",
+              visuallyHiddenText: "work days"
+            }
+          ]
+        }
+      }
+    ]) %}
+
+    
+    {% if data['days-will-work'] == "Yes" %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Which days of the week will you work at" + ' ' + data['company-name-starting-job'] + "?"
+          },
+          value: {
+            text: data['work-days-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/work-days#work-days-starting-job",
+                text: "Change",
+                visuallyHiddenText: "work days"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Will you be a hybrid worker?"
+        },
+        value: {
+          text: data['hybrid-worker-starting-job']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/hybrid-worker#hybrid-worker-starting-job",
+              text: "Change",
+              visuallyHiddenText: "hybrid worker"
+            }
+          ]
+        }
+      }
+      ]) %}
+
+    
+    {% if data['job-address-select-starting-job'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: data['job-address-select-starting-job'] + ',' + ' ' + data['postcode-job-address-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-address#postcode-job-address-starting-job",
+                text: "Change",
+                visuallyHiddenText: "employment address"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    
+    {% if data['showAddressRowEmployed'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: "I do not know my workplace address"
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-address#postcode-job-address-starting-job",
+                text: "Change",
+                visuallyHiddenText: "employment address"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+
+
+{{ govukSummaryList({ rows: summaryRows }) }}
+
+    <h2 class="govuk-heading-m">Workplace contact</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Their name"
+          },
+          value: {
+            text: data['job-contact-full-name-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-full-name-starting-job",
+                text: "Change",
+                visuallyHiddenText: "workplace contact full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Their job title"
+          },
+          value: {
+            text: data['job-contact-job-title-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-job-title-starting-job",
+                text: "Change",
+                visuallyHiddenText: "workplace contact job title"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Their email address"
+          },
+          value: {
+            text: data['job-contact-email-address-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-email-address-starting-job",
+                text: "Change",
+                visuallyHiddenText: "workplace contact email address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Their phone number"
+          },
+          value: {
+            text: data['job-contact-telephone-number-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-telephone-number-starting-job",
+                text: "Change",
+                visuallyHiddenText: "workplace contact phone number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Do you give your permission for us to contact" + ' ' + data['job-contact-full-name-starting-job'] + "?"
+          },
+          value: {
+            text: data['contact-permission-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/contact-permission#contact-permission-starting-job",
+                text: "Change",
+                visuallyHiddenText: "workplace contact permission"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <form action="/add-job-starting-job-employed" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-employed-details-starting-job" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include "apply/v1/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

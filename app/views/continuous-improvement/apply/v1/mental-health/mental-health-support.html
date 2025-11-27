@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Mental health support – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/mental-health-support-answer" method="post">
+
+      <h1 class="govuk-heading-l">
+        Mental health support
+      </h1>
+
+      <p class="govuk-body">Access to Work mental health support is provided by Able Futures and Maximus and we will refer your details to one of these providers.</p>
+
+      <p class="govuk-body">Mental health support can include things like:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>one-to-one mental health support from a professional, outside of work</li>
+        <li>a support plan for your mental health</li>
+        <li>practical tools and techniques to help you with your mental health at work</li>
+      </ul>
+
+      {{ govukInsetText({
+        text: "Your employer will not be contacted about mental health support."
+      }) }}
+
+      <p class="govuk-body">If you do not need any other type of support, you will need to apply directly to <a href="#" class="govuk-link">Able Futures (opens in a new tab)</a> or <a href="#" class="govuk-link">Maximus (opens in a new tab)</a>.</p>
+
+      {{ govukRadios({
+        name: "mental-health-support",
+        fieldset: {
+          legend: {
+            text: "Do you want to apply for mental health support as part of this application?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "dont know",
+            text: "I don't know"
+          }
+        ]
+      }) }}
+
+      <input type="hidden" name="answers-checked-mental-health" value="true">
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

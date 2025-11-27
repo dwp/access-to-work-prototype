@@ -1,0 +1,200 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Application summary
+      </h1>
+
+      <p class="govuk-body">These are the details of the application you are submitting.</p>
+
+
+      <p class="govuk-body"><a href="" onClick="window.print()">You can print and save a copy of your answers</a></p>
+
+      <form class="form" action="declaration" method="post">
+
+        <input type="hidden" name="answers-checked-condition-disabilities" value="true">
+  
+        {{ govukButton({
+          text: "Continue to declaration"
+        }) }}
+  
+      
+
+      {% include "apply/v1/includes/your-details-summary" %}
+
+      {% include "apply/v1/includes/contact-summary" %}
+
+      {% include "apply/v1/includes/conditions-disabilities-summary" %}
+
+      {% if data['answers-checked-employed-details'] %}
+      {% include "apply/v1/includes/started-employed-summary" %}
+      {% endif %}
+
+      {% if data['answers-checked-self-employed-details'] %}
+      {% include "apply/v1/includes/started-self-employed-summary" %}
+      {% endif %}
+      
+
+      {% if data['answers-checked-registered-director-details'] %}
+      {% include "apply/v1/includes/started-registered-director-summary" %}
+      {% endif %}
+
+      {% if data['answers-checked-employed-details-starting-job'] %}
+      {% include "apply/v1/includes/starting-employed-summary" %}
+      {% endif %}
+
+      {% if data['answers-checked-self-employed-details-starting-job'] %}
+      {% include "apply/v1/includes/starting-self-employed-summary" %}
+      {% endif %}
+
+      {% if data['answers-checked-registered-director-details-starting-job'] %}
+      {% include "apply/v1/includes/starting-registered-director-summary" %}
+      {% endif %}
+
+      {% include "apply/v1/includes/specialist-equipment-summary" %}
+
+      <h2 class="govuk-heading-m">
+        Mental health support
+      </h2>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-0",
+        rows: [
+          {
+            key: {
+              text: "Do you want to apply for mental health support from Access to Work?"
+            },
+            value: {
+              text: data['mental-health-support']
+            }
+          }
+        ]
+      }) }}
+
+      {% include "apply/v1/includes/support-worker-summary" %}
+
+      {% if data['need-support-worker'] == 'No' or data['need-support-worker'] == 'I do not know' %}
+
+      <h2 class="govuk-heading-m">
+        Support worker provider
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Does your condition mean that you need a support worker at work?"
+            },
+            value: {
+              text: data['need-support-worker']
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+      {% if data['difficulty-driving'] == 'Yes' %}
+      {% include "apply/v1/includes/travel-to-work-summary" %}
+      {% endif %}
+
+      {% if data['difficulty-driving'] == 'No' %}
+      <h2 class="govuk-heading-m">
+        Travelling to and from work
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Does your condition mean that it is difficult for you to drive or get public transport to work?"
+            },
+            value: {
+              text: data['difficulty-driving']
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">
+        Travelling during work
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Do you need support to travel to other locations during your working day?"
+            },
+            value: {
+              text: data['travel-in-work']
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Changes to workplace
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Does your condition mean that you would benefit from physical changes at your place of work?"
+            },
+            value: {
+              text: data['changes-to-work']
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Adaptations to your vehicle
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Does your condition mean that you need adaptations to the vehicle you use to travel to work?"
+            },
+            value: {
+              text: data['vehicle-changes']
+            }
+          }
+        ]
+      }) }}
+
+      {% include "apply/v1/includes/other-information-summary" %}
+
+    </form>
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}
