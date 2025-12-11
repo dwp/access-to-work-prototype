@@ -233,7 +233,7 @@
  
 {{ govukSummaryList({ rows: summaryRows }) }}
 
-    <form action="/add-job-starting-job-self-employed" method="post" novalidate>
+    <form action="{{versionPath}}/add-job-starting-job-self-employed" method="post" novalidate>
 
       <input type="hidden" name="answers-checked-self-employed-details-starting-job" value="true">
 

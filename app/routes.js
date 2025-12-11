@@ -6,6 +6,9 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+
+router.use('/continuous-improvement/apply/v1', require('./views/continuous-improvement/apply/v1/_routes'))
+
 // Add your routes here
 
 router.post('/referral-type-answer', function(request, response) {
@@ -1412,3 +1415,5 @@ router.post('/reject-the-case-more-info-answer', function(request, response) {
         response.redirect("/atwis/v3/csi/user-case")
     }
 })
+
+
