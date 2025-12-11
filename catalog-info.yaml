@@ -4,7 +4,7 @@ metadata:
   name: prototype.interface.access-to-work-prototype
   title: Access-to-Work-Prototype
   description: |
-    TODO: add description for access-to-work-prototype.
+    Prototype for Access to work service
 
   annotations:
     gitlab.com/project-slug: dwp/user-centred-design/access-to-work-prototype
