@@ -42,6 +42,23 @@
         },
         {
           key: {
+            text: "National Insurance number"
+          },
+          value: {
+            text: data['national-insurance-number']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/national-insurance-number",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
             text: "Date of birth"
           },
           value: {
@@ -62,7 +79,7 @@
             text: "Address"
           },
           value: {
-            text: data['address-select'] + ' ' + data['postcode-apply']
+            text: (data['address-select'] + '<br>' + data['postcode-apply']) | safe
           },
           actions: {
             items: [

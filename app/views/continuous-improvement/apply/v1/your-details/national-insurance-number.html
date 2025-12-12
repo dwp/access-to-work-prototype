@@ -17,36 +17,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="../your-details/national-insurance-number" method="post">
-
-      <h1 class="govuk-heading-l">
-        What is your full name?
-      </h1>
+      <form class="form" action="../your-details/date-of-birth" method="post">
 
       {{ govukInput({
         label: {
-          text: "First name"
+          text: "What is your National Insurance number",
+          isPageHeading: true,
+          classes: "govuk-label--l"
         },
-        name: "first-name-apply",
-        value: data['first-name-apply'],
-        autocomplete: "name",
+        hint: {
+          text: "It’s on your National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’"
+        },
+        classes: "govuk-input--width-10 govuk-input--extra-letter-spacing",
+        id: "national-insurance-number",
+        name: "national-insurance-number",
+        value: data['national-insurance-number'],
+        isPageHeading: true,
         spellcheck: false
       }) }}
 
-      {{ govukInput({
-        label: {
-          text: "Last name"
-        },
-        name: "last-name-apply",
-        value: data['last-name-apply'],
-        autocomplete: "name",
-        spellcheck: false
-      }) }}
-
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
     </form>
 
       <p class="govuk-body">
