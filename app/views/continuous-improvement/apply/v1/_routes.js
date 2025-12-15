@@ -31,7 +31,7 @@ router.post(versionPath + '/support-other-jobs-answer', function(request, respon
 
 router.post(versionPath + '/task-list', function (req, res) {
     req.session.data['answers-checked-condition-disabilities'] = req.body['answers-checked-condition-disabilities'];
-    res.redirect('/task-list');
+    res.redirect(versionPath + '/task-list');
     });
 
 
@@ -381,32 +381,32 @@ router.post(versionPath + '/task-list', function (req, res) {
 
     router.get('/show-address-row', function (req, res) {
         req.session.data['showAddressRow'] = true
-        res.redirect('apply/v1/job/starting-job/registered-director/check-answers-registered-director')
+        res.redirect(versionPath + '/job/starting-job/registered-director/check-answers-registered-director')
     })
 
     router.get('/show-address-row-self-employed', function (req, res) {
         req.session.data['showAddressRowSelfEmployed'] = true
-        res.redirect('apply/v1/job/starting-job/self-employed/check-answers-self-employed')
+        res.redirect(versionPath + '/job/starting-job/self-employed/check-answers-self-employed')
     })
 
     router.get('/show-address-row-employed', function (req, res) {
         req.session.data['showAddressRowEmployed'] = true
-        res.redirect('apply/v1/job/starting-job/employed/hybrid-worker')
+        res.redirect(versionPath + '/job/starting-job/employed/hybrid-worker')
     })
 
     router.get('/show-address-row-employed-started-work', function (req, res) {
         req.session.data['showAddressRowEmployedStartedWork'] = true
-        res.redirect('apply/v1/job/started-job/employed/hybrid-worker')
+        res.redirect(versionPath + '/job/started-job/employed/hybrid-worker')
     })
 
     router.get('/show-address-row-self-employed-started-work', function (req, res) {
         req.session.data['showAddressRowSelfEmployedStartedWork'] = true
-        res.redirect('apply/v1/job/started-job/self-employed/check-answers-self-employed')
+        res.redirect(versionPath + '/job/started-job/self-employed/check-answers-self-employed')
     })
 
     router.get('/show-address-row-registered-started-work', function (req, res) {
         req.session.data['showAddressRowRegisteredDirectorStartedWork'] = true
-        res.redirect('apply/v1/job/started-job/registered-director/check-answers-registered-director')
+        res.redirect(versionPath + '/job/started-job/registered-director/check-answers-registered-director')
     })
 
     router.post(versionPath + '/anything-else-answer', function(request, response) {
@@ -546,7 +546,7 @@ router.post(versionPath + '/add-job-started-employed', function (req, res) {
 
     req.session.data['jobs'].push(newJob);
 
-    res.redirect('apply/v1/job/started-job/employed/another-job');
+    res.redirect(versionPath + '/job/started-job/employed/another-job');
 });
         
 router.post(versionPath + '/add-job-started-registered-director', function (req, res) {
@@ -563,7 +563,7 @@ router.post(versionPath + '/add-job-started-registered-director', function (req,
 
     req.session.data['jobs'].push(newJob);
 
-    res.redirect('apply/v1/job/started-job/registered-director/another-job');
+    res.redirect(versionPath + '/job/started-job/registered-director/another-job');
 });
 
 router.post(versionPath + '/add-job-started-self-employed', function (req, res) {
@@ -580,7 +580,7 @@ router.post(versionPath + '/add-job-started-self-employed', function (req, res) 
 
     req.session.data['jobs'].push(newJob);
 
-    res.redirect('apply/v1/job/started-job/self-employed/another-job');
+    res.redirect(versionPath + '/job/started-job/self-employed/another-job');
 });
 
 router.post(versionPath + '/add-job-starting-job-employed', function (req, res) {
@@ -598,7 +598,7 @@ router.post(versionPath + '/add-job-starting-job-employed', function (req, res) 
 
     req.session.data['jobs'].push(newJob);
 
-    res.redirect('apply/v1/job/starting-job/employed/another-job');
+    res.redirect(versionPath + '/job/starting-job/employed/another-job');
 });
 
 router.post(versionPath + '/add-job-starting-job-registered-director', function (req, res) {
@@ -615,7 +615,7 @@ router.post(versionPath + '/add-job-starting-job-registered-director', function 
 
     req.session.data['jobs'].push(newJob);
 
-    res.redirect('apply/v1/job/starting-job/registered-director/another-job');
+    res.redirect(versionPath + '/job/starting-job/registered-director/another-job');
 });
 
 router.post(versionPath + '/add-job-starting-job-self-employed', function (req, res) {
@@ -632,7 +632,7 @@ router.post(versionPath + '/add-job-starting-job-self-employed', function (req, 
 
     req.session.data['jobs'].push(newJob);
 
-    res.redirect('apply/v1/job/starting-job/self-employed/another-job');
+    res.redirect(versionPath + '/job/starting-job/self-employed/another-job');
 });
 
 router.post(versionPath + '/difficulty-driving-answer', function(request, response) {

@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block header %}
-{% include "apply/v1/includes/header" %}
+{% include versionPath + "/includes/header" %}
 {% endblock %}
 
 {% block beforeContent %}
-{% include "apply/v1/includes/before-content" %}
+{% include versionPath + "/includes/before-content" %}
 {% endblock %}
 
 
@@ -36,38 +36,38 @@
   
       
 
-      {% include "apply/v1/includes/your-details-summary" %}
+      {% include versionPath + "/includes/your-details-summary" %}
 
-      {% include "apply/v1/includes/contact-summary" %}
+      {% include versionPath + "/includes/contact-summary" %}
 
-      {% include "apply/v1/includes/conditions-disabilities-summary" %}
+      {% include versionPath + "/includes/conditions-disabilities-summary" %}
 
       {% if data['answers-checked-employed-details'] %}
-      {% include "apply/v1/includes/started-employed-summary" %}
+      {% include versionPath + "/includes/started-employed-summary" %}
       {% endif %}
 
       {% if data['answers-checked-self-employed-details'] %}
-      {% include "apply/v1/includes/started-self-employed-summary" %}
+      {% include versionPath + "/includes/started-self-employed-summary" %}
       {% endif %}
       
 
       {% if data['answers-checked-registered-director-details'] %}
-      {% include "apply/v1/includes/started-registered-director-summary" %}
+      {% include versionPath + "/includes/started-registered-director-summary" %}
       {% endif %}
 
       {% if data['answers-checked-employed-details-starting-job'] %}
-      {% include "apply/v1/includes/starting-employed-summary" %}
+      {% include versionPath + "/includes/starting-employed-summary" %}
       {% endif %}
 
       {% if data['answers-checked-self-employed-details-starting-job'] %}
-      {% include "apply/v1/includes/starting-self-employed-summary" %}
+      {% include versionPath + "/includes/starting-self-employed-summary" %}
       {% endif %}
 
       {% if data['answers-checked-registered-director-details-starting-job'] %}
-      {% include "apply/v1/includes/starting-registered-director-summary" %}
+      {% include versionPath + "/includes/starting-registered-director-summary" %}
       {% endif %}
 
-      {% include "apply/v1/includes/specialist-equipment-summary" %}
+      {% include versionPath + "/includes/specialist-equipment-summary" %}
 
       <h2 class="govuk-heading-m">
         Mental health support
@@ -87,7 +87,7 @@
         ]
       }) }}
 
-      {% include "apply/v1/includes/support-worker-summary" %}
+      {% include versionPath + "/includes/support-worker-summary" %}
 
       {% if data['need-support-worker'] == 'No' or data['need-support-worker'] == 'I do not know' %}
 
@@ -110,7 +110,7 @@
       {% endif %}
 
       {% if data['difficulty-driving'] == 'Yes' %}
-      {% include "apply/v1/includes/travel-to-work-summary" %}
+      {% include versionPath + "/includes/travel-to-work-summary" %}
       {% endif %}
 
       {% if data['difficulty-driving'] == 'No' %}
@@ -183,18 +183,18 @@
         ]
       }) }}
 
-      {% include "apply/v1/includes/other-information-summary" %}
+      {% include versionPath + "/includes/other-information-summary" %}
 
     </form>
 
     </div>
 
-   {% include "apply/v1/includes/get-help" %}
+   {% include versionPath + "/includes/get-help" %}
 
         </div>
 
 {% endblock %}
 
 {% block footer %}
-{% include "apply/v1/includes/footer" %}
+{% include versionPath + "/includes/footer" %}
 {% endblock %}

@@ -117,26 +117,26 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
 
       {% if data['answers-checked-your-details'] == "true" %}
       {% set yourDetailsStatus = completedStatus %}
-      {% set yourDetailsHref = "../v1/your-details/check-answers-your-details" %}
+      {% set yourDetailsHref = versionPath + "/your-details/check-answers-your-details" %}
       {% else %}
       {% set yourDetailsStatus = incompleteStatus %}
-      {% set yourDetailsHref = "../v1/your-details/full-name" %}
+      {% set yourDetailsHref = versionPath + "/your-details/full-name" %}
       {% endif %}
 
       {% if data['answers-checked-contact'] == "true" %}
       {% set contactStatus = completedStatus %}
-      {% set contactHref = "../v1/contact/check-answers-contact" %}
+      {% set contactHref = versionPath + "/contact/check-answers-contact" %}
       {% else %}
       {% set contactStatus = incompleteStatus %}
-      {% set contactHref = "../v1/contact/who-we-contact" %}
+      {% set contactHref = versionPath + "/contact/who-we-contact" %}
       {% endif %}
 
       {% if data['answers-checked-condition-disabilities'] == "true" %}
       {% set conditionDisabilityStatus = completedStatus %}
-      {% set conditionDisabilityHref = "../v1/conditions-disabilities/check-answers-condition" %}
+      {% set conditionDisabilityHref = versionPath + "/conditions-disabilities/check-answers-condition" %}
       {% else %}
       {% set conditionDisabilityStatus = incompleteStatus %}
-      {% set conditionDisabilityHref = "../v1/conditions-disabilities/your-conditions-disabilities" %}
+      {% set conditionDisabilityHref = versionPath + "/conditions-disabilities/your-conditions-disabilities" %}
       {% endif %}
 
       {{ govukTaskList({
@@ -182,7 +182,13 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
             title: {
               text: "Your job and employer"
             },
-            href: "../v1/job/employment",
+            href: versionPath + "/job/employment",
+            status: employmentStatus
+          },{
+            title: {
+              text: "Workplace adjustments"
+            },
+            href: versionPath + "/workplace-adjustments",
             status: employmentStatus
           }
         ]
@@ -191,10 +197,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       <h2 class="govuk-heading-m govuk-!-margin-top-5">3. Support from {{ serviceName }}</h2>
 
       {% if data['answers-checked-specialist-equipment-full'] == 'true' or data['need-specialist-equipment'] == "no" or data['need-specialist-equipment'] == "dont know" and unlockSections3and4 %}
-      {% set specialistEquipmentHref = "../v1/specialist-equipment/check-answers" %}
+      {% set specialistEquipmentHref = versionPath + "/specialist-equipment/check-answers" %}
       {% set specialistEquipmentStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set specialistEquipmentHref = "../v1/specialist-equipment/need-specialist-equipment" %}
+      {% set specialistEquipmentHref = versionPath + "/specialist-equipment/need-specialist-equipment" %}
       {% set specialistEquipmentStatus = incompleteStatus %}
       {% else %}
       {% set specialistEquipmentHref = "" %}
@@ -202,10 +208,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       {% endif %}
 
       {% if data['answers-checked-mental-health'] == 'true' or data['mental-health-support'] == "no" or data['mental-health-support'] == "dont know" and unlockSections3and4 %}
-      {% set mentalHealthHref = "../v1/mental-health/mental-health-support" %}
+      {% set mentalHealthHref = versionPath + "/mental-health/mental-health-support" %}
       {% set mentalHealthStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set mentalHealthHref = "../v1/mental-health/mental-health-support" %}
+      {% set mentalHealthHref = versionPath + "/mental-health/mental-health-support" %}
       {% set mentalHealthStatus = incompleteStatus %}
       {% else %}
       {% set mentalHealthHref = "" %}
@@ -213,10 +219,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       {% endif %}
 
       {% if data['answers-checked-travel-in-work'] == 'true' or data['travel-in-work'] == "no" or data['travel-in-work'] == "dont know" and unlockSections3and4 %}
-      {% set travelInWorkHref = "../v1/travel-in-work/need-travel-during-work" %}
+      {% set travelInWorkHref = versionPath + "/travel-in-work/need-travel-during-work" %}
       {% set travelInWorkStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set travelInWorkHref = "../v1/travel-in-work/need-travel-during-work" %}
+      {% set travelInWorkHref = versionPath + "/travel-in-work/need-travel-during-work" %}
       {% set travelInWorkStatus = incompleteStatus %}
       {% else %}
       {% set travelInWorkHref = "" %}
@@ -224,10 +230,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       {% endif %}
 
       {% if data['answers-checked-workplace-changes'] == 'true' or data['changes-to-work'] == "no" or data['changes-to-work'] == "dont know" and unlockSections3and4 %}
-      {% set workplaceChangesHref = "../v1/workplace-changes/need-work-changes" %}
+      {% set workplaceChangesHref = versionPath + "/workplace-changes/need-work-changes" %}
       {% set workplaceChangesStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set workplaceChangesHref = "../v1/workplace-changes/need-work-changes" %}
+      {% set workplaceChangesHref = versionPath + "/workplace-changes/need-work-changes" %}
       {% set workplaceChangesStatus = incompleteStatus %}
       {% else %}
       {% set workplaceChangesHref = "" %}
@@ -235,10 +241,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       {% endif %}
 
       {% if data['answers-checked-vehicle-changes'] == 'true' or data['vehicle-changes'] == "no" or data['vehicle-changes'] == "dont know" and unlockSections3and4 %}
-      {% set vehicleChangesHref = "../v1/vehicle-changes/need-change-to-vehicle" %}
+      {% set vehicleChangesHref = versionPath + "/vehicle-changes/need-change-to-vehicle" %}
       {% set vehicleChangesStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set vehicleChangesHref = "../v1/vehicle-changes/need-change-to-vehicle" %}
+      {% set vehicleChangesHref = versionPath + "/vehicle-changes/need-change-to-vehicle" %}
       {% set vehicleChangesStatus = incompleteStatus %}
       {% else %}
       {% set vehicleChangesHref = "" %}
@@ -246,10 +252,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       {% endif %}
 
       {% if data['answers-checked-support-worker'] == 'true' or data['need-support-worker'] == "No" or data['need-support-worker'] == "I do not know" and unlockSections3and4 %}
-      {% set supportWorkerHref = "../v1/support-worker/another-support-worker" %}
+      {% set supportWorkerHref = versionPath + "/support-worker/another-support-worker" %}
       {% set supportWorkerStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set supportWorkerHref = "../v1/support-worker/need-support-worker" %}
+      {% set supportWorkerHref = versionPath + "/support-worker/need-support-worker" %}
       {% set supportWorkerStatus = incompleteStatus %}
       {% else %}
       {% set supportWorkerHref = "" %}
@@ -257,10 +263,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       {% endif %}
 
       {% if data['answers-checked-travel-to-work'] == 'true' or data['difficulty-driving'] == "No" and unlockSections3and4 %}
-      {% set travelToWorkHref = "../v1/travel-to-work/check-answers-work-travel" %}
+      {% set travelToWorkHref = versionPath + "/travel-to-work/check-answers-work-travel" %}
       {% set travelToWorkStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set travelToWorkHref = "../v1/travel-to-work/difficulty-driving" %}
+      {% set travelToWorkHref = versionPath + "/travel-to-work/difficulty-driving" %}
       {% set travelToWorkStatus = incompleteStatus %}
       {% else %}
       {% set travelToWorkHref = "" %}
@@ -325,10 +331,10 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
       <h2 class="govuk-heading-m govuk-!-margin-top-5">4. Additional information</h2>
 
       {% if data['answers-checked-other-information'] == 'true' or data['anything-else'] == 'No' and unlockSections3and4 %}
-      {% set otherInformationHref = "../v1/other-information/anything-else" %}
+      {% set otherInformationHref = versionPath + "/other-information/anything-else" %}
       {% set otherInformationStatus = completedStatus %}
       {% elif unlockSections3and4 %}
-      {% set otherInformationHref = "../v1/other-information/anything-else" %}
+      {% set otherInformationHref = versionPath + "/other-information/anything-else" %}
       {% set otherInformationStatus = incompleteStatus %}
       {% else %}
       {% set otherInformationHref = "" %}
@@ -361,12 +367,12 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
         </form>
     </div>
 
-    {% include "apply/v1/includes/get-help" %}
+    {% include versionPath + "//includes/get-help" %}
  
   </div>
 {% endblock %}
 
 {% block footer %}
-{% include "apply/v1/includes/footer" %}
+{% include versionPath + "//includes/footer" %}
 {% endblock %}
 

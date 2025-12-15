@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block header %}
-{% include "apply/v1/includes/header" %}
+{% include versionPath + "//includes/header" %}
 {% endblock %}
 
 {% block beforeContent %}
-{% include "apply/v1/includes/before-content" %}
+{% include versionPath + "//includes/before-content" %}
 {% endblock %}
 
 
@@ -17,7 +17,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="../your-details/date-of-birth" method="post">
+      <form class="form" action="{{versionPath}}/your-details/date-of-birth" method="post">
 
       {{ govukInput({
         label: {
@@ -48,12 +48,12 @@
 
     </div>
 
-   {% include "apply/v1/includes/get-help" %}
+   {% include versionPath + "//includes/get-help" %}
         </div>
 
 {% endblock %}
 
 
 {% block footer %}
-{% include "apply/v1/includes/footer" %}
+{% include versionPath + "//includes/footer" %}
 {% endblock %}

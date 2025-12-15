@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block header %}
-{% include "apply/v1/includes/header" %}
+{% include versionPath + "//includes/header" %}
 {% endblock %}
 
 {% block beforeContent %}
-{% include "apply/v1/includes/before-content" %}
+{% include versionPath + "//includes/before-content" %}
 {% endblock %}
 
 {% block content %}
@@ -94,7 +94,7 @@
       ]
     }) }}
 
-    <form action="../task-list" method="post" novalidate>
+    <form action="{{versionPath}}/task-list" method="post" novalidate>
 
       <input type="hidden" name="answers-checked-your-details" value="true">
 
@@ -105,18 +105,18 @@
     </form>
 
     <p class="govuk-body">
-      <a href="../task-list" class="govuk-link">Return to tasks</a>
+      <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
     </p>
     
 
   </div>
 
-    {% include "apply/v1/includes/get-help" %}
+    {% include versionPath + "//includes/get-help" %}
       </div>
 
 {% endblock %}
 
 
 {% block footer %}
-{% include "apply/v1/includes/footer" %}
+{% include versionPath + "//includes/footer" %}
 {% endblock %}
