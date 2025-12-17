@@ -9,7 +9,7 @@
 
   {{ govukServiceNavigation({
     serviceName: "Apply for Access to Work",
-    serviceUrl: "/apply/v1/eligibility/check-eligible"
+    serviceUrl: versionPath + "/eligibility/check-eligible"
   }) }}
 {% endblock %}
 
@@ -81,7 +81,7 @@
                                     
      </div>
 
-    {% include versionPath + "//includes/get-help" %}
+    {% include versionPath + "/includes/get-help" %}
 
   </div>
 
@@ -110,5 +110,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include versionPath + "//includes/footer" %}
+{% include versionPath + "/includes/footer" %}
 {% endblock %}

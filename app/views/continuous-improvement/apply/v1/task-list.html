@@ -188,8 +188,13 @@ or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
             title: {
               text: "Workplace adjustments"
             },
-            href: versionPath + "/workplace-adjustments",
-            status: employmentStatus
+            href: versionPath + "/workplace-adjustments/reasonable-adjustments",
+            status: {
+        tag: {
+          text: "Cannot start yet",
+          classes: "govuk-tag--grey"
+        }
+      }
           }
         ]
       }) }}

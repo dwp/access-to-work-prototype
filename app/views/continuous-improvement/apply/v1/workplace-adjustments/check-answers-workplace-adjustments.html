@@ -1,0 +1,138 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers</h1>
+
+    <h2 class="govuk-heading-m">Workplace adjustments</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Discussed adjustments with employer"
+          },
+          value: {
+            text: data['employer-1-adjustments-discussed']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/employer-1",
+                text: "Change",
+                visuallyHiddenText: "adjustments discussed with employer"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Adjustments made by employer"
+          },
+          value: {
+            text: data['employer-1-adjustments']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/adjustments-made",
+                text: "Change",
+                visuallyHiddenText: "adjustments made by employer"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Details of adjustments made by employer"
+          },
+          value: {
+            text: data['adjustments-details']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/adjustments-made-details",
+                text: "Change",
+                visuallyHiddenText: "details of adjustments made by employer"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "OHA done by employer"
+          },
+          value: {
+            text: data['oha-done-choice']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/oha-done-choice",
+                text: "Change",
+                visuallyHiddenText: "OHA done by employer"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Copy of the OHA "
+          },
+          value: {
+            text: data['oha-upload']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/upload-oha-choice",
+                text: "Change",
+                visuallyHiddenText: "Copy of the OHA"
+              }
+            ]
+          }
+        }
+      ]
+    }) }} 
+    <form action="{{versionPath}}/task-list" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-your-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and send"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Have you started your job? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% set companyName %}
+  {% if data['company-name'] %}
+    {{data['company-name']}}
+  {% else %}
+  your employer
+  {% endif %}
+{% endset %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/workplace-adjustments/check-answers-workplace-adjustments" method="post">
+
+{% call govukFieldset({
+  legend: {
+    text: "Add a copy of the occupational health assessment",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: true
+  }
+}) %}
+
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "oha-upload",
+    label: {
+      text: "Upload a file"
+    },
+    javascript: true
+  }) }}
+
+{% endcall %}
+
+       
+
+      {{ govukButton({ 
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}
