@@ -25,12 +25,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="{{versionPath}}/workplace-adjustments/adjustments-made-details" method="post">
+      <form class="form" action="{{versionPath}}/workplace-adjustments/adjustments-made-post" method="post">
 
 
 
         {{ govukRadios({
-          name: "employer-1-adjustments",
+          name: "adjustments-made",
           fieldset: {
             legend: {
               text: "Has " + companyName + " agreed to make any adjustments to your work environment?",
