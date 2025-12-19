@@ -21,9 +21,8 @@
 
     <h2 class="govuk-heading-m">Workplace adjustments</h2>
 
-    {{ govukSummaryList({
-      rows: [
-        {
+
+    {% set summaryRows = [{
           key: {
             text: "Discussed adjustments with employer"
           },
@@ -39,76 +38,119 @@
               }
             ]
           }
+        }] %}
+
+    
+    {% if data['employer-1-adjustments'] %}
+      {% set summaryRows = summaryRows.concat({
+        key: {
+          text: "Adjustments made by employer"
         },
-        {
-          key: {
-            text: "Adjustments made by employer"
-          },
-          value: {
-            text: data['employer-1-adjustments']
-          },
-          actions: {
-            items: [
-              {
-                href: versionPath + "/workplace-adjustments/adjustments-made",
-                text: "Change",
-                visuallyHiddenText: "adjustments made by employer"
-              }
-            ]
-          }
+        value: {
+          text: data['employer-1-adjustments']
         },
-        {
-          key: {
-            text: "Details of adjustments made by employer"
-          },
-          value: {
-            text: data['adjustments-details']
-          },
-          actions: {
-            items: [
-              {
-                href: versionPath + "/workplace-adjustments/adjustments-made-details",
-                text: "Change",
-                visuallyHiddenText: "details of adjustments made by employer"
-              }
-            ]
+        actions: {
+          items: [
+            {
+              href: versionPath + "/workplace-adjustments/adjustments-made",
+              text: "Change",
+              visuallyHiddenText: "adjustments made by employer"
+            }
+          ]
+        }
+      })
+    %}
+  {% endif %}
+
+  {% if data['adjustments-details'] %}
+    {% set summaryRows = summaryRows.concat({
+      key: {
+        text: "Details of adjustments made by employer"
+      },
+      value: {
+        text: data['adjustments-details']
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/workplace-adjustments/adjustments-made-details",
+            text: "Change",
+            visuallyHiddenText: "details of adjustments made by employer"
           }
-        },
+        ]
+    }
+  })
+  %}
+  {% endif %}
+
+  {% if data['oha-done-choice'] %}
+    {% set summaryRows = summaryRows.concat({
+    key: {
+      text: "OHA done by employer"
+    },
+    value: {
+      text: data['oha-done-choice']
+    },
+    actions: {
+      items: [
         {
-          key: {
-            text: "OHA done by employer"
-          },
-          value: {
-            text: data['oha-done-choice']
-          },
-          actions: {
-            items: [
-              {
-                href: versionPath + "/workplace-adjustments/oha-done-choice",
-                text: "Change",
-                visuallyHiddenText: "OHA done by employer"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Copy of the OHA "
-          },
-          value: {
-            text: data['oha-upload']
-          },
-          actions: {
-            items: [
-              {
-                href: versionPath + "/workplace-adjustments/upload-oha-choice",
-                text: "Change",
-                visuallyHiddenText: "Copy of the OHA"
-              }
-            ]
-          }
+          href: versionPath + "/workplace-adjustments/oha-done-choice",
+          text: "Change",
+          visuallyHiddenText: "OHA done by employer"
         }
       ]
+    }
+  })
+  %}
+  {% endif %}
+
+{% if data['oha-upload-choice'] %}
+    {% set summaryRows = summaryRows.concat([{
+    key: {
+      text: "Want to upload OHA"
+    },
+    value: {
+      text: data['oha-upload-choice']
+    },
+    actions: {
+      items: [
+        {
+          href: versionPath + "/workplace-adjustments/oha-upload-choice",
+          text: "Change",
+          visuallyHiddenText: "Want to upload OHA"
+        }
+      ]
+    }
+  },{
+    key: {
+      text: "Copy of the OHA "
+    },
+    value: {
+      text: data['oha-upload']
+    },
+    actions: {
+      items: [
+        {
+          href: versionPath + "/workplace-adjustments/oha-upload",
+          text: "Change",
+          visuallyHiddenText: "Copy of the OHA"
+        }
+      ]}
+
+    }
+    ])
+  %}
+
+
+  {% endif %}
+
+
+
+
+
+    {{ govukSummaryList({
+      rows: summaryRows
+        
     }) }} 
     <form action="{{versionPath}}/task-list" method="post" novalidate>
 
