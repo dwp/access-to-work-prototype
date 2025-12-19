@@ -1412,3 +1412,33 @@ router.post('/reject-the-case-more-info-answer', function(request, response) {
         response.redirect("/atwis/v3/csi/user-case")
     }
 })
+
+router.post('/copied-information-answer', function(request, response) {
+
+    var copiedInformation = request.session.data['copied-information']
+    if (copiedInformation == "yes"){
+        response.redirect("/atwis/v3/other-cases/new-application/enter-urn#application-details")
+    } else {
+        response.redirect("/atwis/v3/other-cases/new-application/user-case#application-details")
+    }
+})
+
+router.post('/copied-information-priority-answer', function(request, response) {
+
+    var copiedInformation = request.session.data['copied-information-priority']
+    if (copiedInformation == "yes"){
+        response.redirect("/atwis/v3/priority-cases/enter-urn#application-details")
+    } else {
+        response.redirect("/atwis/v3/priority-cases/user-case#application-details")
+    }
+})
+
+router.post('/end-date-answer', function(request, response) {
+
+    var endDate = request.session.data['relevant-end-date']
+    if (endDate == "yes"){
+        response.redirect("/atwis/v3/documents/what-is-the-end-date")
+    } else {
+        response.redirect("/atwis/v3/documents/cant-change-status")
+    }
+})
