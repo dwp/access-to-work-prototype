@@ -10,7 +10,7 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "your-cases",
+              selectedItem: "../all-advisors",
               items: [
                    {
                       href: "your-cases",
@@ -21,7 +21,7 @@
                       text: "Unallocated"
                     },
                     {
-                      href: "all-advisors",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
@@ -71,36 +71,36 @@
         })
 }}
 
-      {{ 
+ {{ 
       dwpHorizontalNavigation({
-            selectedItem: "your-csi-cases",
+            selectedItem: "advisor-view-csi-cases",
             items: [
                 {
-                  text: "Your other cases (2)",
-                  href: "../your-cases",
-                  id: "your-other-cases"
+                  text: "Other cases (2)",
+                  href: "advisor-view-other-cases",
+                  id: "other-cases"
                 },
                 {
-                  text: "Your priority cases (1)",
-                  href: "../priority-cases/your-priority-cases",
-                  id: "your-priority-cases"
+                  text: "Priority cases (1)",
+                  href: "advisor-view-priority-cases",
+                  id: "priority-cases"
                 },
                 {
-                  text: "Your CSI cases (3)",
-                  href: "your-csi-cases",
-                  id: "your-csi-cases"
+                  text: "CSI cases (3)",
+                  href: "advisor-view-csi-cases",
+                  id: "csi-cases"
                 },
                 {
-                  text: "Your documents (1)",
-                  href: "../documents/your-documents",
-                  id: "your-documents"
+                  text: "Documents (1)",
+                  href: "advisor-view-documents",
+                  id: "documents"
                 }
             ]
         })
 }}
 
 <div class="govuk-tabs__panel">
-    <h2 class="govuk-heading-m">Your CSI cases (3)</h2>
+    <h2 class="govuk-heading-m">John Goldsmith's CSI cases (3)</h2>
 
           {{ govukButton({
             text: "Request a new CSI case"

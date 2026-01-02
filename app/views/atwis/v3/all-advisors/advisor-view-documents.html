@@ -10,7 +10,7 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "your-cases",
+              selectedItem: "../all-advisors",
               items: [
                    {
                       href: "your-cases",
@@ -21,7 +21,7 @@
                       text: "Unallocated"
                     },
                     {
-                      href: "all-advisors",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
@@ -71,53 +71,88 @@
         })
 }}
 
-      {{ 
+ {{ 
       dwpHorizontalNavigation({
-            selectedItem: "your-csi-cases",
+            selectedItem: "advisor-view-documents",
             items: [
                 {
-                  text: "Your other cases (2)",
-                  href: "../your-cases",
-                  id: "your-other-cases"
+                  text: "Other cases (2)",
+                  href: "advisor-view-other-cases",
+                  id: "other-cases"
                 },
                 {
-                  text: "Your priority cases (1)",
-                  href: "../priority-cases/your-priority-cases",
-                  id: "your-priority-cases"
+                  text: "Priority cases (1)",
+                  href: "advisor-view-priority-cases",
+                  id: "priority-cases"
                 },
                 {
-                  text: "Your CSI cases (3)",
-                  href: "your-csi-cases",
-                  id: "your-csi-cases"
+                  text: "CSI cases (3)",
+                  href: "advisor-view-csi-cases",
+                  id: "csi-cases"
                 },
                 {
-                  text: "Your documents (1)",
-                  href: "../documents/your-documents",
-                  id: "your-documents"
+                  text: "Documents (1)",
+                  href: "advisor-view-documents",
+                  id: "documents"
                 }
             ]
         })
 }}
 
 <div class="govuk-tabs__panel">
-    <h2 class="govuk-heading-m">Your CSI cases (3)</h2>
+
+    <h2 class="govuk-heading-m">John Goldsmith's documents (1)</h2>
+
+          {{ govukSelect({
+            id: "document-type",
+            name: "document-type",
+            label: {
+              text: "Type of document"
+            },
+            items: [
+              {
+                value: "any",
+                text: "Any"
+              },
+              {
+                value: "priority cases",
+                text: "Priority cases"
+              },
+              {
+                value: "CSI cases",
+                text: "CSI cases"
+              },
+              {
+                value: "documents",
+                text: "Documents"
+              },
+              {
+                value: "no specialist equipment",
+                text: "No specialist equipment",
+                selected: true
+              }
+            ]
+          }) }}
 
           {{ govukButton({
-            text: "Request a new CSI case"
+            text: "Request a new document"
           }) }}
 
           {{ govukTable({
-            caption: "Case details",
+            caption: "Document details",
             captionClasses: "govuk-table__caption--m",
             head: [
               {
                 text: "Name"
               },
               {
-                text: "Interview date"
+                text: "Type of document"
               },
               {
-                text: "Date submitted"
+                text: "Form reference"
+              },
+              {
+                text: "Date scanned"
               },
               {
                 text: "Status"
@@ -126,48 +161,24 @@
             rows: [
               [
                 {
-                  html: '<a href="user-case" class="govuk-link">Alan Ferguson</a>'
+                  html: '<a href="user-case" class="govuk-link">Gary Boyd</a>'
                 },
                 {
-                  text: "1 November 2025"
+                  text: "CSI"
                 },
                 {
-                  text: "1 Nov 2025, 3:14pm"
+                  text: "DP221JP"
                 },
                 {
-                  text: "New"
-                }
-              ],
-              [
-                {
-                  html: '<a href="#" class="govuk-link">Kiera Lawton</a>'
+                  text: "12 December 2025"
                 },
                 {
-                  text: "10 November 2025"
-                },
-                {
-                  text: "10 Nov 2025, 9:24am"
-                },
-                {
-                  text: "New"
-                }
-              ],
-              [
-                {
-                  html: '<a href="#" class="govuk-link">Lucy Ballard</a>'
-                },
-                {
-                  text: "17 November 2025"
-                },
-                {
-                  text: "17 Nov 2025, 12:13pm"
-                },
-                {
-                  text: "New"
+                  text: "Not started"
                 }
               ]
             ]
           }) }}
+
 
     </div>
   </div>

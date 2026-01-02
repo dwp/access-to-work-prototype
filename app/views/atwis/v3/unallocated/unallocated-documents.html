@@ -10,14 +10,14 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "your-cases",
+              selectedItem: "unallocated-main-page",
               items: [
                    {
                       href: "your-cases",
                       text: "Your cases"
                     },
                     {
-                      href: "../unallocated/unallocated-main-page",
+                      href: "unallocated-main-page",
                       text: "Unallocated"
                     },
                     {
@@ -39,7 +39,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Your cases – {{ serviceName }}
+  Unallocated cases – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -73,27 +73,27 @@
 
       {{ 
       dwpHorizontalNavigation({
-            selectedItem: "your-documents",
+            selectedItem: "unallocated-documents",
             items: [
                 {
-                  text: "Your other cases (2)",
-                  href: "../your-cases",
-                  id: "your-other-cases"
+                  text: "Priority cases (2)",
+                  href: "unallocated-main-page",
+                  id: "unallocated-priority-cases"
                 },
                 {
-                  text: "Your priority cases (1)",
-                  href: "../priority-cases/your-priority-cases",
-                  id: "your-priority-cases"
+                  text: "Other cases (2)",
+                  href: "unallocated-other-cases",
+                  id: "unallocated-other-cases"
                 },
                 {
-                  text: "Your CSI cases (3)",
-                  href: "../csi/your-csi-cases",
-                  id: "your-csi-cases"
+                  text: "CSI cases (1)",
+                  href: "unallocated-csi-cases",
+                  id: "unallocated-csi-cases"
                 },
                 {
-                  text: "Your documents (1)",
-                  href: "your-documents",
-                  id: "your-documents"
+                  text: "Documents (1)",
+                  href: "unallocated-documents",
+                  id: "unallocated-documents"
                 }
             ]
         })
@@ -101,42 +101,79 @@
 
 <div class="govuk-tabs__panel">
 
-    <h2 class="govuk-heading-m">Your documents (1)</h2>
+  <div class="govuk-grid-row">
 
-          {{ govukSelect({
-            id: "document-type",
-            name: "document-type",
-            label: {
-              text: "Type of document"
-            },
-            items: [
-              {
-                value: "any",
-                text: "Any"
-              },
-              {
-                value: "priority cases",
-                text: "Priority cases"
-              },
-              {
-                value: "CSI cases",
-                text: "CSI cases"
-              },
-              {
-                value: "documents",
-                text: "Documents"
-              },
-              {
-                value: "no specialist equipment",
-                text: "No specialist equipment",
-                selected: true
-              }
-            ]
-          }) }}
+    <div class="govuk-grid-column-one-third">
 
-          {{ govukButton({
-            text: "Request a new document"
-          }) }}
+    {{ govukButton({
+      text: "Apply selected filters"
+    }) }}
+
+    <p class="govuk-body-s">
+      <a href="#" class="govuk-link">Clear filters</a>
+    </p>
+
+{{ govukCheckboxes({
+  name: "cases-filter",
+  classes: "govuk-checkboxes--small",
+  fieldset: {
+    legend: {
+      text: "Document type",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "csi",
+      text: "CSI"
+    },
+    {
+      value: "support-worker",
+      text: "Support Worker"
+    },
+    {
+      value: "support-worker-welsh",
+      text: "Support Worker (Welsh)"
+    },
+    {
+      value: "support-worker-multiple",
+      text: "Support Worker (multiple)"
+    },
+    {
+      value: "one-off-costs-sae",
+      text: "One off costs (SAE)"
+    },
+    {
+      value: "one-off-costs-welsh",
+      text: "One of costs (Welsh)"
+    },
+    {
+      value: "travel-to-work",
+      text: "Travel to work"
+    },
+    {
+      value: "travel-to-work-welsh",
+      text: "Travel to work (Welsh)"
+    },
+    {
+      value: "travel-in-work",
+      text: "Travel in work"
+    },
+    {
+      value: "travel-in-work-welsh",
+      text: "Travel in work (Welsh)"
+    },
+    {
+      value: "change-bank-details",
+      text: "Change bank details"
+    }
+  ]
+}) }}
+     
+  </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Unallocated documents (1)</h2>
 
           {{ govukTable({
             caption: "Document details",
@@ -153,15 +190,12 @@
               },
               {
                 text: "Date scanned"
-              },
-              {
-                text: "Status"
               }
             ],
             rows: [
-              [
+                [
                 {
-                  html: '<a href="user-case" class="govuk-link">Gary Boyd</a>'
+                  html: '<a href="../documents/user-case" class="govuk-link">Gary Boyd</a>'
                 },
                 {
                   text: "CSI"
@@ -170,18 +204,18 @@
                   text: "DP221JP"
                 },
                 {
-                  text: "12 December 2025"
-                },
-                {
-                  text: "Not started"
+                  text: "2 January 2026"
                 }
               ]
             ]
           }) }}
 
+     
+  </div>
+  </div>
+
+    
 
     </div>
-  </div>
-  </div>
 
 {% endblock %}

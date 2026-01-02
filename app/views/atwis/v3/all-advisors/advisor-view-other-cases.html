@@ -10,7 +10,7 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "your-cases",
+              selectedItem: "../all-advisors",
               items: [
                    {
                       href: "your-cases",
@@ -21,7 +21,7 @@
                       text: "Unallocated"
                     },
                     {
-                      href: "all-advisors",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
@@ -73,37 +73,79 @@
 
       {{ 
       dwpHorizontalNavigation({
-            selectedItem: "your-csi-cases",
+            selectedItem: "advisor-view-other-cases",
             items: [
                 {
-                  text: "Your other cases (2)",
-                  href: "../your-cases",
-                  id: "your-other-cases"
+                  text: "Other cases (2)",
+                  href: "advisor-view-other-cases",
+                  id: "other-cases"
                 },
                 {
-                  text: "Your priority cases (1)",
-                  href: "../priority-cases/your-priority-cases",
-                  id: "your-priority-cases"
+                  text: "Priority cases (1)",
+                  href: "advisor-view-priority-cases",
+                  id: "priority-cases"
                 },
                 {
-                  text: "Your CSI cases (3)",
-                  href: "your-csi-cases",
-                  id: "your-csi-cases"
+                  text: "CSI cases (3)",
+                  href: "advisor-view-csi-cases",
+                  id: "csi-cases"
                 },
                 {
-                  text: "Your documents (1)",
-                  href: "../documents/your-documents",
-                  id: "your-documents"
+                  text: "Documents (1)",
+                  href: "advisor-view-documents",
+                  id: "documents"
                 }
             ]
         })
 }}
 
 <div class="govuk-tabs__panel">
-    <h2 class="govuk-heading-m">Your CSI cases (3)</h2>
+
+  {% if data['answers-checked-enter-urn-new-app'] or data['answers-checked-enter-urn-priority-case']%}
+  {% set html %}
+  <h3 class="govuk-notification-banner__heading">
+    Application copied into DiSC
+  </h3>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
+  {% endif %}
+
+
+    <h2 class="govuk-heading-m">John Goldsmith's other cases (2)</h2>
+
+          {{ govukSelect({
+            id: "case-type",
+            name: "case-type",
+            label: {
+              text: "Type of case"
+            },
+            items: [
+              {
+                value: "any",
+                text: "Any",
+                selected: true
+              },
+              {
+                value: "priority cases",
+                text: "Priority cases"
+              },
+              {
+                value: "CSI cases",
+                text: "CSI cases"
+              },
+              {
+                value: "documents",
+                text: "Documents"
+              }
+            ]
+          }) }}
 
           {{ govukButton({
-            text: "Request a new CSI case"
+            text: "Request a new case"
           }) }}
 
           {{ govukTable({
@@ -114,60 +156,38 @@
                 text: "Name"
               },
               {
-                text: "Interview date"
+                text: "Type of case"
               },
               {
                 text: "Date submitted"
-              },
-              {
-                text: "Status"
               }
             ],
             rows: [
               [
                 {
-                  html: '<a href="user-case" class="govuk-link">Alan Ferguson</a>'
+                  html: '<a href="other-cases/renewal/user-case" class="govuk-link">Samantha Byram</a>'
                 },
                 {
-                  text: "1 November 2025"
+                  text: "Renewal"
                 },
                 {
                   text: "1 Nov 2025, 3:14pm"
-                },
-                {
-                  text: "New"
                 }
               ],
               [
                 {
-                  html: '<a href="#" class="govuk-link">Kiera Lawton</a>'
+                  html: '<a href="other-cases/new-application/user-case" class="govuk-link">Alexandra Watson</a>'
                 },
                 {
-                  text: "10 November 2025"
+                  text: "New application"
                 },
                 {
                   text: "10 Nov 2025, 9:24am"
-                },
-                {
-                  text: "New"
-                }
-              ],
-              [
-                {
-                  html: '<a href="#" class="govuk-link">Lucy Ballard</a>'
-                },
-                {
-                  text: "17 November 2025"
-                },
-                {
-                  text: "17 Nov 2025, 12:13pm"
-                },
-                {
-                  text: "New"
                 }
               ]
             ]
           }) }}
+
 
     </div>
   </div>
