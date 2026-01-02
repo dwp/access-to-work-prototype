@@ -1,19 +1,18 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-
 {{
         dwpHeader({
             serviceName: "Access to Work",
             serviceHref: '/index',
-            action: "Louise Patrick",
+            action: "Al Ó Catháin",
             actionHref: "#",
             container: true,
             navigation: {
               selectedItem: "manage-data",
               items: [
                    {
-                      href: "#",
+                      href: "../your-cases",
                       text: "Your cases"
                     },
                     {
@@ -21,7 +20,7 @@
                       text: "Unallocated"
                     },
                     {
-                      href: "#",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
