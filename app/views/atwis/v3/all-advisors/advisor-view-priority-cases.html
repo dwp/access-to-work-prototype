@@ -10,27 +10,31 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "your-cases",
+              selectedItem: "../all-advisors",
               items: [
                    {
-                      href: "your-cases",
+                      href: "../your-cases",
                       text: "Your cases"
                     },
                     {
-                      href: "#",
+                      href: "../unallocated/unallocated-main-page",
                       text: "Unallocated"
                     },
                     {
-                      href: "all-advisors",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
-                      href: "#",
+                      href: "../../v2/referrals/search",
                       text: "Search"
                     },
                     {
-                      href: "#",
+                      href: "../../v2/referrals/referrals",
                       text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
                     }
               ]
           }  
@@ -71,36 +75,50 @@
         })
 }}
 
-      {{ 
+ {{ 
       dwpHorizontalNavigation({
-            selectedItem: "your-other-cases",
+            selectedItem: "advisor-view-priority-cases",
             items: [
                 {
-                  text: "Your other cases (0)",
-                  href: "your-other-cases",
-                  id: "your-other-cases"
+                  text: "Other cases (2)",
+                  href: "advisor-view-other-cases",
+                  id: "other-cases"
                 },
                 {
-                  text: "Your priority cases (0)",
-                  href: "your-priority-cases",
-                  id: "your-priority-cases"
+                  text: "Priority cases (1)",
+                  href: "advisor-view-priority-cases",
+                  id: "priority-cases"
                 },
                 {
-                  text: "Your CSI cases (0)",
-                  href: "your-csi-cases",
-                  id: "your-csi-cases"
+                  text: "CSI cases (3)",
+                  href: "advisor-view-csi-cases",
+                  id: "csi-cases"
                 },
                 {
-                  text: "Your documents (0)",
-                  href: "your-documents",
-                  id: "your-documents"
+                  text: "Documents (1)",
+                  href: "advisor-view-documents",
+                  id: "documents"
                 }
             ]
         })
 }}
 
 <div class="govuk-tabs__panel">
-    <h2 class="govuk-heading-m">Your other cases (0)</h2>
+
+    {% if data['answers-checked-enter-urn-priority-case']%}
+  {% set html %}
+  <h3 class="govuk-notification-banner__heading">
+    Application copied into DiSC
+  </h3>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
+  {% endif %}
+
+    <h2 class="govuk-heading-m">John Goldsmith's priority cases (1)</h2>
 
           {{ govukSelect({
             id: "case-type",
@@ -111,8 +129,7 @@
             items: [
               {
                 value: "any",
-                text: "Any",
-                selected: true
+                text: "Any"
               },
               {
                 value: "priority cases",
@@ -125,13 +142,48 @@
               {
                 value: "documents",
                 text: "Documents"
+              },
+              {
+                value: "job start",
+                text: "Job start",
+                selected: true
               }
             ]
           }) }}
 
           {{ govukButton({
-            text: "Request a new case"
+            text: "Request a new priority case"
           }) }}
+
+          {{ govukTable({
+            caption: "Case details",
+            captionClasses: "govuk-table__caption--m",
+            head: [
+              {
+                text: "Name"
+              },
+              {
+                text: "Type of priority case"
+              },
+              {
+                text: "Date submitted"
+              }
+            ],
+            rows: [
+              [
+                {
+                  html: '<a href="../priority-cases/user-case" class="govuk-link">Holly Walters</a>'
+                },
+                {
+                  text: "Job start"
+                },
+                {
+                  text: "1 Nov 2025, 3:14pm"
+                }
+              ]
+            ]
+          }) }}
+
 
     </div>
   </div>

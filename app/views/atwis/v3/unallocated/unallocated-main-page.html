@@ -1,0 +1,209 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "unallocated-main-page",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../v2/referrals/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../v2/referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Unallocated cases – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{
+        dwpQuickReference({
+            ariaLabel: "User information",
+            primaryReference: {
+                text: 'User name:',
+                value: 'Al Ó Catháin'
+            },
+            secondaryReference: {
+                text: 'Your role and permissions:',
+                textDisplay: true,
+                value: 'Case manager team leader'
+            }
+        })
+}}
+
+      {{ 
+      dwpHorizontalNavigation({
+            selectedItem: "unallocated-main-page",
+            items: [
+                {
+                  text: "Priority cases (2)",
+                  href: "unallocated-main-page",
+                  id: "unallocated-priority-cases"
+                },
+                {
+                  text: "Other cases (2)",
+                  href: "unallocated-other-cases",
+                  id: "unallocated-other-cases"
+                },
+                {
+                  text: "CSI cases (1)",
+                  href: "unallocated-csi-cases",
+                  id: "unallocated-csi-cases"
+                },
+                {
+                  text: "Documents (1)",
+                  href: "unallocated-documents",
+                  id: "unallocated-documents"
+                }
+            ]
+        })
+}}
+
+<div class="govuk-tabs__panel">
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-third">
+
+    {{ govukButton({
+      text: "Apply selected filters"
+    }) }}
+
+    <p class="govuk-body-s">
+      <a href="#" class="govuk-link">Clear filters</a>
+    </p>
+
+    {{ govukSelect({
+  id: "sort",
+  name: "sort",
+  label: {
+    text: "Sort table by"
+  },
+  items: [
+    {
+      value: "date",
+      text: "Date created",
+      selected: true
+    }
+  ]
+}) }}
+
+{{ govukCheckboxes({
+  name: "cases-filter",
+  classes: "govuk-checkboxes--small",
+  fieldset: {
+    legend: {
+      text: "Priority type",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "job-start",
+      text: "Job start"
+    },
+    {
+      value: "access-to-work-plus",
+      text: "Access to Work Plus"
+    }
+  ]
+}) }}
+     
+  </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Unallocated priority cases (2)</h2>
+
+          {{ govukTable({
+            caption: "Document details",
+            captionClasses: "govuk-table__caption--m",
+            head: [
+              {
+                text: "Name"
+              },
+              {
+                text: "Type of priority case"
+              },
+              {
+                text: "Date submitted"
+              }
+            ],
+            rows: [
+              [
+                {
+                  html: '<a href="../priority-cases/user-case" class="govuk-link">Holly Walters</a>'
+                },
+                {
+                  text: "Job start"
+                },
+                {
+                  text: "10 January 2026"
+                }
+              ],
+                [
+                {
+                  html: '<a href="#" class="govuk-link">Charlie Bothroyd</a>'
+                },
+                {
+                  text: "Job start"
+                },
+                {
+                  text: "2 January 2026"
+                }
+              ]
+            ]
+          }) }}
+
+     
+  </div>
+  </div>
+
+    
+
+    </div>
+
+{% endblock %}

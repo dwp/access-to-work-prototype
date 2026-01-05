@@ -10,27 +10,31 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "your-cases",
+              selectedItem: "../your-cases",
               items: [
                    {
-                      href: "your-cases",
+                      href: "../your-cases",
                       text: "Your cases"
                     },
                     {
-                      href: "#",
+                      href: "../unallocated/unallocated-main-page",
                       text: "Unallocated"
                     },
                     {
-                      href: "all-advisors",
+                      href: "../all-advisors",
                       text: "All advisors"
                     },
                     {
-                      href: "#",
+                      href: "../../v2/referrals/search",
                       text: "Search"
                     },
                     {
-                      href: "#",
+                      href: "../../v2/referrals/referrals",
                       text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
                     }
               ]
           }  
@@ -76,13 +80,13 @@
             selectedItem: "your-csi-cases",
             items: [
                 {
-                  text: "Your other cases (0)",
-                  href: "your-other-cases",
+                  text: "Your other cases (2)",
+                  href: "../your-cases",
                   id: "your-other-cases"
                 },
                 {
-                  text: "Your priority cases (0)",
-                  href: "your-priority-cases",
+                  text: "Your priority cases (1)",
+                  href: "../priority-cases/your-priority-cases",
                   id: "your-priority-cases"
                 },
                 {
@@ -91,8 +95,8 @@
                   id: "your-csi-cases"
                 },
                 {
-                  text: "Your documents (0)",
-                  href: "your-documents",
+                  text: "Your documents (1)",
+                  href: "../documents/your-documents",
                   id: "your-documents"
                 }
             ]
@@ -126,7 +130,7 @@
             rows: [
               [
                 {
-                  html: '<a href="user-case" class="govuk-link">Brian Brobbey</a>'
+                  html: '<a href="user-case" class="govuk-link">Alan Ferguson</a>'
                 },
                 {
                   text: "1 November 2025"
@@ -140,7 +144,7 @@
               ],
               [
                 {
-                  html: '<a href="#" class="govuk-link">Chemsdine Talbi</a>'
+                  html: '<a href="#" class="govuk-link">Kiera Lawton</a>'
                 },
                 {
                   text: "10 November 2025"

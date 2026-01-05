@@ -1,0 +1,225 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "unallocated-main-page",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../v2/referrals/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../v2/referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Unallocated cases – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{
+        dwpQuickReference({
+            ariaLabel: "User information",
+            primaryReference: {
+                text: 'User name:',
+                value: 'Al Ó Catháin'
+            },
+            secondaryReference: {
+                text: 'Your role and permissions:',
+                textDisplay: true,
+                value: 'Case manager team leader'
+            }
+        })
+}}
+
+      {{ 
+      dwpHorizontalNavigation({
+            selectedItem: "unallocated-documents",
+            items: [
+                {
+                  text: "Priority cases (2)",
+                  href: "unallocated-main-page",
+                  id: "unallocated-priority-cases"
+                },
+                {
+                  text: "Other cases (2)",
+                  href: "unallocated-other-cases",
+                  id: "unallocated-other-cases"
+                },
+                {
+                  text: "CSI cases (1)",
+                  href: "unallocated-csi-cases",
+                  id: "unallocated-csi-cases"
+                },
+                {
+                  text: "Documents (1)",
+                  href: "unallocated-documents",
+                  id: "unallocated-documents"
+                }
+            ]
+        })
+}}
+
+<div class="govuk-tabs__panel">
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-third">
+
+    {{ govukButton({
+      text: "Apply selected filters"
+    }) }}
+
+    <p class="govuk-body-s">
+      <a href="#" class="govuk-link">Clear filters</a>
+    </p>
+
+{{ govukCheckboxes({
+  name: "cases-filter",
+  classes: "govuk-checkboxes--small",
+  fieldset: {
+    legend: {
+      text: "Document type",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "csi",
+      text: "CSI"
+    },
+    {
+      value: "support-worker",
+      text: "Support Worker"
+    },
+    {
+      value: "support-worker-welsh",
+      text: "Support Worker (Welsh)"
+    },
+    {
+      value: "support-worker-multiple",
+      text: "Support Worker (multiple)"
+    },
+    {
+      value: "one-off-costs-sae",
+      text: "One off costs (SAE)"
+    },
+    {
+      value: "one-off-costs-welsh",
+      text: "One of costs (Welsh)"
+    },
+    {
+      value: "travel-to-work",
+      text: "Travel to work"
+    },
+    {
+      value: "travel-to-work-welsh",
+      text: "Travel to work (Welsh)"
+    },
+    {
+      value: "travel-in-work",
+      text: "Travel in work"
+    },
+    {
+      value: "travel-in-work-welsh",
+      text: "Travel in work (Welsh)"
+    },
+    {
+      value: "change-bank-details",
+      text: "Change bank details"
+    }
+  ]
+}) }}
+     
+  </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Unallocated documents (1)</h2>
+
+          {{ govukTable({
+            caption: "Document details",
+            captionClasses: "govuk-table__caption--m",
+            head: [
+              {
+                text: "Name"
+              },
+              {
+                text: "Type of document"
+              },
+              {
+                text: "Form reference"
+              },
+              {
+                text: "Date scanned"
+              }
+            ],
+            rows: [
+                [
+                {
+                  html: '<a href="../documents/user-case" class="govuk-link">Gary Boyd</a>'
+                },
+                {
+                  text: "CSI"
+                },
+                {
+                  text: "DP221JP"
+                },
+                {
+                  text: "2 January 2026"
+                }
+              ]
+            ]
+          }) }}
+
+     
+  </div>
+  </div>
+
+    
+
+    </div>
+
+{% endblock %}
