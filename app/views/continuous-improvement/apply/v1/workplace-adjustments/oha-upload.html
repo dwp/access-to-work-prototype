@@ -27,24 +27,18 @@
 
       <form class="form" action="{{versionPath}}/workplace-adjustments/check-answers" method="post">
 
-{% call govukFieldset({
-  legend: {
-    text: "Add a copy of the occupational health assessment",
-    classes: "govuk-fieldset__legend--l",
-    isPageHeading: true
-  }
-}) %}
-
   {{ govukFileUpload({
     id: "file-upload-1",
     name: "oha-upload",
     label: {
-      text: "Upload a file"
+      text: "Upload a copy of the the occupational health assessment",
+      isPageHeading: true,
+      classes: "govuk-label--l"
     },
     javascript: true
   }) }}
 
-{% endcall %}
+
 
        
 
