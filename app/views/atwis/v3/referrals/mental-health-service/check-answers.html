@@ -1,0 +1,264 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../referrals",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Check answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check answers before sending referral</h1>
+
+    <h2 class="govuk-heading-m">Referral type</h2>
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: {
+            text: "Referral type"
+          },
+          value: {
+            text: data['send-new-referral']
+          },
+          actions: {
+            items: [
+              {
+                href: "../referrals#send-new-referral",
+                text: "Change",
+                visuallyHiddenText: "Referral type"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Personal details</h2>
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: {
+            text: "First name"
+          },
+          value: {
+            text: data['first-name-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/personal-details#first-name-mhs",
+                text: "Change",
+                visuallyHiddenText: "first name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Last name"
+          },
+          value: {
+            text: data['last-name-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/personal-details#last-name-mhs",
+                text: "Change",
+                visuallyHiddenText: "last name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Unique reference number (URN)"
+          },
+          value: {
+            text: data['urn-reference-number-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/personal-details#urn-reference-number-mhs",
+                text: "Change",
+                visuallyHiddenText: "urn number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "National Insurance number"
+          },
+          value: {
+            text: data['ni-number-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/personal-details#ni-number-mhs",
+                text: "Change",
+                visuallyHiddenText: "ni number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "UK phone number"
+          },
+          value: {
+            text: data['phone-number-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/personal-details#phone-number-mhs",
+                text: "Change",
+                visuallyHiddenText: "phone number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Address"
+          },
+          value: {
+            text: data['addresses-select-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/find-address#postcode-mhs",
+                text: "Change",
+                visuallyHiddenText: "address"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Provider details</h2>
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: {
+            text: "Type of MHSS referral"
+          },
+          value: {
+            text: data['referral-type']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/referral-type#referral-type",
+                text: "Change",
+                visuallyHiddenText: "provider details"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Provider, code and office"
+          },
+          value: {
+            text: data['provider-mhs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../mental-health-service/provider-details-authority#provider-mhs",
+                text: "Change",
+                visuallyHiddenText: "provider details"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Now send {{ data['first-name-mhs'] }} {{ data['last-name-mhs'] }}'s referral</h2>
+
+    <p class="govuk-body">By submitting this referral you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+    <form action="../mental-health-service/referral-complete" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-mhs" value="true">
+
+      {{ govukButton({
+        text: "Accept and send"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

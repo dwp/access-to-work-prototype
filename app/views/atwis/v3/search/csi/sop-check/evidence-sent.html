@@ -1,0 +1,115 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../../your-cases",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Evidence sent – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="color:white !important;">
+          Alan Ferguson
+        </h1>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Advisor</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">John Doe</h2>
+
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Specialism</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">CSI</h2>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3 class="govuk-heading-l">Evidence sent</h3>
+
+      <p class="govuk-body">You will be able to continue with this case once the applicant has sent their evidence back.</p>
+
+        <form class="form" action="../../find-a-case" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        </form>
+
+        <p class="govuk-body"><a href="../user-case" class="govuk-link">Return to tasks</a></p>
+     
+  </div>
+  </div>
+{% endblock %}

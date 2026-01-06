@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "referrals",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  All advisors – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        All advisors
+      </h1>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="../team-lead-referral-history/john-goldsmith-cases.html" class="govuk-link">John Goldsmith</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Imani Pretorius</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Tom Garb</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">John Smith</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Robyn Wallis</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Caelan Stafford</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}

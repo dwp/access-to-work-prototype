@@ -12,9 +12,9 @@ router.post('/referral-type-answer', function(request, response) {
 
     var referralType = request.session.data['send-new-referral']
     if (referralType == "Workplace Assessment"){
-        response.redirect("/atwis/v2/referrals/workplace-assessment/personal-details")
+        response.redirect("/atwis/v3/referrals/workplace-assessment/personal-details")
     } else {
-        response.redirect("/atwis/v2/referrals/mental-health-service/personal-details")
+        response.redirect("/atwis/v3/referrals/mental-health-service/personal-details")
     }
 })
 
@@ -22,9 +22,9 @@ router.post('/referral-type-mhs-answer', function(request, response) {
 
     var referralType = request.session.data['referral-type']
     if (referralType == "Authority referral"){
-        response.redirect("/atwis/v2/referrals/mental-health-service/provider-details-authority")
+        response.redirect("/atwis/v3/referrals/mental-health-service/provider-details-authority")
     } else {
-        response.redirect("/atwis/v2/referrals/mental-health-service/provider-details-self-referral")
+        response.redirect("/atwis/v3/referrals/mental-health-service/provider-details-self-referral")
     }
 })
 
@@ -268,9 +268,9 @@ router.post('/task-list', function (req, res) {
 
         var searchSelect = request.session.data['search-type']
         if (searchSelect == "Referrals"){
-            response.redirect("/atwis/v2/referrals/referral-search")
+            response.redirect("/atwis/v3/referrals/referral-search")
         } else {
-            response.redirect("#")
+            response.redirect("/atwis/v3/search/find-a-case")
         }
     })
 
@@ -279,18 +279,18 @@ router.post('/task-list', function (req, res) {
 
         var searchSelect = request.session.data['search-type-lead']
         if (searchSelect == "Referrals"){
-            response.redirect("/atwis/v2/referrals/team-lead-referral-history/referral-search")
+            response.redirect("/atwis/v3/referrals/team-lead-referral-history/referral-search")
         } else {
             response.redirect("#")
         }
     })
 
-    router.post('/atwis/v2/referrals/referral-search', function (req, res) {
-        res.render('atwis/v2/referrals/referral-search', { data: req.body});
+    router.post('/atwis/v3/referrals/referral-search', function (req, res) {
+        res.render('atwis/v3/referrals/referral-search', { data: req.body});
     });
 
-    router.post('/atwis/v2/referrals/team-lead-referral-history/referral-search', function (req, res) {
-        res.render('atwis/v2/referrals/team-lead-referral-history/referral-search', { data: req.body});
+    router.post('/atwis/v3/referrals/team-lead-referral-history/referral-search', function (req, res) {
+        res.render('atwis/v3/referrals/team-lead-referral-history/referral-search', { data: req.body});
     });
 
     router.post('/days-will-work-answer', function(request, response) {
@@ -577,9 +577,9 @@ router.post('/task-list', function (req, res) {
 
         var referralType = request.session.data['send-new-referral-duplicate']
         if (referralType == "Workplace Assessment"){
-            response.redirect("/atwis/v2/referrals/duplicate-referrals/workplace-assessment/personal-details")
+            response.redirect("/atwis/v3/referrals/duplicate-referrals/workplace-assessment/personal-details")
         } else {
-            response.redirect("/atwis/v2/referrals/duplicate-referrals/mental-health-service/personal-details")
+            response.redirect("/atwis/v3/referrals/duplicate-referrals/mental-health-service/personal-details")
         }
     })
 
@@ -588,9 +588,9 @@ router.post('/task-list', function (req, res) {
 
         var sendReferralAnyway = request.session.data['send-new-referral-anyway']
         if (sendReferralAnyway == "yes"){
-            response.redirect("/atwis/v2/referrals/workplace-assessment/find-address")
+            response.redirect("/atwis/v3/referrals/workplace-assessment/find-address")
         } else {
-            response.redirect("/atwis/v2/referrals/duplicate-referrals/referrals")
+            response.redirect("/atwis/v3/referrals/duplicate-referrals/referrals")
         }
     })
 
@@ -598,9 +598,9 @@ router.post('/task-list', function (req, res) {
 
         var sendReferralAnyway = request.session.data['six-month-report']
         if (sendReferralAnyway == "yes"){
-            response.redirect("/atwis/v2/referrals/duplicate-referrals/referrals")
+            response.redirect("/atwis/v3/referrals/duplicate-referrals/referrals")
         } else {
-            response.redirect("/atwis/v2/referrals/mental-health-service/find-address")
+            response.redirect("/atwis/v3/referrals/mental-health-service/find-address")
         }
     })
 
@@ -608,9 +608,9 @@ router.post('/task-list', function (req, res) {
 
         var sendReferralAnyway = request.session.data['send-new-referral-anyway-mhss-in-flight']
         if (sendReferralAnyway == "yes"){
-            response.redirect("/atwis/v2/referrals/mental-health-service/find-address")
+            response.redirect("/atwis/v3/referrals/mental-health-service/find-address")
         } else {
-            response.redirect("/atwis/v2/referrals/duplicate-referrals/referrals")
+            response.redirect("/atwis/v3/referrals/duplicate-referrals/referrals")
         }
     })
 
@@ -1440,5 +1440,95 @@ router.post('/end-date-answer', function(request, response) {
         response.redirect("/atwis/v3/documents/what-is-the-end-date")
     } else {
         response.redirect("/atwis/v3/documents/cant-change-status")
+    }
+})
+
+router.post('/evidence-included-answer', function(request, response) {
+
+    var evidenceIncluded = request.session.data['evidence-included']
+    if (evidenceIncluded == "yes"){
+        response.redirect("/atwis/v3/search/csi/invoice/add-invoice-details")
+    } else {
+        response.redirect("/atwis/v3/search/csi/check-evidence/request-missing-evidence")
+    }
+})
+
+router.post('/sent-evidence-back-answer', function(request, response) {
+
+    var sentEvidenceBack = request.session.data['sent-evidence-back']
+    if (sentEvidenceBack == "yes"){
+        response.redirect("/atwis/v3/search/csi/check-evidence/evidence-sent")
+    } else {
+        response.redirect("/atwis/v3/search/csi/user-case")
+    }
+})
+
+router.post('/check-invoice-answer', function(request, response) {
+
+    var checkInvoice = request.session.data['check-invoice']
+    if (checkInvoice == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/find-payee-on-sop")
+    } else {
+        response.redirect("/atwis/v3/search/csi/invoice/confirm-the-amount")
+    }
+})
+
+router.post('/is-payee-on-sop-answer', function(request, response) {
+
+    var payeeOnSop = request.session.data['is-payee-on-sop']
+    if (payeeOnSop == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/check-payee-details")
+    } else {
+        response.redirect("/atwis/v3/search/csi/sop-check/check-bank-details")
+    }
+})
+
+router.post('/bank-details-valid-answer', function(request, response) {
+
+    var bankDetails = request.session.data['bank-details-valid']
+    if (bankDetails == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/request-sop-change")
+    } else {
+        response.redirect("/atwis/v3/search/csi/sop-check/request-bank-details")
+    }
+})
+
+router.post('/sent-evidence-back-sop-check-answer', function(request, response) {
+
+    var sentEvidenceBack = request.session.data['sent-evidence-back']
+    if (sentEvidenceBack == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/evidence-sent")
+    } else {
+        response.redirect("/atwis/v3/search/csi/user-case")
+    }
+})
+
+router.post('/has-form-been-sent-answer', function(request, response) {
+
+    var sentForm = request.session.data['has-form-been-sent']
+    if (sentForm == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/sop7-form-sent")
+    } else {
+        response.redirect("/atwis/v3/search/csi/user-case")
+    }
+})
+
+router.post('/do-payee-details-match-answer', function(request, response) {
+
+    var detailsMatch = request.session.data['do-payee-details-match']
+    if (detailsMatch == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/add-sop-supplier-number")
+    } else {
+        response.redirect("/atwis/v3/search/csi/sop-check/request-sop-change")
+    }
+})
+
+router.post('/approve-payment-answer', function(request, response) {
+
+    var approvePayment = request.session.data['approve-payment']
+    if (approvePayment == "yes"){
+        response.redirect("/atwis/v3/search/csi/sop-check/payment-approved")
+    } else {
+        response.redirect("/atwis/v3/search/csi/user-case")
     }
 })

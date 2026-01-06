@@ -1,0 +1,145 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../../your-cases",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Print and send the claim form again – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="color:white !important;">
+          Alan Ferguson
+        </h1>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Advisor</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">John Doe</h2>
+
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Specialism</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">CSI</h2>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3 class="govuk-heading-l">Print and send the claim form again</h3>
+
+      {{ govukButton({
+              text: "Get the claim form",
+              classes: "govuk-button--secondary"
+            }) }}
+
+      <p class="govuk-body">Print and send to the following address:</p>
+
+          {{ govukInsetText({
+            html: "Alan Ferguson<br>1 Imaginary Street<br>City of London<br>London<br>AB1 2CD"
+          }) }}
+
+        <form class="form" action="/have-you-printed-and-sent-the-claim-form-again-answer" method="post">
+
+            {{ govukRadios({
+              classes: "govuk-radios--inline",
+              name: "have-you-printed-and-sent-the-claim-form",
+              fieldset: {
+                legend: {
+                  text: "Have you printed the claim form?",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes"
+                },
+                {
+                  value: "no",
+                  text: "No"
+                }
+              ]
+            }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        </form>
+
+        <p class="govuk-body"><a href="user-case" class="govuk-link">Return to tasks</a></p>
+     
+  </div>
+  </div>
+{% endblock %}

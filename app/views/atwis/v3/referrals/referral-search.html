@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "referrals",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Referrals – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Find customer referrals
+      </h1>
+
+
+      <form class="form" action="/atwis/v3/referrals/referral-search" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Enter a customer National Insurance number"
+          },
+          id: "event-name",
+          name: "enter-referral-id",
+          value: data['enter-referral-id']
+        }) }}
+        
+        {{ govukButton({
+          text: "Search"
+        }) }}
+        
+        </form>
+
+        {% if data['enter-referral-id'] %}
+
+        <h2 class="govuk-heading-m">
+          Search results
+        </h2>
+
+        <p class="govuk-body"><strong>1 result</strong> found for <strong>{{ data['enter-referral-id'] }}</strong></p>
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "National Insurance number"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "<a href='view-customer-record' class='govuk-link'>Anita Pavone</a>"
+              },
+              {
+                text: "AB123456C"
+              }
+            ]
+          ]
+        }) }}
+
+
+        {% endif %}
+
+      </div>
+    </div>
+
+{% endblock %}
