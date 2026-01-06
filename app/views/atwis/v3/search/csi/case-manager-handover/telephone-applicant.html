@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Payment approved – {{ serviceName }}
+  Telephone applicant – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -96,22 +96,40 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukPanel({
-        titleText: "Payment approved",
-        text: "JDINV12345"
-      }) }}
+      <h3 class="govuk-heading-l">Telephone the applicant</h3>
 
-      <p class="govuk-body">Write the reference <strong>JDINV12345</strong> on the front of the paperwork.</p>
+      <p class="govuk-body">Telephone <strong>Alan Ferguson</strong> on <strong>07123456789</strong> to ask for more information about their support cost.</p>
 
-      <p class="govuk-body">Save the mobile number <strong>07123456789</strong> in the shared folder so that a notification can be sent.</p>
+        <form class="form" action="/telephone-the-applicant-case-manager-handover-answer" method="post">
 
-        <form class="form" action="../../find-a-case" method="post">
+          {{ govukRadios({
+            classes: "govuk-radios",
+            name: "telephone-applicant",
+            fieldset: {
+              legend: {
+                text: "Has the applicant answered the telephone?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes, check information"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
 
         {{ govukButton({
-          text: "Search for another case"
+          text: "Continue"
         }) }}
 
         </form>
+
+        <p class="govuk-body"><a href="user-case" class="govuk-link">Return to tasks</a></p>
      
   </div>
   </div>

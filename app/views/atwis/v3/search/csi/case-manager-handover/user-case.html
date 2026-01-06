@@ -10,30 +10,30 @@
             actionHref: "#",
             container: true,
             navigation: {
-              selectedItem: "../search",
+              selectedItem: "../../../your-cases",
               items: [
                    {
-                      href: "../../your-cases",
+                      href: "../../../your-cases",
                       text: "Your cases"
                     },
                     {
-                      href: "../../unallocated/unallocated-main-page",
+                      href: "../../../unallocated/unallocated-main-page",
                       text: "Unallocated"
                     },
                     {
-                      href: "../../all-advisors",
+                      href: "../../../all-advisors",
                       text: "All advisors"
                     },
                     {
-                      href: "../search",
+                      href: "../../search",
                       text: "Search"
                     },
                     {
-                      href: "../../referrals/referrals",
+                      href: "../../../referrals/referrals",
                       text: "Referrals"
                     },
                     {
-                      href: "../../data-retention/manage-data",
+                      href: "../../../data-retention/manage-data",
                       text: "Manage data"
                     }
               ]
@@ -108,15 +108,34 @@
     <div class="govuk-grid-column-two-thirds">
 
 {% set yourTasksHtml %}
+<h2 class="govuk-heading-m">Check support cost</h2>
 
 {{ govukTaskList({
-  idPrefix: "check-and-approve",
+  idPrefix: "check-support-cost",
+  items: [
+    {
+      title: {
+        text: "Check invoice support cost"
+      },
+      href: "check-invoice-support-cost"
+    },
+    {
+      title: {
+        text: "Contact the payments team"
+      }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">Check and approve payment</h2>
+
+{{ govukTaskList({
+  idPrefix: "check-approve-payment",
   items: [
     {
       title: {
         text: "Check the evidence"
-      },
-      href: "check-evidence/check-evidence"
+      }
     },
     {
       title: {
@@ -145,8 +164,6 @@
     }
   ]
 }) }}
-
-
 {% endset -%}
 
 {% set caseDetailsHtml %}
@@ -176,6 +193,15 @@
       },
       value: {
         html: "Alan"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "first name"
+          }
+        ]
       }
     },
     {
@@ -184,6 +210,15 @@
       },
       value: {
         text: "Ferguson"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
       }
     },
     {
@@ -192,6 +227,15 @@
       },
       value: {
         text: "27 August 1998"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
       }
     },
     {
@@ -200,6 +244,15 @@
       },
       value: {
         html: '<p class="govuk-body">10 Imaginary Street</p><p class="govuk-body">City of London</p><p class="govuk-body">London</p><p class="govuk-body">AB1 2CD</p>'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "address"
+          }
+        ]
       }
     },
     {
@@ -208,6 +261,15 @@
       },
       value: {
         text: "alan.ferguson@mail.co.uk"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "email address"
+          }
+        ]
       }
     }
   ]
@@ -227,6 +289,15 @@
       },
       value: {
         text: "DWP Digital"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "company name"
+          }
+        ]
       }
     },
     {
@@ -235,6 +306,15 @@
       },
       value: {
         html: '1 Imaginary Street <br>City of London <br> London <br>AB1 2CD'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "company address"
+          }
+        ]
       }
     },
     {
@@ -243,6 +323,15 @@
       },
       value: {
         text: "Mary Rivers"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "company contact"
+          }
+        ]
       }
     },
     {
@@ -251,6 +340,15 @@
       },
       value: {
         text: "mary.rivers@mail.co.uk"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact email"
+          }
+        ]
       }
     },
     {
@@ -259,6 +357,15 @@
       },
       value: {
         text: "07123456789"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "phone"
+          }
+        ]
       }
     }
   ]
@@ -274,6 +381,15 @@
       },
       value: {
         text: "23 November 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "interview date"
+          }
+        ]
       }
     },
     {
@@ -282,6 +398,15 @@
       },
       value: {
         text: "Deaf"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "condition"
+          }
+        ]
       }
     },
     {
@@ -290,6 +415,15 @@
       },
       value: {
         text: "1 hour"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "interview length"
+          }
+        ]
       }
     },
     {
@@ -298,6 +432,15 @@
       },
       value: {
         text: "£100.00"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "support cost"
+          }
+        ]
       }
     }
   ]
@@ -378,13 +521,13 @@
 
   <div class="govuk-grid-column-one-third">
       
-<p class="govuk-body"><a href="#" class="govuk-link">Reject the case</a></p>
+<p class="govuk-body"><a href="reject-case/reject-case" class="govuk-link">Reject the case</a></p>
 
-<p class="govuk-body"><a href="print-send-claim-form-again" class="govuk-link">Print and send claim form again</a></p>
+<p class="govuk-body"><a href="#" class="govuk-link">Print and send claim form again</a></p>
 
 {{ govukSelect({
-  id: "update-advisor",
-  name: "update-advisor",
+  id: "who-to-allocate-to",
+  name: "who-to-allocate-to",
   label: {
     html: '<h2 class="govuk-heading-m">Who do you want to allocate this to?</h2>'
   },

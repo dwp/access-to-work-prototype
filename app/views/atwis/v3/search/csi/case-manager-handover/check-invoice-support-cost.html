@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Payment approved – {{ serviceName }}
+  Check the invoice suppport cost – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -96,22 +96,92 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukPanel({
-        titleText: "Payment approved",
-        text: "JDINV12345"
-      }) }}
+      <h3 class="govuk-heading-l">Check the invoice support cost</h3>
 
-      <p class="govuk-body">Write the reference <strong>JDINV12345</strong> on the front of the paperwork.</p>
+      {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Condition"
+      },
+      value: {
+        text: "Deaf"
+      }
+    },
+    {
+      key: {
+        text: "Interview length"
+      },
+      value: {
+        text: "1 hour"
+      }
+    },
+    {
+      key: {
+        text: "Support cost on invoice"
+      },
+      value: {
+        text: "£300.00 (£200.00 more than the quote)"
+      }
+    }
+  ]
+}) }}
 
-      <p class="govuk-body">Save the mobile number <strong>07123456789</strong> in the shared folder so that a notification can be sent.</p>
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    Information from payment officer.
+  </p>
+  <p class="govuk-body">The amount is too high, please resolve.</p>
+{% endset %}
 
-        <form class="form" action="../../find-a-case" method="post">
+{{ govukNotificationBanner({
+  titleHtml: '<span class="govuk-visually-hidden">Important</span>',
+  html: html
+}) }}
+
+
+        <form class="form" action="/is-cost-reasonable-answer" method="post">
+
+          {% set yesHtml %}
+            {{ govukTextarea({
+              id: "approval-reason",
+              name: "approval-reason",
+              label: {
+                text: "Reason for approval"
+              }
+            }) }}
+            {% endset -%}
+
+            {{ govukRadios({
+              name: "is-cost-reasonable",
+              fieldset: {
+                legend: {
+                  text: "Is the cost reasonable?",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes",
+                  conditional: {
+                    html: yesHtml
+                  }
+                },
+                {
+                  value: "no",
+                  text: "No"
+                }
+              ]
+            }) }}
 
         {{ govukButton({
-          text: "Search for another case"
+          text: "Continue"
         }) }}
 
         </form>
+
+        <p class="govuk-body"><a href="user-case" class="govuk-link">Return to tasks</a></p>
      
   </div>
   </div>

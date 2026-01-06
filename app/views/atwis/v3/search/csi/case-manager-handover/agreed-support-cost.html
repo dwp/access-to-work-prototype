@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Payment approved – {{ serviceName }}
+  Agreed support cost – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -96,22 +96,71 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukPanel({
-        titleText: "Payment approved",
-        text: "JDINV12345"
-      }) }}
+      <h3 class="govuk-heading-l">What is the agreed support cost?</h3>
 
-      <p class="govuk-body">Write the reference <strong>JDINV12345</strong> on the front of the paperwork.</p>
+      {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Condition"
+      },
+      value: {
+        text: "Deaf"
+      }
+    },
+    {
+      key: {
+        text: "Interview length"
+      },
+      value: {
+        text: "1 hour"
+      }
+    },
+    {
+      key: {
+        text: "Support cost on quote"
+      },
+      value: {
+        text: "£100.00"
+      }
+    },
+    {
+      key: {
+        text: "Support cost on invoice"
+      },
+      value: {
+        text: "£300.00"
+      }
+    }
+  ]
+}) }}
 
-      <p class="govuk-body">Save the mobile number <strong>07123456789</strong> in the shared folder so that a notification can be sent.</p>
+{{ govukInput({
+  label: {
+    text: "Agreed amount to pay"
+  },
+  classes: "govuk-!-width-one-third",
+  id: "amount-to-pay",
+  name: "amount-to-pay"
+}) }}
 
-        <form class="form" action="../../find-a-case" method="post">
+{{ govukTextarea({
+  name: "agreed-amount-reason",
+  id: "agreed-amount-reason",
+  label: {
+    text: "Reason for the agreed amount"
+  }
+}) }}
+
+        <form class="form" action="allocate-case-to-payment-officer" method="post">
 
         {{ govukButton({
-          text: "Search for another case"
+          text: "Continue"
         }) }}
 
         </form>
+
+        <p class="govuk-body"><a href="user-case" class="govuk-link">Return to tasks</a></p>
      
   </div>
   </div>

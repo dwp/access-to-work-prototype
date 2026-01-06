@@ -1532,3 +1532,53 @@ router.post('/approve-payment-answer', function(request, response) {
         response.redirect("/atwis/v3/search/csi/user-case")
     }
 })
+
+router.post('/is-cost-reasonable-answer', function(request, response) {
+
+    var reasonableCost = request.session.data['is-cost-reasonable']
+    if (reasonableCost == "yes"){
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/allocate-case-to-payment-officer")
+    } else {
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/need-to-contact-applicant")
+    }
+})
+
+router.post('/need-to-contact-applicant-answer', function(request, response) {
+
+    var contactApplicant = request.session.data['need-to-contact-applicant']
+    if (contactApplicant == "yes"){
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/how-to-contact-applicant")
+    } else {
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/agreed-support-cost")
+    }
+})
+
+router.post('/how-to-contact-applicant-case-manager-handover-answer', function(request, response) {
+
+    var howToContactApplicant = request.session.data['how-to-contact-applicant']
+    if (howToContactApplicant == "email"){
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/email-applicant")
+    } else {
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/telephone-applicant")
+    }
+})
+
+router.post('/email-the-applicant-case-manager-handover-answer', function(request, response) {
+
+    var emailApplicant = request.session.data['email-applicant']
+    if (emailApplicant == "yes"){
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/email-sent")
+    } else {
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/user-case")
+    }
+})
+
+router.post('/telephone-the-applicant-case-manager-handover-answer', function(request, response) {
+
+    var telephoneApplicant = request.session.data['telephone-applicant']
+    if (telephoneApplicant == "yes"){
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/agreed-support-cost")
+    } else {
+        response.redirect("/atwis/v3/search/csi/case-manager-handover/telephone-call-made")
+    }
+})

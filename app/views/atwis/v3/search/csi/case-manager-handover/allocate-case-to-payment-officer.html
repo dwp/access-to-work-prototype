@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Payment approved – {{ serviceName }}
+  Allocate case to payment officer – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -96,22 +96,93 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukPanel({
-        titleText: "Payment approved",
-        text: "JDINV12345"
-      }) }}
+      <h3 class="govuk-heading-l">Allocate the case to a payment officer</h3>
 
-      <p class="govuk-body">Write the reference <strong>JDINV12345</strong> on the front of the paperwork.</p>
+      {{
+        dwpTimeline({ 
+            items: [
+                {
+                    title:  "Application allocated",
+                    byline:  "John Doe",
+                    description: {
+                        text: "John Goldsmith to John Doe"
+                    },
+                    date:  "26 April 2025 at 12:42pm"
+                },
+                {
+                    title:  "Application allocated",
+                    byline:  "John Doe",
+                    description: {
+                        text: "John Goldsmith to John Doe"
+                    },
+                    date:  "26 April 2025 at 12:42pm"
+                },
+                 {
+                    title:  "Application allocated",
+                    byline:  "John Doe",
+                    description: {
+                        text: "John Goldsmith to John Doe"
+                    },
+                    date:  "26 April 2025 at 12:42pm"
+                },
+               {
+                    title:  "Application allocated",
+                    byline:  "John Doe",
+                    description: {
+                        text: "John Goldsmith to John Doe"
+                    },
+                    date:  "26 April 2025 at 12:42pm"
+                }
+        ]
+        })
+}}
 
-      <p class="govuk-body">Save the mobile number <strong>07123456789</strong> in the shared folder so that a notification can be sent.</p>
+<h4 class="govuk-heading-m">Which payment officer do you want to allocate the case to?</h4>
 
-        <form class="form" action="../../find-a-case" method="post">
+{{ govukSelect({
+  id: "update-payment-officer",
+  name: "update-payment-officer",
+  label: {
+    text: "Leave blank to unallocate the case"
+  },
+  items: [
+  {
+      value: "blank",
+      text: "",
+      selected: true
+    },
+    {
+      value: "name-1",
+      text: "John Doe"
+    },
+    {
+      value: "name-2",
+      text: "Susan Quantas"
+    },
+    {
+      value: "name-3",
+      text: "Savannah Eastwood"
+    },
+    {
+      value: "name-4",
+      text: "David Connolly"
+    },
+    {
+      value: "name-5",
+      text: "Sophia Wanless"
+    }
+  ]
+}) }}
+
+        <form class="form" action="user-case" method="post">
 
         {{ govukButton({
-          text: "Search for another case"
+          text: "Allocate"
         }) }}
 
         </form>
+
+        <p class="govuk-body"><a href="user-case" class="govuk-link">Return to tasks</a></p>
      
   </div>
   </div>

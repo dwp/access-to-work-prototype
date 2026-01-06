@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Payment approved – {{ serviceName }}
+  Telephone call made – {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -96,19 +96,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukPanel({
-        titleText: "Payment approved",
-        text: "JDINV12345"
-      }) }}
+      <h3 class="govuk-heading-l">Telephone call made</h3>
 
-      <p class="govuk-body">Write the reference <strong>JDINV12345</strong> on the front of the paperwork.</p>
+      <p class="govuk-body">This has been saved in the case history.</p>
 
-      <p class="govuk-body">Save the mobile number <strong>07123456789</strong> in the shared folder so that a notification can be sent.</p>
+      <p class="govuk-body">When you get a response you can complete the rest of the tasks.</p>
 
-        <form class="form" action="../../find-a-case" method="post">
+        <form class="form" action="user-case" method="post">
 
         {{ govukButton({
-          text: "Search for another case"
+          text: "Return to tasks"
         }) }}
 
         </form>
