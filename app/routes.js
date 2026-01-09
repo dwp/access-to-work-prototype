@@ -1582,3 +1582,33 @@ router.post('/telephone-the-applicant-case-manager-handover-answer', function(re
         response.redirect("/atwis/v3/search/csi/case-manager-handover/telephone-call-made")
     }
 })
+
+router.post('/claim-grant-summary-support-type-answer', function(request, response) {
+
+        var grantSummarySupportType = request.session.data['grant-summary-support-type']
+        if (grantSummarySupportType == "vehicle adaptation"){
+            response.redirect("/claims/v2/grant-summary/vehicle-adaptation-grant-summary")
+        } else if (grantSummarySupportType == "travel to work"){
+            response.redirect("/claims/v2/grant-summary/travel-to-work-grant-summary")
+        } else if (grantSummarySupportType == "specialist equipment"){
+            response.redirect("/claims/v2/grant-summary/specialist-equipment-grant-summary")
+        } else if (grantSummarySupportType == "support worker"){
+            response.redirect("/claims/v2/grant-summary/support-worker-grant-summary")
+        } else if (grantSummarySupportType == "travel during work"){
+            response.redirect("/claims/v2/grant-summary/multiple-jobs/select-role")
+        } else if (grantSummarySupportType == "something else"){
+            response.redirect("/claims/v2/grant-summary/something-else")
+        }
+    })
+
+    router.post('/claim-select-role-answer', function(request, response) {
+
+        var selectRole = request.session.data['select-role']
+        if (selectRole == "job 1"){
+            response.redirect("/claims/v2/grant-summary/multiple-jobs/job-1-grant-summary")
+        } else if (selectRole == "job 2"){
+            response.redirect("/claims/v2/grant-summary/multiple-jobs/job-2-grant-summary")
+        } else if (selectRole == "different job"){
+            response.redirect("/claims/v2/grant-summary/something-else")
+        }
+    })
