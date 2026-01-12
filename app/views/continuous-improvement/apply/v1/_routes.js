@@ -8,6 +8,211 @@ router.all('*', function(req, res, next){
     next()
 })
 
+
+
+// ============================================================================
+// TASK CONFIGURATION
+// ============================================================================
+// To add a new task:
+// 1. Create your question pages and check answers page
+// 2. Update the task-list.html to include the new task
+// 3. Add a new entry to this TASKS array below
+// ============================================================================
+
+const TASKS = [
+  {
+    key: 'your-details',
+    secondQuestionRoute: versionPath + '/your-details/national-insurance-number',
+    checkAnswersRoute: versionPath + '/your-details/check-answers-your-details'
+  },
+  {
+    key: 'contact',
+    secondQuestionRoute: versionPath + '/who-we-contact-answer',
+    checkAnswersRoute: versionPath + '/contact/check-answers-contact'
+  },
+  {
+    key: 'conditions-disabilities',
+    secondQuestionRoute: versionPath + '/conditions-disabilities/affect-you-at-work',
+    checkAnswersRoute: versionPath + '/conditions-disabilities/check-answers-condition'
+  },
+  {
+    key: 'job',
+    secondQuestionRoute: versionPath + '/started-job-answer',
+    checkAnswersRoute: versionPath + '/job/started-job/employed/another-job'
+  },
+  {
+    key: 'workplace-adjustments',
+    secondQuestionRoute: versionPath + '/workplace-adjustments/employer-1-post',
+    checkAnswersRoute: versionPath + '/workplace-adjustments/check-answers',
+    dependsOn: ['job']
+  },
+  {
+    key: 'specialist-equipment',
+    secondQuestionRoute: versionPath + '/need-specialist-equipment-answer',
+    checkAnswersRoute: versionPath + '/specialist-equipment/check-answers',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'mental-health',
+    checkAnswersRoute: versionPath + '/mental-health-support-answer',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'travel-to-work',
+    secondQuestionRoute: versionPath + '/difficulty-driving-answer',
+    checkAnswersRoute: versionPath + '/travel-to-work/check-answers-post',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'travel-in-work',
+    checkAnswersRoute: versionPath + '/travel-in-work/check-answers-post',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'workplace-changes',
+    checkAnswersRoute: versionPath + '/workplace-changes-answer',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'vehicle-changes',
+    checkAnswersRoute: versionPath + '/vehicle-changes-answer',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'support-worker',
+    secondQuestionRoute: versionPath + '/need-support-worker-answer',
+    checkAnswersRoute: versionPath + '/support-worker/check-answers-post',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  },
+  {
+    key: 'other-information',
+    secondQuestionRoute: versionPath + '/anything-else-answer',
+    checkAnswersRoute: versionPath + '/other-information/check-answers',
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+  }
+  
+
+
+]
+
+// ============================================================================
+// TASK MANAGEMENT FUNCTIONS
+// ============================================================================
+
+// Function to get task status
+function getTaskStatus(req, taskKey) {
+  const session = req.session.data || {}
+
+  // Find the task configuration
+  const task = TASKS.find(t => t.key === taskKey)
+
+  // Check if task has dependencies that aren't met yet
+  if (task && task.dependsOn) {
+    // Handle both single dependency (string) and multiple dependencies (array)
+    const dependencies = Array.isArray(task.dependsOn) ? task.dependsOn : [task.dependsOn]
+    const allDependenciesMet = dependencies.every(dep =>
+      session.completedTasks && session.completedTasks.includes(dep)
+    )
+    if (!allDependenciesMet) {
+      return 'cannot-start-yet'
+    }
+  }
+
+  // Check if task is completed
+  if (session.completedTasks && session.completedTasks.includes(taskKey)) {
+    return 'completed'
+  }
+
+  // Check if task is in progress (has any data saved)
+  if (session[taskKey + '_started']) {
+    return 'in-progress'
+  }
+
+  return 'not-started'
+}
+
+// Function to mark task as started
+function markTaskAsStarted(req, taskKey) {
+  req.session.data = req.session.data || {}
+  req.session.data[taskKey + '_started'] = true
+}
+
+// Function to mark task as completed
+function markTaskAsCompleted(req, taskKey) {
+  req.session.data = req.session.data || {}
+  req.session.data.completedTasks = req.session.data.completedTasks || []
+
+  if (!req.session.data.completedTasks.includes(taskKey)) {
+    req.session.data.completedTasks.push(taskKey)
+  }
+}
+
+// Function to mark task as in progress (removes from completed, keeps as started)
+function markTaskAsInProgress(req, taskKey) {
+  req.session.data = req.session.data || {}
+  req.session.data.completedTasks = req.session.data.completedTasks || []
+
+  // Remove from completed tasks if present
+  const index = req.session.data.completedTasks.indexOf(taskKey)
+  if (index > -1) {
+    req.session.data.completedTasks.splice(index, 1)
+  }
+
+  // Ensure task is marked as started
+  req.session.data[taskKey + '_started'] = true
+}
+
+// Function to get all task statuses
+function getAllTaskStatuses(req) {
+  const statuses = {}
+  TASKS.forEach(task => {
+    statuses[task.key] = getTaskStatus(req, task.key)
+  })
+  return statuses
+}
+
+// Function to count completed tasks
+function countCompletedTasks(req) {
+  const statuses = getAllTaskStatuses(req)
+  return Object.values(statuses).filter(status => status === 'completed').length
+}
+
+// ============================================================================
+// ROUTES
+// ============================================================================
+
+// Task list page - inject task statuses
+router.get(versionPath + '/task-list', function (req, res) {
+  const taskStatuses = getAllTaskStatuses(req)
+  const completedCount = countCompletedTasks(req)
+
+  res.render(versionPath + '/task-list', {
+    taskStatuses: taskStatuses,
+    completedCount: completedCount,
+    totalTasks: TASKS.length
+  })
+})
+
+// Automatically generate routes for all tasks
+TASKS.forEach(task => {
+  // POST route from first question to second question - marks task as started
+  if(task.secondQuestionRoute){
+    router.post(task.secondQuestionRoute, function (req, res, next) {
+      console.log("task: " + task.key)
+      markTaskAsStarted(req, task.key)
+      next()
+    })
+}
+
+  // POST route for check answers - marks task as completed
+  router.post(task.checkAnswersRoute, function (req, res, next) {
+    markTaskAsCompleted(req, task.key)
+    res.redirect(versionPath + '/task-list')
+  })
+})
+
+
+
 router.post(versionPath + '/workplace-adjustments/employer-1-post', function(req, res, next){
     let choice = req.session.data['employer-1-adjustments-discussed'];
 
@@ -69,47 +274,7 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
     }
 })
 
-router.post(versionPath + '/task-list', function (req, res) {
-    req.session.data['answers-checked-condition-disabilities'] = req.body['answers-checked-condition-disabilities'];
-    res.redirect(versionPath + '/task-list');
-    });
 
-
-    router.post(versionPath + '/mental-health-support-answer', function(req, res) {
-        req.session.data['mental-health-support'] = req.body['mental-health-support']
-
-        req.session.data['mental-health-support-answer'] = true
-
-        res.redirect(versionPath + '/task-list')
-
-    })
-
-    router.post(versionPath + '/travel-in-work-answer', function(req, res) {
-        req.session.data['travel-in-work'] = req.body['travel-in-work']
-
-        req.session.data['travel-in-work-answer'] = true
-
-        res.redirect(versionPath + '/task-list')
-
-    })
-
-    router.post(versionPath + '/workplace-changes-answer', function(req, res) {
-        req.session.data['changes-to-work'] = req.body['changes-to-work']
-
-        req.session.data['workplace-changes-answer'] = true
-
-        res.redirect(versionPath + '/task-list')
-
-    })
-
-    router.post(versionPath + '/vehicle-changes-answer', function(req, res) {
-        req.session.data['vehicle-changes'] = req.body['vehicle-changes']
-
-        req.session.data['vehicle-changes-answer'] = true
-
-        res.redirect(versionPath + '/task-list')
-
-    })
 
     router.post(versionPath + '/who-we-contact-answer', function(req, res) {
 
@@ -181,6 +346,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
+            markTaskAsCompleted(req, 'job');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -251,6 +417,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
+            markTaskAsCompleted(req, 'job');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -261,6 +428,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
+            markTaskAsCompleted(req, 'job');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -325,6 +493,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
+            markTaskAsCompleted(req, 'job');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -365,6 +534,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
+            markTaskAsCompleted(req, 'job');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -405,6 +575,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
+            markTaskAsCompleted(req, 'job');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -453,8 +624,10 @@ router.post(versionPath + '/task-list', function (req, res) {
 
         var anythingElse = req.session.data['anything-else']
         if (anythingElse == "Yes"){
+            markTaskAsInProgress(req, 'other-information')
             res.redirect(versionPath + "/other-information/add-information")
         } else {
+            markTaskAsCompleted(req, 'other-information')
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -465,6 +638,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (specialistEquipment == "Yes"){
             res.redirect(versionPath + "/specialist-equipment/know-specialist-equipment")
         } else {
+            markTaskAsCompleted(req, 'specialist-equipment');
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -503,8 +677,10 @@ router.post(versionPath + '/task-list', function (req, res) {
 
         var supportWorker = req.session.data['need-support-worker']
         if (supportWorker == "Yes"){
+            markTaskAsInProgress(req, 'support-worker')
             res.redirect(versionPath + "/support-worker/know-support-worker")
         } else {
+            markTaskAsCompleted(req, 'support-worker')
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -555,6 +731,7 @@ router.post(versionPath + '/task-list', function (req, res) {
         if (anotherSupportWorker == "Yes"){
             res.redirect(versionPath + "/support-worker/need-support-worker")
         } else {
+            markTaskAsCompleted(req, 'support-worker')
             res.redirect(versionPath + "/task-list")
         }
     })
@@ -679,8 +856,10 @@ router.post(versionPath + '/difficulty-driving-answer', function(req, res) {
 
     var difficultyDriving = req.session.data['difficulty-driving']
     if (difficultyDriving == "Yes"){
+        markTaskAsInProgress(req, 'travel-to-work');
         res.redirect(versionPath + "/travel-to-work/how-you-travel")
     } else {
+        markTaskAsCompleted(req, 'travel-to-work');
         res.redirect(versionPath + "/task-list")
     }
 })
