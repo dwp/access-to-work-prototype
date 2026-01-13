@@ -1,0 +1,167 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../../referrals",
+              items: [
+                   {
+                      href: "../../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Duplicate referral found for {{ data['first-name-duplicate-found-mhss'] }} {{ data['last-name-duplicate-found-mhss'] }} 
+      </h1>
+
+    </div>
+  </div>
+
+  {{ govukTable({
+    firstCellIsHeader: true,
+    head: [
+      {
+        text: "Name"
+      },
+      {
+        text: "Referral type"
+      },
+      {
+        text: "Provider"
+      },
+      {
+        text: "Code"
+      },
+      {
+        text: "Date sent"
+      },
+      {
+        text: "Status"
+      },
+      {
+        text: "Reason"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: data['first-name-duplicate-found-mhss'] + " " + data['last-name-duplicate-found-mhss']
+        },
+        {
+          text: data ['send-new-referral-duplicate']
+        },
+        {
+          text: "Ingeus"
+        },
+        {
+          text: "HKH/19427"
+        },
+        {
+          text: "4 Jun 2025"
+        },
+        {
+          html: "<strong class='govuk-tag govuk-tag--blue'>Accepted</strong>"
+        },
+        {
+          text: ""
+        }
+      ]
+    ]
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/send-new-referral-anyway-mhss-in-flight" method="post" novalidate>
+
+        {{ govukWarningText({
+          text: "Check DiSC and Sharepoint for details",
+          iconFallbackText: "Warning"
+        }) }}
+
+        {{ govukRadios({
+          name: "send-referral-anyway-mhss-in-flight",
+          fieldset: {
+            legend: {
+              text: "Do you still want to send a new referral?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No, cancel the new referral"
+            }
+          ]
+        }) }}
+     
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+          
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}
