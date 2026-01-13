@@ -27,18 +27,14 @@
 
       <form class="form" action="{{versionPath}}/workplace-adjustments/check-answers" method="post">
 
-       <h1 class="govuk-heading-l">Occupational health assessment</h1>
-
-      <p>Employers may perform an an occupational health assessment to assess what adjustments need to be made....</p>
-
 
         {{ govukRadios({
           name: "occupational-health",
           fieldset: {
             legend: {
               text: "Has " + companyName + " done an occupational health assessment?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [

@@ -104,8 +104,46 @@
   %}
   {% endif %}
 
-{% if data['oha-upload-choice'] %}
+{% if data['oha-upload-choice'] == 'Yes' %}
     {% set summaryRows = summaryRows.concat([{
+      key: {
+        text: "Want to upload OHA"
+      },
+      value: {
+        text: data['oha-upload-choice']
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/workplace-adjustments/oha-upload-choice",
+            text: "Change",
+            visuallyHiddenText: "Want to upload OHA"
+          }
+        ]
+      }
+    },{
+      key: {
+        text: "Copy of the OHA "
+      },
+      value: {
+        text: data['oha-upload']
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/workplace-adjustments/oha-upload",
+            text: "Change",
+            visuallyHiddenText: "Copy of the OHA"
+          }
+        ]}
+
+      }
+      ])
+    %}
+
+  {% else %}
+
+  {% set summaryRows = summaryRows.concat([{
     key: {
       text: "Want to upload OHA"
     },
@@ -121,24 +159,7 @@
         }
       ]
     }
-  },{
-    key: {
-      text: "Copy of the OHA "
-    },
-    value: {
-      text: data['oha-upload']
-    },
-    actions: {
-      items: [
-        {
-          href: versionPath + "/workplace-adjustments/oha-upload",
-          text: "Change",
-          visuallyHiddenText: "Copy of the OHA"
-        }
-      ]}
-
-    }
-    ])
+  }]) 
   %}
 
 
@@ -152,7 +173,7 @@
       rows: summaryRows
         
     }) }} 
-    <form action="{{versionPath}}/task-list" method="post" novalidate>
+    <form action="{{versionPath}}/workplace-adjustments/check-answers-post" method="post" novalidate>
 
       <input type="hidden" name="answers-checked-your-details" value="true">
 

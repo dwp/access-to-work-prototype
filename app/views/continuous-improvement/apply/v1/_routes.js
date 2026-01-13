@@ -23,17 +23,17 @@ const TASKS = [
   {
     key: 'your-details',
     secondQuestionRoute: versionPath + '/your-details/national-insurance-number',
-    checkAnswersRoute: versionPath + '/your-details/check-answers-your-details'
+    checkAnswersRoute: versionPath + '/your-details/check-answers-post'
   },
   {
     key: 'contact',
     secondQuestionRoute: versionPath + '/who-we-contact-answer',
-    checkAnswersRoute: versionPath + '/contact/check-answers-contact'
+    checkAnswersRoute: versionPath + '/contact/check-answers-post'
   },
   {
     key: 'conditions-disabilities',
     secondQuestionRoute: versionPath + '/conditions-disabilities/affect-you-at-work',
-    checkAnswersRoute: versionPath + '/conditions-disabilities/check-answers-condition'
+    checkAnswersRoute: versionPath + '/conditions-disabilities/check-answers-post'
   },
   {
     key: 'job',
@@ -43,13 +43,13 @@ const TASKS = [
   {
     key: 'workplace-adjustments',
     secondQuestionRoute: versionPath + '/workplace-adjustments/employer-1-post',
-    checkAnswersRoute: versionPath + '/workplace-adjustments/check-answers',
+    checkAnswersRoute: versionPath + '/workplace-adjustments/check-answers-post',
     dependsOn: ['job']
   },
   {
     key: 'specialist-equipment',
     secondQuestionRoute: versionPath + '/need-specialist-equipment-answer',
-    checkAnswersRoute: versionPath + '/specialist-equipment/check-answers',
+    checkAnswersRoute: versionPath + '/specialist-equipment/check-answers-post',
     dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
   },
   {
