@@ -13,13 +13,11 @@
 {% endblock %}
 
 
-{% set companyName %}
-  {% if data['company-name'] %}
-    {{data['company-name']}}
-  {% else %}
-  your employer
-  {% endif %}
-{% endset %}
+{% set companyName  = 'your employer' %}
+  
+{% if data['company-name'] %}
+  {% set companyName = data['company-name'] %}
+{% endif %}
 
 {% block content %}
   <div class="govuk-grid-row">

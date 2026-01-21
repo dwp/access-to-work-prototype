@@ -12,13 +12,12 @@
 {% include versionPath + "/includes/before-content" %}
 {% endblock %}
 
-{% set companyName %}
-  {% if data['company-name'] %}
-    {{data['company-name']}}
-  {% else %}
-  your employer
-  {% endif %}
-{% endset %}
+{% set companyName  = 'your employer' %}
+  
+{% if data['company-name'] %}
+  {% set companyName = data['company-name'] %}
+{% endif %}
+
 
 
 {% block content %}
@@ -32,10 +31,13 @@
           name: "occupational-health",
           fieldset: {
             legend: {
-              text: "Has " + companyName + " done an occupational health assessment?",
+              text: "Have you had an occupational health assessment at " + companyName + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
-            }
+            } 
+          },
+          hint: {
+            text: "An occupational health assessment is a confidential assessment arranged by your employer to see what adjustments could help you at work."
           },
           items: [
             {
