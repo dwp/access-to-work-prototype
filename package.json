@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@dwp/dwp-frontend": "3.4.0",
+    "@govuk-one-login/service-header": "^5.0.0",
     "@govuk-prototype-kit/common-templates": "2.0.1",
     "govuk-frontend": "^5.13.0",
     "govuk-one-login-service-header": "github:govuk-one-login/service-header",
@@ -15,16 +16,14 @@
     "nhsuk-frontend": "^9.6.4",
     "qs": "^6.14.1"
   },
-  
-    "overrides": {
-      "govuk-prototype-kit": {
-        "express": {
-          "qs": "6.14.1"
-        },
-        "body-parser": {
-          "qs": "6.14.1"
-        }
+  "overrides": {
+    "govuk-prototype-kit": {
+      "express": {
+        "qs": "6.14.1"
+      },
+      "body-parser": {
+        "qs": "6.14.1"
       }
     }
   }
-
+}
