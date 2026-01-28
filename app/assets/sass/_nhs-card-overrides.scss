@@ -1,9 +1,9 @@
 // nhs frontend - https://github.com/nhsuk/nhsuk-frontend
-@use "node_modules/nhsuk-frontend/packages/components/card/_index.scss";
+@use "node_modules/nhsuk-frontend/src/nhsuk/components/card/_index.scss";
 
 $nhsuk-include-font-face:false;
 
-@import '../../../node_modules/nhsuk-frontend/packages/components/card/_card.scss';
+@import '../../../node_modules/nhsuk-frontend/src/nhsuk/components/card/_card.scss';
 
 $govuk-global-styles: true;
 $govuk-new-link-styles: true;
