@@ -62,7 +62,7 @@
 
       <p class="govuk-body">We might need someone to confirm your claim is correct. This will depend on whether you're employed or self-employed.</p>
 
-      <form action="/employment-status-support-worker-answer" method="post" novalidate>
+      <form action="{{versionPath}}/employment-status-support-worker-answer" method="post" novalidate>
 
       {{ govukRadios({
           name: "employment-status-support-worker",

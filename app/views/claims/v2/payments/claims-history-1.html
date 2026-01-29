@@ -1,0 +1,510 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  View recent claims – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<div class="govuk-back-link-and-translation">
+
+
+
+
+  <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
+    </li>
+    {% if (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="multiple-employer-history.html">Employer history</a>
+    </li>
+    {% endif %}
+    {% if (data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") %}
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="multiple-claims-history.html">Claims history type</a>
+    </li>
+    {% endif %}
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="claims-history.html">Payment history</a>
+    </li>
+  </ol>
+</div>
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Payments summary: 
+            {% if data['journey-type'] == 'supportworker' %}
+              support worker
+            {% elseif data['journey-type'] == 'traveltowork' %}
+              travel to work
+            {% elseif data['journey-type'] == 'specialaidsandequipment' %}
+              specialist equipment
+            {% endif %}
+          </h1>
+        </legend>
+
+        <p>
+          Payments made or waiting to be to paid. 
+          <br/>
+          <br/>
+          This also includes rejected payments - find out what to do if your payment has been rejected.
+        </p>
+
+        {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) %}
+        <p>
+          You can also
+          <a href="multiple-claims-history">
+            view payments for other types of support
+          </a>.
+        </p>
+        {% endif %}
+
+      </fieldset>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Waiting decision</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Claim end</th>
+              <th scope="col" class="govuk-table__header">Received by Access to Work</th>
+              <th scope="col" class="govuk-table__header">Payee</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+              <th scope="col" class="govuk-table__header">Status</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% for claim in data.claimshistory %}
+            {% if claim.status != 'Posted' and claim.status != 'RM Rejected' and claim.status != 'Not approved' %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__header">
+                {{claim.date}}
+                <span class="govuk-visually-hidden">{{claim.year}}</span>
+              </td>
+              <td class="govuk-table__cell">
+                {{claim.paid}} {{claim.yearpaid}}
+              </td>
+              <td class="govuk-table__cell">
+                {{claim.person}}
+              </td>
+              <td class="govuk-table__cell">
+                {{claim.cost}}
+              </td>
+              <td class="govuk-table__cell">
+                {%if claim.status == 'Created' %}
+                <strong class="govuk-tag govuk-tag--yellow">
+                  In progress
+                </strong>
+                {% endif %}
+                {%if claim.status == 'Approved' %}
+                <strong class="govuk-tag govuk-tag--blue">
+                  Ready for payment
+                </strong>
+                {% endif %}
+                {%if claim.status == 'Posted' %}
+                <strong class="govuk-tag govuk-tag--green">
+                  Payment sent
+                </strong>
+                {% endif %}
+                {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
+                <strong class="govuk-tag govuk-tag--red">
+                  Rejected
+                </strong>
+                {% endif %}
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <br />
+
+    {% set 2023Html %}
+    <h2 class="govuk-heading-m">2023 payments</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Processed on</th>
+          <th scope="col" class="govuk-table__header">Payee</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for claim in data.claimshistory %}
+        {% if claim.year == 2023 and ( claim.status == 'Posted' or claim.status == 'RM Rejected' or claim.status == 'Not approved' ) %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__header">
+            {{claim.date}}
+            <span class="govuk-visually-hidden">{{claim.year}}</span>
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.paid}} {{claim.yearpaid}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.person}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.cost}}
+          </td>
+          <td class="govuk-table__cell">
+            {%if claim.status == 'Created' %}
+            <strong class="govuk-tag govuk-tag--yellow">
+              In progress
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Approved' %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Ready for payment
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Posted' %}
+            <strong class="govuk-tag govuk-tag--green">
+              Payment sent
+            </strong>
+            {% endif %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
+            <strong class="govuk-tag govuk-tag--red">
+              Rejected
+            </strong>
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endset -%}
+
+    {% set 2022Html %}
+    <h2 class="govuk-heading-m">2022 payments</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Processed on</th>
+          <th scope="col" class="govuk-table__header">Payee</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for claim in data.claimshistory %}
+        {% if claim.year == 2022 %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__header">
+            {{claim.date}}
+            <span class="govuk-visually-hidden">{{claim.year}}</span>
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.paid}} {{claim.yearpaid}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.person}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.cost}}
+          </td>
+          <td class="govuk-table__cell">
+            {%if claim.status == 'Created' %}
+            <strong class="govuk-tag govuk-tag--yellow">
+              In progress
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Approved' %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Ready for payment
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Posted' %}
+            <strong class="govuk-tag govuk-tag--green">
+              Payment sent
+            </strong>
+            {% endif %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
+            <strong class="govuk-tag govuk-tag--red">
+              Rejected
+            </strong>
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endset -%}
+
+    {% set 2021Html %}
+    <h2 class="govuk-heading-m">2021 payments</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Processed on</th>
+          <th scope="col" class="govuk-table__header">Payee</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for claim in data.claimshistory %}
+        {% if claim.year == 2021 %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__header">
+            {{claim.date}}
+            <span class="govuk-visually-hidden">{{claim.year}}</span>
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.paid}} {{claim.yearpaid}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.person}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.cost}}
+          </td>
+          <td class="govuk-table__cell">
+            {%if claim.status == 'Created' %}
+            <strong class="govuk-tag govuk-tag--yellow">
+              In progress
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Approved' %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Ready for payment
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Posted' %}
+            <strong class="govuk-tag govuk-tag--green">
+              Payment sent
+            </strong>
+            {% endif %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
+            <strong class="govuk-tag govuk-tag--red">
+              Rejected
+            </strong>
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endset -%}
+
+    {% set 2020Html %}
+    <h2 class="govuk-heading-m">2020 payments</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Processed on</th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for claim in data.claimshistory %}
+        {% if claim.year == 2020 %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__header">
+            {{claim.date}}
+            <span class="govuk-visually-hidden">{{claim.year}}</span>
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.paid}} {{claim.yearpaid}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.person}}
+          </td>
+          <td class="govuk-table__cell">
+            {{claim.cost}}
+          </td>
+          <td class="govuk-table__cell">
+            {%if claim.status == 'Created' %}
+            <strong class="govuk-tag govuk-tag--yellow">
+              In progress
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Approved'%}
+            <strong class="govuk-tag govuk-tag--blue">
+              Ready for payment
+            </strong>
+            {% endif %}
+            {%if claim.status == 'Posted' %}
+            <strong class="govuk-tag govuk-tag--green">
+              Payment sent
+            </strong>
+            {% endif %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
+            <strong class="govuk-tag govuk-tag--red">
+              Rejected
+            </strong>
+            {% endif %}
+          </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endset -%}
+
+    {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+    {{ govukTabs({
+    items: [
+    {
+    label: "2023 payments",
+    id: "tab2023",
+    panel: {
+    html: 2023Html
+    }
+    },
+    {
+    label: "2022 payments",
+    id: "tab2022",
+    panel: {
+    html: 2022Html
+    }
+    },
+    {
+    label: "2021 payments",
+    id: "tab2021",
+    panel: {
+    html: 2021Html
+    }
+    },
+    {
+    label: "2020 payments",
+    id: "tab2020",
+    panel: {
+    html: 2020Html
+    }
+    }
+    ]
+    }) }}
+
+
+    {% if (data['journey-type'] == "adaptations") %}
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Adaptation to vehicle claims</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Adaptations
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company paid
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                11 January 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                1
+              </td>
+              <td class="govuk-summary-list__value">
+                John Doe
+              </td>
+              <td class="govuk-summary-list__value">
+                £550
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
+                </a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+    {% endif %}
+
+
+  </div>
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+ 
+
+{% include "claims/v2/includes/get-help" %}
+{% endblock %}

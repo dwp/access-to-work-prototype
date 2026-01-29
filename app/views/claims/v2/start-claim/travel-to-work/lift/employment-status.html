@@ -62,7 +62,7 @@
 
       <p class="govuk-body">We might need someone to confirm the journeys you're claiming for. This will depend on whether you're employed or self-employed.</p>
 
-      <form action="/employment-status-lift-answer" method="post" novalidate>
+      <form action="{{versionPath}}/employment-status-lift-answer" method="post" novalidate>
 
       {{ govukRadios({
           name: "employment-status-lift",
