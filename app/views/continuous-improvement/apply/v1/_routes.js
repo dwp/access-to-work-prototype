@@ -3,7 +3,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 const versionPath = '/continuous-improvement/apply/v1'
 
-router.all('*', function(req, res, next){
+router.all(versionPath + '/*', function(req, res, next){
     res.locals.versionPath = versionPath
     next()
 })
