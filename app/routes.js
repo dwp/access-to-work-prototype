@@ -10,6 +10,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.use('/continuous-improvement/apply/v1', require('./views/continuous-improvement/apply/v1/_routes'))
 router.use('/claims/v2', require('./views/claims/v2/_routes'))
 router.use('/atwis/v3', require('./views/atwis/v3/_routes'))
+router.use('/atwis/v4', require('./views/atwis/v4/_routes'))
 
 // Add your routes here
 
