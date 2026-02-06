@@ -15,39 +15,3 @@ $govuk-global-styles: true;
   background-color: #1d70b8;
   color: white;
 }
-
-
-
-.atw-key-details-wrapper {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  background-color: #005ea5;
-  padding: 1rem 0;
-}
-
-.atw-key-details-details {
-  color: white;
-
-    
-.govuk-template--rebranded {
-    background-color: #F3F2F1 !important;
-}
-
-.floatRight{
-  float: right;
-}
-
-
-.gem-c-related-navigation__main-heading {
-  border-top: 2px solid #1d70b8;
-  padding-top: 15px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  font-family: "GDS Transport", arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
-  font-size: 1.1875rem;
-  line-height: 1.3157894737;
-
-}
