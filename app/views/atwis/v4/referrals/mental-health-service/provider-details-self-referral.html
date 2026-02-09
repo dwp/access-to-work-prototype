@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../referrals",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Provider details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="../mental-health-service/check-answers" method="post" novalidate>
+
+        {{ govukRadios({
+          name: "provider-mhs",
+          fieldset: {
+            legend: {
+              text: "Provider details",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            "text": "Select a provider, code and office to send the referral to."
+          },
+          items: [
+            {
+              value: "Maximus, HKH/19423, Harrow Kings House",
+              text: "Maximus, HKH/19423, Harrow Kings House"
+            },
+            {
+              value: "Ingeus, HKH/19425, Harrow Kings House",
+              text: "Ingeus, HKH/19425, Harrow Kings House"
+            },
+            {
+              value: "Maximus, HLF/2192, Halifax Crossfield House",
+              text: "Maximus, HLF/2192, Halifax Crossfield House"
+            },
+            {
+              value: "Ingeus, HLF/2194, Halifax Crossfield House",
+              text: "Ingeus, HLF/2194, Halifax Crossfield House"
+            }
+          ]
+        }) }}
+                                    
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+          
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../all-advisors",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Your cases – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{
+        dwpQuickReference({
+            ariaLabel: "User information",
+            primaryReference: {
+                text: 'User name:',
+                value: 'Al Ó Catháin'
+            },
+            secondaryReference: {
+                text: 'Your role and permissions:',
+                textDisplay: true,
+                value: 'Case manager team leader'
+            }
+        })
+}}
+
+      {{ 
+      dwpHorizontalNavigation({
+            selectedItem: "advisor-view-other-cases",
+            items: [
+                {
+                  text: "Other cases (2)",
+                  href: "advisor-view-other-cases",
+                  id: "other-cases"
+                },
+                {
+                  text: "Priority cases (1)",
+                  href: "advisor-view-priority-cases",
+                  id: "priority-cases"
+                },
+                {
+                  text: "CSI cases (3)",
+                  href: "advisor-view-csi-cases",
+                  id: "csi-cases"
+                },
+                {
+                  text: "Documents (1)",
+                  href: "advisor-view-documents",
+                  id: "documents"
+                }
+            ]
+        })
+}}
+
+<div class="govuk-tabs__panel">
+
+  {% if data['answers-checked-enter-urn-new-app'] or data['answers-checked-enter-urn-priority-case']%}
+  {% set html %}
+  <h3 class="govuk-notification-banner__heading">
+    Application copied into DiSC
+  </h3>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
+  {% endif %}
+
+
+    <h2 class="govuk-heading-m">John Goldsmith's other cases (2)</h2>
+
+          {{ govukSelect({
+            id: "case-type",
+            name: "case-type",
+            label: {
+              text: "Type of case"
+            },
+            items: [
+              {
+                value: "any",
+                text: "Any",
+                selected: true
+              },
+              {
+                value: "priority cases",
+                text: "Priority cases"
+              },
+              {
+                value: "CSI cases",
+                text: "CSI cases"
+              },
+              {
+                value: "documents",
+                text: "Documents"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Request a new case"
+          }) }}
+
+          {{ govukTable({
+            caption: "Case details",
+            captionClasses: "govuk-table__caption--m",
+            head: [
+              {
+                text: "Name"
+              },
+              {
+                text: "Type of case"
+              },
+              {
+                text: "Date submitted"
+              }
+            ],
+            rows: [
+              [
+                {
+                  html: '<a href="../other-cases/renewal/user-case" class="govuk-link">Samantha Byram</a>'
+                },
+                {
+                  text: "Renewal"
+                },
+                {
+                  text: "1 Nov 2025, 3:14pm"
+                }
+              ],
+              [
+                {
+                  html: '<a href="../other-cases/new-application/user-case" class="govuk-link">Alexandra Watson</a>'
+                },
+                {
+                  text: "New application"
+                },
+                {
+                  text: "10 Nov 2025, 9:24am"
+                }
+              ]
+            ]
+          }) }}
+
+
+    </div>
+  </div>
+  </div>
+
+{% endblock %}

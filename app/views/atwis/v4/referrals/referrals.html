@@ -1,0 +1,227 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "referrals",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Referrals – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/referral-type-answer" method="post">
+
+        {{ govukRadios({
+          name: "send-new-referral",
+          value: data['referral-type'],
+          fieldset: {
+            legend: {
+              text: "Send a new referral",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          "hint": {
+            "text": "Select the type of referral you want to send"
+          },
+          items: [
+            {
+              value: "Workplace Assessment",
+              text: "Workplace Assessment"
+            },
+            {
+              value: "Mental health support service (MHSS)",
+              text: "Mental health support service (MHSS)"
+            }
+          ]
+        }) }}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+        </form>
+
+    </div>
+  </div>
+
+  {% if (data['answers-checked']=='true' or data['answers-checked-mhs']=='true')%}
+
+  <h2 class="govuk-heading-m">Your referral history </h2>
+    
+  <p class="govuk-body">The following table shows the 20 most recent referrals you have sent over the last 30 days.</p>
+
+  <p class="govuk-body">
+    To find more details on referrals you can <a href="referral-search" class="govuk-link">search for a referral record</a>.
+  </p>
+          
+    <table class="govuk-table" data-module="moj-sortable-table">
+
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Name</th>
+        <th scope="col" class="govuk-table__header">Referral type</th>
+        <th scope="col" class="govuk-table__header">Provider </th>
+        <th scope="col" class="govuk-table__header">Code</th>
+        <th scope="col" class="govuk-table__header" aria-sort="none">Date sent</th>
+        <th scope="col" class="govuk-table__header">Status</th>
+        <th scope="col" class="govuk-table__header">Reason</th>
+        <!-- <th scope="col" class="govuk-table__header">Days</th> -->
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    {% if data['answers-checked']=='true' %}
+    <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__header"><a href="view-customer-record" class="govuk-link">{{data['first-name']}} {{data['last-name']}}</a></td>
+          <td class="govuk-table__cell">Workplace assessment</td>
+          <td class="govuk-table__cell">
+            {% if data['provider']=='Reed In Partnership, HLF/2183, Halifax Crossfield House'%}Reed In Partnership{% endif %}
+            {% if data['provider']=='Maximus, HLF/2184, Halifax Crossfield House'%}Maximus{% endif %}
+            {% if data['provider']=='Reed In Partnership, HKH/19414, Harrow Kings House'%}Reed In Partnership{% endif %}
+            {% if data['provider']=='Maximus, HKH/19414, Harrow Kings House'%}Maximus{% endif %}
+          </td>
+          <td class="govuk-table__cell">
+            {% if data['provider']=='Reed In Partnership, HLF/2183, Halifax Crossfield House'%}HLF/2183{% endif %}
+            {% if data['provider']=='Maximus, HLF/2184, Halifax Crossfield House'%}HLF/2184{% endif %}
+            {% if data['provider']=='Reed In Partnership, HKH/19414, Harrow Kings House'%}HKH/19414{% endif %}
+            {% if data['provider']=='Maximus, HKH/19414, Harrow Kings House'%}HKH/19414{% endif %}
+          </td>
+          <td class="govuk-table__cell">
+            <time datetime="2023-06-06T09:12:00.000Z">
+              <script>
+            // Get the current date and time
+                 var now = new Date();
+                 var date = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                 var time = now.toLocaleTimeString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+                 // Write the date and time to the HTML page
+                 document.write(date);
+               </script>
+               </time>
+              </td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--grey" style="text-transform: none;">Pending</strong>
+          </td>
+        <td class="govuk-table__cell">
+          
+        </td>
+        
+{% endif %}
+
+{% if data['answers-checked-mhs']=='true' %}
+<tr class="govuk-table__row">
+    <td scope="row" class="govuk-table__header"><a href="#" class="govuk-link">{{data['first-name-mhs']}} {{data['last-name-mhs']}}</a></td>
+      <td class="govuk-table__cell">MHSS</td>
+        <td class="govuk-table__cell">
+          {% if data['provider-mhs']=='Ingeus, HKH/19427, Harrow Kings House'%}Ingeus{% endif %}
+          {% if data['provider-mhs']=='Maximus, HKH/19424, Harrow Kings House'%}Maximus{% endif %}
+          {% if data['provider-mhs']=='Maximus, HLF/2193, Halifax Crossfield House'%}Maximus{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HLF/2196, Halifax Crossfield House'%}Ingeus{% endif %}
+
+          {% if data['provider-mhs']=='Maximus, HKH/19423, Harrow Kings House'%}Maximus{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HKH/19425, Harrow Kings House'%}Ingeus{% endif %}
+          {% if data['provider-mhs']=='Maximus, HLF/2192, Halifax Crossfield House'%}Maximus{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HLF/2194, Halifax Crossfield House'%}Ingeus{% endif %}
+
+          {% if data['provider-mhs']=='Ingeus, HKH/19426, Harrow Kings House'%}Ingeus{% endif %}
+          {% if data['provider-mhs']=='Maximus, HKH/19428, Harrow Kings House'%}Maximus{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HLF/2195, Halifax Crossfield House'%}Ingeus{% endif %}
+          {% if data['provider-mhs']=='Maximus, HLF/2197, Halifax Crossfield House'%}Maximus{% endif %}
+        </td>
+        <td class="govuk-table__cell">
+          {% if data['provider-mhs']=='Ingeus, HKH/19427, Harrow Kings House'%}HKH/19427{% endif %}
+          {% if data['provider-mhs']=='Maximus, HKH/19424, Harrow Kings House'%}HKH/19424{% endif %}
+          {% if data['provider-mhs']=='Maximus, HLF/2193, Halifax Crossfield House'%}HLF/2193{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HLF/2196, Halifax Crossfield House'%}HLF/2196{% endif %}
+
+          {% if data['provider-mhs']=='Maximus, HKH/19423, Harrow Kings House'%}HKH/19423{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HKH/19425, Harrow Kings House'%}HKH/19425{% endif %}
+          {% if data['provider-mhs']=='Maximus, HLF/2192, Halifax Crossfield House'%}HLF/2192{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HLF/2194, Halifax Crossfield House'%}HLF/2194{% endif %}
+
+          {% if data['provider-mhs']=='Ingeus, HKH/19426, Harrow Kings House'%}HKH/19426{% endif %}
+          {% if data['provider-mhs']=='Maximus, HKH/19428, Harrow Kings House'%}HKH/19428{% endif %}
+          {% if data['provider-mhs']=='Ingeus, HLF/2195, Halifax Crossfield House'%}HLF/2195{% endif %}
+          {% if data['provider-mhs']=='Maximus, HLF/2197, Halifax Crossfield House'%}HLF/2197{% endif %}
+        </td>
+      <td class="govuk-table__cell"><time datetime="2023-06-06T09:12:00.000Z"><script>
+        // Get the current date and time
+             var now = new Date();
+             var date = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+             var time = now.toLocaleTimeString('en-GB', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+             // Write the date and time to the HTML page
+             document.write(date);
+           </script></time></td>
+             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey" style="text-transform: none;">
+          Pending
+        </strong></td>
+
+        <td class="govuk-table__cell">
+          
+            </td>
+{% endif %}
+
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "all-advisors",
+              items: [
+                   {
+                      href: "your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  All advisors – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        All advisors
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Case manager
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="all-advisors/advisor-view-other-cases" class="govuk-link">John Goldsmith</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Imani Pretorius</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Tom Garb</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">John Smith</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Robyn Wallis</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Caelan Stafford</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        Case manager team leader
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#" class="govuk-link">Aaron Leeds</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">David Young</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Olivia Preston</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        Service centre agent
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#" class="govuk-link">Advisor One CM</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Chris Hulley</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">John Doe</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        Service centre agent team leader
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#" class="govuk-link">Live support</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Payment TL</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        Service assurance
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#" class="govuk-link">Quality assurance</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Service centre</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        View only
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#" class="govuk-link">Darren Cross</a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">Lucy McIntosh</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}

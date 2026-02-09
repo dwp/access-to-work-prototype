@@ -1,15 +1,17 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-const versionPath = '/atwis/v3'
+const versionPath = '/atwis/v4'
 
 router.all(versionPath + '*', function(req, res, next){
     res.locals.versionPath = versionPath
+
+    console.log(res.locals)
     next()
 })
 
 
-
+console.log(versionPath)
 router.post(versionPath + '/referral-type-answer', function(request, response) {
 
     var referralType = request.session.data['send-new-referral']
@@ -216,12 +218,12 @@ router.post(versionPath + '/sent-email-check-details-answer', function(request, 
 
 router.post(versionPath + '/check-personal-details', function (req, res) {
   // Just go to next page
-  res.redirect(versionPath + '/csi/check-details/check-company-details');
+  res.redirect('/atwis/v3/csi/check-details/check-company-details');
 });
 
 router.post(versionPath + '/check-company-details', function (req, res) {
   // Just go to next page
-  res.redirect(versionPath + '/csi/check-details/check-interview-details');
+  res.redirect('/atwis/v3/csi/check-details/check-interview-details');
 });
 
 
@@ -231,9 +233,9 @@ router.post(versionPath + '/check-interview-details', function (req, res) {
   const q3 = req.session.data['are-details-complete-interview-details'];
 
   if (q1 === 'no' || q2 === 'no' || q3 === 'no') {
-    res.redirect(versionPath + '/csi/contact-applicant-check-details/how-to-contact-applicant');
+    res.redirect('/atwis/v3/csi/contact-applicant-check-details/how-to-contact-applicant');
   } else {
-    res.redirect(versionPath + '/csi/send-confirmation-email/send-confirmation-email');
+    res.redirect('/atwis/v3/csi/send-confirmation-email/send-confirmation-email');
   }
 });
 

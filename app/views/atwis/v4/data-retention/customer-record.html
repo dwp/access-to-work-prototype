@@ -1,0 +1,359 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "manage-data",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  Customer page – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['investigation-status'] == "Yes" %}
+      {% set html %}
+        <h3 class="govuk-notification-banner__heading">
+          You have reset the deletion of John Adams' data
+        </h3>
+
+         <p class="govuk-body"><a href="manage-data" class="govuk-notification-banner__link">Return to manage data</a></p>
+         
+        <p class="govuk-body">To view the exact date of deletion refer to the following table as cases may be deleted at different times.</p>
+      {% endset %}
+
+        {{ govukNotificationBanner({
+          html: html,
+          type: "success"
+        }) }}
+
+        {% else %}
+
+        {% if data['why-pause-deletion'] or data['investigation-status'] == "No" %}
+
+        {% set html %}
+          <h3 class="govuk-notification-banner__heading">
+            You have stopped John Adams' data from being deleted
+          </h3>
+
+          <p class="govuk-body"><a href="manage-data" class="govuk-notification-banner__link">Return to manage data</a></p>
+
+          <p class="govuk-body">If the investigation is complete or this has been done in error you can <a class="govuk-notification-banner__link" href="investigation-status">reset the deletion of this data</a>.</p>
+        {% endset %}
+
+          {{ govukNotificationBanner({
+            html: html,
+            type: "success"
+          }) }}
+
+          {% endif %}
+    {% endif %}
+
+     
+
+     
+      <h1 class="govuk-heading-l">
+        John Adams
+      </h1>
+
+      <ul class="govuk-list">
+        <li>
+          <strong>National Insurance number:</strong> AB123456C
+        </li>
+        <li>
+          <strong>URN (Unique Reference Number):</strong> 123456789
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        Cases
+      </h2>
+
+      {% if not data['why-pause-deletion'] %}
+      <form class="form" action="pause-deletion-reason" method="post">
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Case type"
+          },
+          {
+            text: "Deletion date"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "ATW Applications"
+            },
+            {
+              text: "7 July 2027"
+            }
+          ],
+        [
+            {
+              text: "Renewals"
+            },
+            {
+              text: "7 July 2027"
+            }
+          ],
+        [
+            {
+              text: "ATW claims"
+            },
+            {
+              text: "7 July 2032"
+            }
+          ],
+        [
+            {
+              text: "Digital claims"
+            },
+            {
+              text: "7 July 2027"
+            }
+            ],
+        [
+            {
+              text: "CSI applications"
+            },
+            {
+              text: "7 July 2027"
+            }
+          ],
+        [
+            {
+              text: "CSI claims"
+            },
+            {
+              text: "7 July 2027"
+            }
+          ]
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+  {{ govukButton({
+    text: "Stop the deletion of data"
+  }) }}
+
+  <a class="govuk-link" href="manage-data">Return to manage data</a>
+</div>
+
+
+       {% elif data['investigation-status'] == "Yes" %}
+
+       {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Case type"
+          },
+          {
+            text: "Deletion date"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "ATW applications"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "Renewals"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "ATW claims"
+            },
+            {
+              text: "10 October 2032"
+            }
+          ],
+        [
+            {
+              text: "Digital claims"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "CSI applications"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ],
+        [
+            {
+              text: "CSI claims"
+            },
+            {
+              text: "10 October 2027"
+            }
+          ]
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+  {{ govukButton({
+    text: "Stop the deletion of data"
+  }) }}
+
+  <a class="govuk-link" href="manage-data">Return to manage data</a>
+</div>
+
+    </form>
+      
+
+      {% else %}
+
+      {% if data['why-pause-deletion'] or data['investigation-status'] == "No" %}
+      <form class="form" action="investigation-status" method="post">
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Case type"
+          },
+          {
+            text: "Retention status"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "ATW Applications"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "Renewals"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "ATW claims"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "Digital claims"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "CSI applications"
+            },
+            {
+              text: "On hold"
+            }
+          ],
+        [
+            {
+              text: "CSI claims"
+            },
+            {
+              text: "On hold"
+            }
+          ]
+        ]
+      }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Reset the deletion of data"
+          }) }}
+
+          <a class="govuk-link" href="manage-data">Return to manage data</a>
+        </div>
+
+    </form>
+
+    {% endif %}
+
+      {% endif %}
+
+      </div>
+    </div>
+
+{% endblock %}
