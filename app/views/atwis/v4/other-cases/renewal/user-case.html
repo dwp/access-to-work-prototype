@@ -47,6 +47,9 @@
 {% endblock %}
 
 {% block beforeContent %}
+
+
+
 {{ govukPhaseBanner({
   tag: {
     text: "Prototype"
@@ -54,43 +57,15 @@
   html: 'This is a prototype. It is not a real service.'
 }) }}
 
-<style>
-  
-
-.full-width-wrapper {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  background-color: #005ea5;
-  padding: 1rem 0;
-}
-
-.dwp-quick-reference--alternative {
-  background-color: transparent;
-}
+{% import versionPath + "/includes/key-details.njk" as keyDetails %}
 
 
-</style>
-
-<div class="full-width-wrapper">
-  <div class="govuk-width-container">
-    
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
-          Samantha Byram
-        </h1>
-      </div>
-    </div>
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> 123456789</p>
-        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;"><strong>Case type:</strong> Renewal</p>
-      </div>
-    </div>
-
-  </div>
-</div>
+{{ keyDetails.keyDetails({
+  name: "Samantha Byram",
+  nino: "QQ 12 34 56 Z",
+  urn: "123456789",
+  caseType: "Renewal"
+})}}
 
 {% endblock %}
 
@@ -125,6 +100,23 @@
       },
       value: {
         text: "13 February 1986"
+      }
+    },
+    {
+      key: {
+        text: "National Insurance number"
+      },
+      value: {
+        text: "QQ 12 34 56 Z"
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/edit-nino?returnUrl=/other-cases/renewal/user-case",
+            text: "Edit",
+            visuallyHiddenText: "edit"
+          }
+        ]
       }
     },
     {

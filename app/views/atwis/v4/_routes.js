@@ -3,15 +3,18 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 const versionPath = '/atwis/v4'
 
+router.all(versionPath, function(req, res, next){
+    res.locals.versionPath = versionPath
+    console.log(versionPath)
+    next()
+})
 router.all(versionPath + '*', function(req, res, next){
     res.locals.versionPath = versionPath
-
-    console.log(res.locals)
     next()
 })
 
 
-console.log(versionPath)
+
 router.post(versionPath + '/referral-type-answer', function(request, response) {
 
     var referralType = request.session.data['send-new-referral']

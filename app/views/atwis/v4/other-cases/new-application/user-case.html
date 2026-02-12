@@ -54,43 +54,19 @@
   html: 'This is a prototype. It is not a real service.'
 }) }}
 
-<style>
-  
-
-.full-width-wrapper {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  background-color: #005ea5;
-  padding: 1rem 0;
-}
-
-.dwp-quick-reference--alternative {
-  background-color: transparent;
-}
 
 
-</style>
+{% import versionPath + "/includes/key-details.njk" as keyDetails %}
 
-<div class="full-width-wrapper">
-  <div class="govuk-width-container">
-    
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
-          Alexandra Watson
-        </h1>
-      </div>
-    </div>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>Case reference:</strong> AB1CD23E</p>
-        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;"><strong>Case type:</strong> New application</p>
-      </div>
-    </div>
+{{ keyDetails.keyDetails({
+  name: "Alexandra Watson",
+  nino: "QQ 12 34 56 Z",
+  urn: "AB1CD23E",
+  caseType: "New application"
+})}}
 
-  </div>
-</div>
+
 
 {% endblock %}
 

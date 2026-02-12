@@ -15,3 +15,15 @@ $govuk-global-styles: true;
   background-color: #1d70b8;
   color: white;
 }
+
+
+.atw-key-details-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.atw-key-details-details {
+  color: white;
+}
