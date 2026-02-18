@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "DiSC",
+            serviceHref: '/index',
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "search-for-a-payment",
+              items: [
+                   {
+                      href: "../customer-management/search-for-a-customer",
+                      text: "Customer management"
+                    },
+                    {
+                      href: "search-for-a-payment",
+                      text: "Claims management"
+                    },
+                    {
+                      href: "select-report",
+                      text: "Business information"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Search for a payment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="payment-search-results" method="post">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">Search for a payment</h1>
+        </legend>
+        <div id="search-payment-hint" class="govuk-hint">Search using a unique payment ID, unique payee ID or payee name</div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="unique-payment-id">Unique payment ID (optional)</label>
+          <input class="govuk-input govuk-input--width-10" id="unique-payment-id" name="paymentID" type="text">
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="unique-payee-id">Unique payee ID (optional)</label>
+          <input class="govuk-input govuk-input--width-10" id="unique-payee-id" name="payeeID" type="text">
+        </div>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="payee-name">Payee name (optional)</label>
+          <input class="govuk-input govuk-input--width-20" id="payee-name" name="payeeName" type="text">
+        </div>
+      </fieldset>
+      <button type="submit" class="govuk-button" data-module="govuk-button">Search</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

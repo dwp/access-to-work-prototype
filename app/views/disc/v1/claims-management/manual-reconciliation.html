@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "DiSC",
+            serviceHref: '/index',
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "authorise-payments",
+              items: [
+                   {
+                      href: "../customer-management/search-for-a-customer",
+                      text: "Customer management"
+                    },
+                    {
+                      href: "authorise-payments",
+                      text: "Claims management"
+                    },
+                    {
+                      href: "select-report",
+                      text: "Business information"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Manual reconciliation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">    
+    <h2 class="govuk-heading-m">John Doe</h2>
+    <p class="govuk-body"><span class="govuk-!-font-weight-bold">National insurance number:</span>AA123456B</p>
+    <p class="govuk-body"><span class="govuk-!-font-weight-bold">Unique reference number:</span>12345678</p>
+    <h1 class="govuk-heading-l">Manual reconcile payment option</h1>
+    <form action="view-payment-details" method="post">
+      <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="1024">
+        <label class="govuk-label" for="with-hint">Manual reconcile payment details</label>
+        <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+        <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+          You can enter up to 1024 characters
+        </div>
+      </div>
+      <p class="govuk-body govuk-!-font-weight-bold">Are you sure you wish to reconcile payment option manually?</p>
+      <button type="submit" class="govuk-button" data-module="govuk-button">Reconcile</button>
+      <p class="govuk-body"><a href="view-payment-details" class="govuk-link">Return to payment details</a></p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

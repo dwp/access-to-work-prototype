@@ -1,0 +1,193 @@
+{% extends "layouts/main.html" %}
+{%- from "moj/components/search/macro.njk" import mojSearch -%}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "DiSC",
+            serviceHref: '/index',
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "search-for-a-payment",
+              items: [
+                   {
+                      href: "../customer-management/search-for-a-customer",
+                      text: "Customer management"
+                    },
+                    {
+                      href: "search-for-a-payment",
+                      text: "Claims management"
+                    },
+                    {
+                      href: "select-report",
+                      text: "Business information"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Payment search results – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Search for a payment",
+      href: "search-for-a-payment"
+    }
+    
+  ]
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">Payment search results</h1>
+    <table class="govuk-table" data-module="moj-sortable-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" aria-sort="ascending">Payment ID</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Payee ID</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Payee name</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Customer name</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Element type</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">AtW amount</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">160</td>
+          <td class="govuk-table__cell">12345</td>
+          <td class="govuk-table__cell">John Smith</td>
+          <td class="govuk-table__cell">Steven Fisher</td>
+          <td class="govuk-table__cell">SAE</td>
+          <td class="govuk-table__cell">£500</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+      </tbody>
+    </table>
+      <div class="floatRight">
+        {{ govukPagination({
+          next: {
+            href: "#"
+          },
+          items: [
+            {
+              number: 1,
+              current: true,
+              href: "#"
+            },
+            {
+              number: 2,
+              href: "#"
+            },
+            {
+              number: 3,
+              href: "#"
+            }
+          ]
+        }) }}
+      </div>
+  </div>
+</div>
+
+{% endblock %}
