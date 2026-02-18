@@ -1,0 +1,68 @@
+{
+  "id": 720724,
+  "num_rows": 5,
+  "file_format": "csv",
+  "name": "atwis-docs",
+  "include_header": true,
+  "columns": [
+    {
+      "name": "id",
+      "null_percentage": 0,
+      "type": "Row Number",
+      "formula": null
+    },
+    {
+      "name": "name",
+      "null_percentage": 0,
+      "type": "Full Name",
+      "formula": null
+    },
+    {
+      "name": "documents",
+      "null_percentage": 0,
+      "type": "JSON Array",
+      "minItems": 0,
+      "maxItems": 5,
+      "formula": null
+    },
+    {
+      "name": "documents.dateScanned",
+      "null_percentage": 0,
+      "type": "Datetime",
+      "min": "02/18/2025",
+      "max": "02/18/2026",
+      "format": "%Y-%m-%d",
+      "formula": null
+    },
+    {
+      "name": "documents.id",
+      "null_percentage": 0,
+      "type": "GUID",
+      "formula": null
+    },
+    {
+      "name": "documents.forReference",
+      "null_percentage": 0,
+      "type": "Character Sequence",
+      "format": "^^###^^",
+      "formula": null
+    },
+    {
+      "name": "documents.type",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "CSI",
+        "Support Worker",
+        "Support Worker (multiple)",
+        "One off costs (SAE)",
+        "Travel to work",
+        "Travel in work",
+        "Change bank details"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": null
+    }
+  ]
+}

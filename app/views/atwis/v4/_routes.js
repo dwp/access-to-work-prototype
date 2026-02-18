@@ -3,6 +3,26 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 const versionPath = '/atwis/v4'
 
+
+
+
+function addOldestDocumentArrayInPlace(data) {
+  if (!data || !Array.isArray(data.documents) || data.documents.length === 0) {
+    return data;
+  }
+
+  let oldestIdx = 0;
+
+  for (let i = 1; i < data.documents.length; i++) {
+    if (data.documents[i].dateScanned < data.documents[oldestIdx].dateScanned) {
+      oldestIdx = i;
+    }
+  }
+
+  data.oldestDocument = [data.documents[oldestIdx]];
+  return data; // mutated original
+}
+
 router.all(versionPath, function(req, res, next){
     res.locals.versionPath = versionPath
     console.log(versionPath)
@@ -14,6 +34,76 @@ router.all(versionPath + '*', function(req, res, next){
 })
 
 
+//get documents mock data
+let unallocatedDocsData = require('./data/unallocated-documents.js')
+let yourDocsData = require('./data/your-documents.js')
+
+function addOldestDateToAll(items) {
+      if (!Array.isArray(items)) return items;
+
+      for (const item of items) {
+        if (!Array.isArray(item.documents) || item.documents.length === 0) {
+          item.oldestDocumentDate = null;
+          continue;
+        }
+
+        // Find the smallest (oldest) date string
+        let oldestDate = item.documents[0].dateScanned;
+
+        for (let i = 1; i < item.documents.length; i++) {
+          const d = item.documents[i].dateScanned;
+          if (d < oldestDate) {
+            oldestDate = d;
+          }
+        }
+
+        item.oldestDocumentDate = oldestDate;
+      }
+
+      return items; // same array reference, mutated
+    }
+
+let unallocatedDocs = addOldestDateToAll(unallocatedDocsData).sort((a,b) => a.oldestDocumentDate - b.oldestDocumentDate);
+let yourDocs = addOldestDateToAll(yourDocsData).sort((a,b) => a.oldestDocumentDate - b.oldestDocumentDate)
+
+router.all(versionPath + '/unallocated/unallocated-documents', function(req, res, next){
+    res.locals.cases = unallocatedDocs
+    next()
+})
+
+
+
+router.all(versionPath + '/documents/user-case-unallocated', function(req, res, next){
+    let caseId = req.query.id;
+
+    res.locals.case = unallocatedDocs.find(x => x.id == caseId);
+
+
+    console.log(res.locals.case);
+
+    next()
+})
+
+
+router.all(versionPath + '/documents/your-documents', function(req, res, next){
+    
+    res.locals.documents = yourDocs
+
+
+    console.log(res.locals.documents);
+
+    next()
+})
+
+
+
+router.post(versionPath + '/documents/request-document-post', function(req, res){
+    yourDocs.push(unallocatedDocs.splice(0,1)[0])
+
+
+
+    res.redirect(versionPath + '/documents/your-documents')
+})
 
 router.post(versionPath + '/referral-type-answer', function(request, response) {
 

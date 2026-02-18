@@ -106,7 +106,7 @@
 <div class="govuk-tabs__panel">
 
     <h2 class="govuk-heading-m">Your documents (1)</h2>
-
+    <form action="{{versionPath}}/documents/request-document-post" method="post">
           {{ govukSelect({
             id: "document-type",
             name: "document-type",
@@ -142,46 +142,38 @@
             text: "Request a new document"
           }) }}
 
-          {{ govukTable({
-            caption: "Document details",
-            captionClasses: "govuk-table__caption--m",
-            head: [
-              {
-                text: "Name"
-              },
-              {
-                text: "Type of document"
-              },
-              {
-                text: "Form reference"
-              },
-              {
-                text: "Date scanned"
-              },
-              {
-                text: "Status"
-              }
-            ],
-            rows: [
-              [
-                {
-                  html: '<a href="user-case" class="govuk-link">Gary Boyd</a>'
-                },
-                {
-                  text: "CSI"
-                },
-                {
-                  text: "DP221JP"
-                },
-                {
-                  text: "12 December 2025"
-                },
-                {
-                  text: "Not started"
-                }
-              ]
-            ]
-          }) }}
+          </form>
+
+          <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Document details</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Name </th>
+                <th scope="col" class="govuk-table__header">Oldest document</th>
+                <th scope="col" class="govuk-table__header">Document types</th>
+                <th scope="col" class="govuk-table__header">Status</th>
+
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+              {% for document in documents | sort(false, true, 'oldestDocumentDate') %}
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell"><a href="../documents/user-document?id={{document.id}}">{{document.name}}</a><br>{{document.documents.length}} document{{'s' if document.documents.length > 1}}</td>
+
+                <td class="govuk-table__cell">{{document.oldestDocumentDate | formatDate}}</td>
+                <td class="govuk-table__cell">
+                  {% for document in document.documents | uniqueTypes %}
+                    {{document.type}} <br>
+                  {% endfor %}
+                </td>
+                <td class="govuk-table__cell">Not started</td>
+              </tr>
+              {% endfor %}
+
+              
+            </tbody>
+          </table>
 
 
     </div>

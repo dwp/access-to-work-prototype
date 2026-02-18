@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+\{% extends "layouts/main.html" %}
 
 {% block header %}
 
@@ -179,40 +179,28 @@
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l">Unallocated documents (1)</h2>
 
-          {{ govukTable({
-            caption: "Document details",
-            captionClasses: "govuk-table__caption--m",
-            head: [
-              {
-                text: "Name"
-              },
-              {
-                text: "Type of document"
-              },
-              {
-                text: "Form reference"
-              },
-              {
-                text: "Date scanned"
-              }
-            ],
-            rows: [
-                [
-                {
-                  html: '<a href="../documents/user-case" class="govuk-link">Gary Boyd</a>'
-                },
-                {
-                  text: "CSI"
-                },
-                {
-                  text: "DP221JP"
-                },
-                {
-                  text: "2 January 2026"
-                }
-              ]
-            ]
-          }) }}
+
+
+          <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Document details</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Name </th>
+
+                <th scope="col" class="govuk-table__header">Oldest document</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+              {% for case in cases | sort(false, true, 'oldestDocumentDate') %}
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-unallocated?id={{case.id}}">{{case.name}}</a><br>{{case.documents.length}} document{{'s' if case.documents.length > 1}}</td>
+
+                <td class="govuk-table__cell">{{case.oldestDocumentDate | formatDate}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
 
      
   </div>
