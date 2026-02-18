@@ -85,6 +85,17 @@ router.all(versionPath + '/documents/user-case-unallocated', function(req, res, 
 })
 
 
+router.all(versionPath + '/documents/multiple-documents-allocated', function(req, res, next){
+    let caseId = req.query.id;
+
+    res.locals.case = yourDocs.find(x => x.id == caseId);
+
+
+    console.log(res.locals.case);
+
+    next()
+})
+
 router.all(versionPath + '/documents/your-documents', function(req, res, next){
     
     res.locals.documents = yourDocs

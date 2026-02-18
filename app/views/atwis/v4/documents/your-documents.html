@@ -159,7 +159,7 @@
 
               {% for document in documents | sort(false, true, 'oldestDocumentDate') %}
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="../documents/user-document?id={{document.id}}">{{document.name}}</a><br>{{document.documents.length}} document{{'s' if document.documents.length > 1}}</td>
+                <td scope="row" class="govuk-table__cell"><a href="../documents/multiple-documents-allocated?id={{document.id}}">{{document.name}}</a><br>{{document.documents.length}} document{{'s' if document.documents.length > 1}}</td>
 
                 <td class="govuk-table__cell">{{document.oldestDocumentDate | formatDate}}</td>
                 <td class="govuk-table__cell">
