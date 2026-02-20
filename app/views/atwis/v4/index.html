@@ -1,0 +1,452 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{ dwpHeader({
+  serviceName: "Access to Work",
+  serviceHref: '/index',
+  container: true,
+  classes: "govuk-header--blue"
+}) }}
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "/index",
+      text: "Home"
+    },
+    {
+      href: "/prototypes",
+      text: "View prototypes",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  AtWIS version 4 – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        AtWIS version 4 - page index 
+      </h1>
+
+      <p>
+        This page documents the pages and user journeys which forms the AtWIS prototype. 
+      </p>
+
+      <h2 class="govuk-heading-m">
+        View all ATWIS journeys
+      </h2>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">
+        ATWIS
+      </h2>
+
+      <p>This part of the prototype demonstrates the functionality of the entirety of ATWIS and lets you navigate this part of the Access to Work service freely.</p>
+
+      {{ govukButton({
+        text: "View all ATWIS journeys",
+        href: "your-cases"
+      }) }}
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-top-0 govuk-!-margin-bottom-5">
+
+      {{ govukAccordion({
+          id: "view-more-atwis-journeys",
+          items: [
+            {
+              heading: {
+                text: "View specific ATWIS journeys"
+              },
+              content: {
+                html: '
+                <h2 class="govuk-heading-m">Referrals</h2>
+
+              <p>Referrals is a process used by agents to refer people who require a workplace assessment or for the mental health support service.</p>
+
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    View a breakdown of pages within the referrals journey
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                  <h2 class="govuk-heading-m">
+                    Page index
+                  </h2>
+
+                  <h2 class="govuk-heading-m">
+                    Submitting a referral
+                  </h2>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/referrals" class="govuk-link">Referrals main page</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/referrals-view-only" class="govuk-link">Referrals main page (view only)</a>
+                      </li>
+                    </ul>
+
+                    <h3 class="govuk-heading-s">
+                      Workplace assessments
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/personal-details" class="govuk-link">Personal details</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/find-address" class="govuk-link">Find address</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/enter-address" class="govuk-link">Enter address (manual entry)</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/select-address" class="govuk-link">Select address</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/confirm-address" class="govuk-link">Confirm address</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/provider-details" class="govuk-link">Provider details</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/check-answers" class="govuk-link">Check answers</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/referral-complete" class="govuk-link">Referral complete</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/no-address-found" class="govuk-link">No address found</a>
+                      </li>
+                    </ul>
+                    
+                    <h3 class="govuk-heading-s">
+                      Mental health support service (MHSS)
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/personal-details" class="govuk-link">Personal details</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/find-address" class="govuk-link">Find address</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/enter-address" class="govuk-link">Enter address (manual entry)</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/select-address" class="govuk-link">Select address</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/confirm-address" class="govuk-link">Confirm address</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/referral-type" class="govuk-link">Referral type</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/provider-details-authority" class="govuk-link">Provider details (authority referral)</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/override" class="govuk-link">Override provider details</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/provider-details-self-referral" class="govuk-link">Provider details (self-referral)</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/check-answers" class="govuk-link">Check answers</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/referral-complete" class="govuk-link">Referral complete</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/no-address-found" class="govuk-link">No address found</a>
+                      </li>
+                    </ul>
+
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                    <h3 class="govuk-heading-m">
+                      Duplicate referrals
+                    </h3>
+
+                    <h3 class="govuk-heading-s">
+                      Workplace Assessment
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/referrals" class="govuk-link">Duplicate referrals</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/workplace-assessment/personal-details" class="govuk-link">Personal details</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/workplace-assessment/duplicate-found" class="govuk-link">Duplicate found</a>
+                      </li>
+                    </ul>
+
+                    <h3 class="govuk-heading-s">
+                      Mental health support service (MHSS)
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/referrals" class="govuk-link">Duplicate referrals</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/mental-health-service/personal-details" class="govuk-link">Personal details</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/mental-health-service/historical-duplicate-found" class="govuk-link">Historical duplicate found</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/duplicate-referrals/mental-health-service/in-flight-duplicate-found" class="govuk-link">In-flight duplicate found</a>
+                      </li>
+                    </ul>
+
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+                    <h3 class="govuk-heading-m">
+                      Referral history & search
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/referrals-history" class="govuk-link">Referral history</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/search/search" class="govuk-link">Search</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/referral-search" class="govuk-link">Referral search</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/view-customer-record" class="govuk-link">View customers referral history record</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/view-referral" class="govuk-link">View individual referral record</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/referral-search-no-results" class="govuk-link">Referral search (no results returned)</a>
+                      </li>
+                    </ul>
+
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+                    <h2 class="govuk-heading-m">
+                      Referral error states
+                    </h2>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/referrals-error" class="govuk-link">Referrals main page null error</a>
+                      </li>
+                    </ul>
+
+                    <h3 class="govuk-heading-s">
+                      Workplace assessments
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/personal-details-null" class="govuk-link">Personal details - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/personal-details-invalid-characters" class="govuk-link">Personal details - invalid character errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/personal-details-length" class="govuk-link">Personal details - invalid length errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/find-address-null" class="govuk-link">Find an address - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/find-address-invalid-character" class="govuk-link">Find an address - invalid character errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/select-address-null" class="govuk-link">Select an address - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/enter-address-null" class="govuk-link">Enter an address - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/enter-address-invalid-character" class="govuk-link">Enter an address - invalid character errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/enter-address-length" class="govuk-link">Enter an address - invalid length errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/workplace-assessment/errors/provider-details-null" class="govuk-link">Provider details - null errors</a>
+                      </li>
+                    </ul>
+
+                    <h3 class="govuk-heading-s">
+                      Mental health support service (MHSS)
+                    </h3>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/personal-details-null.html" class="govuk-link">Personal details - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/personal-details-invalid-characters" class="govuk-link">Personal details - invalid character errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/personal-details-length" class="govuk-link">Personal details - invalid length errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/find-address-null" class="govuk-link">Find an address - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/find-address-invalid-character" class="govuk-link">Find an address - invalid character errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/select-address-null" class="govuk-link">Select an address - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/enter-address-null" class="govuk-link">Enter an address - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/enter-address-invalid-character" class="govuk-link">Enter an address - invalid character errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/enter-address-length" class="govuk-link">Enter an address - invalid length errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/referral-type-null" class="govuk-link">Referral type - null error</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/provider-details-authority-null" class="govuk-link">Provider details (authority) - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/override-null" class="govuk-link">Provider override - null errors</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/referrals/mental-health-service/errors/provider-details-self-referral-null" class="govuk-link">Provider details (self-referral) - null errors</a>
+                      </li>
+                    </ul>
+                    
+                </div>
+              </details>
+
+              <p class="govuk-body"> <a href="{{versionPath}}/referrals/referrals" class="govuk-link">View referrals journey</a></p>
+
+              <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+              <h2 class="govuk-heading-m">
+                Data retention
+              </h2>
+
+              <p>Data retention is a process for team leads to manage customers information inline with GDPR policy and laws.</p>
+
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    View a breakdown of pages within the data retention journey
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                  <h2 class="govuk-heading-m">
+                    Page index
+                  </h2>
+
+                  <h2 class="govuk-heading-m">
+                    Manage a customers data retention
+                  </h2>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="{{versionPath}}/data-retention/manage-data" class="govuk-link">Manage data main page</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/data-retention/customer-record" class="govuk-link">Customer record</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/data-retention/pause-deletion-reason" class="govuk-link">Select a reason why a record is being placed on hold</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/data-retention/investigation-status" class="govuk-link">Reset data deletion page</a>
+                      </li>
+                      <li>
+                        <a href="{{versionPath}}/data-retention/view-on-hold-records" class="govuk-link">View all data retention records placed on hold</a>
+                      </li>
+                    </ul>
+                    
+                </div>
+              </details>
+
+              <p class="govuk-body"><a href="{{versionPath}}/data-retention/manage-data" class="govuk-link">View data retention journey</a></p>
+
+              <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+              <h2 class="govuk-heading-m">
+                Displaying users roles in ATWIS
+              </h2>
+
+              <p>We need to display accurate user roles and permissions to support the access request process and reduce potential errors.</p>
+
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    View a breakdown of pages showing users roles in ATWIS.
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+
+                  <h2 class="govuk-heading-m">
+                    Page index
+                  </h2>
+
+                  <h2 class="govuk-heading-m">
+                    View user roles and permissions
+                  </h2>
+
+                    <ul class="govuk-list">
+                      <li>
+                        <a href="your-cases" class="govuk-link">ATWIS home page</a>
+                      </li>
+                      <li>
+                        <a href="all-advisors" class="govuk-link">All advisors page</a>
+                      </li>
+                    </ul>
+                    
+                </div>
+              </details>'
+              }
+            }
+          ]
+        }) }}
+
+      
+    </div>
+  </div>
+
+{% endblock %}

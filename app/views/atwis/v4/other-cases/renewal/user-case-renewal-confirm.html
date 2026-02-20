@@ -1,0 +1,256 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../../your-cases",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+  
+
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+
+
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
+          Samantha Byram
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> 123456789</p>
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;"><strong>Case type:</strong> Renewal</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Start renewal in DiSC</h2>
+
+      {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Date submitted"
+      },
+      value: {
+        text: "1 November 2025, 3:14pm"
+      }
+    },
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: "Samantha Byram"
+      }
+    },
+    {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        text: "13 February 1986"
+      }
+    },
+    {
+      key: {
+        text: "URN"
+      },
+      value: {
+        text: "123456789"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Edit",
+            visuallyHiddenText: "edit"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: '10 Imaginary Street<br>City of London<br>London<br>AB1 2DC'
+      }
+    },
+    {
+      key: {
+        text: "Contact details"
+      },
+      value: {
+        html: '07123456789<br>samantha.byram@mail.co.uk'
+      }
+    },
+    {
+      key: {
+        text: "Changes to support needed"
+      },
+      value: {
+        text: "No changes"
+      }
+    }
+  ]
+}) }}
+
+<p class="govuk-body">By confirming you have started in DiSC, the renewal will disappear from your case list.</p>
+
+{{ govukInsetText({
+  html: '<strong>Renewal in DiSC</strong>'
+}) }}
+     
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+{{ govukSelect({
+  id: "update-advisor-renewal",
+  name: "update-advisor-renewal",
+  label: {
+    html: '<h2 class="govuk-heading-m">Update advisor</h2>'
+  },
+  items: [
+    {
+      value: "name-1",
+      text: "John Doe",
+      selected: true
+    },
+    {
+      value: "name-2",
+      text: "Susan Quantas"
+    },
+    {
+      value: "name-3",
+      text: "Savannah Eastwood"
+    },
+    {
+      value: "name-4",
+      text: "David Connolly"
+    },
+    {
+      value: "name-5",
+      text: "Sophia Wanless"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Save"
+}) }}
+
+{{ govukSelect({
+  id: "update-specialism-renewal",
+  name: "update-specialism-renewal",
+  label: {
+    html: '<h2 class="govuk-heading-m">Update specialism</h2>'
+  },
+  items: [
+    {
+      value: "specialism-1",
+      text: "",
+      selected: true
+    },
+    {
+      value: "specialism-2",
+      text: "Specialism 2"
+    },
+    {
+      value: "specialism-3",
+      text: "Specialism 3"
+    },
+    {
+      value: "specialism-4",
+      text: "Specialism 4"
+    },
+    {
+      value: "specialism-5",
+      text: "Specialism 5"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Save"
+}) }}
+     
+  </div>
+  </div>
+{% endblock %}

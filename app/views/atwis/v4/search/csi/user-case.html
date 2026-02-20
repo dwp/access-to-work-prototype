@@ -1,0 +1,475 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../search",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Your cases – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+  
+
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+
+
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
+          Alan Ferguson
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Reference</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">DORV8RZY</h2>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Interview date</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">19 December 2025</h2>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Allocated to</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">John Doe</h2>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% set yourTasksHtml %}
+
+{{ govukTaskList({
+  idPrefix: "check-and-approve",
+  items: [
+    {
+      title: {
+        text: "Check the evidence"
+      },
+      href: "check-evidence/check-evidence"
+    },
+    {
+      title: {
+        text: "Add invoice details"
+      }
+    },
+    {
+      title: {
+        text: "Check the invoice amount"
+      }
+    },
+    {
+      title: {
+        text: "Find the payee on SOP"
+      }
+    },
+    {
+      title: {
+        text: "Add SOP supplier number"
+      }
+    },
+    {
+      title: {
+        text: "Check payment details"
+      }
+    }
+  ]
+}) }}
+
+
+{% endset -%}
+
+{% set caseDetailsHtml %}
+<h2 class="govuk-heading-l">Personal details</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Reference"
+      },
+      value: {
+        text: "DORV8RZY"
+      }
+    },
+    {
+      key: {
+        text: "National Insurance number"
+      },
+      value: {
+        text: ""
+      }
+    },
+    {
+      key: {
+        text: "First name"
+      },
+      value: {
+        html: "Alan"
+      }
+    },
+    {
+      key: {
+        text: "Last name"
+      },
+      value: {
+        text: "Ferguson"
+      }
+    },
+    {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        text: "27 August 1998"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: '<p class="govuk-body">10 Imaginary Street</p><p class="govuk-body">City of London</p><p class="govuk-body">London</p><p class="govuk-body">AB1 2CD</p>'
+      }
+    },
+    {
+      key: {
+        text: "Contact email address"
+      },
+      value: {
+        text: "alan.ferguson@mail.co.uk"
+      }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-l">Appointee details</h2>
+
+<p class="govuk-body">No appointee</p>
+
+<h2 class="govuk-heading-l">Company details</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Company name"
+      },
+      value: {
+        text: "DWP Digital"
+      }
+    },
+    {
+      key: {
+        text: "Company address"
+      },
+      value: {
+        html: '1 Imaginary Street <br>City of London <br> London <br>AB1 2CD'
+      }
+    },
+    {
+      key: {
+        text: "Company contact"
+      },
+      value: {
+        text: "Mary Rivers"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "mary.rivers@mail.co.uk"
+      }
+    },
+    {
+      key: {
+        text: "Phone"
+      },
+      value: {
+        text: "07123456789"
+      }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-l">Job interview details</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Interview date"
+      },
+      value: {
+        text: "23 November 2025"
+      }
+    },
+    {
+      key: {
+        text: "Condition"
+      },
+      value: {
+        text: "Deaf"
+      }
+    },
+    {
+      key: {
+        text: "Interview length"
+      },
+      value: {
+        text: "1 hour"
+      }
+    },
+    {
+      key: {
+        text: "Support cost"
+      },
+      value: {
+        text: "£100.00"
+      }
+    }
+  ]
+}) }}
+
+{% endset -%}
+
+
+{% set invoiceDetailsHtml %}
+
+ <p class="govuk-body">You can change invoice details here after you have added it in the tasks.</p>
+
+
+{{ govukTable({
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "DWP invoice reference"
+      }
+    ],
+    [
+      {
+        text: "Supplier invoice reference"
+      }
+    ],
+    [
+      {
+        text: "Invoice date"
+      }
+    ],
+    [
+      {
+        text: "Payee postcode"
+      }
+    ],
+    [
+      {
+        text: "Payment amount"
+      }
+    ],
+    [
+      {
+        text: "SOP supplier number"
+      }
+    ]
+  ]
+}) }}
+{% endset -%}
+
+{{ govukTabs({
+  items: [
+    {
+      label: "Your tasks",
+      id: "your-tasks",
+      panel: {
+        html: yourTasksHtml
+      }
+    },
+    {
+      label: "Case details",
+      id: "case-details",
+      panel: {
+        html: caseDetailsHtml
+      }
+    },
+    {
+      label: "Invoice details",
+      id: "invoice-details",
+      panel: {
+        html: invoiceDetailsHtml
+      }
+    }
+  ]
+}) }}
+     
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+      
+<p class="govuk-body"><a href="#" class="govuk-link">Reject the case</a></p>
+
+<p class="govuk-body"><a href="print-send-claim-form-again" class="govuk-link">Print and send claim form again</a></p>
+
+{{ govukSelect({
+  id: "update-advisor",
+  name: "update-advisor",
+  label: {
+    html: '<h2 class="govuk-heading-m">Who do you want to allocate this to?</h2>'
+  },
+  items: [
+    {
+      value: "name-1",
+      text: "John Doe",
+      selected: true
+    },
+    {
+      value: "name-2",
+      text: "Susan Quantas"
+    },
+    {
+      value: "name-3",
+      text: "Savannah Eastwood"
+    },
+    {
+      value: "name-4",
+      text: "David Connolly"
+    },
+    {
+      value: "name-5",
+      text: "Sophia Wanless"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Allocate"
+}) }}
+
+{{
+        dwpTimeline({ 
+            items: [
+                {
+                    title:  "Application allocated",
+                    byline:  "John Doe",
+                    description: {
+                        text: "John Goldsmith to John Doe"
+                    },
+                    date:  "26 April 2025 at 12:42pm"
+                },
+                 {
+                    title:  "Interview confirmed",
+                    byline:  "John Doe",
+                    description: {
+                        text: "John Doe to John Doe"
+                    },
+                    date:  "26 April 2025 at 12:42pm"
+                }, 
+                 {
+                    title:  "Telephoned employer",
+                    byline:  "John Doe",
+                    date:  "26 April 2025 at 12:42pm"
+                }, 
+                 {
+                    title:  "Claim form sent",
+                    byline:  "John Doe",
+                    date:  "26 April 2025 at 12:42pm"
+                }, 
+                {
+                    title:  "Confirmation sent",
+                    byline:  "John Doe",
+                    date:  "26 April 2025 at 12:42pm"
+                }, 
+                {
+                    title:  "Application checked",
+                    byline:  "John Doe",
+                    date:  "26 April 2025 at 12:42pm"
+                }, 
+                {
+                    title:  "National Insurance number added",
+                    byline:  "John Doe",
+                    date:  "26 April 2025 at 12:42pm"
+                }, 
+                {
+                    title:  "Application recieved",
+                    byline:  "John Doe",
+                    date:  "26 April 2025 at 12:42pm"
+                }
+        ]
+        })
+}}
+     
+  </div>
+  </div>
+{% endblock %}

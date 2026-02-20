@@ -1,0 +1,183 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../../your-cases",
+              items: [
+                   {
+                      href: "../../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Add appointee details – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" style="color:white !important;">
+          Alan Ferguson
+        </h1>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Advisor</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">John Doe</h2>
+
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;">Specialism</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-0" style="color:white !important;">CSI</h2>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3 class="govuk-heading-l">Add appointee details for Alan Ferguson</h3>
+
+        <p class="govuk-body">Copy information for Alan Ferguson's appointee from Searchlight.</p>
+
+      <form class="form" action="../check-details/check-personal-details" method="post">
+
+      {{ govukInput({
+        label: {
+          text: "Appointee name"
+        },
+        id: "appointee-name",
+        name: "appointee-name"
+      }) }}
+
+       {{ govukInput({
+        label: {
+          text: "Building and street"
+        },
+        id: "appointee-building-and-street",
+        name: "appointee-building-and-street"
+      }) }}
+
+      {{ govukInput({
+        id: "appointee-building-and-street-2",
+        name: "appointee-building-and-street-2"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Town or city"
+        },
+        id: "appointee-town-or-city",
+        name: "appointee-town-or-city"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "County"
+        },
+        id: "appointee-county",
+        name: "appointee-county"
+      }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Postcode"
+          },
+          classes: "govuk-input--width-10",
+          id: "appointee-postcode",
+          name: "appointee-Postcode"
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "appointee-contact-details",
+          fieldset: {
+            legend: {
+              text: "Contact details"
+            }
+          },
+          hint: {
+            text: "Select all options that are available"
+          },
+          items: [
+            {
+              value: "email",
+              text: "Email"
+            },
+            {
+              value: "telephone",
+              text: "Telephone"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        </form>
+
+        <p class="govuk-body"><a href="../user-case.html" class="govuk-link">Return to tasks</a></p>
+     
+  </div>
+  </div>
+{% endblock %}

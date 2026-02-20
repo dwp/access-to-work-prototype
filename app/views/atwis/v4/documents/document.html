@@ -1,0 +1,227 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../your-cases",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+  
+
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+
+
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
+          {{case.name}}
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> AB123456C</p>
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;"><strong>Document status:</strong> Not started</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Documents scanned on {{ document.dateScanned | formatDate}}
+ </h2>
+
+      {{ govukTable({
+  caption: "Document details",
+  captionClasses: "govuk-table__caption--m",
+  head: [
+    {
+      text: "Document type"
+    },
+    {
+      text: "Form reference"
+    },
+    {
+      text: "Document ID"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: document.type
+      },
+      {
+        text: document.formReference
+      },
+      {
+        html: '<a href="#" class="govuk-link">View ' + document.id + '</a>'
+      }
+    ]
+  ]
+}) }}
+
+<h3 class="govuk-heading-m">DRS envelope ID</h3>
+
+<p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
+
+<p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: 1730476832300</p>
+
+<p class="govuk-body"><a href="your-documents" class="govuk-link">Back to the full list of documents</a></p>
+
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+{{ govukSelect({
+  id: "allocate-document",
+  name: "allocate-document",
+  label: {
+    html: '<h2 class="govuk-heading-m">Who do you want to allocate this to?</h2>'
+  },
+   hint: {
+    text: "Leave blank to unallocate it"
+  },
+  items: [
+   {
+      value: "blank",
+      text: "",
+      selected: true
+    },
+    {
+      value: "name-1",
+      text: "John Doe"
+    },
+    {
+      value: "name-2",
+      text: "Susan Quantas"
+    },
+    {
+      value: "name-3",
+      text: "Savannah Eastwood"
+    },
+    {
+      value: "name-4",
+      text: "David Connolly"
+    },
+    {
+      value: "name-5",
+      text: "Sophia Wanless"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Allocate"
+}) }}
+
+{{ govukSelect({
+  id: "update-status",
+  name: "update-status",
+  label: {
+    html: '<h2 class="govuk-heading-m">Update status</h2>'
+  },
+  items: [
+   {
+      value: "blank",
+      text: "",
+      selected: true
+    },
+    {
+      value: "not started",
+      text: "Not started"
+    },
+    {
+      value: "in progress",
+      text: "In progress"
+    },
+    {
+      value: "completed",
+      text: "Completed"
+    }
+  ]
+}) }}
+
+<form action="end-date" method="post" novalidate>
+
+{{ govukButton({
+  text: "Update"
+}) }}
+
+</form>
+     
+  </div>
+    
+</div>
+  </div>
+{% endblock %}

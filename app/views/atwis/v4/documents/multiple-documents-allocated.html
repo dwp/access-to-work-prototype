@@ -1,0 +1,126 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../your-cases",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% import versionPath + "/includes/key-details.njk" as keyDetails %}
+
+
+{{ keyDetails.keyDetails({
+  name: case.name,
+  nino: "QQ 12 34 56 Z",
+  urn: "123456789"
+})}}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Documents allocated to you</h2>
+
+
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Document details</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Document type</th>
+      <th scope="col" class="govuk-table__header">Form reference</th>
+      
+      <th scope="col" class="govuk-table__header">Date scanned</th>
+      <th class="govuk-table__header"></th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for document in case.documents | sort(false, true, 'dateScanned') %}
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">{{document.type}}</th>
+      <td class="govuk-table__cell">{{document.formReference}}</td>
+      <td class="govuk-table__cell">{{document.dateScanned | formatDate }}</td>
+      <td class="govuk-table__cell"><a href = "#">view document</a></td>
+
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+<!--
+<h3 class="govuk-heading-m">DRS envelope ID</h3>
+
+<p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
+
+<p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: 1730476832300</p>
+-->
+<p class="govuk-body"><a href="{{versionPath}}/documents/your-documents" class="govuk-link">Back to your cases</a></p>
+
+
+
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+
+
+
+
+     
+  </div>
+    
+</div>
+  </div>
+{% endblock %}
