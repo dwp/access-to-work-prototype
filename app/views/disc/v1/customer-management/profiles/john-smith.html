@@ -1,0 +1,195 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "DiSC",
+            serviceHref: '/index',
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "authorise-payments",
+              items: [
+                   {
+                      href: "search-for-a-customer",
+                      text: "Customer management"
+                    },
+                    {
+                      href: "../claims-mangement/authorise-payments",
+                      text: "Claims management"
+                    },
+                    {
+                      href: "../business-information/select-report",
+                      text: "Business information"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  View customer– {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Search for a customer",
+      href: "#"
+    },
+    {
+      text: "Customer details",
+      href: "#"
+    },
+    {
+      text: "View jobs",
+      href: "#"
+    },
+    {
+      text: "Employer and job details",
+      href: "#"
+    }
+    
+  ]
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">    
+    <h2 class="govuk-heading-m">John Doe</h2>
+    <p class="govuk-body"><span class="govuk-!-font-weight-bold">National insurance number:</span>AA123456B</p>
+    <p class="govuk-body"><span class="govuk-!-font-weight-bold">Unique reference number:</span>12345678</p>
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h1 class="govuk-tabs__title">Payment details</h1>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#payments">
+            Payments
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#payees">
+            Payees
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#element">
+            Element
+          </a>
+        </li>
+      </ul>
+  <div class="govuk-tabs__panel" id="payments">
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-l" style="display: inline-block;">Payment details</h2>
+    <p class="govuk-body" style="float: right; vertical-align: bottom !important;"><a href="#" class="govuk-link">Update payment</a></p>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Payee Name</dt>
+          <dd class="govuk-summary-list__value">Spills Brewery</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Date claim received</dt>
+          <dd class="govuk-summary-list__value">24 October 2006</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Assessment / Element details</dt>
+          <dd class="govuk-summary-list__value">AW, week, 8 of, personal reader</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Number of units</dt>
+          <dd class="govuk-summary-list__value">8</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Invoice reference</dt>
+          <dd class="govuk-summary-list__value">SHARON AEIVI 24-OCT-2006</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Payment ID</dt>
+          <dd class="govuk-summary-list__value">19</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Payment from date</dt>
+          <dd class="govuk-summary-list__value">24 October 2006</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Payment to date</dt>
+          <dd class="govuk-summary-list__value">24 October 2006</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">AtW amount</dt>
+          <dd class="govuk-summary-list__value">£60.00</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Date to finance office</dt>
+          <dd class="govuk-summary-list__value">24 October 2006</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Payment status</dt>
+          <dd class="govuk-summary-list__value">Created</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Additonal payment details</dt>
+          <dd class="govuk-summary-list__value">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <h3 class="gem-c-related-navigation__main-heading">Related content</h3>
+      <p class="govuk-body"><a href="payee-details" class="govuk-link">Payee details</a></p>
+      <p class="govuk-body"><a href="manual-reconciliation" class="govuk-link">Manual reconciliation</a></p>
+    </div>
+    </div>
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="payees">
+    <h2 class="govuk-heading-l">Search for a live payee</h2>
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="element">
+    <h2 class="govuk-heading-l">Element</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Case manager</th>
+          <th scope="col" class="govuk-table__header">Cases opened</th>
+          <th scope="col" class="govuk-table__header">Cases closed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">David Francis</td>
+          <td class="govuk-table__cell">98</td>
+          <td class="govuk-table__cell">95</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Paul Farmer</td>
+          <td class="govuk-table__cell">122</td>
+          <td class="govuk-table__cell">131</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rita Patel</td>
+          <td class="govuk-table__cell">126</td>
+          <td class="govuk-table__cell">142</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "DiSC",
+            serviceHref: '/index',
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "customer-management",
+              items: [
+                   {
+                      href: "../customer-management/search-for-a-customer",
+                      text: "Customer management"
+                    },
+                    {
+                      href: "authorise-payments",
+                      text: "Claims management"
+                    },
+                    {
+                      href: "select-report",
+                      text: "Business information"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Update payee – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">    
+    <h2 class="govuk-heading-m">John Doe</h2>
+    <p class="govuk-body"><span class="govuk-!-font-weight-bold">National insurance number:</span>AA123456B</p>
+    <p class="govuk-body"><span class="govuk-!-font-weight-bold">Unique reference number:</span>12345678</p>
+    <h1 class="govuk-heading-l">Add payee</h1>
+    <form action="payee-details" method="post">
+      
+      <p class="govuk-body govuk-!-font-weight-bold">Are you sure you wish to reconcile payment option manually?</p>
+      <button type="submit" class="govuk-button" data-module="govuk-button">Reconcile</button>
+      <p class="govuk-body"><a href="view-payment-details" class="govuk-link">Return to payment details</a></p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

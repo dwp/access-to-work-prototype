@@ -1,0 +1,878 @@
+{% extends "layouts/main.html" %}
+{%- from "moj/components/search/macro.njk" import mojSearch -%}
+
+{% block header %}
+
+{{
+  dwpHeader({
+      serviceName: "DiSC",
+      serviceHref: '/index',
+      actionHref: "#",
+      container: true,
+      navigation: {
+        selectedItem: "authorise-payments",
+        items: [
+              {
+                href: "../customer-management/search-for-a-customer",
+                text: "Customer management"
+              },
+              {
+                href: "authorise-payments",
+                text: "Claims management"
+              },
+              {
+                href: "select-report",
+                text: "Business information"
+              }
+        ]
+    }  
+  })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Authorise payments – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Select report",
+      href: "select-report"
+    }
+  ]
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">    
+    <h1 class="govuk-heading-l">Authorise payments</h1>
+    <div class="govuk-form-group" style="display: inline-block; vertical-align: bottom; width: 20.5em">
+      <label class="govuk-label govuk-input--width-20" for="search-bar">Search for a pay unique number</label>
+      <input class="govuk-input" id="search-bar" name="search-bar" type="text">
+    </div>
+    <button type="submit" class="govuk-button" data-module="govuk-button" style="display: inline-block; vertical-align: bottom;">Go</button>
+    <form action="/report-type-answer" method="post" novalidate>
+      <table class="govuk-table" data-module="moj-multi-select" data-id-prefix="payments-">
+        <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" id="payments-select-all"></th>
+          <th scope="col" class="govuk-table__header" aria-sort="ascending">Pay unique number</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Customer name</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">AtW cost</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Date created</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item govuk-checkboxes--small moj-multi-select__checkbox">
+              <input type="checkbox" class="govuk-checkboxes__input" id="payments-12345678">
+              <label class="govuk-label govuk-checkboxes__label" for="payments-12345678">
+                <span class="govuk-visually-hidden">Select 12345678</span>
+              </label>
+            </div>
+          </td>
+          <td class="govuk-table__cell" data-sort-value="12345678">12345678</td>
+          <td class="govuk-table__cell">John Doe</td>
+          <td class="govuk-table__cell">£12.00</td>
+          <td class="govuk-table__cell">09 May 2025</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><a href="../claims-management/view-payment-details" class="govuk-link">View</a></td>
+        </tr>
+        </tbody>
+      </table>
+        {{ govukWarningText({
+        text: "If you move to the next page, any progress you have made selecting payments will be lost",
+        iconFallbackText: "Warning"
+      }) }}
+      </div>
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Authorise"
+          }) }}
+
+          {{ govukButton({
+            text: "Do not authorise",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <div class="floatRight">
+          {{ govukPagination({
+            next: {
+              href: "#"
+            },
+            items: [
+              {
+                number: 1,
+                current: true,
+                href: "#"
+              },
+              {
+                number: 2,
+                href: "#"
+              },
+              {
+                number: 3,
+                href: "#"
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+
+{% endblock %}

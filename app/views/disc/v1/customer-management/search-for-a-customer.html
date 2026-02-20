@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "DiSC",
+            serviceHref: '/index',
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "search-for-a-customer",
+              items: [
+                   {
+                      href: "search-for-a-customer",
+                      text: "Customer management"
+                    },
+                    {
+                      href: "search-for-a-payment",
+                      text: "Claims management"
+                    },
+                    {
+                      href: "select-report",
+                      text: "Business information"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Search for a customer – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="customer-search-results" method="post">
+      <h1 class="govuk-heading-l">Search for a customer</h1>
+      <p class="govuk-hint">Search using a URN, National insurance number or forename and surname</p>
+      {{ govukInput({
+        label: {
+          text: "URN"
+        },
+        id: "customer-URN",
+        name: "CustomerURN", 
+        value: data['CustomerURN'],
+        classes: "govuk-input--width-10"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "National insurance number"
+        },
+        id: "customer-NINO",
+        name: "CustomerNINO",
+        value: data['CustomerNINO'],
+        classes: "govuk-input--width-10"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Forename(s)"
+        },
+        id: "customer-forename",
+        name: "CustomerForename",
+        value: data['CustomerForename']
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Surname"
+        },
+        id: "customer-surname",
+        name: "CustomerSurname",
+        value: data['CustomerSurname']
+      }) }}
+
+      {{ govukDateInput({
+        id: "customer-dob",
+        namePrefix: "customerDob",
+        value: data['customerDob'],
+        fieldset: {
+          legend: {
+            text: "Date of birth (optional)"
+          }
+        }
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Postcode (optional)"
+        },
+        id: "customer-postcode",
+        name: "CustomerPostcode",
+        value: data['CustomerPostcode'],
+        classes: "govuk-input--width-10"
+      }) }}
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}
