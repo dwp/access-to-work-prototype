@@ -39,29 +39,27 @@ let unallocatedDocsData = require('./data/unallocated-documents.js')
 let yourDocsData = require('./data/your-documents.js')
 
 function addOldestDateToAll(items) {
-      if (!Array.isArray(items)) return items;
+  if (!Array.isArray(items)) return items;
 
-      for (const item of items) {
-        if (!Array.isArray(item.documents) || item.documents.length === 0) {
-          item.oldestDocumentDate = null;
-          continue;
-        }
-
-        // Find the smallest (oldest) date string
-        let oldestDate = item.documents[0].dateScanned;
-
-        for (let i = 1; i < item.documents.length; i++) {
-          const d = item.documents[i].dateScanned;
-          if (d < oldestDate) {
-            oldestDate = d;
-          }
-        }
-
-        item.oldestDocumentDate = oldestDate;
-      }
-
-      return items; // same array reference, mutated
+  for (const item of items) {
+    if (!Array.isArray(item.documents) || item.documents.length === 0) {
+      item.oldestDocumentDate = null;
+      continue;
     }
+
+    // Sort documents by dateScanned ascending (old → new)
+    item.documents.sort((a, b) => {
+      if (a.dateScanned < b.dateScanned) return -1;
+      if (a.dateScanned > b.dateScanned) return 1;
+      return 0;
+    });
+
+    // After sorting, the first item is the oldest
+    item.oldestDocumentDate = item.documents[0].dateScanned;
+  }
+
+  return items; // mutated in place
+}
 
 let unallocatedDocs = addOldestDateToAll(unallocatedDocsData).sort((a,b) => a.oldestDocumentDate - b.oldestDocumentDate);
 let yourDocs = addOldestDateToAll(yourDocsData).sort((a,b) => a.oldestDocumentDate - b.oldestDocumentDate)
@@ -102,6 +100,18 @@ router.all(versionPath + '/documents/your-documents', function(req, res, next){
 
 
     console.log(res.locals.documents);
+
+    next()
+})
+
+
+router.all(versionPath + '/documents/document', function(req, res, next){
+    let caseId = req.query.id;
+
+    res.locals.case = unallocatedDocs.find(x => x.id == caseId);
+
+    res.locals.document = res.locals.case.documents[req.query.document ]
+    console.log("document: " + res.locals.document.dateScanned);
 
     next()
 })

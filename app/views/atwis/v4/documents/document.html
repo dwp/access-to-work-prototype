@@ -54,14 +54,43 @@
   html: 'This is a prototype. It is not a real service.'
 }) }}
 
-{% import versionPath + "/includes/key-details.njk" as keyDetails %}
+<style>
+  
+
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
 
 
-{{ keyDetails.keyDetails({
-  name: case.name,
-  nino: "QQ 12 34 56 Z",
-  urn: "123456789"
-})}}
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
+          {{case.name}}
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> AB123456C</p>
+        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;"><strong>Document status:</strong> Not started</p>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 {% endblock %}
 
@@ -70,45 +99,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l">Unallocated documents</h2>
+      <h2 class="govuk-heading-l">Documents scanned on {{ document.dateScanned | formatDate}}
+ </h2>
 
+      {{ govukTable({
+  caption: "Document details",
+  captionClasses: "govuk-table__caption--m",
+  head: [
+    {
+      text: "Document type"
+    },
+    {
+      text: "Form reference"
+    },
+    {
+      text: "Document ID"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: document.type
+      },
+      {
+        text: document.formReference
+      },
+      {
+        html: '<a href="#" class="govuk-link">View ' + document.id + '</a>'
+      }
+    ]
+  ]
+}) }}
 
-
-<table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Document details</caption>
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Document type</th>
-      <th scope="col" class="govuk-table__header">Form reference</th>
-      
-      <th scope="col" class="govuk-table__header">Date scanned</th>
-      <th class="govuk-table__header"></th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% for document in case.documents  %}
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">{{document.type}}</th>
-      <td class="govuk-table__cell">{{document.formReference}}</td>
-      <td class="govuk-table__cell">{{document.dateScanned | formatDate }}</td>
-      <td class="govuk-table__cell"><a href = "{{versionPath}}/documents/document?id={{case.id}}&document={{loop.index0}}">view document</a></td>
-
-    </tr>
-    {% endfor %}
-
-  </tbody>
-</table>
-
-<!--
 <h3 class="govuk-heading-m">DRS envelope ID</h3>
 
 <p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
 
 <p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: 1730476832300</p>
--->
-<p class="govuk-body"><a href="{{versionPath}}/unallocated/unallocated-documents" class="govuk-link">Back to all unallocated documents</a></p>
 
-
+<p class="govuk-body"><a href="your-documents" class="govuk-link">Back to the full list of documents</a></p>
 
 </div>
 
@@ -118,7 +147,7 @@
   id: "allocate-document",
   name: "allocate-document",
   label: {
-    html: '<h2 class="govuk-heading-m">Who do you want to allocate these to?</h2>'
+    html: '<h2 class="govuk-heading-m">Who do you want to allocate this to?</h2>'
   },
    hint: {
     text: "Leave blank to unallocate it"
@@ -153,7 +182,7 @@
 }) }}
 
 {{ govukButton({
-  text: "Allocate all"
+  text: "Allocate"
 }) }}
 
 {{ govukSelect({
