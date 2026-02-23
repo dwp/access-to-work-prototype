@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Eligible – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        You may be eligible for Access to Work
+      </h1>
+
+      <p class="govuk-body">To apply, you will need to give:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your details</li>
+        <li>information about your job</li>
+        <li>information about how your condition affects your work and what help you think you need</li>
+        <li>if you are employed, the details of someone we can contact at your workplace (we will not contact them without your permission)</li>
+        <li>if you are self-employed, your <a href="#" class="govuk-link">Unique Taxpayer Reference (opens in new tab)</a></li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        How to apply for mental health support
+      </h2>
+
+
+      <p class="govuk-body">You can apply directly to <a href="#" class="govuk-link">Maximus (open in new tab)</a> or <a href="#" class="govuk-link">Able Futures (open in new tab)</a>. They will contact Access to Work on your behalf. You will not need to tell your employer.</p>
+
+      <p class="govuk-body">If you also need other types of support, use this application.</p>
+
+      {{ govukButton({
+        text: "Start application",
+        href: "../task-list",
+        isStartButton: true
+      }) }}
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

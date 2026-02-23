@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Journeys to and from work – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/journey-addresses-answer" method="post">
+
+        {{ govukRadios({
+          name: "journey-addresses",
+          fieldset: {
+            legend: {
+              text: "Will your journeys to and from work be between your home and work addresses?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

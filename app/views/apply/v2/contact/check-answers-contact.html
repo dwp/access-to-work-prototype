@@ -1,0 +1,324 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers contact preferences – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+      {% if data['who-we-contact'] =="Me" %}
+
+      <h2 class="govuk-heading-m">How we contact you</h2>
+
+      {% if data['telephone-number'] %}
+      {% set telephoneNumber = data['telephone-number'] %}
+      {% else %}
+      {% set telephoneNumber = "I find it difficult to hear or speak on the telephone" %}
+      {% endif %}
+
+      {% if data['email-address'] %}
+      {% set emailAddress = data['email-address'] %}
+      {% else %}
+      {% set emailAddress = data['email-address-reasonable-adjustment'] %}
+      {% endif %}
+
+      {% set rows = [
+
+      { 
+        key: {
+          text: "Who should we contact about your application?"
+        },
+        value: { 
+          text: data['who-we-contact']
+        },
+        actions:{
+          items: [
+          {
+            href: "../contact/who-we-contact#who-we-contact",
+            text: "Change",
+            visuallyHiddenText: "who we contact"
+          }
+          ]
+        }
+      },
+      { 
+        key: {
+          text: "Telephone number"
+        },
+        value: {
+          text: telephoneNumber
+        },
+        actions: {
+          items: [
+            {
+              href: "../contact/telephone-number",
+              text: "Change",
+              visuallyHiddenText: "telephone number"
+            }
+          ]
+        }
+      },
+      { 
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: emailAddress
+        },
+        actions: {
+          items: [
+            {
+              href: "../contact/email-address",
+              text: "Change",
+              visuallyHiddenText: "email address"
+            }
+          ]
+        }
+      }
+    ] %}
+
+    {% if data['best-times'] %}
+      {% set rows = rows.concat ({ 
+        key: {
+          text: "When are the best times to contact you?"
+        },
+        value: {
+          text: data['best-times']
+        },
+        actions: {
+          items: [
+            {
+              href: "../contact/best-times",
+              text: "Change",
+              visuallyHiddenText: "best times to contact you"
+            }
+          ]
+        }
+      }) %}
+      {% endif %}
+
+      {{ govukSummaryList ({ rows: rows }) }}
+
+      {% endif %}
+
+      {% if data['who-we-contact'] =="Someone else" %}
+
+      <h2 class="govuk-heading-m">How we contact you</h2>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Who should we contact about your application?"
+            },
+            value: {
+              text: data['who-we-contact']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../contact/who-we-contact",
+                  text: "Change",
+                  visuallyHiddenText: "who we contact"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Details of the person we should contact</h2>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Their full name"
+            },
+            value: {
+              text: data['their-full-name']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../contact/someone-else",
+                  text: "Change",
+                  visuallyHiddenText: "contacts full name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Their relationship to you"
+            },
+            value: {
+              text: data['relationship-to-you']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../contact/someone-else",
+                  text: "Change",
+                  visuallyHiddenText: "relationship to you"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Their telephone number"
+            },
+            value: {
+              text: data['their-telephone-number']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../contact/someone-else",
+                  text: "Change",
+                  visuallyHiddenText: "contacts telephone number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Their email address"
+            },
+            value: {
+              text: data['their-email-address']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../contact/someone-else",
+                  text: "Change",
+                  visuallyHiddenText: "contacts email address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Your contact details</h2>
+
+      {% if data['your-telephone-number'] %}
+      {% set yourTelephoneNumber = data['your-telephone-number'] %}
+      {% else %}
+      {% set yourTelephoneNumber = "I find it difficult to hear or speak on the telephone" %}
+      {% endif %}
+
+      {% if data['email-address'] %}
+      {% set yourEmailAddress = data['email-address'] %}
+      {% else %}
+      {% set yourEmailAddress = data['email-address-identity-adjustment'] %}
+      {% endif %}
+
+      {% set rows = [
+
+      { 
+        key: {
+          text: "Telephone number"
+        },
+        value: { 
+          text: yourTelephoneNumber
+        },
+        actions:{
+          items: [
+          {
+            href: "../contact/your-telephone-number",
+            text: "Change",
+            visuallyHiddenText: "Telephone number"
+          }
+          ]
+        }
+      },
+      { 
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: yourEmailAddress
+        },
+        actions: {
+          items: [
+            {
+              href: "../contact/email-address-identity-adjustment",
+              text: "Change",
+              visuallyHiddenText: "your email address"
+            }
+          ]
+        }
+      }
+    ] %}
+
+    {% if data['best-times'] %}
+      {% set rows = rows.concat ({ 
+        key: {
+          text: "When are the best times to contact you?"
+        },
+        value: {
+          text: data['best-times']
+        },
+        actions: {
+          items: [
+            {
+              href: "../contact/best-times",
+              text: "Change",
+              visuallyHiddenText: "best times to contact you"
+            }
+          ]
+        }
+      }) %}
+      {% endif %}
+
+      {{ govukSummaryList ({ rows: rows }) }}
+
+
+      {% endif %}
+
+
+      <form action="../task-list" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked-contact" value="true">
+
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+
+    </div>
+  
+
+
+   {% include "apply/v1/includes/get-help" %}
+      </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

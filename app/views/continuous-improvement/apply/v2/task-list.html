@@ -1,0 +1,345 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Task list – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+    serviceName: "Apply for Access to Work",
+    serviceUrl: "eligibility/check-eligible"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ serviceName }} application</h1>
+
+      {% if completedCount == totalTasks %}
+    <p>Application complete</p>
+    <p class="govuk-body govuk-!-margin-bottom-7">You have completed all {{ totalTasks }} tasks.</p>
+    {% else %}
+    <p>Application incomplete</p>
+    <p class="govuk-body govuk-!-margin-bottom-7">You have completed {{ completedCount }} of {{ totalTasks }} tasks.</p>
+    {% endif %}
+
+
+      {# Macro to display task status #}
+        {% macro taskStatus(status) %}
+          {% if status == 'completed' %}
+            Completed
+          {% elif status == 'in-progress' %}
+            <strong class="govuk-tag govuk-tag--light-blue">In progress</strong>
+          {% elif status == 'cannot-start-yet' %}
+            <strong class="govuk-tag govuk-tag--grey">Cannot start yet</strong>
+          {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
+          {% endif %}
+        {% endmacro %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      
+  
+        <h2 class="govuk-task-list__section govuk-heading-m">
+          <span class="govuk-task-list__section-number">1. </span> About you
+        </h2>
+        <ul class="govuk-task-list">
+          <li class="govuk-task-list__item {% if taskStatuses['your-details'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['your-details'] == 'cannot-start-yet' %}
+                Your details
+              {% elif taskStatuses['your-details'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/your-details/check-answers-your-details" aria-describedby="your-details-status">
+                  Your details
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/your-details/full-name" aria-describedby="your-details-status">
+                  Your details
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="your-details-status">
+              {{ taskStatus(taskStatuses['your-details']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['contact'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['contact'] == 'cannot-start-yet' %}
+                How we contact you
+              {% elif taskStatuses['contact'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/contact/check-answers-contact" aria-describedby="contact-status">
+                  Your details
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/contact/who-we-contact" aria-describedby="contact-status">
+                  How we contact you
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="contact-status">
+              {{ taskStatus(taskStatuses['contact']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['conditions-disabilities'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['conditions-disabilities'] == 'cannot-start-yet' %}
+                Your conditions and disabilities
+              {% elif taskStatuses['conditions-disabilities'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/conditions-disabilities/check-answers-condition" aria-describedby="conditions-disabilitie-status">
+                  Your conditions and disabilities
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/conditions-disabilities/your-conditions-disabilities" aria-describedby="conditions-disabilities-status">
+                  Your conditions and disabilities
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="conditions-disabilities-status">
+              {{ taskStatus(taskStatuses['conditions-disabilities']) }}
+            </div>
+          </li>
+        </ul>
+      
+        <h2 class="govuk-task-list__section govuk-heading-m">
+          <span class="govuk-task-list__section-number">2. </span> Employment
+        </h2>
+        <ul class="govuk-task-list">
+          <li class="govuk-task-list__item {% if taskStatuses['job'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['job'] == 'cannot-start-yet' %}
+                Your job and employer
+               {% elif taskStatuses['job'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/job/employment" aria-describedby="job-status">
+                  Your job and employer
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/job/employment" aria-describedby="job-status">
+                  Your job and employer
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="job-status">
+              {{ taskStatus(taskStatuses['job']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['workplace-adjustments'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['workplace-adjustments'] == 'cannot-start-yet' %}
+                Workplace adjustments
+              {% elif taskStatuses['workplace-adjustments'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/workplace-adjustments/check-answers" aria-describedby="workplace-adjustments-status">
+                  Workplace adjustments
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/workplace-adjustments/reasonable-adjustments" aria-describedby="workplace-adjustments-status">
+                  Workplace adjustments
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="workplace-adjustments-status">
+              {{ taskStatus(taskStatuses['workplace-adjustments']) }}
+            </div>
+          </li>
+        </ul>
+      
+        <h2 class="govuk-task-list__section govuk-heading-m">
+          <span class="govuk-task-list__section-number">3. </span> Support from Access to Work
+        </h2>
+        <ul class="govuk-task-list">
+          <li class="govuk-task-list__item {% if taskStatuses['specialist-equipment'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['specialist-equipment'] == 'cannot-start-yet' %}
+                Specialist equipment
+              {% elif taskStatuses['specialist-equipment'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/specialist-equipment/check-answers" aria-describedby="specialist-equipment-status">
+                  Specialist equipment
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/specialist-equipment/need-specialist-equipment" aria-describedby="specialist-equipment-status">
+                  Specialist equipment
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="specialist-equipment-status">
+              {{ taskStatus(taskStatuses['specialist-equipment']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['mental-health'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['mental-health'] == 'cannot-start-yet' %}
+                Mental health support
+              {% elif taskStatuses['mental-health-support'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/mental-health/mental-health-support" aria-describedby="mental-health-status">
+                 Mental health support
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/mental-health/mental-health-support" aria-describedby="mental-health-status">
+                  Mental health support
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="mental-health-status">
+              {{ taskStatus(taskStatuses['mental-health']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['support-worker'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['support-worker'] == 'cannot-start-yet' %}
+                Support workers
+              {% elif taskStatuses['support-worker'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/support-worker/check-answers-support-worker" aria-describedby="support-worker-status">
+                   Support workers
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/support-worker/need-support-worker" aria-describedby="support-worker-status">
+                  Support workers
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="support-worker-status">
+              {{ taskStatus(taskStatuses['support-worker']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['travel-to-work'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['travel-to-work'] == 'cannot-start-yet' %}
+                Travelling to and from work
+              {% elif taskStatuses['travel-to-work'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/travel-to-work/check-answers-work-travel" aria-describedby="travel-to-work-status">
+                  Travelling to and from work
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/travel-to-work/difficulty-driving" aria-describedby="travel-to-work-status">
+                  Travelling to and from work
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="travel-to-work-status">
+              {{ taskStatus(taskStatuses['travel-to-work']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['travel-in-work'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['travel-in-work'] == 'cannot-start-yet' %}
+                Travelling during work
+              {% elif taskStatuses['travel-in-work'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/travel-in-work/need-travel-during-work" aria-describedby="travel-in-work-status">
+                  Travelling during work
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/travel-in-work/need-travel-during-work" aria-describedby="travel-in-work-status">
+                  Travelling during work
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="travel-in-work-status">
+              {{ taskStatus(taskStatuses['travel-in-work']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['workplace-changes'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['workplace-changes'] == 'cannot-start-yet' %}
+                Changes to your workplace
+              {% elif taskStatuses['workplace-changes'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/workplace-changes/need-work-changes" aria-describedby="workplace-changes-status">
+                  Changes to your workplace
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/workplace-changes/need-work-changes" aria-describedby="workplace-changes-status">
+                  Changes to your workplace
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="workplace-changes-status">
+              {{ taskStatus(taskStatuses['workplace-changes']) }}
+            </div>
+          </li>
+          <li class="govuk-task-list__item {% if taskStatuses['vehicle-changes'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['vehicle-changes'] == 'cannot-start-yet' %}
+                Adaptations to a vehicle
+              {% elif taskStatuses['vehicle-changes'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/vehicle-changes/need-change-to-vehicle" aria-describedby="vehicle-changes-status">
+                  Adaptations to a vehicle
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/vehicle-changes/need-change-to-vehicle" aria-describedby="vehicle-changes-status">
+                  Adaptations to a vehicle
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="vehicle-changes-status">
+              {{ taskStatus(taskStatuses['vehicle-changes']) }}
+            </div>
+          </li>
+        </ul>
+      
+        <h2 class="govuk-task-list__section govuk-heading-m">
+          <span class="govuk-task-list__section-number">4. </span> Additional information
+        </h2>
+        <ul class="govuk-task-list">
+          <li class="govuk-task-list__item {% if taskStatuses['other-information'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+            <div class="govuk-task-list__name-and-hint">
+              {% if taskStatuses['other-information'] == 'cannot-start-yet' %}
+                Anything else you want to add
+              {% elif taskStatuses['other-information'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/other-information/check-answers" aria-describedby="other-information-status">
+                  Anything else you want to add
+                </a>
+              {% else %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/other-information/anything-else" aria-describedby="other-information-status">
+                  Anything else you want to add
+                </a>
+              {% endif %}
+            </div>
+            <div class="govuk-task-list__status" id="other-information-status">
+              {{ taskStatus(taskStatuses['other-information']) }}
+            </div>
+          </li>
+
+        </ul>
+    
+ 
+
+      <form action="application-summary" method="post" novalidate>
+
+        <input type="hidden" name="access-to-work-answers-checked" value="true">
+
+      {% if completedCount == totalTasks %}
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+        {% endif %}
+
+        </form>
+    </div>
+
+    {% include versionPath + "//includes/get-help" %}
+ 
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "//includes/footer" %}
+{% endblock %}
+

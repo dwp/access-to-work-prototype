@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Are you a hybrid worker? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/hybrid-worker-answer" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "hybrid-worker",
+          fieldset: {
+            legend: {
+              text: "Are you a hybrid worker?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "By hybrid we mean that you work partly from home and partly from work premises, such as an office"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

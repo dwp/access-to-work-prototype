@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Specialist equipment summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">You have added 1 item of specialist equipment</h1>
+
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          rows: [
+            [
+              {
+                text: data['specialist-equipment-type']
+              },
+              {
+                html: "<a href='../specialist-equipment/specialist-equipment-type' class='govuk-link govuk-!-padding-right-5'>Change</a> <a href='../specialist-equipment/remove-equipment' class='govuk-link'>Remove</a>",
+                classes: "govuk-table__cell--numeric govuk-!-width-one-tenth"
+              }
+            ]
+          ]
+        }) }}
+
+        <form class="form" action="/other-equipment-answer" method="post">
+
+          {{ govukRadios({
+            name: "another-item",
+            fieldset: {
+              legend: {
+                text: "Do you need to add another item?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              },
+              {
+                value: "I do not know",
+                text: "I do not know"
+              }
+            ]
+          }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list.html" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

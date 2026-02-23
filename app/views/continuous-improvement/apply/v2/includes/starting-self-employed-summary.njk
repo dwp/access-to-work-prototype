@@ -1,0 +1,114 @@
+ <h2 class="govuk-heading-m">Employment details</h2>
+
+
+    {% set summaryRows = [] %}
+ 
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: { text: "Employment status" },
+          value: { text: data['job-status'] }
+        },
+        {
+          key: { text: "Job title" },
+          value: { text: data['job-title-self-employed-starting-job'] }
+        },
+        {
+          key: {
+            text: "Job description"
+          },
+          value: {
+            text: data['job-description-self-employed-starting-job']
+          }
+        },
+        {
+          key: {
+            text: "Do you have a Unique Taxpayer Reference (UTR)?"
+          },
+          value: {
+            text: data['have-utr-self-employed-starting-job']
+          }
+        }
+      ]) %}
+
+      
+      {% if data['have-utr-self-employed-starting-job'] == "Yes" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
+            value: { text: data['utr-self-employed-starting-job'] }
+          }
+        ]) %}
+      {% endif %}
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "When will you be starting your self-employment?"
+          },
+          value: {
+            text: data['self-employed-start-date-starting-job-day'] + '/' + data['self-employed-start-date-starting-job-month'] + '/' + data['self-employed-start-date-starting-job-year']
+          }
+        },
+        {
+          key: {
+            text: "How many hours will you work per week?"
+          },
+          value: {
+            text: data['work-hours-self-employed-starting-job']
+          }
+        },
+        {
+          key: {
+            text: "Do you know which days of the week you will be working?"
+          },
+          value: {
+            text: data['days-will-work-self-employed-starting-job']
+          }
+        }
+        ]) %}
+
+        
+      {% if data['days-will-work-self-employed-starting-job'] == "Yes" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Which days of the week will you work?"
+            },
+            value: {
+              text: data['work-days-self-employed-starting-job']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      
+      {% if data['job-address-select-self-employed-starting-job'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: data['job-address-select-self-employed-starting-job'] + ',' + ' ' + data['postcode-job-address-self-employed-starting-job']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      
+      {% if data['showAddressRowSelfEmployed'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: "I do not know my workplace address"
+            }
+          }
+        ]) %}
+      {% endif %}
+
+
+ 
+{{ govukSummaryList({ rows: summaryRows }) }}

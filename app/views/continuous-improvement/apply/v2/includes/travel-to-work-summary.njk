@@ -1,0 +1,127 @@
+ <h2 class="govuk-heading-m">Travelling to and from work</h2>
+
+      {% set summaryRows = [] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Does your condition mean that it is difficult for you to drive or get public transport to work?"
+          },
+          value: {
+            text: data['difficulty-driving']
+          }
+        },
+        {
+          key: {
+            text: "How do you get to and from work now?"
+          },
+          value: {
+            text: data['travel-options']
+          }
+        }
+        ]) %}
+
+        {% if data['public-transport'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Do you spend more than 2 hours on public transport on your journey to work, or back from work?"
+            },
+            value: {
+              text: data['public-transport']
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "What type of support do you need to travel to work?"
+          },
+          value: {
+            text: data['need-travel-support']
+          }
+        }
+      ]) %}
+
+      {% if data['multiple-jobs'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Which job do you need this travel to work support for?"
+          },
+          value: {
+            text: data['multiple-jobs']
+          }
+        }
+      ]) %}
+    {% endif %}
+
+        
+      {% if data['taxi-help'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How will support to travel to work meet your needs?"
+            },
+            value: {
+              text: data['taxi-help']
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {% if data['lift-to-work-help'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How will support to travel to work meet your needs?"
+            },
+            value: {
+              text: data['lift-to-work-help']
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {% if data['other-transport-help'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "What support do you need to travel to work?"
+            },
+            value: {
+              text: data['support-needed-travel']
+            }
+          },
+          {
+            key: {
+              text: "How will support to travel to work meet your needs?"
+            },
+            value: {
+              text: data['other-transport-help']
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How many journeys will you need support for in a week?"
+          },
+          value: {
+            text: data['how-many-journeys']
+          }
+        },
+        {
+          key: {
+            text: "Will your journeys to and from work be between your home and work addresses?"
+          },
+          value: {
+            text: data['journey-addresses']
+          }
+        }
+      ]) %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}

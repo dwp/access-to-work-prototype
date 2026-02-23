@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your name – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/your-details/date-of-birth" method="post">
+
+      {{ govukInput({
+        label: {
+          text: "What is your National Insurance number?",
+          isPageHeading: true,
+          classes: "govuk-label--l"
+        },
+        hint: {
+          text: "It’s on your National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’"
+        },
+        classes: "govuk-input--width-10 govuk-input--extra-letter-spacing",
+        id: "national-insurance-number",
+        name: "national-insurance-number",
+        value: data['national-insurance-number'],
+        isPageHeading: true,
+        spellcheck: false
+      }) }}
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

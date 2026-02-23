@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Employer contact permissions – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/contact-permission-answer" method="post">
+
+        <h1 class="govuk-heading-l">Do you give your permission for us to contact {{data['job-contact-full-name']}}?</h1>
+
+        <p class="govuk-body">We will ask them to confirm employment details. If you do not give permission, we might ask for it later in the process.</p>
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "contact-permission",
+          fieldset: {
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list.html" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

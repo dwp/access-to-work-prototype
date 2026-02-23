@@ -1,0 +1,265 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers support worker – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      {% if data['which-type-support-worker'] == 'British Sign Language (BSL) interpreter' %}
+      <h2 class="govuk-heading-m">
+        British Sign Language (BSL) interpreter
+      </h2>
+      {% endif %}
+
+      {% if data['support-worker-type'] %}
+      <h2 class="govuk-heading-m">
+        {{ data['support-worker-type'] }}
+      </h2>
+      {% endif %}
+
+      {% if data['know-support-worker'] == 'No' %}
+      <h2 class="govuk-heading-m">
+        Support worker provider
+      </h2>
+      {% endif %}
+
+      {% set summaryRows = [] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you know what type of support worker you need?"
+          },
+          value: {
+            text: data['know-support-worker']
+          },
+          actions: {
+            items: [
+              {
+                href: "../support-worker/know-support-worker#know-support-worker",
+                text: "Change",
+                visuallyHiddenText: "know what type of support worker you need"
+              }
+            ]
+          }
+        }
+        ]) %}
+
+        {% if data['which-type-support-worker'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Which type of support worker do you need?"
+            },
+            value: {
+              text: data['which-type-support-worker']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../support-worker/which-type-support-worker#which-type-support-worker",
+                  text: "Change",
+                  visuallyHiddenText: "type of support worker"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-worker-type'] %}
+      {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "What type of support worker do you need?"
+        },
+        value: {
+          text: data['support-worker-type']
+        },
+        actions: {
+          items: [
+            {
+              href: "../support-worker/support-worker-type#support-worker-type",
+              text: "Change",
+              visuallyHiddenText: "type of support worker"
+            }
+          ]
+        }
+      }
+      ]) %}
+      {% endif %}
+
+      {% if data['support-worker-help'] and data['which-type-support-worker'] == "British Sign Language (BSL) interpreter" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How will the British Sign Language (BSL) interpreter help you at work?"
+            },
+            value: {
+              text: data['support-worker-help']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../support-worker/which-type-support-worker#which-type-support-worker",
+                  text: "Change",
+                  visuallyHiddenText: "type of support worker"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-worker-help'] and data['which-type-support-worker'] == "A different type of support worker" %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How will the " + data['support-worker-type'] + " help you at work?"
+          },
+          value: {
+            text: data['support-worker-help']
+          },
+          actions: {
+            items: [
+              {
+                href: "../support-worker/which-type-support-worker#which-type-support-worker",
+                text: "Change",
+                visuallyHiddenText: "type of support worker"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+      {% if data['temporary-support'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Will you need this support worker on a temporary basis?"
+            },
+            value: {
+              text: data['temporary-support']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../support-worker/temporary-support#temporary-support",
+                  text: "Change",
+                  visuallyHiddenText: "temporary support"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-temporarily'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Will you need this support worker on a temporary basis?"
+            },
+            value: {
+              text: data['support-temporarily']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../support-worker/support-temporarily#support-temporarily",
+                  text: "Change",
+                  visuallyHiddenText: "support temporarily"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-how-long'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How long do you need a support worker for?"
+            },
+            value: {
+              text: data['support-how-long']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../support-worker/support-how-long#support-how-long",
+                  text: "Change",
+                  visuallyHiddenText: "legnth of support"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['support-worker-hours'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How many hours per week do you need this support at work?"
+          },
+          value: {
+            text: data['support-worker-hours']
+          },
+          actions: {
+            items: [
+              {
+                href: "../support-worker/support-worker-hours#support-worker-hours",
+                text: "Change",
+                visuallyHiddenText: "hours of support per week"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}
+
+      <form class="form" action="another-support-worker" method="post">
+
+      <input type="hidden" name="answers-checked-support-worker" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

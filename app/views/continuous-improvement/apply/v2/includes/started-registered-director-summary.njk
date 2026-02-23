@@ -1,0 +1,115 @@
+<h2 class="govuk-heading-m">Employment details</h2>
+
+
+    {% set summaryRows = [] %}
+ 
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: { text: "Employment status" },
+          value: { text: data['job-status'] }
+        },
+        {
+          key: { text: "Job title" },
+          value: { text: data['job-title-registered-director'] }
+        },
+        {
+          key: {
+            text: "Job description"
+          },
+          value: {
+            text: data['job-description-registered-director']
+          }
+        }
+      ]) %}
+
+      
+      {% if data['have-utr-registered-director'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Do you have a Unique Taxpayer Reference (UTR)?"
+            },
+            value: {
+              text: data['have-utr-registered-director']
+            }
+          }
+        ]) %}
+      {% endif %}
+      
+      
+      {% if data['have-utr-registered-director'] == "Yes" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
+            value: { text: data['utr-new-registered-director'] }
+          }
+        ]) %}
+      {% endif %}
+
+      
+      {% if data['utr-registered-director'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
+            value: { text: data['utr-registered-director'] }
+          }
+        ]) %}
+      {% endif %}
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "When did you start this job?"
+          },
+          value: {
+            text: data['registered-director-start-date-day'] + '/' + data['registered-director-start-date-month'] + '/' + data['registered-director-start-date-year']
+          }
+        },
+        {
+          key: {
+            text: "How many hours do you work per week?"
+          },
+          value: {
+            text: data['work-hours-registered-director']
+          }
+        },
+        {
+          key: {
+            text: "Which days of the week do you work?"
+          },
+          value: {
+            text: data['work-days-registered-director']
+          }
+        }
+      ]) %}
+
+      
+      {% if data['job-address-select-registered-director'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: data['job-address-select-registered-director'] + ',' + ' ' + data['postcode-job-address-registered-director']
+            }
+          }
+        ]) %}
+      {% endif %}
+  
+      
+      {% if data['showAddressRowRegisteredDirectorStartedWork'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: "I do not know my workplace address"
+            }
+          }
+        ]) %}
+      {% endif %}
+
+ 
+{{ govukSummaryList({ rows: summaryRows }) }}

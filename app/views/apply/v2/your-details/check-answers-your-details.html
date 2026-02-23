@@ -1,0 +1,105 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers</h1>
+
+    <h2 class="govuk-heading-m">Your details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Full name"
+          },
+          value: {
+            text: data['first-name-apply'] + ' ' + data['last-name-apply']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/full-name#first-name-apply",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Date of birth"
+          },
+          value: {
+            text: data['dob-day'] + '/' + data['dob-month'] + '/' + data['dob-year']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/date-of-birth#dob-day",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Address"
+          },
+          value: {
+            text: data['address-select'] + ' ' + data['postcode-apply']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/address#postcode-apply",
+                text: "Change",
+                visuallyHiddenText: "address"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <form action="../task-list" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-your-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and send"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include "apply/v1/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

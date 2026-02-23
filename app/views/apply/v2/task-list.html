@@ -1,0 +1,372 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Task list – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+    serviceName: "Apply for Access to Work",
+    serviceUrl: "eligibility/check-eligible"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% endblock %}
+
+
+{% set totalTasks = 0 %}
+
+{% if data['answers-checked-your-details'] %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['answers-checked-contact'] %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['answers-checked-condition-disabilities'] %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['mental-health-support-answer'] or data['mental-health-support'] == "no" or data['mental-health-support'] == "dont know"%}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['travel-in-work-answer'] %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['workplace-changes-answer'] %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['vehicle-changes-answer'] %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['answers-checked-employed-details']
+    or data['answers-checked-self-employed-details']
+    or data['answers-checked-registered-director-details']
+    or data['answers-checked-employed-details-starting-job']
+    or data['answers-checked-self-employed-details-starting-job']
+    or data['answers-checked-registered-director-details-starting-job'] %}
+   
+    {% set totalTasks = totalTasks + 1 %}
+{% endif %}
+
+{% if data['answers-checked-other-information'] or data['anything-else'] == 'No' %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['answers-checked-specialist-equipment-full'] or data['need-specialist-equipment'] == "no" or data['need-specialist-equipment'] == "dont know" %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['answers-checked-support-worker'] or data['need-support-worker'] == "No" or data['need-support-worker'] == "I do not know" %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+{% if data['answers-checked-travel-to-work'] or data['difficulty-driving'] == "No" %}{% set totalTasks = totalTasks + 1 %}{% endif %}
+
+
+
+{% set section1Complete = data['answers-checked-your-details'] == 'true' and data['answers-checked-contact'] == 'true' and data['answers-checked-condition-disabilities'] == 'true' %}
+
+{% set section2Complete = data['answers-checked-employed-details'] == 'true'
+or data['answers-checked-self-employed-details'] == 'true'
+or data['answers-checked-registered-director-details'] == 'true'
+or data['answers-checked-employed-details-starting-job'] == 'true'
+or data['answers-checked-self-employed-details-starting-job'] == 'true'
+or data['answers-checked-registered-director-details-starting-job'] == 'true' %}
+
+{% set unlockSections3and4 = section1Complete and section2Complete %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ serviceName }} application</h1>
+
+      <p class="govuk-body">Application {% if totalTasks == "12" %}complete
+        {% else %}incomplete{% endif %}</p>
+
+      <p class="govuk-body">You have completed {% if totalTasks =='12'%}all{% else %}{{totalTasks}} of{% endif %} 12 tasks</p>
+
+      <h2 class="govuk-heading-m">1. About you</h2>
+
+      {% set completedStatus = {
+        text: "Completed"
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Not started",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {% set cannotStartStatus = {
+        tag: {
+          text: "Cannot start yet",
+          classes: "govuk-tag--grey"
+        }
+      } %}
+
+      {% set inProgressStatus = {
+        tag: {
+          text: "In progress",
+          classes: "govuk-tag--light-blue"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {% if data['answers-checked-your-details'] == "true" %}
+      {% set yourDetailsStatus = completedStatus %}
+      {% set yourDetailsHref = "../v2/your-details/check-answers-your-details" %}
+      {% else %}
+      {% set yourDetailsStatus = incompleteStatus %}
+      {% set yourDetailsHref = "../v2/your-details/full-name" %}
+      {% endif %}
+
+      {% if data['answers-checked-contact'] == "true" %}
+      {% set contactStatus = completedStatus %}
+      {% set contactHref = "../v2/contact/check-answers-contact" %}
+      {% else %}
+      {% set contactStatus = incompleteStatus %}
+      {% set contactHref = "../v2/contact/who-we-contact" %}
+      {% endif %}
+
+      {% if data['answers-checked-condition-disabilities'] == "true" %}
+      {% set conditionDisabilityStatus = completedStatus %}
+      {% set conditionDisabilityHref = "../v2/conditions-disabilities/check-answers-condition" %}
+      {% else %}
+      {% set conditionDisabilityStatus = incompleteStatus %}
+      {% set conditionDisabilityHref = "../v2/conditions-disabilities/your-conditions-disabilities" %}
+      {% endif %}
+
+      {{ govukTaskList({
+      idPrefix: "first-section",
+      items: [
+      {
+      title: { text: "Your details" },
+      href: yourDetailsHref,
+      status: yourDetailsStatus
+      },
+      {
+      title: { text: "How we contact you" },
+      href: contactHref,
+      status: contactStatus
+      },
+      {
+      title: { text: "Your conditions and disabilities" },
+      href: conditionDisabilityHref,
+      status: conditionDisabilityStatus
+      }
+      ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">2. Employment</h2>
+
+      {% if
+        data['answers-checked-employed-details'] == "true" or
+        data['answers-checked-self-employed-details'] == "true" or
+        data['answers-checked-registered-director-details'] == "true" or
+        data['answers-checked-employed-details-starting-job'] == "true" or
+        data['answers-checked-self-employed-details-starting-job'] == "true" or
+        data['answers-checked-registered-director-details-starting-job'] == "true"
+      %}
+        {% set employmentStatus = completedStatus %}
+      {% else %}
+        {% set employmentStatus = incompleteStatus %}
+      {% endif %}
+
+      {{ govukTaskList({
+        idPrefix: "second-section",
+        items: [
+          {
+            title: {
+              text: "Your job and employer"
+            },
+            href: "../v2/job/employment",
+            status: employmentStatus
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">3. Support from {{ serviceName }}</h2>
+
+      {% if data['answers-checked-specialist-equipment-full'] == 'true' or data['need-specialist-equipment'] == "no" or data['need-specialist-equipment'] == "dont know" and unlockSections3and4 %}
+      {% set specialistEquipmentHref = "../v2/specialist-equipment/check-answers" %}
+      {% set specialistEquipmentStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set specialistEquipmentHref = "../v2/specialist-equipment/need-specialist-equipment" %}
+      {% set specialistEquipmentStatus = incompleteStatus %}
+      {% else %}
+      {% set specialistEquipmentHref = "" %}
+      {% set specialistEquipmentStatus = cannotStartStatus %}
+      {% endif %}
+
+      {% if data['answers-checked-mental-health'] == 'true' or data['mental-health-support'] == "no" or data['mental-health-support'] == "dont know" and unlockSections3and4 %}
+      {% set mentalHealthHref = "../v2/mental-health/mental-health-support" %}
+      {% set mentalHealthStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set mentalHealthHref = "../v2/mental-health/mental-health-support" %}
+      {% set mentalHealthStatus = incompleteStatus %}
+      {% else %}
+      {% set mentalHealthHref = "" %}
+      {% set mentalHealthStatus = cannotStartStatus %}
+      {% endif %}
+
+      {% if data['answers-checked-travel-in-work'] == 'true' or data['travel-in-work'] == "no" or data['travel-in-work'] == "dont know" and unlockSections3and4 %}
+      {% set travelInWorkHref = "../v2/travel-in-work/need-travel-during-work" %}
+      {% set travelInWorkStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set travelInWorkHref = "../v2/travel-in-work/need-travel-during-work" %}
+      {% set travelInWorkStatus = incompleteStatus %}
+      {% else %}
+      {% set travelInWorkHref = "" %}
+      {% set travelInWorkStatus = cannotStartStatus %}
+      {% endif %}
+
+      {% if data['answers-checked-workplace-changes'] == 'true' or data['changes-to-work'] == "no" or data['changes-to-work'] == "dont know" and unlockSections3and4 %}
+      {% set workplaceChangesHref = "../v2/workplace-changes/need-work-changes" %}
+      {% set workplaceChangesStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set workplaceChangesHref = "../v2/workplace-changes/need-work-changes" %}
+      {% set workplaceChangesStatus = incompleteStatus %}
+      {% else %}
+      {% set workplaceChangesHref = "" %}
+      {% set workplaceChangesStatus = cannotStartStatus %}
+      {% endif %}
+
+      {% if data['answers-checked-vehicle-changes'] == 'true' or data['vehicle-changes'] == "no" or data['vehicle-changes'] == "dont know" and unlockSections3and4 %}
+      {% set vehicleChangesHref = "../v2/vehicle-changes/need-change-to-vehicle" %}
+      {% set vehicleChangesStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set vehicleChangesHref = "../v2/vehicle-changes/need-change-to-vehicle" %}
+      {% set vehicleChangesStatus = incompleteStatus %}
+      {% else %}
+      {% set vehicleChangesHref = "" %}
+      {% set vehicleChangesStatus = cannotStartStatus %}
+      {% endif %}
+
+      {% if data['answers-checked-support-worker'] == 'true' or data['need-support-worker'] == "No" or data['need-support-worker'] == "I do not know" and unlockSections3and4 %}
+      {% set supportWorkerHref = "../v2/support-worker/another-support-worker" %}
+      {% set supportWorkerStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set supportWorkerHref = "../v2/support-worker/need-support-worker" %}
+      {% set supportWorkerStatus = incompleteStatus %}
+      {% else %}
+      {% set supportWorkerHref = "" %}
+      {% set supportWorkerStatus = cannotStartStatus %}
+      {% endif %}
+
+      {% if data['answers-checked-travel-to-work'] == 'true' or data['difficulty-driving'] == "No" and unlockSections3and4 %}
+      {% set travelToWorkHref = "../v2/travel-to-work/check-answers-work-travel" %}
+      {% set travelToWorkStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set travelToWorkHref = "../v2/travel-to-work/difficulty-driving" %}
+      {% set travelToWorkStatus = incompleteStatus %}
+      {% else %}
+      {% set travelToWorkHref = "" %}
+      {% set travelToWorkStatus = cannotStartStatus %}
+      {% endif %}
+      
+      {{ govukTaskList({
+        idPrefix: "third-section",
+        items: [
+          {
+            title: {
+              text: "Specialist equipment"
+            },
+            href: specialistEquipmentHref,
+            status: specialistEquipmentStatus
+          },
+          {
+            title: {
+              text: "Mental health support"
+            },
+            href: mentalHealthHref,
+            status: mentalHealthStatus
+          },
+          {
+            title: {
+              text: "Support workers"
+            },
+            href: supportWorkerHref,
+            status: supportWorkerStatus
+          },
+          {
+            title: {
+              text: "Travelling to and from work"
+            },
+            href: travelToWorkHref,
+            status: travelToWorkStatus
+          },
+          {
+            title: {
+              text: "Travelling during work"
+            },
+            href: travelInWorkHref,
+            status: travelInWorkStatus
+          },
+          {
+            title: {
+              text: "Changes to your workplace"
+            },
+            href: workplaceChangesHref,
+            status: workplaceChangesStatus
+          },
+          {
+            title: {
+              text: "Adaptations to a vehicle"
+            },
+            href: vehicleChangesHref,
+            status: vehicleChangesStatus
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">4. Additional information</h2>
+
+      {% if data['answers-checked-other-information'] == 'true' or data['anything-else'] == 'No' and unlockSections3and4 %}
+      {% set otherInformationHref = "../v2/other-information/anything-else" %}
+      {% set otherInformationStatus = completedStatus %}
+      {% elif unlockSections3and4 %}
+      {% set otherInformationHref = "../v2/other-information/anything-else" %}
+      {% set otherInformationStatus = incompleteStatus %}
+      {% else %}
+      {% set otherInformationHref = "" %}
+      {% set otherInformationStatus = cannotStartStatus %}
+      {% endif %}
+
+      {{ govukTaskList({
+        idPrefix: "fourth-section",
+        items: [
+          {
+            title: {
+              text: "Anything else you want to add"
+            },
+            href: otherInformationHref,
+            status: otherInformationStatus
+          }
+        ]
+      }) }}
+
+      <form action="application-summary" method="post" novalidate>
+
+        <input type="hidden" name="access-to-work-answers-checked" value="true">
+
+      {% if totalTasks == "12" %}
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+        {% endif %}
+
+        </form>
+    </div>
+
+    {% include "apply/v2/includes/get-help" %}
+ 
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v2/includes/footer" %}
+{% endblock %}
+

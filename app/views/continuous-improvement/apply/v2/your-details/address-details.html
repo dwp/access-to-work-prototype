@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Enter an address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        What is your address?
+      </h1>
+
+      <form action="../your-details/check-answers-your-details" method="post" novalidate>
+
+      {{ govukInput({
+        label: {
+          text: "Address line 1"
+        },
+        name: "address-line-1-apply",
+        autocomplete: "address-line1"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Address line 2 (optional)"
+        },
+        name: "address-line-2-apply",
+        autocomplete: "address-line2"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Town or city"
+        },
+        classes: "govuk-!-width-two-thirds",
+        name: "address-town-apply",
+        autocomplete: "address-level2"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "County (optional)"
+        },
+        classes: "govuk-!-width-two-thirds",
+        name: "address-county-apply"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Postcode"
+        },
+        classes: "govuk-input--width-10",
+        name: "address-postcode-apply",
+        autocomplete: "postal-code"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+          
+    </form>
+
+    <p class="govuk-body">
+      <a href="../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

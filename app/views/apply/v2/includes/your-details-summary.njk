@@ -1,0 +1,30 @@
+<h2 class="govuk-heading-m">Your details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Full name"
+          },
+          value: {
+            text: data['first-name-apply'] + ' ' + data['last-name-apply']
+          }
+        },
+        {
+          key: {
+            text: "Date of birth"
+          },
+          value: {
+            text: data['dob-day'] + '/' + data['dob-month'] + '/' + data['dob-year']
+          }
+        },
+        {
+          key: {
+            text: "Address"
+          },
+          value: {
+            text: data['address-select'] + ' ' + data['postcode-apply']
+          }
+        }
+      ]
+    }) }}

@@ -1,0 +1,336 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers employed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers: job at {{data['company-name']}}</h1>
+
+    <h2 class="govuk-heading-m">Employment details</h2>
+
+    {% set summaryRows = [] %}
+ 
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Employment status"
+        },
+        value: {
+          text: data['job-status']
+        },
+        actions: {
+          items: [
+            {
+              href: "../../employment-status#job-status",
+              text: "Change",
+              visuallyHiddenText: "employment status"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Company or organisation name"
+        },
+        value: {
+          text: data['company-name']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/company#company-name",
+              text: "Change",
+              visuallyHiddenText: "company name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Job title"
+        },
+        value: {
+          text: data['job-title']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/job-title#job-title",
+              text: "Change",
+              visuallyHiddenText: "job title"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Job description"
+        },
+        value: {
+          text: data['job-description']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/job-description#job-description",
+              text: "Change",
+              visuallyHiddenText: "job description"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "When did you start working at" + ' ' + data['company-name'] + "?"
+        },
+        value: {
+          text: data['start-date-day'] + '/' + data['start-date-month'] + '/' + data['start-date-year']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/start-date#start-date#start-date",
+              text: "Change",
+              visuallyHiddenText: "start date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "How many hours do you work per week?"
+        },
+        value: {
+          text: data['work-hours']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/work-hours#work-hours",
+              text: "Change",
+              visuallyHiddenText: "work hours"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Which days of the week do you work?"
+        },
+        value: {
+          text: data['work-days']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/work-days#work-days",
+              text: "Change",
+              visuallyHiddenText: "work days"
+            }
+          ]
+        }
+      }
+    ]) %}
+
+
+
+    
+    {% if data['job-address-select'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: data['job-address-select'] + ',' + ' ' + data['postcode-job-address']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-address#postcode-job-address",
+                text: "Change",
+                visuallyHiddenText: "employment address"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    
+    {% if data['showAddressRowEmployedStartedWork'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: "I do not know my workplace address"
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-address#postcode-job-address-started-job",
+                text: "Change",
+                visuallyHiddenText: "employment address"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Are you a hybrid worker?"
+        },
+        value: {
+          text: data['hybrid-worker']
+        },
+        actions: {
+          items: [
+            {
+              href: "../employed/hybrid-worker#hybrid-worker",
+              text: "Change",
+              visuallyHiddenText: "hybrid worker"
+            }
+          ]
+        }
+      }
+      ]) %}
+
+
+
+{{ govukSummaryList({ rows: summaryRows }) }}
+
+    <h2 class="govuk-heading-m">Workplace contact</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Their name"
+          },
+          value: {
+            text: data['job-contact-full-name']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-full-name",
+                text: "Change",
+                visuallyHiddenText: "workplace contact full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Their job title"
+          },
+          value: {
+            text: data['job-contact-job-title']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-job-title",
+                text: "Change",
+                visuallyHiddenText: "workplace contact job title"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Their email address"
+          },
+          value: {
+            text: data['job-contact-email-address']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-email-address",
+                text: "Change",
+                visuallyHiddenText: "workplace contact email address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Their phone number"
+          },
+          value: {
+            text: data['job-contact-telephone-number']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/job-contact#job-contact-telephone-number",
+                text: "Change",
+                visuallyHiddenText: "workplace contact phone number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Do you give your permission for us to contact" + ' ' + data['job-contact-full-name'] + "?"
+          },
+          value: {
+            text: data['contact-permission']
+          },
+          actions: {
+            items: [
+              {
+                href: "../employed/contact-permission#contact-permission",
+                text: "Change",
+                visuallyHiddenText: "workplace contact permission"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <form action="{{versionPath}}/add-job-started-employed" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-employed-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

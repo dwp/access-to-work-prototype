@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How will specialist equipment support you? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../specialist-equipment/workplace-assessment" method="post">
+
+      <h1 class="govuk-heading-l">
+        Specialist equipment at work
+      </h1>
+
+      <p class="govuk-body">
+        <ul class="govuk-list govuk-list--bullet">
+          <li> {{ data['specialist-equipment-type'] }}</li>
+        </ul>
+      </p>
+
+      {{ govukCharacterCount({
+        name: "specialist-equipment-help",
+        id: "specialist-equipment-help",
+        maxlength: 500,
+        rows: "10",
+        label: {
+          text: "How will this equipment help you at work?",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "For example, 'I need an ergonomic keyboard because I have limited movement and find using a regular keyboard slow and difficult.'"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

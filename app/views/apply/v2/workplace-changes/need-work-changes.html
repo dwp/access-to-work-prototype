@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Workplace changes – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/workplace-changes-answer" method="post">
+
+      <h1 class="govuk-heading-l">
+        Changes to your workplace
+      </h1>
+
+      <p class="govuk-body">Access to Work can help to pay for things like:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>ramps for wheelchairs to navigate a workplace</li>
+          <li>disabled toilets</li>
+          <li>an audio-visual fire alarm</li>
+        </ul>
+
+        
+      {{ govukInsetText({
+        html: "You should talk to your employer about <a href=\"#\">reasonable adjustments (opens in new tab)</a> before claiming for changes to your workplace using Access to Work."
+      }) }}
+                                    
+          
+      {{ govukRadios({
+        name: "changes-to-work",
+        fieldset: {
+          legend: {
+            text: "Does your condition mean that you would benefit from physical changes at your workplace?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "dont know",
+            text: "I don't know"
+          }
+        ]
+      }) }}
+
+      <input type="hidden" name="answers-checked-workplace-changes" value="true">
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

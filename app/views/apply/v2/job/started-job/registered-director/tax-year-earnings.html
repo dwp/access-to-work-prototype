@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You may need to provide earnings for the tax year – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">You may need to give earnings for the last tax year</h1>
+
+      <p class="govuk-body">We will tell you if we need this information when we contact you about your application.</p>
+
+      <p class="govuk-body">This is so that we can understand more about your self-employment.</p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "../registered-director/utr"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

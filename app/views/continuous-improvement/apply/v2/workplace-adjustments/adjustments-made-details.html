@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your conditions and disabilities – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% set companyName  = 'your employer' %}
+  
+{% if data['company-name'] %}
+  {% set companyName = data['company-name'] %}
+{% endif %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/workplace-adjustments/oha-done-choice" method="post">
+
+      <h1 class="govuk-heading-l">
+        Adjustments made by {{companyName}}
+      </h1>
+
+
+      <p class="govuk-body">Include details about:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>any equipment your employer has provided</li>
+        <li>changes to your working conditions</li>
+        <li>any adjustments to working hours</li>
+      </ul>
+
+      {{ govukCharacterCount({
+        name: "adjustments-details",
+        maxlength: 1000,
+        label: {
+          text: "What adjustments has " + companyName + " made?",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        }
+
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

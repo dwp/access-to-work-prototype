@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Which telephone number to contact you? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../contact/email-address" method="post">
+
+      <h1 class="govuk-heading-l">
+        What telephone number should we use to contact you?
+      </h1>
+
+      <p class="govuk-body">We will contact you about your application by telephone calls and text messages.</p>
+
+      <p class="govuk-body">
+        <a href="../contact/email-address-reasonable-adjustment" class="govuk-link">I find it difficult to hear or speak on the telephone</a>
+      </p>
+
+      {{ govukInput({
+        "label": {
+          "text": "Telephone number"
+        },
+        "name": "telephone-number",
+        "classes": "govuk-!-width-two-thirds",
+        "type": "tel"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

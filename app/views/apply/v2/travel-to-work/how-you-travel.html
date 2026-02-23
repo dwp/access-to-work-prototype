@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How you travel – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/travel-options" method="post">
+
+        {{ govukCheckboxes({
+          name: "travel-options",
+          fieldset: {
+            legend: {
+              text: "How do you get to and from work now?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+            {
+              value: "Public transport",
+              text: "Public transport"
+            },
+            {
+              value: "Drive or lift in a car",
+              text: "Drive or lift in a car"
+            },
+            {
+              value: "Walking or cycling",
+              text: "Walking or cycling"
+            },
+            {
+              value: "Taxi",
+              text: "Taxi"
+            },
+            {
+              value: "I work from home",
+              text: "I work from home"
+            },
+            {
+              value: "Other",
+              text: "Other"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "I have not started work yet",
+              text: "I have not started work yet",
+              behaviour: "exclusive"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include "apply/v1/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}

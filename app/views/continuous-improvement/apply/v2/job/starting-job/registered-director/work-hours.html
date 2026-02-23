@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How many hours will you work? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../registered-director/days-will-work" method="post">
+
+        <h1 class="govuk-heading-l">How many hours do you think you will work per week?</h1>
+
+      <p class="govuk-body">If your hours can be different each week, give an estimate of the number of hours you think you will work on average.</p>
+
+        {{ govukInput({
+          label: {
+            text: ""
+          },
+          classes: "govuk-input--width-3",
+          name: "work-hours-registered-director-starting-job",
+          suffix: {
+            text: "hours per week"
+          },
+          spellcheck: false
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

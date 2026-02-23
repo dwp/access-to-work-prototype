@@ -1,0 +1,278 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers work travel – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "apply/v1/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include "apply/v1/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+
+      <h2 class="govuk-heading-m">Travelling to and from work</h2>
+
+      {% set summaryRows = [] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Does your condition mean that it is difficult for you to drive or get public transport to work?"
+          },
+          value: {
+            text: data['difficulty-driving']
+          },
+          actions: {
+            items: [
+              {
+                href: "../travel-to-work/difficulty-driving#difficulty-driving",
+                text: "Change",
+                visuallyHiddenText: "difficult to drive"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "How do you get to and from work now?"
+          },
+          value: {
+            text: data['travel-options']
+          },
+          actions: {
+            items: [
+              {
+                href: "../travel-to-work/how-you-travel#travel-options",
+                text: "Change",
+                visuallyHiddenText: "how you travel"
+              }
+            ]
+          }
+        }
+        ]) %}
+
+        {% if data['public-transport'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Do you spend more than 2 hours on public transport on your journey to work, or back from work?"
+            },
+            value: {
+              text: data['public-transport']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../travel-to-work/public-transport#public-transport",
+                  text: "Change",
+                  visuallyHiddenText: "public transport"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "What type of support do you need to travel to work?"
+          },
+          value: {
+            text: data['need-travel-support']
+          },
+          actions: {
+            items: [
+              {
+                href: "../travel-to-work/need-travel-support#need-travel-support",
+                text: "Change",
+                visuallyHiddenText: "support type"
+              }
+            ]
+          }
+        }
+      ]) %}
+
+      {% if data['multiple-jobs'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Which job do you need this travel to work support for?"
+          },
+          value: {
+            text: data['multiple-jobs']
+          },
+          actions: {
+            items: [
+              {
+                href: "../travel-to-work/multiple-jobs#multiple-jobs",
+                text: "Change",
+                visuallyHiddenText: "which job"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+        
+      {% if data['taxi-help'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How will support to travel to work meet your needs?"
+            },
+            value: {
+              text: data['taxi-help']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../travel-to-work/taxi-help#taxi-help",
+                  text: "Change",
+                  visuallyHiddenText: "how will support meet your needs?"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {% if data['lift-to-work-help'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "How will support to travel to work meet your needs?"
+            },
+            value: {
+              text: data['lift-to-work-help']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../travel-to-work/lift-to-work-help#lift-to-work-help",
+                  text: "Change",
+                  visuallyHiddenText: "how will support meet your needs?"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {% if data['other-transport-help'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "What support do you need to travel to work?"
+            },
+            value: {
+              text: data['support-needed-travel']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../travel-to-work/other-transport-help#support-needed-travel",
+                  text: "Change",
+                  visuallyHiddenText: "what support do you need?"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "How will support to travel to work meet your needs?"
+            },
+            value: {
+              text: data['other-transport-help']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../travel-to-work/other-transport-help#other-transport-help",
+                  text: "Change",
+                  visuallyHiddenText: "how will support meet your needs?"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How many journeys will you need support for in a week?"
+          },
+          value: {
+            text: data['how-many-journeys']
+          },
+          actions: {
+            items: [
+              {
+                href: "../travel-to-work/how-many-journeys#how-many-journeys",
+                text: "Change",
+                visuallyHiddenText: "how many journeys"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Will your journeys to and from work be between your home and work addresses?"
+          },
+          value: {
+            text: data['journey-addresses']
+          },
+          actions: {
+            items: [
+              {
+                href: "../travel-to-work/journey-addresses#journey-addresses",
+                text: "Change",
+                visuallyHiddenText: "Journeys to and from work"
+              }
+            ]
+          }
+        }
+      ]) %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}
+
+
+
+      <form action="../task-list" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked-travel-to-work" value="true">
+
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+
+    </div>
+  
+
+
+   {% include "apply/v1/includes/get-help" %}
+      </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "apply/v1/includes/footer" %}
+{% endblock %}
