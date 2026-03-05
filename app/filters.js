@@ -11,10 +11,7 @@ const moment = require('moment')
 addFilter('formatDate', function(dateString){
 
 	return moment(dateString).format("D MMMM YYYY")
-})
-
-
-
+})   
 
 addFilter('uniqueTypes', function (arr) {
   if (!Array.isArray(arr)) return arr;
@@ -32,4 +29,3 @@ addFilter('uniqueTypes', function (arr) {
     return true;
   });
 });
-
