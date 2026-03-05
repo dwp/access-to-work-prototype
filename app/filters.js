@@ -29,3 +29,21 @@ addFilter('uniqueTypes', function (arr) {
     return true;
   });
 });
+
+
+addFilter('uniqueDocumentTypes', function (arr) {
+  if (!Array.isArray(arr)) return arr;
+
+  const seen = new Set();
+
+  return arr.filter(item => {
+    if (!item || !item.type) return false;
+
+    if (seen.has(item.type)) {
+      return false;
+    }
+
+    seen.add(item.type);
+    return true;
+  });
+});
