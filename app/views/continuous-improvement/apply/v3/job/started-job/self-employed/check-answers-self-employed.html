@@ -1,0 +1,261 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers self employed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers: {{data['job-title-self-employed']}}</h1>
+
+    <h2 class="govuk-heading-m">Employment details</h2>
+
+
+    {% set summaryRows = [] %}
+ 
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: { text: "Employment status" },
+          value: { text: data['job-status'] },
+          actions: {
+            items: [
+              {
+                href: "../../employment-status#job-status",
+                text: "Change",
+                visuallyHiddenText: "employment status"
+              }
+            ]
+          }
+        },
+        {
+          key: { text: "Job title" },
+          value: { text: data['job-title-self-employed'] },
+          actions: {
+            items: [
+              {
+                href: "../self-employed/job-title#job-title-self-employed",
+                text: "Change",
+                visuallyHiddenText: "job title"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Job description"
+          },
+          value: {
+            text: data['job-description-self-employed']
+          },
+          actions: {
+            items: [
+              {
+                href: "../self-employed/job-description#job-description-self-employed",
+                text: "Change",
+                visuallyHiddenText: "job description"
+              }
+            ]
+          }
+        }
+      ]) %}
+
+      
+      {% if data['have-utr'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Do you have a Unique Taxpayer Reference (UTR)?"
+            },
+            value: {
+              text: data['have-utr']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../self-employed/new-have-utr#have-utr",
+                  text: "Change",
+                  visuallyHiddenText: "have unique taxpayer reference"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+      
+      
+      {% if data['have-utr'] == "Yes" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
+            value: { text: data['utr-new'] },
+            actions: {
+              items: [
+                {
+                  href: "../self-employed/utr#utr",
+                  text: "Change",
+                  visuallyHiddenText: "unique taxpayer reference"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      
+      {% if data['utr'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
+            value: { text: data['utr'] },
+            actions: {
+              items: [
+                {
+                  href: "../self-employed/utr#utr",
+                  text: "Change",
+                  visuallyHiddenText: "unique taxpayer reference"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "When did you start this job?"
+          },
+          value: {
+            text: data['self-employed-start-date-day'] + '/' + data['self-employed-start-date-month'] + '/' + data['self-employed-start-date-year']
+          },
+          actions: {
+            items: [
+              {
+                href: "../self-employed/start-date#start-date#self-employed-start-date-day",
+                text: "Change",
+                visuallyHiddenText: "start date"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "How many hours do you work per week?"
+          },
+          value: {
+            text: data['work-hours-self-employed']
+          },
+          actions: {
+            items: [
+              {
+                href: "../self-employed/work-hours#work-hours-self-employed",
+                text: "Change",
+                visuallyHiddenText: "work hours"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Which days of the week do you work?"
+          },
+          value: {
+            text: data['work-days-self-employed']
+          },
+          actions: {
+            items: [
+              {
+                href: "../self-employed/work-days#work-days-self-employed",
+                text: "Change",
+                visuallyHiddenText: "work days"
+              }
+            ]
+          }
+        }
+      ]) %}
+
+      
+      {% if data['job-address-select-self-employed'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: data['job-address-select-self-employed'] + ',' + ' ' + data['postcode-job-address-self-employed']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../self-employed/job-address#postcode-job-address-self-employed",
+                  text: "Change",
+                  visuallyHiddenText: "employment address"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+  
+      
+      {% if data['showAddressRowSelfEmployedStartedWork'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: "I do not know my workplace address"
+            },
+            actions: {
+              items: [
+                {
+                  href: "../self-employed/job-address#postcode-job-address-self-employed",
+                  text: "Change",
+                  visuallyHiddenText: "employment address"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+ 
+{{ govukSummaryList({ rows: summaryRows }) }}
+
+    <form action="{{versionPath}}/add-job-started-self-employed" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-self-employed-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

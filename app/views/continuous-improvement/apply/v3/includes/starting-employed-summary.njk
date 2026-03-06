@@ -1,0 +1,166 @@
+ <h2 class="govuk-heading-m">Employment details</h2>
+
+    {% set summaryRows = [] %}
+ 
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Employment status"
+        },
+        value: {
+          text: data['job-status-starting-job']
+        }
+      },
+      {
+        key: {
+          text: "Company or organisation name"
+        },
+        value: {
+          text: data['company-name-starting-job']
+        }
+      },
+      {
+        key: {
+          text: "Job title"
+        },
+        value: {
+          text: data['job-title-starting-job']
+        }
+      },
+      {
+        key: {
+          text: "Job description"
+        },
+        value: {
+          text: data['job-description-starting-job']
+        }
+      },
+      {
+        key: {
+          text: "When will you be starting your new job at" + ' ' + data['company-name-starting-job'] + "?"
+        },
+        value: {
+          text: data['start-date-starting-job-day'] + '/' + data['start-date-starting-job-month'] + '/' + data['start-date-starting-job-year']
+        }
+      },
+      {
+        key: {
+          text: "How many hours will you work per week?"
+        },
+        value: {
+          text: data['work-hours-starting-job']
+        }
+      },
+      {
+        key: {
+          text: "Do you know which days of the week you will be working for" + ' ' + data['company-name-starting-job'] + "?"
+        },
+        value: {
+          text: data['days-will-work']
+        }
+      }
+    ]) %}
+
+    
+    {% if data['days-will-work'] == "Yes" %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Which days of the week will you work at" + ' ' + data['company-name-starting-job'] + "?"
+          },
+          value: {
+            text: data['work-days-starting-job']
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Will you be a hybrid worker?"
+        },
+        value: {
+          text: data['hybrid-worker-starting-job']
+        }
+      }
+      ]) %}
+
+    
+    {% if data['job-address-select-starting-job'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: data['job-address-select-starting-job'] + ',' + ' ' + data['postcode-job-address-starting-job']
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    
+    {% if data['showAddressRowEmployed'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: "I do not know my workplace address"
+          }
+        }
+      ]) %}
+    {% endif %}
+
+
+
+{{ govukSummaryList({ rows: summaryRows }) }}
+
+    <h2 class="govuk-heading-m">Workplace contact</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Their name"
+          },
+          value: {
+            text: data['job-contact-full-name-starting-job']
+          }
+        },
+        {
+          key: {
+            text: "Their job title"
+          },
+          value: {
+            text: data['job-contact-job-title-starting-job']
+          }
+        },
+        {
+          key: {
+            text: "Their email address"
+          },
+          value: {
+            text: data['job-contact-email-address-starting-job']
+          }
+        },
+        {
+          key: {
+            text: "Their phone number"
+          },
+          value: {
+            text: data['job-contact-telephone-number-starting-job']
+          }
+        },
+        {
+          key: {
+            text: "Do you give your permission for us to contact" + ' ' + data['job-contact-full-name-starting-job'] + "?"
+          },
+          value: {
+            text: data['contact-permission-starting-job']
+          }
+        }
+      ]
+    }) }}

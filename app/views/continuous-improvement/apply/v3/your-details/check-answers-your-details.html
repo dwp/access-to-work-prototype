@@ -1,0 +1,122 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers</h1>
+
+    <h2 class="govuk-heading-m">Your details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Full name"
+          },
+          value: {
+            text: data['first-name-apply'] + ' ' + data['last-name-apply']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/full-name#first-name-apply",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "National Insurance number"
+          },
+          value: {
+            text: data['national-insurance-number']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/national-insurance-number",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Date of birth"
+          },
+          value: {
+            text: data['dob-day'] + '/' + data['dob-month'] + '/' + data['dob-year']
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/date-of-birth#dob-day",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Address"
+          },
+          value: {
+            text: (data['address-select'] + '<br>' + data['postcode-apply']) | safe
+          },
+          actions: {
+            items: [
+              {
+                href: "../your-details/address#postcode-apply",
+                text: "Change",
+                visuallyHiddenText: "address"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <form action="{{versionPath}}/your-details/check-answers-post" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-your-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and send"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

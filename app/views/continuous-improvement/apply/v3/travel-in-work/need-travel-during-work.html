@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Travel during work – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/travel-in-work/check-answers-post" method="post">
+
+      <h1 class="govuk-heading-l">
+        Support to travel during work
+      </h1>
+
+      <p class="govuk-body">Access to Work can help to pay for things like taxis and hire cars if you cannot drive or get public transport to other places during your working day.</p>
+
+      {{ govukInsetText({
+        text: "For example, you are a social worker and you have to visit different homes during the working day."
+      }) }}
+
+
+      {{ govukRadios({
+        name: "travel-in-work",
+        fieldset: {
+          legend: {
+            text: "Does your condition mean that you need support to travel to other places during your working day?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "dont know",
+            text: "I don't know"
+          }
+        ]
+      }) }}
+
+      <input type="hidden" name="answers-checked-travel-in-work" value="true">
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}
