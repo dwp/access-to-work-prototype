@@ -77,11 +77,10 @@
   <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Date scanned</th>
-
-      <th scope="col" class="govuk-table__header">Number of documents</th>
-
+      <th scope="col" class="govuk-table__header">Envelope</th>
+      
       <th scope="col" class="govuk-table__header">Document types</th>
+      <th scope="col" class="govuk-table__header">Date scanned</th>
 
       <th class="govuk-table__header"></th>
     </tr>
@@ -89,43 +88,13 @@
   <tbody class="govuk-table__body">
     {% for envelope in case.envelopes  %}
     <tr class="govuk-table__row">
-      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-unallocated?id={{case.id}}&envelope={{loop.index0}}">{{envelope.dateScanned | formatDate }}</a></td>
-      <td class="govuk-table__cell">{{envelope.documents.length}} documents</td>
-      <td class="govuk-table__cell">
-      
+      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-allocated?id={{case.id}}&envelope={{loop.index0}}">view envelope</a> <br>{{envelope.envelopeRef}}</td><td class="govuk-table__cell">
+        <strong>{{envelope.documents.length}} documents</strong> <br>
         {% for type in envelope.documentTypes %}
           {{type}} <br>
         {% endfor %}
       </td>
- 
-      
-
-    </tr>
-    {% endfor %}
-
-  </tbody>
-</table>
-
-{% if case.allocatedDocuments.length > 0 %}
-
-<table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Allocated documents</caption>
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Allocated to</th>
-      
-      <th scope="col" class="govuk-table__header">Total documents</th>
-      <th scope="col" class="govuk-table__header">Oldest docuemnt</th>
-
-      <th class="govuk-table__header"></th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% for item in case.allocatedDocuments  %}
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell">{{item.allocatedTo}}</td>
-      <td class="govuk-table__cell">{{item.total }}</td>
-      <td class="govuk-table__cell">{{item.oldestDocument | formatDate }}</td>
+      <td class="govuk-table__cell">{{envelope.dateScanned | formatDate }}</td>
       
 
     </tr>
@@ -135,18 +104,6 @@
 </table>
 
 
-{% else %}
-<h2 class="govuk-heading-m">Allocated documents</h2>
-<p>No Documents allocated</p>
-
-{% endif %}
-<!--
-<h3 class="govuk-heading-m">DRS envelope ID</h3>
-
-<p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
-
-<p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: 1730476832300</p>
--->
 <p class="govuk-body"><a href="{{versionPath}}/unallocated/unallocated-documents" class="govuk-link">Back to all unallocated documents</a></p>
 
 
@@ -156,15 +113,11 @@
 <div class="govuk-grid-column-one-third">
 
 
-
 {{ govukSelect({
-  id: "allocate-document",
-  name: "allocate-document",
+  id: "update-status",
+  name: "update-status",
   label: {
-    html: '<h2 class="govuk-heading-m">Who do you want to allocate these to?</h2>'
-  },
-   hint: {
-    text: "Leave blank to unallocate it"
+    html: '<h2 class="govuk-heading-m">Update status</h2>'
   },
   items: [
    {
@@ -173,34 +126,27 @@
       selected: true
     },
     {
-      value: "name-1",
-      text: "John Doe"
+      value: "not started",
+      text: "Not started"
     },
     {
-      value: "name-2",
-      text: "Susan Quantas"
+      value: "in progress",
+      text: "In progress"
     },
     {
-      value: "name-3",
-      text: "Savannah Eastwood"
-    },
-    {
-      value: "name-4",
-      text: "David Connolly"
-    },
-    {
-      value: "name-5",
-      text: "Sophia Wanless"
+      value: "completed",
+      text: "Completed"
     }
   ]
 }) }}
+
+<form action="end-date" method="post" novalidate>
+
 {{ govukButton({
-  text: "Allocate all envelopes",
-  href: ""
+  text: "Update"
 }) }}
 
-
-
+</form>
      
   </div>
     

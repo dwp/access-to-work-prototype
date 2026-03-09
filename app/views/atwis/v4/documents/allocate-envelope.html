@@ -66,42 +66,109 @@
 {% endblock %}
 
 {% block content %}
-
+<p class="govuk-body"><a href="{{versionPath}}/unallocated/unallocated-documents" class="govuk-link">Back to all unallocated documents</a></p>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
 
 
-
+<form action="allocate-envlope-post" method="post"> 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m">Allocate envelopes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Envelope</th>
-      
+      <th scope="col" class="govuk-table__header">
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="documents-all" name="documents" type="checkbox" value="{{loop.index}}">
+            <label class="govuk-label govuk-checkboxes__label" for="documents-all">
+              <strong>Select all documents</strong>
+            </label>
+          </div>
+        </div>
+      </th>
       <th scope="col" class="govuk-table__header">Document types</th>
       <th scope="col" class="govuk-table__header">Date scanned</th>
-
-      <th class="govuk-table__header"></th>
     </tr>
   </thead>
   <tbody class="govuk-table__body">
     {% for envelope in case.envelopes  %}
     <tr class="govuk-table__row">
-      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-unallocated?id={{case.id}}&envelope={{loop.index0}}">view envelope</a> <br>{{envelope.envelopeRef}}</td><td class="govuk-table__cell">
+      <td scope="row" class="govuk-table__cell">
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="documents-{{loop.index}}" name="documents" type="checkbox" value="{{loop.index}}">
+
+            <label class="govuk-label govuk-checkboxes__label" for="documents-{{loop.index}}">
+              {{envelope.envelopeRef}}
+            </label>
+          </div>
+          </div>
+       </td>
+       <td class="govuk-table__cell">
         <strong>{{envelope.documents.length}} documents</strong> <br>
         {% for type in envelope.documentTypes %}
           {{type}} <br>
         {% endfor %}
       </td>
       <td class="govuk-table__cell">{{envelope.dateScanned | formatDate }}</td>
-      
-
     </tr>
     {% endfor %}
 
   </tbody>
 </table>
+</form>
+
+</div>
+<div class="govuk-grid-column-one-third">
+
+{{ govukSelect({
+  id: "allocate-document",
+  name: "allocate-document",
+  label: {
+    html: '<h2 class="govuk-heading-m">Who do you want to allocate these to?</h2>'
+  },
+   hint: {
+    text: "Leave blank to unallocate it"
+  },
+  items: [
+   {
+      value: "blank",
+      text: "",
+      selected: true
+    },
+    {
+      value: "name-1",
+      text: "John Doe"
+    },
+    {
+      value: "name-2",
+      text: "Susan Quantas"
+    },
+    {
+      value: "name-3",
+      text: "Savannah Eastwood"
+    },
+    {
+      value: "name-4",
+      text: "David Connolly"
+    },
+    {
+      value: "name-5",
+      text: "Sophia Wanless"
+    }
+  ]
+}) }}
+{{ govukButton({
+  text: "Allocate envelopes",
+  href: ""
+}) }}
+
+</div> 
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
 {% if case.allocatedDocuments.length > 0 %}
 
@@ -120,6 +187,7 @@
   <tbody class="govuk-table__body">
     {% for item in case.allocatedDocuments  %}
     <tr class="govuk-table__row">
+
       <td class="govuk-table__cell">{{item.allocatedTo}}</td>
       <td class="govuk-table__cell">{{item.total }}</td>
       <td class="govuk-table__cell">{{item.oldestDocument | formatDate }}</td>
@@ -130,6 +198,7 @@
 
   </tbody>
 </table>
+
 
 
 {% else %}
@@ -154,10 +223,6 @@
 
 
 
-{{ govukButton({
-  text: "Allocate envelopes",
-  href: "user-case-allocate-envelope?id=" + case.id
-}) }}
 
 
 

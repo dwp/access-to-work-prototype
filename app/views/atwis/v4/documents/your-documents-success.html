@@ -105,6 +105,17 @@
 
 <div class="govuk-tabs__panel">
 
+  {% set html %}
+    <p class="govuk-notification-banner__heading">
+      New documents allocated
+    </p>
+  {% endset %}
+  
+  {{ govukNotificationBanner({
+    html: html,
+    type: "success"
+  }) }}
+
     <h2 class="govuk-heading-m">Your documents (1)</h2>
     <form action="{{versionPath}}/documents/request-document-post" method="post">
           {{ govukSelect({

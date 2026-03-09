@@ -66,12 +66,68 @@
 {% endblock %}
 
 {% block content %}
-
+<p class="govuk-body"><a href="{{versionPath}}/documents/your-documents" class="govuk-link">Back to  your documents</a></p>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
 
 
+<form action="allocate-envlope-post" method="post"> 
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Date scanned</th>
+
+      <th scope="col" class="govuk-table__header">Number of documents</th>
+
+      <th scope="col" class="govuk-table__header">Document types</th>
+
+      <th class="govuk-table__header"></th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for envelope in case.envelopes  %}
+    <tr class="govuk-table__row">
+      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-unallocated?id={{case.id}}&envelope={{loop.index0}}">{{envelope.dateScanned | formatDate }}</a></td>
+      <td class="govuk-table__cell">{{envelope.documents.length}} documents</td>
+      <td class="govuk-table__cell">
+      
+        {% for type in envelope.documentTypes %}
+          {{type}} <br>
+        {% endfor %}
+      </td>
+ 
+      
+
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+</form>
+
+</div>
+<div class="govuk-grid-column-one-third">
+
+<form action="self-allocate-post" method="post">
+
+<h2 class="govuk-heading-m">Allocate envelopes</h2>
+  <input type="hidden" name="id" value="{{case.id}}">
+{{ govukButton({
+  text: "Allocate all to me",
+  href: ""
+}) }}
+
+
+</form>
+</div> 
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% if case.allocatedDocuments.length > 0 %}
 
 <table class="govuk-table">
   <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
@@ -106,33 +162,6 @@
   </tbody>
 </table>
 
-{% if case.allocatedDocuments.length > 0 %}
-
-<table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Allocated documents</caption>
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Allocated to</th>
-      
-      <th scope="col" class="govuk-table__header">Total documents</th>
-      <th scope="col" class="govuk-table__header">Oldest docuemnt</th>
-
-      <th class="govuk-table__header"></th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% for item in case.allocatedDocuments  %}
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell">{{item.allocatedTo}}</td>
-      <td class="govuk-table__cell">{{item.total }}</td>
-      <td class="govuk-table__cell">{{item.oldestDocument | formatDate }}</td>
-      
-
-    </tr>
-    {% endfor %}
-
-  </tbody>
-</table>
 
 
 {% else %}
@@ -140,14 +169,8 @@
 <p>No Documents allocated</p>
 
 {% endif %}
-<!--
-<h3 class="govuk-heading-m">DRS envelope ID</h3>
 
-<p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
 
-<p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: 1730476832300</p>
--->
-<p class="govuk-body"><a href="{{versionPath}}/unallocated/unallocated-documents" class="govuk-link">Back to all unallocated documents</a></p>
 
 
 
@@ -157,47 +180,7 @@
 
 
 
-{{ govukSelect({
-  id: "allocate-document",
-  name: "allocate-document",
-  label: {
-    html: '<h2 class="govuk-heading-m">Who do you want to allocate these to?</h2>'
-  },
-   hint: {
-    text: "Leave blank to unallocate it"
-  },
-  items: [
-   {
-      value: "blank",
-      text: "",
-      selected: true
-    },
-    {
-      value: "name-1",
-      text: "John Doe"
-    },
-    {
-      value: "name-2",
-      text: "Susan Quantas"
-    },
-    {
-      value: "name-3",
-      text: "Savannah Eastwood"
-    },
-    {
-      value: "name-4",
-      text: "David Connolly"
-    },
-    {
-      value: "name-5",
-      text: "Sophia Wanless"
-    }
-  ]
-}) }}
-{{ govukButton({
-  text: "Allocate all envelopes",
-  href: ""
-}) }}
+
 
 
 

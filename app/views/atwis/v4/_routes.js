@@ -28,10 +28,9 @@ const TOTAL_DOCS = 15; // or whatever you want
 const SEED = 42;
 const unallocatedDocs = generateUsers(TOTAL_DOCS, SEED);
 
+const yourDocs = generateUsers(5, 1);
 
 
-
-let yourDocsData = require('./data/your-documents.js')
 
 function addOldestDateToAll(items) {
   if (!Array.isArray(items)) return items;
@@ -56,7 +55,7 @@ function addOldestDateToAll(items) {
   return items; // mutated in place
 }
 
-let yourDocs = addOldestDateToAll(yourDocsData).sort((a,b) => a.oldestDocumentDate - b.oldestDocumentDate)
+
 
 router.all(versionPath + '/unallocated/unallocated-documents', function(req, res, next){
     res.locals.cases = unallocatedDocs
@@ -64,26 +63,66 @@ router.all(versionPath + '/unallocated/unallocated-documents', function(req, res
 })
 
 
-
-router.all(versionPath + '/documents/user-case-unallocated', function(req, res, next){
+function asignCaseToView(req, res){
     let caseId = req.query.id;
 
     res.locals.case = unallocatedDocs.find(x => x.id == caseId);
+}
 
 
-    console.log(res.locals.case);
+router.all(versionPath + '/documents/user-case-unallocated', function(req, res, next){
+    asignCaseToView(req, res)
 
     next()
 })
 
 
+router.all(versionPath + '/documents/user-case-self-allocate', function(req, res, next){
+    asignCaseToView(req, res)
+
+    next()
+})
+
+router.post(versionPath + "/documents/self-allocate-post", function(req, res, next){
+    let caseId = req.session.data.id;
+
+    newCase = unallocatedDocs.find(x => x.id == caseId);
+    yourDocs.push(newCase);
+    
+    console.log(caseId)
+
+    res.redirect(versionPath + "/documents/your-documents-success")
+})
+
+router.all(versionPath + '/documents/user-case-unallocated', function(req, res, next){
+   asignCaseToView(req, res)
+
+    next()
+})
+
+router.all(versionPath + '/documents/envelope-unallocated', function(req, res, next){
+   asignCaseToView(req, res)
+
+    next()
+})
+router.all(versionPath + '/documents/user-case-allocated', function(req, res, next){
+   let caseId = req.query.id;
+
+    res.locals.case = yourDocs.find(x => x.id == caseId);
+    next()
+})
+
+
+
+router.all(versionPath + '/documents/user-case-allocated', function(req, res, next){
+   let caseId = req.query.id;
+
+    res.locals.case = yourDocs.find(x => x.id == caseId);
+    next()
+})
+
 router.all(versionPath + '/documents/user-case-allocate-docs', function(req, res, next){
-    let caseId = req.query.id;
-
-    res.locals.case = unallocatedDocs.find(x => x.id == caseId);
-
-
-    console.log(res.locals.case);
+    asignCaseToView(req, res)
 
     next()
 })
@@ -93,13 +132,34 @@ router.all(versionPath + '/documents/envelope-unallocated', function(req, res, n
     let user = unallocatedDocs.find(x => x.id == req.query.id);
     let envelopeIndex = req.query.envelope
 
-    console.log(envelopeIndex)
-    console.log(user.envelope)
 
     res.locals.case = user;
     res.locals.envelope = user.envelopes[envelopeIndex]
 
-    console.log(res.locals.case);
+
+    next()
+})
+
+router.all(versionPath + '/documents/envelope-allocated', function(req, res, next){
+    let user = yourDocs.find(x => x.id == req.query.id);
+    let envelopeIndex = req.query.envelope
+
+
+    res.locals.case = user;
+    res.locals.envelope = user.envelopes[envelopeIndex]
+
+    next()
+})
+
+
+router.all(versionPath + '/documents/allocate-envelope', function(req, res, next){
+    let user = unallocatedDocs.find(x => x.id == req.query.id);
+    let envelopeIndex = req.query.envelope
+
+
+    res.locals.case = user;
+    res.locals.envelope = user.envelopes[envelopeIndex]
+
 
     next()
 })
@@ -119,10 +179,19 @@ router.all(versionPath + '/documents/multiple-documents-allocated', function(req
 
 router.all(versionPath + '/documents/your-documents', function(req, res, next){
     
-    res.locals.documents = yourDocs
+    res.locals.cases = yourDocs
 
 
-    console.log(res.locals.documents);
+
+    next()
+})
+
+
+router.all(versionPath + '/documents/your-documents-success', function(req, res, next){
+    
+    res.locals.cases = yourDocs
+
+
 
     next()
 })
@@ -142,11 +211,11 @@ router.all(versionPath + '/documents/document', function(req, res, next){
 
 
 router.post(versionPath + '/documents/request-document-post', function(req, res){
-    let docId = unallocatedDocsData.sort((a,b) => a.oldestDocumentDate - b.oldestDocumentDate)[0].id;
+    let caseId = unallocatedDocs[0].id;
 
 
 
-    res.redirect(versionPath + '/documents/user-case-unallocated?id=' + docId)
+    res.redirect(versionPath + '/documents/user-case-self-allocate?id=' + caseId)
 })
 
 router.post(versionPath + '/referral-type-answer', function(request, response) {
