@@ -130,30 +130,23 @@
 {% if case.allocatedDocuments.length > 0 %}
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m">Allocated documents</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Date scanned</th>
-
-      <th scope="col" class="govuk-table__header">Number of documents</th>
-
-      <th scope="col" class="govuk-table__header">Document types</th>
+      <th scope="col" class="govuk-table__header">Allocated to</th>
+      
+      <th scope="col" class="govuk-table__header">Total documents</th>
+      <th scope="col" class="govuk-table__header">Oldest docuemnt</th>
 
       <th class="govuk-table__header"></th>
     </tr>
   </thead>
   <tbody class="govuk-table__body">
-    {% for envelope in case.envelopes  %}
+    {% for item in case.allocatedDocuments  %}
     <tr class="govuk-table__row">
-      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-unallocated?id={{case.id}}&envelope={{loop.index0}}">{{envelope.dateScanned | formatDate }}</a></td>
-      <td class="govuk-table__cell">{{envelope.documents.length}} documents</td>
-      <td class="govuk-table__cell">
-      
-        {% for type in envelope.documentTypes %}
-          {{type}} <br>
-        {% endfor %}
-      </td>
- 
+      <td class="govuk-table__cell">{{item.allocatedTo}}</td>
+      <td class="govuk-table__cell">{{item.total }}</td>
+      <td class="govuk-table__cell">{{item.oldestDocument | formatDate }}</td>
       
 
     </tr>
@@ -161,7 +154,6 @@
 
   </tbody>
 </table>
-
 
 
 {% else %}
