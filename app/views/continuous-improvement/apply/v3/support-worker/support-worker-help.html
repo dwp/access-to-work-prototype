@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How will a support worker help – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../support-worker/support-temporarily" method="post">
+
+        {% if data['which-type-support-worker'] == 'British Sign Language (BSL) interpreter' %}
+
+        <h1 class="govuk-heading-l">
+          How will the British Sign Language (BSL) interpreter help you at work?
+        </h1>
+        {% endif %}
+  
+        {% if data['support-worker-type'] %}
+  
+        <h1 class="govuk-heading-l">
+          How will the {{ data['support-worker-type'] }} help you at work?
+        </h1>
+        {% endif %}
+
+      {{ govukCharacterCount({
+        name: "support-worker-help",
+        id: "support-worker-help",
+        maxlength: 500,
+        rows: "5",
+        hint: {
+          html: "<p class='govuk-body'>You can include:</p>
+          <ul class='govuk-list govuk-list--bullet'>
+            <li>work activities the support worker would help you with</li>
+            <li>the effect of not currently having this type of support worker at work</li>
+          </ul>"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

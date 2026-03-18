@@ -1,0 +1,30 @@
+<h2 class="govuk-heading-m">
+        Additional information
+      </h2>
+
+      {% set summaryRows = [] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you have any other information you want to add to your application?"
+          },
+          value: {
+            text: data['anything-else']
+          }
+        }
+        ]) %}
+
+        {% if data['anything-else'] == 'Yes' %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Add anything else that you want to include in your application"
+            },
+            value: {
+              text: data['add-information']
+            }
+          }
+        ]) %}
+      {% endif %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}

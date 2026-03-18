@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Which days will you work? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/days-will-work-answer-registered-director-starting-job" method="post">
+
+        {{ govukRadios({
+          name: "days-will-work-registered-director-starting-job",
+          fieldset: {
+            legend: {
+              text: "Do you know which days of the week you will be working?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "I will be working flexibly or on a shift pattern",
+              text: "I will be working flexibly or on a shift pattern"
+            },
+            {
+              value: "I do not know",
+              text: "I do not know"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

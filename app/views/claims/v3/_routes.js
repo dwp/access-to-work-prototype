@@ -39,7 +39,6 @@ router.post('/remove-mobile-number-answer-claim', function(request, response) {
   // Redirect back to the summary page
   response.redirect(versionPath + "/personal-details/telephone-numbers");
 })
-
 // Updated phone removal logic V3 
 router.post('/remove-home-number-answer', function(request, response) {
 
@@ -91,7 +90,6 @@ router.post('/add-another-VA-invoice-answer', function(request, response) {
         response.redirect(versionPath + "/start-claim/vehicle-adaptations/who-to-pay")
     }
 })
-
 // Vehicle adaptations - Add another invoice or receipt
 router.post('/add-another-equipment-invoice-answer', function(request, response) {
 
@@ -339,7 +337,6 @@ router.post('/add-another-invoice-support-worker-answer', function(request, resp
         response.redirect(versionPath + "/start-claim/support-worker/payee")
     }
 })
-
 router.post('/remove-support-worker-file-answer', function(request, response) {
 
     var removeVehicleAdaptationsClaim = request.session.data['remove-support-worker-file']
@@ -534,8 +531,8 @@ router.post('/claim-grant-summary-support-type-answer', function(request, respon
             response.redirect(versionPath + "/grant-summary/something-else")
         }
     })
+router.post(versionPath + '/payments/which-payments-post', function (req, res) {
 
-    router.post(versionPath + '/payments/which-payments-post', function (req, res) {
     const employer = req.session.data['journey-type']
 
     req.session.data.page = 1
@@ -1480,6 +1477,4 @@ router.post('/claim-grant-summary-support-type-answer', function(request, respon
     }
 
   })
-
-
 module.exports = router

@@ -1,0 +1,158 @@
+{% set MonthNames = [
+  "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+] %}
+
+{% set monthNum = (data['vehicle-adaptation-month'] | int) %}
+{% set monthName = MonthNames[monthNum] %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Claim for 1 adaptation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full-width-from-desktop">
+
+      <form action="{{versionPath}}/claims-summary" method="post" novalidate>
+
+      <h1 class="govuk-heading-l">
+        You've told us you want to claim for 1 adaptation
+      </h1>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {{ data['vehicle-adaptation-day'] }} 
+                {{ data['vehicle-adaptation-month'] 
+                        | replace("01", "January")
+                        | replace("02", "February")
+                        | replace("03", "March")
+                        | replace("04", "April")
+                        | replace("05", "May")
+                        | replace("06", "June")
+                        | replace("07", "July")
+                        | replace("08", "August")
+                        | replace("09", "September")
+                        | replace("10", "October")
+                        | replace("11", "November")
+                        | replace("12", "December")
+                        | replace("1", "January")
+                        | replace("2", "February")
+                        | replace("3", "March")
+                        | replace("4", "April")
+                        | replace("5", "May")
+                        | replace("6", "June")
+                        | replace("7", "July")
+                        | replace("8", "August")
+                        | replace("9", "September") }} 
+                {{ data['vehicle-adaptation-year'] }} 
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['adaptation-name'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="your-vehicle-adaptation">Change<span class="govuk-visually-hidden">vehicle adaptation</span></a></li>
+                  <!-- <li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="#">Remove<span class="govuk-visually-hidden">vehicle adaptation</span></a></li> -->
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "add-another-claim",
+            fieldset: {
+              legend: {
+                text: "Do you need to claim for another vehicle adaptation?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+
+<script>
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  document.getElementById('current-date').textContent = formattedDate;
+</script>
+
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Claims summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="uploads-summary" method="post" novalidate>
+
+      <h1 class="govuk-heading-l">
+        Upload your receipts or invoices
+      </h1>
+
+      <p class="govuk-body">You'll need to upload your receipts or invoices from a computer, phone or tablet. You'll have the option to upload more than one if you need to.</p>
+
+       <p class="govuk-body">You'll need to:</p>
+        <ul class="govuk-list govuk-list--number">
+          <li>Choose the file you want to upload</li>
+          <li>Select upload</li>
+        </ul>
+
+        <p class="govuk-body">Check that the file you want to upload is in the correct file format before uploading. Files can be PNG, JPEG, PDF, DOC or DOCX. Make sure that the document is not password protected.</p>
+
+      {{ govukFileUpload({
+          id: "invoice-upload-travel-during-work",
+          name: "invoice-upload-travel-during-work",
+          label: {
+            text: "Upload a file"
+          },
+          javascript: true
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

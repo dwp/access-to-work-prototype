@@ -1,0 +1,184 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{
+        dwpHeader({
+            serviceName: "Access to Work",
+            serviceHref: '/index',
+            action: "Al Ó Catháin",
+            actionHref: "#",
+            container: true,
+            navigation: {
+              selectedItem: "../your-cases",
+              items: [
+                   {
+                      href: "../your-cases",
+                      text: "Your cases"
+                    },
+                    {
+                      href: "../unallocated/unallocated-main-page",
+                      text: "Unallocated"
+                    },
+                    {
+                      href: "../all-advisors",
+                      text: "All advisors"
+                    },
+                    {
+                      href: "../search/search",
+                      text: "Search"
+                    },
+                    {
+                      href: "../referrals/referrals",
+                      text: "Referrals"
+                    },
+                    {
+                      href: "../data-retention/manage-data",
+                      text: "Manage data"
+                    }
+              ]
+          }  
+        })
+}}
+{% endblock %}
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% import versionPath + "/includes/key-details.njk" as keyDetails %}
+
+
+{{ keyDetails.keyDetails({
+  name: case.name,
+  nino: case.niNumber,
+  urn: case.urn
+})}}
+
+{% endblock %}
+
+{% block content %}
+<p class="govuk-body"><a href="{{versionPath}}/documents/your-documents" class="govuk-link">Back to  your documents</a></p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+<form action="allocate-envlope-post" method="post"> 
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Date scanned</th>
+
+      <th scope="col" class="govuk-table__header">Number of documents</th>
+
+      <th scope="col" class="govuk-table__header">Document types</th>
+
+      <th class="govuk-table__header"></th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for envelope in case.envelopes  %}
+    <tr class="govuk-table__row">
+      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-unallocated?id={{case.id}}&envelope={{loop.index0}}">{{envelope.dateScanned | formatDate }}</a></td>
+      <td class="govuk-table__cell">{{envelope.documents.length}} documents</td>
+      <td class="govuk-table__cell">
+      
+        {% for type in envelope.documentTypes %}
+          {{type}} <br>
+        {% endfor %}
+      </td>
+ 
+      
+
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+</form>
+
+</div>
+<div class="govuk-grid-column-one-third">
+
+<form action="self-allocate-post" method="post">
+
+<h2 class="govuk-heading-m">Allocate envelopes</h2>
+  <input type="hidden" name="id" value="{{case.id}}">
+{{ govukButton({
+  text: "Allocate all to me",
+  href: ""
+}) }}
+
+
+</form>
+</div> 
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% if case.allocatedDocuments.length > 0 %}
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Allocated documents</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Allocated to</th>
+      
+      <th scope="col" class="govuk-table__header">Total documents</th>
+      <th scope="col" class="govuk-table__header">Oldest docuemnt</th>
+
+      <th class="govuk-table__header"></th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for item in case.allocatedDocuments  %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">{{item.allocatedTo}}</td>
+      <td class="govuk-table__cell">{{item.total }}</td>
+      <td class="govuk-table__cell">{{item.oldestDocument | formatDate }}</td>
+      
+
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+{% else %}
+<h2 class="govuk-heading-m">Allocated documents</h2>
+<p>No Documents allocated</p>
+
+{% endif %}
+
+
+
+
+
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+
+
+
+
+
+
+     
+  </div>
+    
+</div>
+  </div>
+{% endblock %}

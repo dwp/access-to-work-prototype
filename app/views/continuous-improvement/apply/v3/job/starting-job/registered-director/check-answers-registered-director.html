@@ -1,0 +1,262 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers registered director – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers: {{data['job-title-registered-director-starting-job']}}</h1>
+
+    <h2 class="govuk-heading-m">Employment details</h2>
+
+
+    {% set summaryRows = [] %}
+ 
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: { text: "Employment status" },
+          value: { text: data['job-status-starting-job'] },
+          actions: {
+            items: [
+              {
+                href: "../employment-status#job-status-starting-job",
+                text: "Change",
+                visuallyHiddenText: "employment status"
+              }
+            ]
+          }
+        },
+        {
+          key: { text: "Job title" },
+          value: { text: data['job-title-registered-director-starting-job'] },
+          actions: {
+            items: [
+              {
+                href: "../registered-director/job-title#job-title-registered-director-starting-job",
+                text: "Change",
+                visuallyHiddenText: "job title"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Job description"
+          },
+          value: {
+            text: data['job-description-registered-director-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../registered-director/job-description#job-description-registered-director-starting-job",
+                text: "Change",
+                visuallyHiddenText: "job description"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Do you have a Unique Taxpayer Reference (UTR)?"
+          },
+          value: {
+            text: data['have-utr-registered-director-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../registered-director/have-utr#have-utr-registered-director-starting-job",
+                text: "Change",
+                visuallyHiddenText: "Unique Taxpayer Reference (UTR)"
+              }
+            ]
+          }
+        }
+      ]) %}
+      
+      
+      {% if data['have-utr-registered-director-starting-job'] == "Yes" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "What is the Unique Taxpayer Reference (UTR)?" },
+            value: { text: data['utr-registered-director-starting-job'] },
+            actions: {
+              items: [
+                {
+                  href: "../registered-director/utr#utr-registered-director-starting-job",
+                  text: "Change",
+                  visuallyHiddenText: "unique taxpayer reference"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "When will you register as a director of a limited company?"
+          },
+          value: {
+            text: data['registered-director-start-date-starting-job-day'] + '/' + data['registered-director-start-date-starting-job-month'] + '/' + data['registered-director-start-date-starting-job-year']
+          },
+          actions: {
+            items: [
+              {
+                href: "../registered-director/start-date#start-date#registered-director-start-date-starting-job-day",
+                text: "Change",
+                visuallyHiddenText: "start date"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "How many hours do you think you will work per week?"
+          },
+          value: {
+            text: data['work-hours-registered-director-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../registered-director/work-hours#work-hours-registered-director-starting-job",
+                text: "Change",
+                visuallyHiddenText: "work hours"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Do you know which days of the week you will be working?"
+          },
+          value: {
+            text: data['days-will-work-registered-director-starting-job']
+          },
+          actions: {
+            items: [
+              {
+                href: "../registered-director/days-will-work#days-will-work-registered-director-starting-job",
+                text: "Change",
+                visuallyHiddenText: "work days"
+              }
+            ]
+          }
+        }
+        ]) %}
+
+        
+      {% if data['days-will-work-registered-director-starting-job'] == "Yes" %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Which days of the week will you work?"
+            },
+            value: {
+              text: data['work-days-registered-director-starting-job']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../registered-director/work-days#work-days-registered-director-starting-job",
+                  text: "Change",
+                  visuallyHiddenText: "work days"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      
+      {% if data['job-address-select-registered-director-starting-job'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: data['job-address-select-registered-director-starting-job'] + ',' + ' ' + data['postcode-job-address-registered-director-starting-job']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../registered-director/job-address#postcode-job-address-registered-director-starting-job",
+                  text: "Change",
+                  visuallyHiddenText: "employment address"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      
+      {% if data['showAddressRow'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Workplace address"
+            },
+            value: {
+              text: "I do not know my workplace address"
+            },
+            actions: {
+              items: [
+                {
+                  href: "../registered-director/job-address#postcode-job-address-registered-director-starting-job",
+                  text: "Change",
+                  visuallyHiddenText: "employment address"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+
+
+ 
+{{ govukSummaryList({ rows: summaryRows }) }}
+
+    <form action="{{versionPath}}/add-job-starting-job-registered-director" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-registered-director-details-starting-job" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

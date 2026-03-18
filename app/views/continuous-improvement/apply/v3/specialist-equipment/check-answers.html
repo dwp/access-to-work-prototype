@@ -1,0 +1,163 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers specialist equipment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Specialist equipment
+      </h2>
+
+      {% set summaryRows = [] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you need specialist equipment to support you with your condition at work?"
+          },
+          value: {
+            text: data['need-specialist-equipment']
+          },
+          actions: {
+            items: [
+              {
+                href: "../specialist-equipment/need-specialist-equipment#need-specialist-equipment",
+                text: "Change",
+                visuallyHiddenText: "Need specialist equipment"
+              }
+            ]
+          }
+        }
+        ]) %}
+
+        {% if data['need-specialist-equipment'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "Do you know what specialist equipment you need?"
+            },
+            value: {
+              text: data['know-specialist-equipment']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../specialist-equipment/know-specialist-equipment#know-specialist-equipment",
+                  text: "Change",
+                  visuallyHiddenText: "Know specialist equipment"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+        {% if data['specialist-equipment-type'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: {
+              text: "What type of specialist equipment do you need?"
+            },
+            value: {
+              text: data['specialist-equipment-type']
+            },
+            actions: {
+              items: [
+                {
+                  href: "../specialist-equipment/specialist-equipment-type#specialist-equipment-type",
+                  text: "Change",
+                  visuallyHiddenText: "Specialist equipment type"
+                }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {% if data['another-item'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Do you need to add another item?"
+          },
+          value: {
+            text: data['another-item']
+          },
+          actions: {
+            items: [
+              {
+                href: "../specialist-equipment/specialist-equipment-summary#another-item",
+                text: "Change",
+                visuallyHiddenText: "Need to add another item"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    {% if data['specialist-equipment-help'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "How will this equipment help you at work?"
+          },
+          value: {
+            text: data['specialist-equipment-help']
+          },
+          actions: {
+            items: [
+              {
+                href: "../specialist-equipment/specialist-equipment-help#specialist-equipment-help",
+                text: "Change",
+                visuallyHiddenText: "How will this help you at work"
+              }
+            ]
+          }
+        }
+      ]) %}
+    {% endif %}
+       
+      {{ govukSummaryList({ rows: summaryRows }) }}
+
+      <form class="form" action="{{versionPath}}/specialist-equipment/check-answers-post" method="post">
+
+      <input type="hidden" name="answers-checked-specialist-equipment-full" value="true">
+
+      {{ govukButton({
+        text: "Confirm and save"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}
