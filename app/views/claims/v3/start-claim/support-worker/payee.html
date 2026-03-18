@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+  The person or company we need to pay – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -58,19 +58,29 @@
 
       <form action="{{versionPath}}/select-payee-support-worker-answer" method="post" novalidate>
 
-      {{ govukRadios({
-          name: "payee-select-support-worker",
+           {{ govukRadios({
+          name: "payee-select-tdws",
           fieldset: {
             legend: {
-              text: "Details of the person or company we need to pay",
+              text: "The person or company we need to pay",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "The Support Worker Network",
-              text: "The Support Worker Network"
+              value: "Kings House Taxis",
+              text: "Kings House Taxis",
+              hint: {
+                text: "Email address not shown"
+              }
+            },
+            {
+              value: "BBC",
+              text: "BBC",
+              hint: {
+                text: "Email address not shown"
+              }
             },
             {
               divider: "or"
@@ -79,8 +89,8 @@
               value: "Add new payee",
               text: "Add a new person or company",
               hint: {
-              text: "When you add a new person or company, it will take a few days for their details to be saved in your account"
-            }
+                text: "When you add a new person or company, it will take a few days for their details to be saved in your account"
+              }
             }
           ]
         }) }}

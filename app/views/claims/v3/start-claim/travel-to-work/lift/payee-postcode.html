@@ -56,20 +56,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-l">What's {{ data['payee-full-name-lift'] }}'s postcode?</h1>
+
       <form class="form" action="select-payee-address" method="post">
 
       {{ govukInput({
         label: {
-          text: "What's" + " " + data['payee-full-name-lift'] + "'s" + " " + "postcode?",
-          classes: "govuk-label--l",
-          isPageHeading: true
+          text: "Postcode"
         },
         hint: {
           text: "For example, WA4 1AB"
         },
         id: "payee-postcode-lift",
         name: "payee-postcode-lift",
-        classes: "govuk-input--width-10"
+        classes: "govuk-input--width-10",
+        value: data['payee-postcode-lift']
       }) }}
 
       {{ govukButton({

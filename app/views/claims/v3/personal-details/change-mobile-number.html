@@ -64,8 +64,9 @@
             classes: "govuk-label--l",
             isPageHeading: true
           },
-          id: "your-mobile-number-claim",
-          name: "your-mobile-number-claim"
+          id: "mobile-number",
+          name: "mobile-number",
+          value: "" if data['remove-mobile-number'] == "yes" else (data['mobile-number'] or "07777777777")
         }) }}
 
         {{ govukButton({

@@ -63,8 +63,9 @@
             classes: "govuk-label--l",
             isPageHeading: true
           },
-          id: "your-home-number-claim",
-          name: "your-home-number-claim"
+          id: "home-number",
+          name: "home-number",
+          value: "" if data['remove-home-number'] == "yes" else (data['home-number'] or "02089005122")
         }) }}
 
         {{ govukButton({

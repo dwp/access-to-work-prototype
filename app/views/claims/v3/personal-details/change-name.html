@@ -65,18 +65,24 @@
           }
         }) %}
 
+
         {{ govukInput({
+            label: {
+              text: "First name"
+            },
+            id: 'first-name',
             name: 'first-name',
-            value: data['first-name']
+            value: data['first-name'] or "John"
         }) }}
 
         {{ govukInput({
           label: {
             text: "Last name"
           },
-          id: "last-name-claim",
-          name: "last-name-claim",
-          autocomplete: "last-name-claim"
+            id: 'last-name',
+            name: 'last-name',
+            value: data['last-name'] or "Smith",
+            autocomplete: "last-name"
         }) }}
         {% endcall %}
 

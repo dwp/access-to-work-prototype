@@ -34,7 +34,7 @@
   <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
+      <a class="govuk-breadcrumbs__link" href="../account-home">Home</a>
     </li>
     {% if (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
     <li class="govuk-breadcrumbs__list-item">
@@ -65,45 +65,28 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-
   <div class="govuk-grid-column-full">
-
-
-<div class="govuk-form-group">
+    <div class="govuk-form-group">
           <h1 class="govuk-heading-l">
-            Payments summary:
+            Payments: 
             {% if data['journey-type'] == 'supportworker' %}
-            support worker
+              Support worker
             {% elseif data['journey-type'] == 'traveltowork' %}
-            travel to work
+              Travel to or from work
             {% elseif data['journey-type'] == 'specialaidsandequipment' %}
-            specialist equipment
+              Specialist equipment
             {% endif %}
           </h1>
 
-
-        </p>
-
         {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) %}
-        <p>
-          Payments made or waiting to be to paid.<br />
-          <br />
-          This also includes rejected payments - 
-          <a href="">
-            find out what to do if your payment has been rejected
-          </a>.
-          <br /><br />
-
-          You can also
-          <a href="which-payments">
-            view payments for other types of support
-          </a>.
-        </p>
+        <p class="govuk-body">Payments made or waiting to be to paid</p>
+        <!-- <p class="govuk-body">This also includes rejected payments <a href="#" class="govuk-link">find out what to do if your payment has been rejected</a></p> -->
+        <p class="govuk-body">You can also <a href="which-payments" class="govuk-link">view payments for other types of support</a>.</p>
         {% endif %}
 </div>
 
     {% set 2024Html %}
-    <h2 class="govuk-heading-m">2024 payments</h2>
+    <h2 class="govuk-heading-m">2026 payments</h2>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -515,7 +498,4 @@
   }
 </style>
 
- 
-
-{% include "claims/v2/includes/get-help" %}
 {% endblock %}

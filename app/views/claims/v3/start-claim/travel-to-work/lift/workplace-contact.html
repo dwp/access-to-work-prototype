@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+  Details of a workplace contact – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -69,8 +69,9 @@
         hint: {
           text: "This needs to be someone like your line manager or HR manager"
         },
-        id: "full-name-workplace-contact-lift-claim",
-        name: "full-name-workplace-contact-lift-claim"
+        id: "workplace-contact-full-name-lift",
+        name: "workplace-contact-full-name-lift",
+        value: data['workplace-contact-full-name-lift']
       }) }}
 
       {{ govukInput({
@@ -80,8 +81,9 @@
         hint: {
           text: "We'll use this email address to contact them about your claim"
         },
-        id: "email-address-workplace-contact-lift-claim",
-        name: "email-address-workplace-contact-lift-claim"
+        id: "workplace-contact-email-address-lift",
+        name: "workplace-contact-email-address-lift",
+        value: data['workplace-contact-email-address-lift']
       }) }}
 
         {{ govukButton({

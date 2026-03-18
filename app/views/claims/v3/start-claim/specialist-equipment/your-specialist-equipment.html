@@ -58,9 +58,9 @@
 
       <form action="claims-summary" method="post" novalidate>
 
-      <h1 class="govuk-heading-l">
-        Your specialist equipment
-      </h1>
+      <h1 class="govuk-heading-l">Your specialist equipment</h1>
+
+      <p class="govuk-body">Give the details of one item of equipment. You will have the option to add more.</p>
 
       {{ govukInput({
         label: {
@@ -68,21 +68,42 @@
           classes: "govuk-label--s"
         },
         id: "specialist-equipment-name",
-        name: "specialist-equipment-name"
+        name: "specialist-equipment-name",
+        value: data['specialist-equipment-name']
       }) }}
 
       {{ govukDateInput({
-          id: "invoice-date",
-          namePrefix: "invoice-date",
-          fieldset: {
-            legend: {
-              text: "Invoice date for this equipment",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          hint: {
-            text: "For example, 21 8 2025"
+        id: "se-invoice",
+        namePrefix: "se-invoice-date",
+        fieldset: {
+          legend: {
+            text: "What is your date of birth?",
+            classes: "govuk-fieldset__legend--s"
           }
+        },
+        hint: {
+          text: "For example, 27 5 2021"
+        },
+        items: [
+          {
+            name: "day",
+            classes: "govuk-input--width-2",
+            autocomplete: "day",
+            value: data['se-invoice-date-day']
+          },
+          {
+            name: "month",
+            classes: "govuk-input--width-2",
+            autocomplete: "month",
+            value: data['se-invoice-date-month']
+          },
+          {
+            name: "year",
+            classes: "govuk-input--width-4",
+            autocomplete: "year",
+            value: data['se-invoice-date-year']
+          }
+        ]
       }) }}
 
 

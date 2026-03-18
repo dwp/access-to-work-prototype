@@ -57,59 +57,47 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        Support you had in [Month] + [Year]
+        Support you had in {{data['claim-month-support-worker-month'] | monthName }} {{ data['claim-month-support-worker-year']}}
       </h1>
 
       <form action="support-summary" method="post" novalidate>
+      {% set selectedDays = data['support-week'] or [] %}
 
-        {{ govukDateInput({
-          id: "total-support-support-worker",
-          namePrefix: "total-support-support-worker",
-          fieldset: {
-            legend: {
-              text: "Total support on [day] + [date] + [Month]",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          hint: {
-            text: "For example, 8 hours and 27 minutes"
-          },
-          items: [
-            {
-              name: "hours",
-              classes: "govuk-input--width-3"
-            },
-            {
-              name: "minutes",
-              classes: "govuk-input--width-3"
-            }
-          ]
-        }) }}
+      {% for day in range(1, 32) %}
+        {% if ("day-" + day) in selectedDays %}
 
-        {{ govukDateInput({
-          id: "total-support-support-worker-2",
-          namePrefix: "total-support-support-worker-2",
-          fieldset: {
-            legend: {
-              text: "Total support on [day] + [date] + [Month]",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          hint: {
-            text: "For example, 8 hours and 27 minutes"
-          },
-          items: [
-            {
-              name: "hours",
-              classes: "govuk-input--width-3"
-            },
-            {
-              name: "minutes",
-              classes: "govuk-input--width-3"
-            }
-          ]
-        }) }}
-      
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="support-worker-hint">
+              <legend class="govuk-fieldset__legend">
+                Total support on {{ day }} {{data['claim-month-support-worker-month'] | monthName }} {{ data['claim-month-support-worker-year']}}
+              </legend>
+              <div id="support-worker-hint" class="govuk-hint">
+                For example, 27 3 2007
+              </div>
+              <div class="govuk-date-input" id="support-worker">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="support-worker-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="support-worker-hours-{{ day }}" name="support-worker-hours-{{ day }}" value="{{ data['support-worker-hours-' + day] }}" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="support-worker-minutes">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="support-worker-minutes-{{ day }}" name="support-worker-minutes-{{ day }}" value="{{ data['support-worker-minutes-' + day] }}" type="text" inputmode="numeric">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          {% endif %}
+        {% endfor%}  
+
 
         {{ govukButton({
           text: "Continue"

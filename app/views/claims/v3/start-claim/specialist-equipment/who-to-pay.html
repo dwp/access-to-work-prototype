@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+  Details of the person or company we need to pay – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -58,9 +58,7 @@
 
       <form action="payee-postcode" method="post" novalidate>
 
-      <h1 class="govuk-heading-l">
-        The person or company we need to pay
-      </h1>
+      <h1 class="govuk-heading-l">Details of the person or company we need to pay</h1>
 
       {{ govukInput({
           label: {
@@ -70,7 +68,8 @@
               text: "This can be the name of a person or company"
             },
           id: "payee-full-name-claim-specialist-equipment",
-          name: "payee-full-name-claim-specialist-equipment"
+          name: "payee-full-name-claim-specialist-equipment",
+          value: data['payee-full-name-claim-specialist-equipment']
         }) }}
 
         {{ govukInput({
@@ -81,7 +80,8 @@
               text: "We'll only use this to let them know we've paid them"
             },
           id: "payee-email-address-specialist-equipment-claim",
-          name: "payee-email-address-specialist-equipment-claim"
+          name: "payee-email-address-specialist-equipment-claim",
+          value: data['payee-email-address-specialist-equipment-claim']
         }) }}
 
 

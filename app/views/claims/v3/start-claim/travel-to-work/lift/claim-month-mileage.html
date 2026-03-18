@@ -59,8 +59,8 @@
       <form action="mileage" method="post" novalidate>
 
       {{ govukDateInput({
-        id: "claim-month-mileage",
-        namePrefix: "claim-month-mileage",
+        id: "claim",
+        namePrefix: "claim",
         fieldset: {
           legend: {
             text: "Which month are you claiming travel costs for?",
@@ -69,7 +69,7 @@
           }
         },
         hint: {
-          text: "For example, 4 2025"
+          text: "For example, 4 2021"
         },
         items: [
             {

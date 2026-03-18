@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Claims summary – {{ serviceName }} – GOV.UK Prototype Kit
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -58,81 +58,45 @@
 
       <form action="../declaration" method="post" novalidate>
 
-      <h1 class="govuk-heading-l">
-        Check your answers
-      </h1>
+      <h1 class="govuk-heading-l">Check your answers</h1>
 
-     {{ govukSummaryList({
+        {{ govukSummaryList({
           card: {
             title: {
-              text: "Taxi travel claim information"
+              text: "Claim information"
             }
           },
           rows: [
             {
               key: {
-                text: "Month of travel"
+                text: "Specialist equipment"
               },
               value: {
-                text: data['claim-month-month'] + " " + data['claim-month-year']
+                html: data['se-invoice-date-day'] + " " + data['se-invoice-date-month'] | monthName + " " + data['se-invoice-date-year'] + " - <br>" + data['specialist-equipment-name']
               },
               actions: {
                 items: [
                   {
-                    href: "claim-month#claim-month-month",
+                    href: "your-specialist-equipment",
                     text: "Change",
-                    visuallyHiddenText: "month of travel"
+                    visuallyHiddenText: "specialist equipment"
                   }
                 ]
               }
             },
             {
               key: {
-                text: "Days journeys were made in XXX"
+                text: "Cost of equipment"
               },
               value: {
-                text: ""
+                text: data['specialist-equipment-cost'] | currency
               },
               actions: {
                 items: [
                   {
-                    href: "number-of-journeys",
+                    href: "specialist-equipment-cost",
                     text: "Change",
-                    visuallyHiddenText: "number of journeys"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Total number of journeys"
-              },
-              value: {
-                text: "X journeys"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "number-of-journeys",
-                    text: "Change",
-                    visuallyHiddenText: "total number of journeys"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Total cost of journeys"
-              },
-              value: {
-                text: data['taxi-total-cost']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "total-cost#taxi-total-cost",
-                    text: "Change",
-                    visuallyHiddenText: "total cost"
+                    visuallyHiddenText: "specialist equipment cost"
                   }
                 ]
               }
@@ -142,14 +106,14 @@
                 text: "Receipts or invoices uploaded"
               },
               value: {
-                text: data['invoice-upload-taxi']
+                text: "filename.png"
               },
               actions: {
                 items: [
                   {
-                    href: "uploads",
+                    href: "uploaded",
                     text: "Change",
-                    visuallyHiddenText: "receipt or invoice upload"
+                    visuallyHiddenText: "file uploaded"
                   }
                 ]
               }
@@ -158,10 +122,11 @@
         }) }}
 
 
+
         {{ govukSummaryList({
           card: {
             title: {
-              text: "Details of person or company being paid"
+              text: "Details of new person or company being paid"
             }
           },
           rows: [
@@ -170,12 +135,12 @@
                 text: "Name"
               },
               value: {
-                text: data['payee-full-name-claim']
+                text: data['payee-full-name-claim-specialist-equipment']
               },
               actions: {
                 items: [
                   {
-                    href: "who-to-pay#payee-full-name-claim",
+                    href: "who-to-pay",
                     text: "Change",
                     visuallyHiddenText: "payee name"
                   }
@@ -187,12 +152,12 @@
                 text: "Email address"
               },
               value: {
-                text: data['payee-email-address-claim']
+                text: data['payee-email-address-specialist-equipment-claim']
               },
               actions: {
                 items: [
                   {
-                    href: "who-to-pay#payee-email-address-claim",
+                    href: "who-to-pay",
                     text: "Change",
                     visuallyHiddenText: "payee email address"
                   }
@@ -204,7 +169,7 @@
                 text: "Address"
               },
               value: {
-                text: data['address-select-claims'] + " ," + data['payee-postcode']
+                text: data['address-select-claims-specialist-equipment'] + " ," + data['payee-postcode-specialist-equipment']
               },
               actions: {
                 items: [
@@ -221,12 +186,12 @@
                 text: "Name on bank account"
               },
               value: {
-                text: data['name-on-account']
+                text: data['name-on-account-specialist-equipment']
               },
               actions: {
                 items: [
                   {
-                    href: "payment-details#name-on-account",
+                    href: "payment-details",
                     text: "Change",
                     visuallyHiddenText: "name on bank account"
                   }
@@ -238,12 +203,12 @@
                 text: "Sort code"
               },
               value: {
-                text: data['sort-code']
+                text: data['sort-code-specialist-equipment']
               },
               actions: {
                 items: [
                   {
-                    href: "payment-details#sort-code",
+                    href: "payment-details",
                     text: "Change",
                     visuallyHiddenText: "sort code"
                   }
@@ -255,45 +220,14 @@
                 text: "Account number"
               },
               value: {
-                text: data['account-number']
+                text: data['account-number-specialist-equipment']
               },
               actions: {
                 items: [
                   {
-                    href: "payment-details#account-number",
+                    href: "payment-details",
                     text: "Change",
                     visuallyHiddenText: "account number"
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
-
-        {{ govukInsetText({
-          html: "<p class='govuk-body'>You can change these details to <a href='#' class='govuk-link'>pay a person or company we've paid before</a>.</p>"
-        }) }}
-
-        {{ govukSummaryList({
-          card: {
-            title: {
-              text: "Employment details"
-            }
-          },
-          rows: [
-            {
-              key: {
-                text: "Employment status"
-              },
-              value: {
-                text: data['employment-status-taxi']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "employment-status#employment-status-taxi",
-                    text: "Change",
-                    visuallyHiddenText: "employment status"
                   }
                 ]
               }

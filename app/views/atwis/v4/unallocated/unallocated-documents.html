@@ -187,21 +187,16 @@
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Name </th>
 
-                <th scope="col" class="govuk-table__header">Details</th>
-                <th scope="col" class="govuk-table__header">Oldest envelope</th>
+                <th scope="col" class="govuk-table__header">Oldest document</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
 
-              {% for case in cases  %}
+              {% for case in cases | sort(false, true, 'oldestDocumentDate') %}
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-unallocated?id={{case.id}}">{{case.name}}</a></td>
+                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-unallocated?id={{case.id}}">{{case.name}}</a><br>{{case.documents.length}} document{{'s' if case.documents.length > 1}}</td>
 
-                <td class="govuk-table__cell">
-                  {{case.envelopes.length}} envelope{{'s' if case.envelopes.length > 1}}<br>
-                  {{case.totalDocuments}} document{{'s' if case.totalDocuments > 1}}
-                </td>
-                <td class="govuk-table__cell">{{case.oldestEnvelope | formatDate}}</td>
+                <td class="govuk-table__cell">{{case.oldestDocumentDate | formatDate}}</td>
               </tr>
               {% endfor %}
             </tbody>

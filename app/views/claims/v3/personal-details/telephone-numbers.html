@@ -62,113 +62,54 @@
 
       <form action="change-personal-details" method="post" novalidate>
 
-       {% set summaryRows = [] %}
-
-     {% if data['your-home-number-claim'] %}
-      {% set summaryRows = summaryRows.concat([
-           {
+      {{ govukSummaryList({
+        rows: [
+          {
             key: {
               text: "Home telephone number"
             },
             value: {
-              text: (data['your-home-number-claim'])
+              text: "Not given" if data['remove-home-number'] == "yes" else (data['home-number'] or "02089005122")
             },
             actions: {
               items: [
-                 {
-                  href: "change-home-number#home-number-claim",
+                {
+                  href: "change-home-number",
                   text: "Change",
-                  visuallyHiddenText: "change home telephone number"
+                  visuallyHiddenText: "Home telephone number"
                 },
                 {
                   href: "remove-home-number",
                   text: "Remove",
-                  visuallyHiddenText: "remove home telephone number"
+                  visuallyHiddenText: "Home telephone number"
                 }
               ]
             }
-          }
-    ]) %}
-
-    {% elif data['remove-home-number-claim'] == "yes" or not data['your-home-number-claim'] %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Home telephone number"
-            },
-            value: {
-              text: "Not given"
-            },
-            actions: {
-              items: [
-                 {
-                  href: "change-home-number#home-number-claim",
-                  text: "Add",
-                  visuallyHiddenText: "add home telephone number"
-                }
-              ]
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {% if data['your-mobile-number-claim'] %}
-      {% set summaryRows = summaryRows.concat([
-           {
+          },
+          {
             key: {
               text: "Mobile number"
             },
             value: {
-              text: (data['your-mobile-number-claim'])
+              text: "Not given" if data['remove-mobile-number'] == "yes" else (data['mobile-number'] or "02089005122")
             },
             actions: {
               items: [
-                  {
-                  href: "change-mobile-number#your-mobile-number-claim",
+                {
+                  href: "change-mobile-number",
                   text: "Change",
-                  visuallyHiddenText: "change mobile number"
+                  visuallyHiddenText: "Mobile number"
                 },
                 {
                   href: "remove-mobile-number",
                   text: "Remove",
-                  visuallyHiddenText: "remove mobile number"
+                  visuallyHiddenText: "Home telephone number"
                 }
               ]
             }
           }
-    ]) %}
-
-    {% elif data['remove-mobile-number-claim'] == "yes" or not data['your-mobile-number-claim'] %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Mobile number"
-            },
-            value: {
-              text: "Not given"
-            },
-            actions: {
-              items: [
-                  {
-                  href: "change-mobile-number#your-mobile-number-claim",
-                  text: "Add",
-                  visuallyHiddenText: "add mobile number"
-                }
-              ]
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {{ govukSummaryList({ rows: summaryRows }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        ]
+      }) }}
 
       </form>
 

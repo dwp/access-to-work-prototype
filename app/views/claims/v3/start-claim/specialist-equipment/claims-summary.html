@@ -59,7 +59,7 @@
       <form action="{{versionPath}}/claims-summary-specialist-equipment" method="post" novalidate>
 
       <h1 class="govuk-heading-l">
-        You've told us you want to claim for X piece of specialist equipment
+        Claims for 1 piece of specialist equipment
       </h1>
 
       {{ govukSummaryList({
@@ -68,7 +68,7 @@
           rows: [
             {
               key: {
-                html: '<span id="current-date"></span>'
+                text: data['se-invoice-date-day'] + " " + data['se-invoice-date-month'] | monthName + " " + data['se-invoice-date-year']
               },
               value: {
                 text: data['specialist-equipment-name']
@@ -79,11 +79,6 @@
                     href: "your-specialist-equipment",
                     text: "Change",
                     visuallyHiddenText: "change"
-                  },
-                  {
-                    href: "remove-claim",
-                    text: "Remove",
-                    visuallyHiddenText: "remove"
                   }
                 ]
               }

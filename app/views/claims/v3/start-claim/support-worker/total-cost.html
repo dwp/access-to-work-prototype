@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+  Support costs in total – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -61,6 +61,7 @@
       {{ govukInput({
           id: "support-worker-total-cost",
           name: "support-worker-total-cost",
+          value: data['support-worker-total-cost'],
           label: {
             text: "How much did your support cost in total, in pounds?",
             classes: "govuk-label--l",
@@ -68,6 +69,9 @@
           },
           prefix: {
             text: "£"
+          },
+          hint: {
+            text: "Include any related costs like travel or accommodation your grant covers."
           },
           classes: "govuk-input--width-5",
           spellcheck: false

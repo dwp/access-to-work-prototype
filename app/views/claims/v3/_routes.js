@@ -40,6 +40,26 @@ router.post('/remove-mobile-number-answer-claim', function(request, response) {
   response.redirect(versionPath + "/personal-details/telephone-numbers");
 })
 
+// Updated phone removal logic V3 
+router.post('/remove-home-number-answer', function(request, response) {
+
+  if (request.session.data['remove-home-number'] === 'yes') {
+    request.session.data['home-number'] = null; 
+  }
+
+  response.redirect(versionPath + "/personal-details/telephone-numbers");
+})
+
+router.post('/remove-mobile-number-answer', function(request, response) {
+
+  if (request.session.data['remove-mobile-number'] === 'yes') {
+    request.session.data['mobile-number'] = null3; 
+  }
+  
+  response.redirect(versionPath + "/personal-details/telephone-numbers");
+})
+
+
 router.post('/claims-summary', function(request, response) {
 
     var vehicleAdaptationsClaims = request.session.data['add-another-claim']
@@ -69,6 +89,17 @@ router.post('/add-another-VA-invoice-answer', function(request, response) {
         response.redirect(versionPath + "/start-claim/vehicle-adaptations/uploads")
     } else {
         response.redirect(versionPath + "/start-claim/vehicle-adaptations/who-to-pay")
+    }
+})
+
+// Vehicle adaptations - Add another invoice or receipt
+router.post('/add-another-equipment-invoice-answer', function(request, response) {
+
+    var addAnotherInvoice = request.session.data['add-another-equipment-invoice']
+    if (addAnotherInvoice == "yes"){
+        response.redirect(versionPath + "/start-claim/specialist-equipment/uploads")
+    } else {
+        response.redirect(versionPath + "/start-claim/specialist-equipment/who-to-pay")
     }
 })
 
@@ -105,29 +136,16 @@ router.post('/remove-taxi-file-answer', function(request, response) {
     }
 })
 
-// // Travel to work - total journeys
+//Specialist equipment - Remove an invoice or receipt
+router.post('/remove-equipment-file-answer', function(request, response) {
 
-// function calculateTaxiJourneys (data) {
-//   let filledDays = 0
-//   let totalJourneys = 0 
-
-//   for (let i = 1; i <= 30; i++) {
-//     const raw = (data['day-${i}'] ?? '').toString().trim()
-
-//     if (raw === '') continue
-//     const num = Number(raw)
-
-//     filledDays++
-//     totalJourneys += num
-//   }
-
-//   return {filledDays, totalJourneys}
-// }
-
-// // router.post('/number-of-journeys', function(request, response) {
-
-// // })
-
+    var removeVehicleAdaptationsFile = request.session.data['remove-equipment-file']
+    if (removeVehicleAdaptationsFile == "yes"){
+        response.redirect(versionPath + "/start-claim/specialist-equipment/no-file")
+    } else {
+        response.redirect(versionPath + "/start-claim/specialist-equipment/uploaded")
+    }
+})
 
 router.post('/claim-other-journeys-answer', function(request, response) {
 
@@ -183,8 +201,10 @@ router.post('/claim-type-answer', function(request, response) {
             response.redirect(versionPath + "/start-claim/specialist-equipment/about-your-grant")
         } else if (claimType == "support worker"){
             response.redirect(versionPath + "/start-claim/support-worker/about-your-grant")
-        } else if (claimType == "travel during work"){
-            response.redirect(versionPath + "/start-claim/travel-during-work/about-your-grant")
+        } else if (claimType == "travel during work music"){
+            response.redirect(versionPath + "/start-claim/travel-during-work-music/about-your-grant")
+        } else if (claimType == "travel during work sport"){
+            response.redirect(versionPath + "/start-claim/travel-during-work-sport/about-your-grant")
         } else if (claimType == "something else"){
             response.redirect(versionPath + "/start-claim/something-else/unable-to-claim")
         }
@@ -320,6 +340,16 @@ router.post('/add-another-invoice-support-worker-answer', function(request, resp
     }
 })
 
+router.post('/remove-support-worker-file-answer', function(request, response) {
+
+    var removeVehicleAdaptationsClaim = request.session.data['remove-support-worker-file']
+    if (removeVehicleAdaptationsClaim == "yes"){
+        response.redirect(versionPath + "/start-claim/support-worker/no-file")
+    } else {
+        response.redirect(versionPath + "/start-claim/support-worker/uploaded")
+    }
+})
+
 router.post('/select-payee-support-worker-answer', function(request, response) {
 
     var selectPayee = request.session.data['payee-select-support-worker']
@@ -350,53 +380,127 @@ router.post('/employment-status-support-worker-answer', function(request, respon
     }
 })
 
-router.post('/travel-during-work-add-other-month-answer', function(request, response) {
+// Travel during work - music
+router.post('/tdwm-add-other-month-answer', function(request, response) {
 
-    var addOtherMonth = request.session.data['add-other-month-travel-during-work']
+    var addOtherMonth = request.session.data['add-other-month-tdwm']
     if (addOtherMonth == "yes"){
-        response.redirect(versionPath + "/start-claim/travel-during-work/claim-month")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/claim-month")
     } else {
-        response.redirect(versionPath + "/start-claim/travel-during-work/total-miles")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/total-miles")
     }
 })
 
-router.post('/add-another-invoice-travel-during-work-answer', function(request, response) {
+router.post('/add-another-tdwm-invoice-answer', function(request, response) {
 
-    var addAnotherInvoice = request.session.data['add-another-invoice-travel-during-work']
+    var addAnotherInvoice = request.session.data['add-another-tdwm-invoice']
     if (addAnotherInvoice == "yes"){
-        response.redirect(versionPath + "/start-claim/travel-during-work/uploads")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/uploads")
     } else {
-        response.redirect(versionPath + "/start-claim/travel-during-work/payee")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/payee")
     }
 })
 
-router.post('/select-payee-travel-during-work-answer', function(request, response) {
+router.post('/remove-tdwm-file-answer', function(request, response) {
 
-    var selectPayee = request.session.data['payee-select-travel-during-work']
+    var removeVehicleAdaptationsClaim = request.session.data['remove-tdwm-file']
+    if (removeVehicleAdaptationsClaim == "yes"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/no-file")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/uploaded")
+    }
+})
+
+router.post('/select-payee-tdwm-answer', function(request, response) {
+
+    var selectPayee = request.session.data['payee-select-tdwm']
     if (selectPayee == "A to B Travel Support"){
-        response.redirect(versionPath + "/start-claim/travel-during-work/existing-account-details")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/existing-account-details")
     } else {
-        response.redirect(versionPath + "/start-claim/travel-during-work/who-to-pay")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/who-to-pay")
     }
 })
 
-router.post('/select-payee-details-travel-during-work-answer', function(request, response) {
+router.post('/select-payee-details-tdwm-answer', function(request, response) {
 
-    var payeeDetails = request.session.data['select-payee-details-travel-during-work']
+    var payeeDetails = request.session.data['select-payee-details-tdwm']
     if (payeeDetails == "Lloyds bank"){
-        response.redirect(versionPath + "/start-claim/travel-during-work/check-your-answers")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/check-your-answers")
     } else {
-        response.redirect(versionPath + "/start-claim/travel-during-work/payment-details")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/payment-details")
     }
 })
 
-router.post('/employment-status-travel-during-work-answer', function(request, response) {
+router.post('/employment-status-tdwm-answer', function(request, response) {
 
-    var employmentStatus = request.session.data['employment-status-travel-during-work']
+    var employmentStatus = request.session.data['employment-status-tdwm']
     if (employmentStatus == "Employed"){
-        response.redirect(versionPath + "/start-claim/travel-during-work/workplace-contact")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/workplace-contact")
     } else {
-        response.redirect(versionPath + "/start-claim/travel-during-work/check-your-answers")
+        response.redirect(versionPath + "/start-claim/travel-during-work-music/check-your-answers")
+    }
+})
+
+
+// Travel during work - sports
+
+router.post('/tdws-add-other-month-answer', function(request, response) {
+
+    var addOtherMonth = request.session.data['add-other-month-tdws']
+    if (addOtherMonth == "yes"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/claim-month")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/total-miles")
+    }
+})
+
+router.post('/add-another-tdws-invoice-answer', function(request, response) {
+
+    var addAnotherInvoice = request.session.data['add-another-tdws-invoice']
+    if (addAnotherInvoice == "yes"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/uploads")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/payee")
+    }
+})
+
+router.post('/remove-tdws-file-answer', function(request, response) {
+
+    var removeVehicleAdaptationsClaim = request.session.data['remove-tdws-file']
+    if (removeVehicleAdaptationsClaim == "yes"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/no-file")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/uploaded")
+    }
+})
+
+router.post('/select-payee-tdws-answer', function(request, response) {
+
+    var selectPayee = request.session.data['payee-select-tdws']
+    if (selectPayee == "A to B Travel Support"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/existing-account-details")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/who-to-pay")
+    }
+})
+
+router.post('/select-payee-details-tdws-answer', function(request, response) {
+
+    var payeeDetails = request.session.data['select-payee-details-tdws']
+    if (payeeDetails == "Lloyds bank"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/check-your-answers")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/payment-details")
+    }
+})
+
+router.post('/employment-status-tdws-answer', function(request, response) {
+
+    var employmentStatus = request.session.data['employment-status-tdws']
+    if (employmentStatus == "Employed"){
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/workplace-contact")
+    } else {
+        response.redirect(versionPath + "/start-claim/travel-during-work-sport/check-your-answers")
     }
 })
 
@@ -431,8 +535,7 @@ router.post('/claim-grant-summary-support-type-answer', function(request, respon
         }
     })
 
-
-  router.post(versionPath + '/payments/which-payments-post', function (req, res) {
+    router.post(versionPath + '/payments/which-payments-post', function (req, res) {
     const employer = req.session.data['journey-type']
 
     req.session.data.page = 1
@@ -1377,8 +1480,6 @@ router.post('/claim-grant-summary-support-type-answer', function(request, respon
     }
 
   })
-
-
 
 
 module.exports = router

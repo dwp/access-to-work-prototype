@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  What you'll need – {{ serviceName }} – GOV.UK Prototype Kit
+  Equipment costs in total – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -61,6 +61,7 @@
       {{ govukInput({
           id: "specialist-equipment-cost",
           name: "specialist-equipment-cost",
+          value: data['specialist-equipment-cost'],
           label: {
             text: "How much did your equipment cost in total, in pounds?",
             classes: "govuk-label--l",

@@ -57,18 +57,18 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        Number of miles on each day in {{ data['claim-month-month'] | monthName }} {{ data['claim-month-year'] }}
+        Number of miles on each day in {{ data['claim-month'] | monthName }} {{ data['claim-year'] }}
       </h1>
 
       <h2 class="govuk-heading-m">
-        Week beginning 1 {{ data['claim-month-month'] | monthName }}
+        Week beginning 1 {{ data['claim-month'] | monthName }}
       </h2>
 
       <form action="journey-summary-mileage" method="post" novalidate>
 
       {{ govukInput({
         label: {
-          text: "Monday 1 " + data['claim-month-month'] | monthName
+          text: "Monday 1 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-1",
@@ -78,7 +78,7 @@
 
       {{ govukInput({
         label: {
-          text: " Tuesday 2 " + data['claim-month-month'] | monthName
+          text: " Tuesday 2 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-2",
@@ -88,7 +88,7 @@
 
       {{ govukInput({
         label: {
-          text: "Wednesday 3 " + data['claim-month-month'] | monthName
+          text: "Wednesday 3 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-3",
@@ -98,7 +98,7 @@
 
       {{ govukInput({
         label: {
-          text: "Thursday 4 " + data['claim-month-month'] | monthName
+          text: "Thursday 4 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-4",
@@ -108,7 +108,7 @@
 
       {{ govukInput({
         label: {
-          text: "Friday 5 " + data['claim-month-month'] | monthName
+          text: "Friday 5 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-5",
@@ -118,7 +118,7 @@
 
       {{ govukInput({
         label: {
-          text: "Saturday 6 " + data['claim-month-month'] | monthName
+          text: "Saturday 6 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-6",
@@ -128,7 +128,7 @@
 
       {{ govukInput({
         label: {
-          text: "Sunday 7 " + data['claim-month-month'] | monthName
+          text: "Sunday 7 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-7",
@@ -137,12 +137,12 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        Week beginning 8 {{ data['claim-month-month'] | monthName }}
+        Week beginning 8 {{ data['claim-month'] | monthName }}
       </h2>
 
       {{ govukInput({
         label: {
-          text: "Monday 8 " + data['claim-month-month'] | monthName
+          text: "Monday 8 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-8",
@@ -152,7 +152,7 @@
 
       {{ govukInput({
         label: {
-          text: " Tuesday 9 " + data['claim-month-month'] | monthName
+          text: " Tuesday 9 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-9",
@@ -162,7 +162,7 @@
 
       {{ govukInput({
         label: {
-          text: "Wednesday 10 " + data['claim-month-month'] | monthName
+          text: "Wednesday 10 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-10",
@@ -172,7 +172,7 @@
 
       {{ govukInput({
         label: {
-          text: "Thursday 11 " + data['claim-month-month'] | monthName
+          text: "Thursday 11 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-11",
@@ -182,7 +182,7 @@
 
       {{ govukInput({
         label: {
-          text: "Friday 12 " + data['claim-month-month'] | monthName
+          text: "Friday 12 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-12",
@@ -192,7 +192,7 @@
 
       {{ govukInput({
         label: {
-          text: "Saturday 13 " + data['claim-month-month'] | monthName
+          text: "Saturday 13 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-13",
@@ -202,7 +202,7 @@
 
       {{ govukInput({
         label: {
-          text: "Sunday 14 " + data['claim-month-month'] | monthName
+          text: "Sunday 14 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-14",
@@ -211,12 +211,12 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        Week beginning 15 {{ data['claim-month-month'] | monthName }}
+        Week beginning 15 {{ data['claim-month'] | monthName }}
       </h2>
 
       {{ govukInput({
         label: {
-          text: "Monday 15 " + data['claim-month-month'] | monthName
+          text: "Monday 15 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-15",
@@ -226,7 +226,7 @@
 
       {{ govukInput({
         label: {
-          text: " Tuesday 16 " + data['claim-month-month'] | monthName
+          text: " Tuesday 16 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-16",
@@ -236,7 +236,7 @@
 
       {{ govukInput({
         label: {
-          text: "Wednesday 17 " + data['claim-month-month'] | monthName
+          text: "Wednesday 17 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-17",
@@ -246,7 +246,7 @@
 
       {{ govukInput({
         label: {
-          text: "Thursday 18 " + data['claim-month-month'] | monthName
+          text: "Thursday 18 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-18",
@@ -256,7 +256,7 @@
 
       {{ govukInput({
         label: {
-          text: "Friday 19 " + data['claim-month-month'] | monthName
+          text: "Friday 19 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-19",
@@ -266,7 +266,7 @@
 
       {{ govukInput({
         label: {
-          text: "Saturday 20 " + data['claim-month-month'] | monthName
+          text: "Saturday 20 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-20",
@@ -276,7 +276,7 @@
 
       {{ govukInput({
         label: {
-          text: "Sunday 21 " + data['claim-month-month'] | monthName
+          text: "Sunday 21 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-21",
@@ -285,12 +285,12 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        Week beginning 22 {{ data['claim-month-month'] | monthName }}
+        Week beginning 22 {{ data['claim-month'] | monthName }}
       </h2>
 
       {{ govukInput({
         label: {
-          text: "Monday 22 " + data['claim-month-month'] | monthName
+          text: "Monday 22 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-22",
@@ -300,7 +300,7 @@
 
       {{ govukInput({
         label: {
-          text: " Tuesday 23 " + data['claim-month-month'] | monthName
+          text: " Tuesday 23 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-23",
@@ -310,7 +310,7 @@
 
       {{ govukInput({
         label: {
-          text: "Wednesday 24 " + data['claim-month-month'] | monthName
+          text: "Wednesday 24 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-24",
@@ -320,7 +320,7 @@
 
       {{ govukInput({
         label: {
-          text: "Thursday 25 " + data['claim-month-month'] | monthName
+          text: "Thursday 25 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-25",
@@ -330,7 +330,7 @@
 
       {{ govukInput({
         label: {
-          text: "Friday 26 " + data['claim-month-month'] | monthName
+          text: "Friday 26 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-26",
@@ -340,7 +340,7 @@
 
       {{ govukInput({
         label: {
-          text: "Saturday 27 " + data['claim-month-month'] | monthName
+          text: "Saturday 27 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-27",
@@ -350,7 +350,7 @@
 
       {{ govukInput({
         label: {
-          text: "Sunday 28 " + data['claim-month-month'] | monthName
+          text: "Sunday 28 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-28",
@@ -359,12 +359,12 @@
       }) }}
 
       <h2 class="govuk-heading-m">
-        Week beginning 29 {{ data['claim-month-month'] | monthName }}
+        Week beginning 29 {{ data['claim-month'] | monthName }}
       </h2>
 
       {{ govukInput({
         label: {
-          text: "Monday 29 " + data['claim-month-month'] | monthName
+          text: "Monday 29 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-29",
@@ -374,7 +374,7 @@
 
       {{ govukInput({
         label: {
-          text: " Tuesday 30 " + data['claim-month-month'] | monthName
+          text: " Tuesday 30 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-30",
@@ -384,7 +384,7 @@
 
       {{ govukInput({
         label: {
-          text: "Wednesday 31 " + data['claim-month-month'] | monthName
+          text: "Wednesday 31 " + data['claim-month'] | monthName
         },
         classes: "govuk-input--width-4",
         id: "day-31",

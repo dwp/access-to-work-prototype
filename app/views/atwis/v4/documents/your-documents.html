@@ -149,25 +149,24 @@
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Name </th>
-                <th scope="col" class="govuk-table__header">Number of documents</th>
-                <th scope="col" class="govuk-table__header">Oldest envelope</th>
-
+                <th scope="col" class="govuk-table__header">Oldest document</th>
+                <th scope="col" class="govuk-table__header">Document types</th>
                 <th scope="col" class="govuk-table__header">Status</th>
 
               </tr>
             </thead>
             <tbody class="govuk-table__body">
 
-              {% for case in cases  %}
+              {% for document in documents | sort(false, true, 'oldestDocumentDate') %}
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-allocated?id={{case.id}}">{{case.name}}</a></td>
+                <td scope="row" class="govuk-table__cell"><a href="../documents/multiple-documents-allocated?id={{document.id}}">{{document.name}}</a><br>{{document.documents.length}} document{{'s' if document.documents.length > 1}}</td>
+
+                <td class="govuk-table__cell">{{document.oldestDocumentDate | formatDate}}</td>
                 <td class="govuk-table__cell">
-                  {{case.envelopes.length}} envelope{{'s' if case.envelopes.length > 1}} <br>
-                  {{case.totalDocuments}} document{{'s' if case.totalDocuments > 1}}
+                  {% for document in document.documents | uniqueTypes %}
+                    {{document.type}} <br>
+                  {% endfor %}
                 </td>
-
-                <td class="govuk-table__cell">{{case.oldestEnvelope | formatDate}}</td>
-
                 <td class="govuk-table__cell">Not started</td>
               </tr>
               {% endfor %}

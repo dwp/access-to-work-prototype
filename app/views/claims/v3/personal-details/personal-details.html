@@ -68,170 +68,59 @@
         Personal details
       </h1>
 
+
       {{ govukSummaryList({
         rows: [
           {
             key: {
               text: "Full name"
             },
-            name: "first-name",
             value: {
-              text: data['first-name']['last-name'] or "No name"
+              text: (data['first-name'] or "John") + " " + (data['last-name'] or "Smith")
             }
-          }
-        ]
-      })}}
-
-
-{% set summaryRows = [] %}
-
-    {% if data['first-name-claim'] or data['last-name-claim']%}
-      {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Full name"
-            },
-            value: {
-              text: (data['first-name-claim']) + ' ' + (data['last-name-claim'])
-            }
-          }
-    ]) %}
-
-    {% else %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Full name"
-            },
-            value: {
-              text: "Joe Bloggs"
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {% set summaryRows = summaryRows.concat([
-           {
+          },
+          {
             key: {
               text: "Access to Work number"
             },
             value: {
-              text: "12345678"
+              text: "100009073"
             }
-          }
-    ]) %}
-
-    {% if data['email-claims'] %}
-      {% set summaryRows = summaryRows.concat([
-           {
+          },
+          {
             key: {
               text: "Email address"
             },
             value: {
-              text: (data['email-claims'])
+              text: data['email-address'] or "claimants@m7nfruhi.mailosaur.net"
             }
-          }
-    ]) %}
-
-    {% else %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: "joe.bloggs@gmail.com"
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {% if data['your-home-number-claim'] %}
-      {% set summaryRows = summaryRows.concat([
-           {
+          },
+          {
             key: {
               text: "Home telephone number"
             },
             value: {
-              text: (data['your-home-number-claim'])
+              text: data['home-number'] or "02089005122"
             }
-          }
-    ]) %}
-
-    {% else %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Home telephone number"
-            },
-            value: {
-              text: "Not given"
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {% if data['your-mobile-number-claim'] %}
-      {% set summaryRows = summaryRows.concat([
-           {
+          },
+          {
             key: {
               text: "Mobile number"
             },
             value: {
-              text: (data['your-mobile-number-claim'])
+              text: data['mobile-number'] or "07777777777"
             }
-          }
-    ]) %}
-
-    {% else %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Mobile number"
-            },
-            value: {
-              text: "Not given"
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {% if data['address-select-claims'] %}
-      {% set summaryRows = summaryRows.concat([
-           {
+          },
+          {
             key: {
               text: "Address"
             },
             value: {
-              text: data['address-select-claims'] + data['postcode-claims']
+              html: (data['address-select-claims'] or "123 High St, Penge, London") + "<br>" + (data['postcode-claims'] or "HA1 1YJ")
             }
           }
-    ]) %}
-
-    {% else %}
-
-     {% set summaryRows = summaryRows.concat([
-           {
-            key: {
-              text: "Address"
-            },
-            value: {
-              text: "1 Imaginary Street, London, Greater London, AA1 1BB"
-            }
-          }
-    ]) %}
-
-    {% endif %}
-
-    {{ govukSummaryList({ rows: summaryRows }) }}
+        ]
+      }) }}
 
 
 

@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Month of claim – {{ serviceName }} – GOV.UK Prototype Kit
+  Days you had support – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -57,192 +57,196 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        Support you had in [Month] + [Year]
+        Days you had support in {{ data['claim-month-support-worker-month'] | monthName }} {{ data['claim-month-support-worker-year'] }}
       </h1>
 
       <form action="total-support" method="post" novalidate>
 
         {{ govukCheckboxes({
-          name: "week-1",
+          name: "support-week",
           classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
-              text: "Week beginning 1 [Month]",
+              text: "Week beginning 1 " + data['claim-month-support-worker-month'] | monthName ,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "day-1",
-              text: "Monday 1 [Month]"
+              text: "Monday 1 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-2",
-              text: "Tuesday 2 [Month]"
+              text: "Tuesday 2 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-3",
-              text: "Wednesday 3 [Month]"
+              text: "Wednesday 3 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-4",
-              text: "Thursday 4 [Month]"
+              text: "Thursday 4 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-5",
-              text: "Friday 5 [Month]"
+              text: "Friday 5 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-6",
-              text: "Saturday 6 [Month]"
+              text: "Saturday 6 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-7",
-              text: "Sunday 7 [Month]"
+              text: "Sunday 7 " + data['claim-month-support-worker-month'] | monthName 
             }
           ]
         }) }}
 
         {{ govukCheckboxes({
-          name: "week-2",
+          name: "support-week",
           classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
-              text: "Week beginning 8 [Month]",
+              text: "Week beginning 8 " + data['claim-month-support-worker-month'] | monthName ,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "day-8",
-              text: "Monday 8 [Month]"
+              text: "Monday 8 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-9",
-              text: "Tuesday 9 [Month]"
+              text: "Tuesday 9 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-10",
-              text: "Wednesday 10 [Month]"
+              text: "Wednesday 10 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-11",
-              text: "Thursday 11 [Month]"
+              text: "Thursday 11 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-12",
-              text: "Friday 12 [Month]"
+              text: "Friday 12 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-13",
-              text: "Saturday 13 [Month]"
+              text: "Saturday 13 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-14",
-              text: "Sunday 14 [Month]"
+              text: "Sunday 14 " + data['claim-month-support-worker-month'] | monthName 
             }
           ]
         }) }}
 
         {{ govukCheckboxes({
-          name: "week-3",
+          name: "support-week",
           classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
-              text: "Week beginning 15 [Month]",
+              text: "Week beginning 15 " + data['claim-month-support-worker-month'] | monthName ,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "day-15",
-              text: "Monday 15 [Month]"
+              text: "Monday 15 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-16",
-              text: "Tuesday 16 [Month]"
+              text: "Tuesday 16 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-17",
-              text: "Wednesday 17 [Month]"
+              text: "Wednesday 17 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-18",
-              text: "Thursday 18 [Month]"
+              text: "Thursday 18 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-19",
-              text: "Friday 19 [Month]"
+              text: "Friday 19 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-20",
-              text: "Saturday 20 [Month]"
+              text: "Saturday 20 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-21",
-              text: "Sunday 21 [Month]"
+              text: "Sunday 21 " + data['claim-month-support-worker-month'] | monthName 
             }
           ]
         }) }}
 
         {{ govukCheckboxes({
-          name: "week-4",
+          name: "support-week",
           classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
-              text: "Week beginning 22 [Month]",
+              text: "Week beginning 22 " + data['claim-month-support-worker-month'] | monthName ,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "day-22",
-              text: "Monday 22 [Month]"
+              text: "Monday 22 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-23",
-              text: "Tuesday 23 [Month]"
+              text: "Tuesday 23 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-24",
-              text: "Wednesday 24 [Month]"
+              text: "Wednesday 24 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-25",
-              text: "Thursday 25 [Month]"
+              text: "Thursday 25 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-26",
-              text: "Friday 26 [Month]"
+              text: "Friday 26 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-27",
-              text: "Saturday 27 [Month]"
+              text: "Saturday 27 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-28",
-              text: "Sunday 28 [Month]"
+              text: "Sunday 28 " + data['claim-month-support-worker-month'] | monthName 
             }
           ]
         }) }}
 
         {{ govukCheckboxes({
-          name: "week-5",
+          name: "support-week",
           classes: "govuk-checkboxes--small",
           fieldset: {
             legend: {
-              text: "Week beginning 29 [Month]",
+              text: "Week beginning 29 " + data['claim-month-support-worker-month'] | monthName ,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
               value: "day-29",
-              text: "Monday 29 [Month]"
+              text: "Monday 29 " + data['claim-month-support-worker-month'] | monthName 
             },
             {
               value: "day-30",
-              text: "Tuesday 30 [Month]"
+              text: "Tuesday 30 " + data['claim-month-support-worker-month'] | monthName 
+            },
+            {
+              value: "day-31",
+              text: "Wednesday 31 " + data['claim-month-support-worker-month'] | monthName 
             }
           ]
         }) }}

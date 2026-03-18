@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Claims summary – {{ serviceName }} – GOV.UK Prototype Kit
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -71,15 +71,15 @@
           rows: [
             {
               key: {
-                text: "[Month + Year of claim]"
+                text: data['claim-month-support-worker-month'] | monthName + " " + data['claim-month-support-worker-year']
               },
               value: {
-                text: data['claim-month-support-worker-month'] + " " + data['claim-month-support-worker-year']
+                text: "X hours and X minutes"
               },
               actions: {
                 items: [
                   {
-                    href: "claim-month#claim-month-support-worker-month",
+                    href: "support-summary",
                     text: "Change",
                     visuallyHiddenText: "month of claim"
                   }
@@ -107,7 +107,7 @@
               actions: {
                 items: [
                   {
-                    href: "support-name#support-worker-name",
+                    href: "support-name",
                     text: "Change",
                     visuallyHiddenText: "support name"
                   }
@@ -136,12 +136,12 @@
                 text: "Total cost of support workers"
               },
               value: {
-                text: data['support-worker-total-cost']
+                text: data['support-worker-total-cost'] | currency
               },
               actions: {
                 items: [
                   {
-                    href: "total-cost#support-worker-total-cost",
+                    href: "total-cost",
                     text: "Change",
                     visuallyHiddenText: "total cost"
                   }
@@ -153,12 +153,12 @@
                 text: "Receipts or invoices uploaded"
               },
               value: {
-                text: data['invoice-upload-support-worker']
+                text: "filename.png"
               },
               actions: {
                 items: [
                   {
-                    href: "uploads#invoice-upload-support-worker",
+                    href: "uploads",
                     text: "Change",
                     visuallyHiddenText: "receipts or invoice uploads"
                   }
@@ -185,7 +185,7 @@
               actions: {
                 items: [
                   {
-                    href: "who-to-pay#payee-full-name-support-worker-claim",
+                    href: "who-to-pay",
                     text: "Change",
                     visuallyHiddenText: "payee name"
                   }
@@ -202,7 +202,7 @@
               actions: {
                 items: [
                   {
-                    href: "who-to-pay#payee-email-address-support-worker-claim",
+                    href: "who-to-pay",
                     text: "Change",
                     visuallyHiddenText: "payee email address"
                   }
@@ -214,7 +214,7 @@
                 text: "Address"
               },
               value: {
-                text: data['address-select--support-worker-claims'] + " ," + data['payee-postcode-support-worker']
+                text: data['address-select-support-worker-claims'] + " ," + data['payee-postcode-support-worker']
               },
               actions: {
                 items: [
@@ -236,7 +236,7 @@
               actions: {
                 items: [
                   {
-                    href: "payment-details#name-on-account-support-worker",
+                    href: "payment-details",
                     text: "Change",
                     visuallyHiddenText: "name on bank account"
                   }
@@ -253,7 +253,7 @@
               actions: {
                 items: [
                   {
-                    href: "payment-details#sort-code-support-worker",
+                    href: "payment-details",
                     text: "Change",
                     visuallyHiddenText: "sort code"
                   }
@@ -270,7 +270,7 @@
               actions: {
                 items: [
                   {
-                    href: "payment-details#account-number-support-worker",
+                    href: "payment-details",
                     text: "Change",
                     visuallyHiddenText: "account number"
                   }
@@ -280,31 +280,52 @@
           ]
         }) }}
 
+        {{ govukInsetText({
+          html: "<p class='govuk-body'>You can change these details to <a href='#' class='govuk-link'>pay a person or company we've paid before</a>.</p>"
+        }) }}
+
         {{ govukSummaryList({
           card: {
             title: {
-              text: "Employment details"
+              text: "Details of the person or company who can confirm support costs"
             }
           },
           rows: [
-            {
-              key: {
-                text: "Employment status"
-              },
-              value: {
-                text: data['employment-status-support-worker']
-              },
-              actions: {
-                items: [
-                  {
-                    href: "employment-status#employment-status-support-worker",
-                    text: "Change",
-                    visuallyHiddenText: "employment status"
-                  }
-                ]
-              }
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data['full-name-workplace-contact-support-worker-claim']
+            },
+            actions: {
+              items: [
+                {
+                  href: "confirmer-details",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
             }
-          ]
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: data['email-address-workplace-contact-support-worker-claim']
+            },
+            actions: {
+              items: [
+                {
+                  href: "confirmer-details",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          }
+        ]
         }) }}
 
         {{ govukButton({

@@ -53,40 +53,24 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <form action="uploads-summary" method="post" novalidate>
-
-      <h1 class="govuk-heading-l">
-        Upload your receipts or invoices
-      </h1>
-
-      <p class="govuk-body">You'll need to upload your receipts or invoices from a computer, phone or tablet. You'll have the option to upload more than one if you need to.</p>
-
-      <p class="govuk-body">You'll need to:</p>
-        <ol class="govuk-list govuk-list--number">
-          <li>Choose the file you want to upload</li>
-          <li>Select upload</li>
-        </ol>
-
-        <p class="govuk-body">Check that the file you want to upload is in the correct file format before uploading. Files can be PNG, JPEG, PDF, DOC or DOCX. Make sure that the document is not password protected.</p>
-
+    <form action="uploaded" method="post" novalidate>
+      <h1 class="govuk-heading-l">Upload your receipts or invoices</h1>
+      <p class="govuk-body">Check that the file you want to upload is in the correct file format before uploading. Files can be PNG, JPEG, PDF, DOC or DOCX. Make sure that the document is not password protected.</p>
+      <p class="govuk-body">You'll have the option to upload more than one if you need to.</p>
       {{ govukFileUpload({
-          id: "invoice-upload-specialist-equipment",
-          name: "invoice-upload-specialist-equipment",
-          label: {
-            text: "Upload a file"
-          },
-          javascript: true
-        }) }}
-
+        id: "file-upload",
+        name: "fileUpload",
+        label: {
+          text: "Upload a file"
+        }
+      }) }}
         {{ govukButton({
-          text: "Upload"
+          text: "Continue"
         }) }}
-
-      </form>
-
-    </div>
+    </form>
   </div>
+</div>
 {% endblock %}
