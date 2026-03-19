@@ -1,0 +1,92 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Enter an address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Enter your workplace address details
+      </h1>
+
+      <form action="../registered-director/check-answers-registered-director" method="post" novalidate>
+
+      {{ govukInput({
+        label: {
+          text: "Address line 1"
+        },
+        id: "address-line-1",
+        name: "job-address-line-1",
+        autocomplete: "address-line1"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Address line 2 (optional)"
+        },
+        id: "address-line-2",
+        name: "job-address-line-2",
+        autocomplete: "address-line2"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Town or city"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "address-town",
+        name: "job-address-town",
+        autocomplete: "address-level2"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "County (optional)"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "job-address-county",
+        name: "addressCounty"
+      }) }}
+    
+      {{ govukInput({
+        label: {
+          text: "Postcode"
+        },
+        classes: "govuk-input--width-10",
+        id: "address-postcode",
+        name: "job-address-postcode",
+        autocomplete: "postal-code"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+          
+    </form>
+
+    <p class="govuk-body">
+      <a href="../../../task-list.html" class="govuk-link">Return to tasks</a>
+    </p>
+    
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

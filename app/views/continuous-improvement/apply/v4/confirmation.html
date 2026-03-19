@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirmation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Application sent",
+        html: "Your application reference is <br><strong>7NDQY9JKE</strong>"
+      }) }}
+
+      <p class="govuk-body">We will send a confirmation email to {{ data['email-address'] }} and text message to {{ data['telephone-number'] }} in the next few minutes.</p>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p class="govuk-body">The Access to Work team will review your application. If we need more information, we will contact you or your representitive about your application within the next 24 weeks.</p>
+
+      <p class="govuk-body">If your job is starting within the next 4 weeks, we will prioritise your application and contact you or your representitive as soon as possible.</p>
+
+      <p class="govuk-body"><a href="#" class="govuk-link">What did you think of this service? (opens in a new tab)</a></p>
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

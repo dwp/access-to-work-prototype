@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You may need a business plan – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">You may need to give a business plan</h1>
+
+      <p class="govuk-body">We will tell you if we need this when we contact you about your application.</p>
+
+      <p class="govuk-body">This is so that we can understand more about your business.</p>
+
+      <p class="govuk-body">You can find out <a href="#" class="govuk-link">how to write a business plan (opens in a new tab)</a>, if you do not have one already.</p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "../registered-director/work-hours"
+      }) }}
+             
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

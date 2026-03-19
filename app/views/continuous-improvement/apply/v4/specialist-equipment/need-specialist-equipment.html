@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Specialist equipment needs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Specialist equipment</h1>
+      <p class="govuk-body">Access to Work may be able to provide specialist equipment where it cannot be provided by an employer as a <a href="https://www.gov.uk/reasonable-adjustments-for-disabled-workers" class="govuk-link">reasonable adjustment (opens in a new tab):</a></p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>adapted keyboards and mouse alternatives</li>
+        <li>assistive software, like screen readers</li>
+        <li>other types of specialist equipment to support you with your condition</li>
+      </ul>
+      <form class="form" action="{{versionPath}}/need-specialist-equipment-answer" method="post">
+
+      {{ govukRadios({
+        name: "need-specialist-equipment",
+        fieldset: {
+          legend: {
+            text: "Do you need specialist equipment to support you with your condition at work?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "dont know",
+            text: "I don't know"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

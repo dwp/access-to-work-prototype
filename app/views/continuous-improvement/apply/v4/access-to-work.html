@@ -1,0 +1,196 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page - {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Working, jobs and pensions",
+        href: "#"
+      },
+      {
+        text: "Disabled people and work",
+        href: "#"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Access to Work: get support if you have a disability or health condition
+      </h1>
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              
+                What Access to Work is
+
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="eligibility">
+                Eligibility
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="start">
+                Apply for an Access to Work grant
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="after-you-apply">
+                After you apply for the grant
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="claiming-money">
+                Claiming money from your grant
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="renew-grant">
+                Renew your grant
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+
+      <h2 class="govuk-heading-xl">What Access to Work is</h2>
+
+      <p class="govuk-body">Access to Work can help you get or stay in work if you have a physical or mental health condition or disability, and is designed to support you above and beyond any <a href="https://www.gov.uk/reasonable-adjustments-for-disabled-workers">reasonable adjustments</a> your employer is able to provide. </p>
+
+      <p class="govuk-body">The support you get will depend on what you need. Through Access to Work, you can apply for:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a grant to help pay for practical support with your work</li>
+        <li>support with managing your mental health at work</li>
+        <li>money to pay for communication support at job interviews</li>
+      </ul>
+
+
+      <div role="note" aria-label="Information" class="govuk-inset-text">
+  <p>This guide is also available in <a href="/mynediad-at-waith">Welsh (Cymraeg)</a>, <a rel="external" href="https://www.youtube.com/playlist?list=PLC0aQWFFHARzJYt8cED-WX1g5jD0mApTv">British Sign Language (<abbr title="British Sign Language">BSL</abbr>)</a> and <a href="/government/publications/easy-read-get-help-at-work-if-youre-disabled-or-have-a-health-condition-access-to-work">Easy Read format</a>.</p>
+</div>
+
+      <h3 class="govuk-heading-m">Practical support with your work</h3>
+
+      <p class="govuk-body">Access to Work could give you a grant to help pay for things like:
+
+</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>any specialist equipment and assistive software not covered as a reasonable adjustment</li>
+     <li>support workers, like a BSL interpreter, a job coach or a travel buddy</li>
+     <li>costs of travelling to work, if you cannot use public transport</li>
+     <li>adaptations to your vehicle so you can get to work</li>
+     <li>physical changes to your workplace</li>
+      </ul>
+
+      <p class="govuk-body">Your workplace can include your home if you work from there some or all of the time.</p>
+
+<p class="govuk-body">If you get an Access to Work grant, it will not affect any other benefits you get and you will not have to pay it back.</p>
+
+<p class="govuk-body">You or your employer may need to pay some costs up front and claim them back later.</p>
+
+<h4 class="govuk-heading-s">How to apply</h4>
+<p><a href="eligibility">Check you’re eligible</a> and then <a href="apply">apply for an Access to Work grant</a>.</p>
+
+      <h3 class="govuk-heading-m">Mental health support</h3>
+
+      <p class="govuk-body">You can get support to manage your mental health at work, which might include:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a tailored plan to help you get or stay in work</li>
+        <li>one-to-one sessions with a mental health professional</li>
+      </ul>
+
+      <h4 class="govuk-heading-s">How to apply</h4>
+      <p><a href="/access-to-work/eligibility">Check you’re eligible</a> and then apply directly to either <a rel="external" href="https://able-futures.co.uk/individuals">Able Futures</a> or <a rel="external" href="https://atw.maximusuk.co.uk/">Maximus</a> - you must only apply to one.</p>
+
+      <p>If you’ve had mental health support through Access to Work before, you cannot apply again.</p>
+
+      <h3 class="govuk-heading-m">Communication support for job interviews</h3>
+
+      <p>Access to Work can help pay for communication support at a job interview if:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you’re deaf or hard of hearing and need a BSL interpreter or lipspeaker</li>
+        <li>you have a physical or mental health condition or learning difficulty and need communication support</li>
+      </ul>
+
+
+      <h3 class="govuk-heading-m">What Access to Work will not pay for</h3>
+<p>Access to Work will not pay for <a href="https://www.gov.uk/reasonable-adjustments-for-disabled-workers">reasonable adjustments</a>. These are the changes your employer must legally make to support you to do your job.</p>
+
+<p>You may be asked for a copy of an occupational health assessment as part of the Access to Work application process. Having this in advance will speed up your claim. </p>
+
+<p>Access to Work will advise your employer if changes should be made as reasonable adjustments.</p>
+
+
+{{ govukPagination({
+          next: {
+            labelText: "Eligibility",
+            href: "eligibility"
+          }
+        }) }}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-s" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                Disabled people: your rights at work
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Definition of disability under the Equality Act 2010
+              </a>
+            </li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Disabled people and work</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}

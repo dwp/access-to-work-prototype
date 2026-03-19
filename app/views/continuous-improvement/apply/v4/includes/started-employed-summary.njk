@@ -1,0 +1,154 @@
+<h2 class="govuk-heading-m">Employment details</h2>
+
+    {% set summaryRows = [] %}
+ 
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Employment status"
+        },
+        value: {
+          text: data['job-status']
+        }
+      },
+      {
+        key: {
+          text: "Company or organisation name"
+        },
+        value: {
+          text: data['company-name']
+        }
+      },
+      {
+        key: {
+          text: "Job title"
+        },
+        value: {
+          text: data['job-title']
+        }
+      },
+      {
+        key: {
+          text: "Job description"
+        },
+        value: {
+          text: data['job-description']
+        }
+      },
+      {
+        key: {
+          text: "When did you start working at" + ' ' + data['company-name'] + "?"
+        },
+        value: {
+          text: data['start-date-day'] + '/' + data['start-date-month'] + '/' + data['start-date-year']
+        }
+      },
+      {
+        key: {
+          text: "How many hours do you work per week?"
+        },
+        value: {
+          text: data['work-hours']
+        }
+      },
+      {
+        key: {
+          text: "Which days of the week do you work?"
+        },
+        value: {
+          text: data['work-days']
+        }
+      }
+    ]) %}
+
+
+
+    
+    {% if data['job-address-select'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: data['job-address-select'] + ',' + ' ' + data['postcode-job-address']
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    
+    {% if data['showAddressRowEmployedStartedWork'] %}
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: {
+            text: "Workplace address"
+          },
+          value: {
+            text: "I do not know my workplace address"
+          }
+        }
+      ]) %}
+    {% endif %}
+
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: {
+          text: "Are you a hybrid worker?"
+        },
+        value: {
+          text: data['hybrid-worker']
+        }
+      }
+      ]) %}
+
+
+
+{{ govukSummaryList({ rows: summaryRows }) }}
+
+    <h2 class="govuk-heading-m">Workplace contact</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Their name"
+          },
+          value: {
+            text: data['job-contact-full-name']
+          }
+        },
+        {
+          key: {
+            text: "Their job title"
+          },
+          value: {
+            text: data['job-contact-job-title']
+          }
+        },
+        {
+          key: {
+            text: "Their email address"
+          },
+          value: {
+            text: data['job-contact-email-address']
+          }
+        },
+        {
+          key: {
+            text: "Their phone number"
+          },
+          value: {
+            text: data['job-contact-telephone-number']
+          }
+        },
+        {
+          key: {
+            text: "Do you give your permission for us to contact" + ' ' + data['job-contact-full-name'] + "?"
+          },
+          value: {
+            text: data['contact-permission']
+          }
+        }
+      ]
+    }) }}

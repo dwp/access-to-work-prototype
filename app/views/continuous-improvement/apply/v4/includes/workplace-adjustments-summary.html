@@ -1,0 +1,91 @@
+<h2 class="govuk-heading-m">Your details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Discussed adjustments with employer"
+          },
+          value: {
+            text: data['employer-1-adjustments-discussed']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/employer-1",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Adjustments made by employer"
+          },
+          value: {
+            text: data['employer-1-adjustments']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/adjustments-made",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Details of adjustments made by employer"
+          },
+          value: {
+            text: data['adjustments-details']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/adjustments-made-details",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "OHA done by employer"
+          },
+          value: {
+            text: data['oha-done-choice']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/oha-done-choice",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Copy of the OHA "
+          },
+          value: {
+            text: data['oha-upload']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-adjustments/upload-oha-choice",
+                text: "Change",
+                visuallyHiddenText: "full name"
+              }
+            ]
+          }
+        }
+      ]
+    }) }} 

@@ -1,0 +1,24 @@
+  <h2 class="govuk-heading-m">
+        Your conditions or disabilities
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Health conditions or disabilities"
+            },
+            value: {
+              text: data['condition-disability-name']
+            }
+          },
+          {
+            key: {
+              text: "How does your condition or disability affect you at work?"
+            },
+            value: {
+              text: data['affect-at-work']
+            }
+          }
+        ]
+      }) }}

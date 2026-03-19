@@ -1,0 +1,238 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page - {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Working, jobs and pensions",
+        href: "#"
+      },
+      {
+        text: "Disabled people and work",
+        href: "#"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Access to Work: get support if you have a disability or health condition
+      </h1>
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="access-to-work">
+                What Access to Work is
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              
+                Eligibility
+              
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="start">
+                Apply for an Access to Work grant
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="after-you-apply">
+                After you apply for the grant
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="claiming-money">
+                Claiming money from your grant
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="renew-grant">
+                Renew your grant
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+
+      <h2 class="govuk-heading-xl">Eligibility</h2>
+
+      <div data-module="govspeak" class="gem-c-govspeak govuk-govspeak gem-c-govspeak--direction-ltr js-disable-youtube govuk-!-margin-bottom-0" data-govspeak-module-started="true">
+    
+        <p>As part of Access to Work, you may be eligible for:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>a grant to help pay for practical support with your work</li>
+  <li>support with managing your mental health at work</li>
+</ul>
+
+<p>For these types of support, you must:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>have a physical or mental health condition or disability that means you need support to do your job or get to and from work</li>
+  <li>be 16 or over</li>
+  <li>be in paid work (or be about to start or return to paid work in the next 12 weeks)</li>
+  <li>live and work (or be about to start or return to work) in England, Scotland or Wales - there’s a <a rel="external" href="http://www.nidirect.gov.uk/index/information-and-services/people-with-disabilities/employment-support/work-schemes-and-programmes/access-to-work-practical-help-at-work.htm">different system in Northern Ireland</a>
+</li>
+</ul>
+
+<p>For mental health support, you can only claim Access to Work once.&nbsp; If you’ve received it before, you cannot apply again.</p>
+
+<div role="note" aria-label="Information" class="application-notice info-notice">
+  <p>There are different <a href="/guidance/apply-for-communication-support-at-a-job-interview-if-you-have-a-disability-or-health-condition-access-to-work">eligibility criteria for communication support at a job interview</a>.</p>
+</div>
+
+<p>You cannot get Access to Work if you live in the Channel Islands or the Isle of Man.</p>
+
+<h2 class="govuk-heading-m" id="your-disability-illness-or-health-condition">Your disability, illness or health condition</h2>
+
+<p>You must have a disability, illness or health condition that means you need support to do your job.</p>
+
+<p>This can include, for example:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>a physical disability, for example if you’re hard of hearing or use a wheelchair</li>
+  <li>a learning disability or related condition, for example if you have Down’s syndrome</li>
+  <li>a developmental condition, like autism spectrum disorder</li>
+  <li>having <abbr title="attention deficit hyperactivity disorder">ADHD</abbr> or dyslexia</li>
+  <li>an illness such as diabetes</li>
+  <li>a temporary condition, like a broken leg</li>
+  <li>a mental health condition, for example anxiety or depression</li>
+</ul>
+
+<p>You do not need to be diagnosed with a condition to apply.</p>
+
+<h2 class="govuk-heading-m" id="your-work">Your work</h2>
+
+<p>You need to have a paid job (or be about to start or return to one).</p>
+
+<p>A paid job can be full or part-time and can include:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>employment</li>
+  <li>self-employment</li>
+  <li>an apprenticeship</li>
+  <li>a work trial or work experience</li>
+  <li>an internship</li>
+  <li>a work placement</li>
+</ul>
+
+<p>Access to Work cannot cover support which is considered a reasonable adjustment or pay for personal protective equipment (PPE). Check what support your employer can give, as there may be adjustments they can make while you wait for your claim to be processed. </p>
+
+<p>You cannot get Access to Work support for voluntary work.</p>
+
+<div role="note" aria-label="Information" class="govuk-inset-text">
+  <p>You can still apply for Access to Work if you’re working from home some or all of the time.</p>
+</div>
+
+<h2 class="govuk-heading-m" id="your-income-and-benefits">Your income and benefits</h2>
+
+<p>You can get Access to Work at the same time as most benefits, as long as you work more than 1 hour a week.</p>
+
+<p>If you’re employed, you can get support however much you earn or have in savings.</p>
+
+<p>If you’re self-employed, you must have an annual turnover of at least £6,500.</p>
+
+<h4 class="govuk-heading-s" id="if-youre-getting-employment-and-support-allowance-esa">If you’re getting Employment and Support Allowance (<abbr title="Employment and Support Allowance">ESA</abbr>)</h3>
+
+<p>You can get Access to Work and <abbr title="Employment and Support Allowance">ESA</abbr> at the same time if you work less than 16 hours a week. There are <a href="/employment-support-allowance/working-while-you-claim">rules about working while claiming <abbr title="Employment and Support Allowance">ESA</abbr></a>. You can ask your work coach for advice and support.</p>
+
+<h2 class="govuk-heading-m" id="if-youre-a-civil-servant">If you’re a civil servant</h2>
+
+<p>Your employer will provide support instead of Access to Work. Contact your employer so they can assess and arrange the support you need.</p>
+
+<h2 class="govuk-heading-m" id="get-advice-on-your-eligibility">Get advice on your eligibility</h2>
+
+<p>If you’re not sure that you’re eligible, call the Access to Work helpline.</p>
+
+<h4 class="govuk-heading-s" id="access-to-work-helpline">Access to Work helpline</h3>
+
+<div class="contact">
+<p>Telephone: 0800 121 7479   <br>
+<a href="https://www.relayuk.bt.com/">Relay UK</a> (if you cannot hear or speak on the phone): 18001 then 0800 121 7479 <br>
+British Sign Language (BSL) <a href="https://connect.interpreterslive.co.uk/vrs?ilc=DWP">video relay service</a> if you’re on a computer - find out how to <a href="https://www.youtube.com/watch?v=oELNMfAvDxw">use the service on mobile or tablet</a> <br>
+Monday to Friday, 9am to 5pm   <br>
+<a href="/call-charges">Find out about call charges</a></p>
+</div>
+
+<div role="note" aria-label="Information" class="govuk-inset-text">
+  <p>If phone calls are difficult for you (for example, because you’re deaf or hard of hearing), you can ask for all communication to be by email instead.</p>
+</div>
+
+
+
+</div>
+
+
+{{ govukPagination({
+  previous: {
+    labelText: "What Access to Work is",
+    href: "access-to-work"
+  },
+  next: {
+    labelText: "Apply for an Access to Work grant",
+    href: "start"
+  }
+}) }}
+
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-s" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                Disabled people: your rights at work
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Definition of disability under the Equality Act 2010
+              </a>
+            </li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Disabled people and work</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+{% endblock %}

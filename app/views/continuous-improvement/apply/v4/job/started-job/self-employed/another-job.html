@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Add another job – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">You have added 1 job</h1>
+
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          rows: [
+            [
+              {
+                text: data['job-title-self-employed']
+              },
+              {
+                html: "<a href='../self-employed/check-answers-self-employed' class='govuk-link govuk-!-padding-right-5'>Change</a> <a href='../self-employed/remove-job' class='govuk-link'>Remove</a>",
+                classes: "govuk-table__cell--numeric govuk-!-width-one-tenth"
+              }
+            ]
+          ]
+        }) }}
+
+        <form class="form" action="{{versionPath}}/another-job-answer-self-employed" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "add-another-job-self-employed",
+          fieldset: {
+            legend: {
+              text: "Do you need to add another job?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list.html" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}
