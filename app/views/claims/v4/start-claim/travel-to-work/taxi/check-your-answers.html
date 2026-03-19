@@ -1,0 +1,338 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Claims summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+{% set totalJourneys = 0 %}
+
+{% for i in range (1, 32) %}
+  {% set value = data['day-' + i] %}
+  {% set totalJourneys = totalJourneys + (value | int(0)) %}
+{% endfor%}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="../../declaration" method="post" novalidate>
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+     {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Monthly travel"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: data['claim-month-month'] | monthName + " " + data['claim-month-year']
+              },
+              value: {
+                text: totalJourneys | plural("journey")
+              },
+              actions: {
+                items: [
+                  {
+                    href: "journey-summary",
+                    text: "Change",
+                    visuallyHiddenText: "month of travel"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Taxi travel claim information"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Total number of journeys"
+              },
+              value: {
+                text: totalJourneys
+              },
+              actions: {
+                items: [
+                  {
+                    href: "number-of-journeys",
+                    text: "Change",
+                    visuallyHiddenText: "total number of journeys"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Total cost of journeys"
+              },
+              value: {
+                text: data['taxi-total-cost'] | currency
+              },
+              actions: {
+                items: [
+                  {
+                    href: "total-cost#taxi-total-cost",
+                    text: "Change",
+                    visuallyHiddenText: "total cost"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Receipts or invoices uploaded"
+              },
+              value: {
+                text: "filename.png"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "uploads",
+                    text: "Change",
+                    visuallyHiddenText: "receipt or invoice upload"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Details of person or company being paid"
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Name"
+              },
+              value: {
+                text: data['payee-full-name-claim']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "who-to-pay#payee-full-name-claim",
+                    text: "Change",
+                    visuallyHiddenText: "payee name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email address"
+              },
+              value: {
+                text: data['payee-email-address-claim']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "who-to-pay#payee-email-address-claim",
+                    text: "Change",
+                    visuallyHiddenText: "payee email address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Address"
+              },
+              value: {
+                text: data['address-select-claims'] + " ," + data['payee-postcode']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payee-postcode",
+                    text: "Change",
+                    visuallyHiddenText: "payee address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Name on bank account"
+              },
+              value: {
+                text: data['name-on-account']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payment-details#name-on-account",
+                    text: "Change",
+                    visuallyHiddenText: "name on bank account"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Sort code"
+              },
+              value: {
+                text: data['sort-code']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payment-details#sort-code",
+                    text: "Change",
+                    visuallyHiddenText: "sort code"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Account number"
+              },
+              value: {
+                text: data['account-number']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "payment-details#account-number",
+                    text: "Change",
+                    visuallyHiddenText: "account number"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukInsetText({
+          html: "<p class='govuk-body'>You can change these details to <a href='#' class='govuk-link'>pay a person or company we've paid before</a>.</p>"
+        }) }}
+
+          <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">
+                Employment details
+              </h2>
+            </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Employment status
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['employment-status-taxi'] }} 
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="employment-status">Change<span class="govuk-visually-hidden"> employment status</span></a>
+              </dd>
+                </div>
+                {% if data['employment-status-taxi'] == "Self-employed" %}
+              </dl>
+            </div>
+          </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Workplace contact
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['workplace-contact-full-name-taxi'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="workplace-contact">Change<span class="govuk-visually-hidden"> workplace contact name</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Workplace contact email
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['workplace-contact-email-address-taxi'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="workplace-contact">Change<span class="govuk-visually-hidden"> workplace contact email address</span></a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+            {% endif %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

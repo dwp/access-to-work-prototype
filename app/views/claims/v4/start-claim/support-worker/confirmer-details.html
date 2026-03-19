@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  The person or company who can confirm your support work costs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../../../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+ <div class="govuk-back-link-and-translation govuk-width-container">
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Details of the person or company who can confirm your support work costs</h1>
+      <p class="govuk-body">If you're employed by an organisation, this needs to be someone like your line manager or HR manager.</p>
+      <p class="govuk-body">If you're self-employed, tell us the details of the company or person who provided the support.</p>
+
+      <form action="confirmer-contact-summary" method="post" novalidate>
+
+      {{ govukInput({
+        label: {
+          text: "Full name",
+          classes: "govuk-!-font-weight-bold"
+        },
+        hint: {
+          text: "This needs to be someone like your line manager or HR manager"
+        },
+        id: "full-name-workplace-contact--support-worker-claim",
+        name: "full-name-workplace-contact-support-worker-claim",
+        value: data['full-name-workplace-contact-support-worker-claim']
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email address",
+          classes: "govuk-!-font-weight-bold"
+        },
+        hint: {
+          text: "We'll use this email address to contact them about your claim"
+        },
+        id: "email-address-workplace-contact-support-worker-claim",
+        name: "email-address-workplace-contact-support-worker-claim",
+        value: data['email-address-workplace-contact-support-worker-claim']
+      }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

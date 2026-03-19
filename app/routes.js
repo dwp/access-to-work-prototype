@@ -12,6 +12,7 @@ router.use('/continuous-improvement/apply/v2', require('./views/continuous-impro
 router.use('/continuous-improvement/apply/v3', require('./views/continuous-improvement/apply/v3/_routes'))
 router.use('/claims/v2', require('./views/claims/v2/_routes'))
 router.use('/claims/v3', require('./views/claims/v3/_routes'))
+router.use('/claims/v4', require('./views/claims/v4/_routes'))
 router.use('/atwis/v3', require('./views/atwis/v3/_routes'))
 router.use('/atwis/v4', require('./views/atwis/v4/_routes'))
 
