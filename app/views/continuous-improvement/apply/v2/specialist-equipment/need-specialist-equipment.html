@@ -16,11 +16,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-
-
-
-
+      <h1 class="govuk-heading-l">Specialist equipment</h1>
+      <p class="govuk-body">Access to Work may be able to provide specialist equipment where it cannot be provided by an employer as a <a href="https://www.gov.uk/reasonable-adjustments-for-disabled-workers" class="govuk-link">reasonable adjustment (opens in a new tab):</a></p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>adapted keyboards and mouse alternatives</li>
+        <li>assistive software, like screen readers</li>
+        <li>other types of specialist equipment to support you with your condition</li>
+      </ul>
       <form class="form" action="{{versionPath}}/need-specialist-equipment-answer" method="post">
 
       {{ govukRadios({
@@ -28,8 +30,7 @@
         fieldset: {
           legend: {
             text: "Do you need specialist equipment to support you with your condition at work?",
-            classes: "govuk-fieldset__legend--l",
-            isPageHeading: true
+            classes: "govuk-fieldset__legend--m"
           }
         },
         items: [
