@@ -1,7 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-const versionPath = '/claims/v4'
+const versionPath = '/claims/v3'
 
 router.all(versionPath + '/*', function(req, res, next){
     res.locals.versionPath = versionPath

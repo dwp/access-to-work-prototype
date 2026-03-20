@@ -1,9 +1,8 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Service timeout – {{ serviceName }} – GOV.UK Prototype Kit
+  Account home – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
-
 
 
 {% block header %}
@@ -59,21 +58,6 @@
 
 {% block content %}
 
-
-{{ hmrcTimeoutDialog({
-  timeout: 1800,
-  countdown: 1790,
-  keepAliveUrl: "account-home",
-  signOutUrl: "service-timeout-signed-out",
-  language: "en",
-  title: "You will be signed out soon",
-  message: "We will sign you out of your account in ",
-  messageSuffix: "Any information you have not submitted will be deleted If you do not select continue. We do this to keep your information secure.",
-  keepAliveButtonText: "Continue",
-  signOutButtonText: "Sign out"
-}) }}
-
-
 <span class="govuk-caption-xl">Joe Bloggs</span>
       <h1 class="govuk-heading-xl">Account home</h1>
 
@@ -93,7 +77,7 @@
   <div class="card">
     <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
               <div class="nhsuk-card__content nhsuk-card__content--secondary">
-                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">Recent claims</a> </h2>
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="recent-claims/recent-claims">Recent claims</a> </h2>
                 <p class="nhsuk-card__description">Claims made in the past 3 months</p>
               </div>
         </div>
@@ -102,7 +86,7 @@
   <div class="card">
     <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
               <div class="nhsuk-card__content nhsuk-card__content--secondary">
-                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">Payments</a> </h2>
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="payments/which-payments">Payments</a> </h2>
                 <p class="nhsuk-card__description">Check the progress of payments, including any rejected payments</p>
               </div>
         </div>
@@ -121,7 +105,7 @@
   <div class="card">
     <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
               <div class="nhsuk-card__content nhsuk-card__content--secondary">
-                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">How to claim by post</a> </h2>
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="claim-by-post/claim-by-post">How to claim by post</a> </h2>
                 <p class="nhsuk-card__description">Get a claim form and send it by post if you cannot claim online</p>
               </div>
         </div>
@@ -130,7 +114,7 @@
    <div class="card">
     <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--secondary">
               <div class="nhsuk-card__content nhsuk-card__content--secondary">
-                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="#">Grant summary</a> </h2>
+                <h2 class="nhsuk-card__heading nhsuk-heading-m"> <a class="nhsuk-card__link" href="grant-summary/select-support-type">Grant summary</a> </h2>
                 <p class="nhsuk-card__description">Your grant total, how much you have left and when you'll need to renew</p>
               </div>
         </div>
@@ -138,11 +122,12 @@
 </div>
 </div>
 
-{% include "claims/v4/includes/get-help" %}
+{% include "claims/v3/includes/get-help" %}
 
 
 {% endblock %}
 
 {% block footer %}
-{% include "claims/v2/includes/footer" %}
+{% include "claims/v3/includes/footer" %}
 {% endblock %}
+

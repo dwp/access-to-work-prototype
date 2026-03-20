@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Sorry, you could not prove your identity with GOV.UK One Login – {{ serviceName }} – GOV.UK Prototype Kit
+  You have been signed out of {{ serviceName }} – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -49,21 +49,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Sorry, there is a problem with the service</h1>
+      <h1 class="govuk-heading-l">We have signed you out</h1>
 
-      <p class="govuk-body">Try again later.</p>
+      <p class="govuk-body">You will need to sign back in to access your account. We do this to keep your information secure.</p>
 
-      <p class="govuk-body">If you were making a claim, you'll have to start again when the service is available.</p>
+      <p class="govuk-body">You can safely close this tab.</p>
 
-      <p class="govuk-body"><a href="#" class="govuk-link">Contact the Access to Work Helpline</a> if you have any questions about your claims.</p>
+      {{ govukButton({
+        text: "Sign in",
+        href: "create-sign-in-ol"
+      }) }}
     
   </div>
   </div>
 
-  {% include "claims/v4/includes/get-help" %}
-
 {% endblock %}
 
 {% block footer %}
-{% include "claims/v2/includes/footer" %}
+{% include "claims/v3/includes/footer" %}
 {% endblock %}
