@@ -27,14 +27,17 @@
 
 
 
-        {{ govukRadios({
+         {{ govukRadios({
           name: "oha-done-choice",
           fieldset: {
             legend: {
-              text: "Has " + companyName + " completed an occupational health assessment?",
-              isPageHeading: false,
+              text: "Have you had an occupational health assessment at " + companyName + "?",
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
-            }
+            } 
+          },
+          hint: {
+            text: "An occupational health assessment is a confidential assessment arranged by your employer to see what adjustments could help you at work."
           },
           items: [
             {
@@ -47,6 +50,7 @@
             }
           ]
         }) }}
+
 
       {{ govukButton({ 
         text: "Continue"

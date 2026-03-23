@@ -20,18 +20,18 @@
 
 
 {% block content %}
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="{{versionPath}}/occupational-health/oha-done-choice-post" method="post">
-
-
+      <form class="form" action="{{versionPath}}/workplace-changes/employer-1-post" method="post">
 
         {{ govukRadios({
-          name: "oha-done-choice",
+          name: "employer-1-adjustments-discussed",
           fieldset: {
             legend: {
-              text: "Has " + companyName + " completed an occupational health assessment?",
+              text: "Have you dchanged to your workplace with your employer?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
@@ -48,7 +48,9 @@
           ]
         }) }}
 
-      {{ govukButton({ 
+        <input type="hidden" name="workplace-changes-task-status" value="">
+
+      {{ govukButton({
         text: "Continue"
       }) }}
 

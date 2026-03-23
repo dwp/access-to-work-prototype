@@ -23,30 +23,22 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="{{versionPath}}/occupational-health/oha-done-choice-post" method="post">
+      <form class="form" action="{{versionPath}}/occupational-health/check-answers" method="post">
+
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "oha-upload",
+    label: {
+      text: "Upload a copy of the the occupational health assessment",
+      isPageHeading: true,
+      classes: "govuk-label--l"
+    },
+    javascript: true
+  }) }}
 
 
 
-        {{ govukRadios({
-          name: "oha-done-choice",
-          fieldset: {
-            legend: {
-              text: "Has " + companyName + " completed an occupational health assessment?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes"
-            },
-            {
-              value: "No",
-              text: "No"
-            }
-          ]
-        }) }}
+       
 
       {{ govukButton({ 
         text: "Continue"

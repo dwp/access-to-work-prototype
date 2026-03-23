@@ -23,15 +23,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="{{versionPath}}/occupational-health/oha-done-choice-post" method="post">
+      <form class="form" action="{{versionPath}}/occupational-health/oha-upload-choice-post" method="post">
 
 
 
         {{ govukRadios({
-          name: "oha-done-choice",
+          name: "oha-upload-choice",
           fieldset: {
             legend: {
-              text: "Has " + companyName + " completed an occupational health assessment?",
+              text: "Do you want to upload a copy of the occupational health assessment?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }

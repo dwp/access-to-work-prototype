@@ -41,54 +41,54 @@ const TASKS = [
     checkAnswersRoute: versionPath + '/job/started-job/employed/another-job'
   },
   {
-    key: 'workplace-adjustments',
-    secondQuestionRoute: versionPath + '/workplace-adjustments/employer-1-post',
-    checkAnswersRoute: versionPath + '/workplace-adjustments/check-answers-post',
+    key: 'occupational-health',
+    secondQuestionRoute: versionPath + '/occupational-health/employer-1-post',
+    checkAnswersRoute: versionPath + '/occupational-health/check-answers-post',
     dependsOn: ['job']
   },
   {
     key: 'specialist-equipment',
     secondQuestionRoute: versionPath + '/need-specialist-equipment-answer',
     checkAnswersRoute: versionPath + '/specialist-equipment/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'mental-health',
     checkAnswersRoute: versionPath + '/mental-health-support-answer',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'travel-to-work',
     secondQuestionRoute: versionPath + '/difficulty-driving-answer',
     checkAnswersRoute: versionPath + '/travel-to-work/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'travel-in-work',
     checkAnswersRoute: versionPath + '/travel-in-work/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'workplace-changes',
     checkAnswersRoute: versionPath + '/workplace-changes-answer',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'vehicle-changes',
     checkAnswersRoute: versionPath + '/vehicle-changes-answer',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'support-worker',
     secondQuestionRoute: versionPath + '/need-support-worker-answer',
     checkAnswersRoute: versionPath + '/support-worker/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
     key: 'other-information',
     secondQuestionRoute: versionPath + '/anything-else-answer',
     checkAnswersRoute: versionPath + '/other-information/check-answers',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'workplace-adjustments']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   }
   
 
@@ -213,44 +213,55 @@ TASKS.forEach(task => {
 
 
 
-router.post(versionPath + '/workplace-adjustments/employer-1-post', function(req, res, next){
+router.post(versionPath + '/workplace-changes/employer-1-post', function(req, res, next){
     let choice = req.session.data['employer-1-adjustments-discussed'];
 
     if(choice == "No"){
-        res.redirect(versionPath + "/workplace-adjustments/occupational-health")
+        res.redirect(versionPath + "/workplace-changes/check-answers")
     } else {
-        res.redirect(versionPath + "/workplace-adjustments/adjustments-made")
+        res.redirect(versionPath + "/workplace-changes/adjustments-made")
     }
 })
 
 
-router.post(versionPath + '/workplace-adjustments/adjustments-made-post', function(req, res, next){
+router.post(versionPath + '/workplace-changes/adjustments-made-post', function(req, res, next){
     let choice = req.session.data['adjustments-made'];
 
     if(choice == "No"){
-        res.redirect(versionPath + "/workplace-adjustments/occupational-health")
+        res.redirect(versionPath + "/workplace-changes/check-answers")
     } else {
-        res.redirect(versionPath + "/workplace-adjustments/adjustments-made-details")
+        res.redirect(versionPath + "/workplace-changes/adjustments-made-details")
     }
 })
 
-router.post(versionPath + '/workplace-adjustments/oha-done-choice-post', function(req, res, next){
+router.post(versionPath + '/occupational-health/oha-done-choice-post', function(req, res, next){
     let choice = req.session.data['oha-done-choice'];
 
     if(choice == "No"){
-        res.redirect(versionPath + "/workplace-adjustments/check-answers")
+        res.redirect(versionPath + "/occupational-health/check-answers")
     } else {
-        res.redirect(versionPath + "/workplace-adjustments/oha-upload-choice")
+        res.redirect(versionPath + "/occupational-health/oha-upload-choice")
     }
 })
 
-router.post(versionPath + '/workplace-adjustments/oha-upload-choice-post', function(req, res, next){
+router.post(versionPath + '/occupational-health/oha-upload-choice-post', function(req, res, next){
     let choice = req.session.data['oha-upload-choice'];
 
     if(choice == "No"){
-        res.redirect(versionPath + "/workplace-adjustments/check-answers")
+        res.redirect(versionPath + "/occupational-health/check-answers")
     } else {
-        res.redirect(versionPath + "/workplace-adjustments/oha-upload")
+        res.redirect(versionPath + "/occupational-health/oha-upload")
+    }
+})
+
+
+router.post(versionPath + '/workplace-changes/need-work-changes-post', function(req, res, next){
+    let choice = req.session.data['changes-to-work'];
+    console.log(choice)
+    if(choice === 'no'){
+        res.redirect(versionPath + "/task-list")
+    } else {
+        res.redirect(versionPath + "/workplace-changes/employer-1")
     }
 })
 

@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+\{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
   Task list – {{ serviceName }} – GOV.UK Prototype Kit
@@ -142,22 +142,22 @@
               {{ taskStatus(taskStatuses['job']) }}
             </div>
           </li>
-          <li class="govuk-task-list__item {% if taskStatuses['workplace-adjustments'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
+          <li class="govuk-task-list__item {% if taskStatuses['occupational-health'] != 'cannot-start-yet' %}govuk-task-list__item--with-link{% endif %}">
             <div class="govuk-task-list__name-and-hint">
-              {% if taskStatuses['workplace-adjustments'] == 'cannot-start-yet' %}
-                Workplace adjustments
-              {% elif taskStatuses['workplace-adjustments'] == 'completed' %}
-                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/workplace-adjustments/check-answers" aria-describedby="workplace-adjustments-status">
-                  Workplace adjustments
+              {% if taskStatuses['occupational-health'] == 'cannot-start-yet' %}
+                Occupational health assessments
+              {% elif taskStatuses['occupational-health'] == 'completed' %}
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/occupational-health/check-answers" aria-describedby="occupational-health-status">
+                  Occupational health assessments
                 </a>
               {% else %}
-                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/workplace-adjustments/reasonable-adjustments" aria-describedby="workplace-adjustments-status">
-                  Workplace adjustments
+                <a class="govuk-link govuk-task-list__link" href="{{versionPath}}/occupational-health/oha-done-choice" aria-describedby="occupational-health-status">
+                  Occupational health assessments
                 </a>
               {% endif %}
             </div>
-            <div class="govuk-task-list__status" id="workplace-adjustments-status">
-              {{ taskStatus(taskStatuses['workplace-adjustments']) }}
+            <div class="govuk-task-list__status" id="occupational-health-status">
+              {{ taskStatus(taskStatuses['occupational-health']) }}
             </div>
           </li>
         </ul>

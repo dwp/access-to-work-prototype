@@ -13,7 +13,6 @@ router.use('/claims/v2', require('./views/claims/v2/_routes'))
 router.use('/claims/v3', require('./views/claims/v3/_routes'))
 router.use('/atwis/v3', require('./views/atwis/v3/_routes'))
 router.use('/atwis/v4', require('./views/atwis/v4/_routes'))
-router.use('/atwis/v5', require('./views/atwis/v5/_routes'))
 
 // Add your routes here
 
