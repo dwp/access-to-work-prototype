@@ -14,7 +14,7 @@
         actionHref: "#",
         container: true,
         navigation: {
-          selectedItem: "../your-cases",
+          selectedItem: "../all-advisors",
           items: [
                 {
                   href: "../your-cases",
@@ -127,8 +127,8 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> AB123456C</p>
-        <p class="govuk-body govuk-!-margin-bottom-0" style="color:white !important;"><strong>Document status:</strong> Not started</p>
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>NI number:</strong> AB123456C</p>
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> 6195739165</p>
       </div>
     </div>
 
@@ -139,131 +139,47 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Allocated envelopes</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Envelope</th>
+          <th scope="col" class="govuk-table__header">Document types</th>
+          <th scope="col" class="govuk-table__header">Date scanned</th>
 
-      <h2 class="govuk-heading-l">Documents scanned on 12 December 2025</h2>
-
-      {{ govukTable({
-  caption: "Document details",
-  captionClasses: "govuk-table__caption--m",
-  head: [
-    {
-      text: "Document type"
-    },
-    {
-      text: "Form reference"
-    },
-    {
-      text: "Document ID"
-    }
-  ],
-  rows: [
-    [
-      {
-        text: "CSI"
-      },
-      {
-        text: "DP221JP"
-      },
-      {
-        html: '<a href="#" class="govuk-link">View b5a21d66-b112-4c00-a7c8-095f06a71427</a>'
-      }
-    ]
-  ]
-}) }}
-
-<h3 class="govuk-heading-m">DRS envelope ID</h3>
-
-<p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
-
-<p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: 1730476832300</p>
-
-<p class="govuk-body"><a href="your-documents" class="govuk-link">Back to the full list of documents</a></p>
-
-</div>
-
-<div class="govuk-grid-column-one-third">
-
-{{ govukSelect({
-  id: "allocate-document",
-  name: "allocate-document",
-  label: {
-    html: '<h2 class="govuk-heading-m">Who do you want to allocate this to?</h2>'
-  },
-   hint: {
-    text: "Leave blank to unallocate it"
-  },
-  items: [
-   {
-      value: "blank",
-      text: "",
-      selected: true
-    },
-    {
-      value: "name-1",
-      text: "John Doe"
-    },
-    {
-      value: "name-2",
-      text: "Susan Quantas"
-    },
-    {
-      value: "name-3",
-      text: "Savannah Eastwood"
-    },
-    {
-      value: "name-4",
-      text: "David Connolly"
-    },
-    {
-      value: "name-5",
-      text: "Sophia Wanless"
-    }
-  ]
-}) }}
-
-{{ govukButton({
-  text: "Allocate"
-}) }}
-
-{{ govukSelect({
-  id: "update-status",
-  name: "update-status",
-  label: {
-    html: '<h2 class="govuk-heading-m">Update status</h2>'
-  },
-  items: [
-   {
-      value: "blank",
-      text: "",
-      selected: true
-    },
-    {
-      value: "not started",
-      text: "Not started"
-    },
-    {
-      value: "in progress",
-      text: "In progress"
-    },
-    {
-      value: "completed",
-      text: "Completed"
-    }
-  ]
-}) }}
-
-<form action="end-date" method="post" novalidate>
-
-{{ govukButton({
-  text: "Update"
-}) }}
-
-</form>
-     
+          <th class="govuk-table__header"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href = "#">View envelope</a> <br>20260206768364344364</td><td class="govuk-table__cell">
+            <strong>5 documents</strong><br>
+            One off costs (SAE)<br>
+            Travel in work<br>
+            Invoice<br>
+            Change bank details
+          </td>
+          <td class="govuk-table__cell">6 February 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href = "#">View envelope</a> <br>20260209328496619454</td><td class="govuk-table__cell">
+            <strong>1 document</strong><br>
+            Invoice
+          </td>
+          <td class="govuk-table__cell">9 February 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href = "#">View envelope</a> <br>20260307680797271492</td><td class="govuk-table__cell">
+            <strong>1 document</strong><br>
+            Support worker
+          </td>
+          <td class="govuk-table__cell">7 March 2026</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="govuk-body"><a href="../all-advisors/advisor-view-documents" class="govuk-link">Back to John Goldsmith's envelopes</a></p>
   </div>
-    
 </div>
-  </div>
 {% endblock %}

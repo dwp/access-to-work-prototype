@@ -117,11 +117,10 @@
 
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Unallocated envelopes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m">Allocated envelopes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Envelope</th>
-      
       <th scope="col" class="govuk-table__header">Document types</th>
       <th scope="col" class="govuk-table__header">Date scanned</th>
 
@@ -131,7 +130,7 @@
   <tbody class="govuk-table__body">
     {% for envelope in case.envelopes  %}
     <tr class="govuk-table__row">
-      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-allocated?id={{case.id}}&envelope={{loop.index0}}">view envelope</a> <br>{{envelope.envelopeRef}}</td><td class="govuk-table__cell">
+      <td scope="row" class="govuk-table__cell"><a href = "{{versionPath}}/documents/envelope-allocated?id={{case.id}}&envelope={{loop.index0}}">View envelope</a> <br>{{envelope.envelopeRef}}</td><td class="govuk-table__cell">
         <strong>{{envelope.documents.length}} documents</strong> <br>
         {% for type in envelope.documentTypes %}
           {{type}} <br>
@@ -147,13 +146,13 @@
 </table>
 
 
-<p class="govuk-body"><a href="{{versionPath}}/unallocated/unallocated-documents" class="govuk-link">Back to all unallocated documents</a></p>
+<p class="govuk-body"><a href="{{versionPath}}/documents/your-documents" class="govuk-link">Back to your envelopes</a></p>
 
 
 
 </div>
 
-<div class="govuk-grid-column-one-third">
+<!-- <div class="govuk-grid-column-one-third">
 
 
 {{ govukSelect({
@@ -191,7 +190,7 @@
 
 </form>
      
-  </div>
+  </div> -->
     
 </div>
   </div>

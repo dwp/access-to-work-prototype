@@ -137,7 +137,7 @@
                   id: "csi-cases"
                 },
                 {
-                  text: "Documents (1)",
+                  text: "Envelopes (1)",
                   href: "advisor-view-documents",
                   id: "documents"
                 }
@@ -147,58 +147,52 @@
 
 <div class="govuk-tabs__panel">
 
-    <h2 class="govuk-heading-m">John Goldsmith's documents (1)</h2>
+    <h2 class="govuk-heading-m">John Goldsmith's envelopes (1)</h2>
 
           {{ govukSelect({
             id: "document-type",
             name: "document-type",
             label: {
-              text: "Type of document"
+              text: "Type of envelope"
             },
             items: [
-              {
-                value: "any",
-                text: "Any"
-              },
-              {
-                value: "priority cases",
-                text: "Priority cases"
-              },
-              {
-                value: "CSI cases",
-                text: "CSI cases"
-              },
-              {
-                value: "documents",
-                text: "Documents"
-              },
               {
                 value: "no specialist equipment",
                 text: "No specialist equipment",
                 selected: true
+              },
+              {
+                value: "specialist equipment",
+                text: "Specialist equipment"
+              },
+              {
+                value: "TSEG",
+                text: "TSEG"
+              },
+              {
+                value: "CSI",
+                text: "CSI"
               }
             ]
           }) }}
 
           {{ govukButton({
-            text: "Request a new document"
+            text: "Request a new envelope"
           }) }}
 
+
           {{ govukTable({
-            caption: "Document details",
+            caption: "Envelope details",
             captionClasses: "govuk-table__caption--m",
             head: [
               {
                 text: "Name"
               },
               {
-                text: "Type of document"
+                text: "Number of documents"
               },
               {
-                text: "Form reference"
-              },
-              {
-                text: "Date scanned"
+                text: "Oldest envelope"
               },
               {
                 text: "Status"
@@ -210,13 +204,10 @@
                   html: '<a href="../documents/user-case" class="govuk-link">Gary Boyd</a>'
                 },
                 {
-                  text: "CSI"
+                  html: "	3 envelopes<br>7 documents"
                 },
                 {
-                  text: "DP221JP"
-                },
-                {
-                  text: "12 December 2025"
+                  text: "6 February 2026"
                 },
                 {
                   text: "Not started"
