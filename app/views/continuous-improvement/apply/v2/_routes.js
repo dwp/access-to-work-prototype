@@ -70,7 +70,8 @@ const TASKS = [
   },
   {
     key: 'workplace-changes',
-    checkAnswersRoute: versionPath + '/workplace-changes-answer',
+    secondQuestionRoute: versionPath + '/workplace-changes/need-work-changes-post',
+    checkAnswersRoute: versionPath + '/workplace-changes/check-answers-post',
     dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
   },
   {
@@ -259,8 +260,11 @@ router.post(versionPath + '/workplace-changes/need-work-changes-post', function(
     let choice = req.session.data['changes-to-work'];
     console.log(choice)
     if(choice === 'no'){
+        markTaskAsCompleted(req, 'workplace-changes');
         res.redirect(versionPath + "/task-list")
     } else {
+        markTaskAsInProgress(req, 'workplace-changes');
+
         res.redirect(versionPath + "/workplace-changes/employer-1")
     }
 })
