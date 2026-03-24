@@ -368,20 +368,20 @@
           }) }}
 
           {{ govukTable({
-            caption: "Documents",
+            caption: "Envelope details",
             captionClasses: "govuk-table__caption--m",
             head: [
               {
                 text: "Name"
               },
               {
-                text: "Type of document"
+                text: "Details"
               },
               {
-                text: "Form reference"
+                text: "Oldest envelope"
               },
               {
-                text: "Date scanned"
+                text: "Status"
               }
             ],
             rows: [
@@ -390,13 +390,13 @@
                   html: '<a href="../documents/user-case" class="govuk-link">Gary Boyd</a>'
                 },
                 {
-                  text: "CSI"
+                  html: "	3 envelopes<br>7 documents"
                 },
                 {
-                  text: "DP221JP"
+                  text: "6 February 2026"
                 },
                 {
-                  text: "12 December 2025"
+                  text: "Not started"
                 }
               ]
             ]
