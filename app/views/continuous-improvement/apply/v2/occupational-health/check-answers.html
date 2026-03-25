@@ -19,72 +19,10 @@
 
     <h1 class="govuk-heading-l">Check your answers</h1>
 
-    <h2 class="govuk-heading-m">Occupational-health</h2>
+    <h2 class="govuk-heading-m">Occupational health assessments</h2>
 
 
     {% set summaryRows = [{
-          key: {
-            text: "Discussed adjustments with employer"
-          },
-          value: {
-            text: data['employer-1-adjustments-discussed']
-          },
-          actions: {
-            items: [
-              {
-                href: versionPath + "/workplace-adjustments/employer-1",
-                text: "Change",
-                visuallyHiddenText: "adjustments discussed with employer"
-              }
-            ]
-          }
-        }] %}
-
-    
-    {% if data['employer-1-adjustments'] %}
-      {% set summaryRows = summaryRows.concat({
-        key: {
-          text: "Adjustments made by employer"
-        },
-        value: {
-          text: data['employer-1-adjustments']
-        },
-        actions: {
-          items: [
-            {
-              href: versionPath + "/workplace-adjustments/adjustments-made",
-              text: "Change",
-              visuallyHiddenText: "adjustments made by employer"
-            }
-          ]
-        }
-      })
-    %}
-  {% endif %}
-
-  {% if data['adjustments-details'] %}
-    {% set summaryRows = summaryRows.concat({
-      key: {
-        text: "Details of adjustments made by employer"
-      },
-      value: {
-        text: data['adjustments-details']
-      },
-      actions: {
-        items: [
-          {
-            href: versionPath + "/workplace-adjustments/adjustments-made-details",
-            text: "Change",
-            visuallyHiddenText: "details of adjustments made by employer"
-          }
-        ]
-    }
-  })
-  %}
-  {% endif %}
-
-  {% if data['oha-done-choice'] %}
-    {% set summaryRows = summaryRows.concat({
     key: {
       text: "Occupational health assessment"
     },
@@ -94,15 +32,16 @@
     actions: {
       items: [
         {
-          href: versionPath + "/workplace-adjustments/oha-done-choice",
+          href: versionPath + "/occupational-health/oha-done-choice",
           text: "Change",
           visuallyHiddenText: "OHA done by employer"
         }
       ]
     }
-  })
-  %}
-  {% endif %}
+  }] %}
+
+    
+  
 
 {% if data['oha-upload-choice'] == 'Yes' %}
     {% set summaryRows = summaryRows.concat([{
@@ -115,7 +54,7 @@
       actions: {
         items: [
           {
-            href: versionPath + "/workplace-adjustments/oha-upload-choice",
+            href: versionPath + "/occupational-health/oha-upload-choice",
             text: "Change",
             visuallyHiddenText: "Want to upload OHA"
           }
@@ -131,7 +70,7 @@
       actions: {
         items: [
           {
-            href: versionPath + "/workplace-adjustments/oha-upload",
+            href: versionPath + "/occupational-health/oha-upload",
             text: "Change",
             visuallyHiddenText: "Copy of the OHA"
           }
@@ -153,7 +92,7 @@
     actions: {
       items: [
         {
-          href: versionPath + "/workplace-adjustments/oha-upload-choice",
+          href: versionPath + "/occupational-health/oha-upload-choice",
           text: "Change",
           visuallyHiddenText: "Want to upload OHA"
         }

@@ -24,6 +24,27 @@
 
     {% set summaryRows = [{
           key: {
+            text: "Need changes to workplace"
+          },
+          value: {
+            text: data['changes-to-work']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-changes/need-work-changes",
+                text: "Change",
+                visuallyHiddenText: "need changes to workplace"
+              }
+            ]
+          }
+        }] %}
+
+
+        {% if data['employer-1-adjustments-discussed'] %}
+
+        {% set summaryRows = summaryRows.concat({
+          key: {
             text: "Discussed adjustments with employer"
           },
           value: {
@@ -32,13 +53,15 @@
           actions: {
             items: [
               {
-                href: versionPath + "/workplace-adjustments/employer-1",
+                href: versionPath + "/workplace-changes/employer-1",
                 text: "Change",
                 visuallyHiddenText: "adjustments discussed with employer"
               }
             ]
           }
-        }] %}
+        })  %}
+
+      {% endif %}
 
     
     {% if data['employer-1-adjustments'] %}
@@ -52,7 +75,7 @@
         actions: {
           items: [
             {
-              href: versionPath + "/workplace-adjustments/adjustments-made",
+              href: versionPath + "/workplace-changes/adjustments-made",
               text: "Change",
               visuallyHiddenText: "adjustments made by employer"
             }
@@ -73,7 +96,7 @@
       actions: {
         items: [
           {
-            href: versionPath + "/workplace-adjustments/adjustments-made-details",
+            href: versionPath + "/workplace-changes/adjustments-made-details",
             text: "Change",
             visuallyHiddenText: "details of adjustments made by employer"
           }
@@ -83,87 +106,9 @@
   %}
   {% endif %}
 
-  {% if data['oha-done-choice'] %}
-    {% set summaryRows = summaryRows.concat({
-    key: {
-      text: "Occupational health assessment"
-    },
-    value: {
-      text: data['oha-done-choice']
-    },
-    actions: {
-      items: [
-        {
-          href: versionPath + "/workplace-adjustments/oha-done-choice",
-          text: "Change",
-          visuallyHiddenText: "OHA done by employer"
-        }
-      ]
-    }
-  })
-  %}
-  {% endif %}
-
-{% if data['oha-upload-choice'] == 'Yes' %}
-    {% set summaryRows = summaryRows.concat([{
-      key: {
-        text: "Want to upload OHA"
-      },
-      value: {
-        text: data['oha-upload-choice']
-      },
-      actions: {
-        items: [
-          {
-            href: versionPath + "/workplace-adjustments/oha-upload-choice",
-            text: "Change",
-            visuallyHiddenText: "Want to upload OHA"
-          }
-        ]
-      }
-    },{
-      key: {
-        text: "Copy of the OHA "
-      },
-      value: {
-        text: data['oha-upload']
-      },
-      actions: {
-        items: [
-          {
-            href: versionPath + "/workplace-adjustments/oha-upload",
-            text: "Change",
-            visuallyHiddenText: "Copy of the OHA"
-          }
-        ]}
-
-      }
-      ])
-    %}
-
-  {% else %}
-
-  {% set summaryRows = summaryRows.concat([{
-    key: {
-      text: "Want to upload OHA"
-    },
-    value: {
-      text: data['oha-upload-choice']
-    },
-    actions: {
-      items: [
-        {
-          href: versionPath + "/workplace-adjustments/oha-upload-choice",
-          text: "Change",
-          visuallyHiddenText: "Want to upload OHA"
-        }
-      ]
-    }
-  }]) 
-  %}
+  
 
 
-  {% endif %}
 
 
 
@@ -173,7 +118,7 @@
       rows: summaryRows
         
     }) }} 
-    <form action="{{versionPath}}/workplace-adjustments/check-answers-post" method="post" novalidate>
+    <form action="{{versionPath}}/workplace-changes/check-answers-post" method="post" novalidate>
       <input type="hidden" name="answers-checked-workplace-changes" value="true">
 
       <input type="hidden" name="answers-checked-your-details" value="true">
