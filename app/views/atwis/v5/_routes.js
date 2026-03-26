@@ -204,15 +204,21 @@ router.all(versionPath + '/documents/document', function(req, res, next){
     next()
 })
 
-
-
 router.post(versionPath + '/documents/request-document-post', function(req, res){
-    let caseId = unallocatedDocs[0].id;
 
+    var envelopeType = req.session.data['document-type'];
 
-
-    res.redirect(versionPath + '/documents/user-case-self-allocate?id=' + caseId)
+    if (envelopeType == "no-specialist-equipment"){
+        res.redirect(versionPath + '/documents/user-case-allocated?id=' + 2)
+    } else if (envelopeType == "specialist-equipment"){
+        res.redirect(versionPath + '/documents/user-case-allocated?id=' + 0)
+    } else if (envelopeType == "CSI"){
+        res.redirect(versionPath + '/documents/user-case-allocated?id=' + 3)
+    } else {
+        res.redirect(versionPath + '/documents/user-case-allocated?id=' + 1)
+    } 
 })
+
 
 router.post(versionPath + '/referral-type-answer', function(request, response) {
 
