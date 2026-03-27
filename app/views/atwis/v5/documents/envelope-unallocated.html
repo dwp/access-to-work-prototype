@@ -14,7 +14,7 @@
         actionHref: "#",
         container: true,
         navigation: {
-          selectedItem: "../your-cases",
+          selectedItem: "../unallocated/unallocated-main-page",
           items: [
                 {
                   href: "../your-cases",
@@ -54,7 +54,7 @@
         actionHref: "#",
         container: true,
         navigation: {
-          selectedItem: "../your-cases",
+          selectedItem: "../unallocated/unallocated-main-page",
           items: [
                 {
                   href: "../your-cases",
@@ -144,11 +144,11 @@
 
 <p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: {{envelope.envelopeRef}}</p>
 
-<p class="govuk-body"><a href="your-documents" class="govuk-link">Back to the full list of envelopes</a></p>
+<p class="govuk-body"><a href="../unallocated/unallocated-documents" class="govuk-link">Back to all unallocated envelopes</a></p>
 
 </div>
-
 <div class="govuk-grid-column-one-third">
+{% if userRole == "Case manager team leader" %} 
 
 {{ govukSelect({
   id: "allocate-document",
@@ -191,6 +191,9 @@
 {{ govukButton({
   text: "Allocate"
 }) }}
+
+{% else %}
+{% endif %}
 
 {{ govukSelect({
   id: "update-status",

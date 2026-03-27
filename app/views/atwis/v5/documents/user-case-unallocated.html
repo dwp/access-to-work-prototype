@@ -54,7 +54,7 @@
         actionHref: "#",
         container: true,
         navigation: {
-          selectedItem: "../your-cases",
+          selectedItem: "../unallocated/unallocated-main-page",
           items: [
                 {
                   href: "../your-cases",
@@ -196,9 +196,8 @@
 
 </div>
 
+{% if userRole == "Case manager team leader" %} 
 <div class="govuk-grid-column-one-third">
-
-
 
 {{ govukSelect({
   id: "allocate-document",
@@ -241,11 +240,14 @@
   text: "Allocate all envelopes",
   href: ""
 }) }}
+</div>
 
+{% else %}
 
-
-     
+   <div class="govuk-grid-column-one-third">
   </div>
+
+{% endif %}
     
 </div>
   </div>
