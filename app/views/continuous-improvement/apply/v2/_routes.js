@@ -971,5 +971,18 @@ router.post(versionPath + '/need-travel-support', function (req, res) {
     }
 })
 
+
+
+  router.post(versionPath + "/specialist-equipment/employer-provided-post", function(req, res, next){
+    let choice = req.session.data['employer-proivided-equipment'];
+
+
+    if(choice =='yes'){
+        res.redirect(versionPath + '/specialist-equipment/employer-provided-details')
+    } else {
+        res.redirect(versionPath + '/specialist-equipment/check-answers')
+    }
+  })
+
 //Do not delete this
 module.exports = router

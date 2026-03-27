@@ -17,29 +17,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="{{versionPath}}/specialist-equipment/employer-provided" method="post">
+      <form class="form" action="../specialist-equipment/workplace-assessment" method="post">
 
-      <h1 class="govuk-heading-l">
-        Specialist equipment at work
-      </h1>
 
-      <p class="govuk-body">
-        <ul class="govuk-list govuk-list--bullet">
-          <li> {{ data['specialist-equipment-type'] }}</li>
-        </ul>
-      </p>
 
       {{ govukCharacterCount({
-        name: "specialist-equipment-help",
-        id: "specialist-equipment-help",
-        maxlength: 500,
+        name: "employer-provided-details",
+        id: "employer-provided-details",
+        maxlength: 1000,
         rows: "10",
         label: {
-          text: "How will this equipment help you at work?",
-          classes: "govuk-label--m"
-        },
-        hint: {
-          text: "For example, 'I need an ergonomic keyboard because I have limited movement and find using a regular keyboard slow and difficult.'"
+          text: "Tell us what spacialist equipment has been provided by your employer",
+          classes: "govuk-label--l",
+          isPageHeading: true
         }
       }) }}
 
