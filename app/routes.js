@@ -19,6 +19,12 @@ router.use('/atwis/v5', require('./views/atwis/v5/_routes'))
 
 
 
+router.get('/session-data', function (req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(req.session.data, null, 2));
+});
+
+
 router.post('/civil-servant-answer', function(request, response) {
 
     var civilServant = request.session.data['are-you-a-civil-servant']

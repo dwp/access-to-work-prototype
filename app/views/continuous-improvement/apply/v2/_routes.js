@@ -9,6 +9,17 @@ router.all(versionPath + '/*', function(req, res, next){
 })
 
 
+router.all(versionPath + '/prefilled-task-list', function(req, res, next){
+    let sessionData = require('./data/prefilled-task-list.js')
+
+    console.log(sessionData)
+
+    req.session.data = sessionData;
+
+    res.redirect(versionPath + "/task-list")
+})
+
+
 
 // ============================================================================
 // TASK CONFIGURATION
