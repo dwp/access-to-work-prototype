@@ -19,12 +19,15 @@
 
       <form class="form" action="../contact/best-times" method="post">
 
-        {{ govukInput({
+       {{ govukInput({
           "label": {
-            "text": "What email address should we use to contact you?",
+            "text": "What is your email address?",
             "classes": "govuk-label--l",
             "isPageHeading": true
           },
+          hint: {
+    text: "We'll send a confirmation email when we receive your application"
+  },
           "classes": "govuk-!-width-two-thirds",
           "name": "email-address"
         }) }}
