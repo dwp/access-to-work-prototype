@@ -367,36 +367,76 @@
             ]
           }) }}
 
-          {{ govukTable({
-            caption: "Envelope details",
+           {{ govukTable({
+            caption: "Envelopes",
             captionClasses: "govuk-table__caption--m",
             head: [
               {
                 text: "Name"
               },
               {
-                text: "Details"
+                text: "Document types"
               },
               {
-                text: "Oldest envelope"
+                text: "Date scanned"
               },
               {
                 text: "Status"
+              },
+              {
+                text: "Allocated to"
               }
             ],
             rows: [
               [
                 {
-                  html: '<a href="../documents/user-case" class="govuk-link">Gary Boyd</a>'
+                  html: '<a href="../documents/envelope-unallocated1" class="govuk-link govuk-link--no-visited-state">Gary Boyd</a>'
                 },
                 {
-                  html: "	3 envelopes<br>7 documents"
+                  html: "<strong>3 documents</strong><br>Change bank details<br>Support Worker (multiple)<br>Travel in work"
                 },
                 {
                   text: "6 February 2026"
                 },
                 {
                   text: "Not started"
+                },
+                {
+                  text: ''
+                }
+              ],
+              [
+                {
+                  html: '<a href="#" class="govuk-link govuk-link--no-visited-state">Gary Boyd</a>'
+                },
+                {
+                  html: "<strong>1 document</strong><br>Invoice"
+                },
+                {
+                  text: "9 February 2026"
+                },
+                {
+                  text: "Not started"
+                },
+                {
+                  text: 'Susan Quantas'
+                }
+              ],
+              [
+                {
+                  html: '<a href="#" class="govuk-link govuk-link--no-visited-state">Gary Boyd</a>'
+                },
+                {
+                  html: "<strong>1 document</strong><br>Support worker"
+                },
+                {
+                  text: "23 February 2026"
+                },
+                {
+                  text: "Closed"
+                },
+                {
+                  text: ''
                 }
               ]
             ]
