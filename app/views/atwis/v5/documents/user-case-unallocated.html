@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
-{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+{% set userRole = "Service centre team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
 
 {% block header %}
 {% if data['atwis-user-type'] == "team-leader" %}
@@ -35,10 +35,6 @@
                 {
                   href: "../referrals/referrals",
                   text: "Referrals"
-                },
-                {
-                  href: "../data-retention/manage-data",
-                  text: "Manage data"
                 }
           ]
       }  
@@ -71,10 +67,6 @@
                 {
                   href: "../referrals/referrals",
                   text: "Referrals"
-                },
-                {
-                  href: "../data-retention/manage-data",
-                  text: "Manage data"
                 }
           ]
       }  
@@ -196,7 +188,7 @@
 
 </div>
 
-{% if userRole == "Case manager team leader" %} 
+{% if userRole == "Service centre team leader" %} 
 <div class="govuk-grid-column-one-third">
 
 {{ govukSelect({

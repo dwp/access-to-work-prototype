@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
-{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+{% set userRole = "Service centre team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
 
 {% block header %}
 {% if data['atwis-user-type'] == "team-leader" %}

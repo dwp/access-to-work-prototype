@@ -1,0 +1,154 @@
+{% extends "layouts/main.html" %}
+
+{% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
+{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+
+{% block header %}
+{% if data['atwis-user-type'] == "team-leader" %}
+
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "../unallocated/unallocated-main-page",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "../unallocated/unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../all-advisors",
+                  text: "All advisors"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% else %}
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "../unallocated/unallocated-main-page",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "../unallocated/unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% endif %}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% import versionPath + "/includes/key-details.njk" as keyDetails %}
+
+
+{{ keyDetails.keyDetails({
+  name: "Arlene Franecki",
+  nino: "QQ740997J",
+  urn: "9590321167"
+})}}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="user-case-allocated2">
+        <h1 class="govuk-heading-l">Are you sure you want to reallocate 2 envelopes?</h1>
+        <p class="govuk-body">Envelopes will be reallocated to Sophia Wanless</p>
+      </div>
+      <div class="govuk-grid-column-full">
+        <table class="govuk-table" data-module="moj-multi-select" data-id-prefix="allocated-">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col">Envelope ID</th>
+              <th class="govuk-table__header" scope="col">Document types</th>
+              <th class="govuk-table__header" scope="col">Date scanned</th>
+              <th class="govuk-table__header" scope="col">Status</th>
+              <th class="govuk-table__header" scope="col">Allocated to</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">20260223983272208457</td>
+              <td class="govuk-table__cell"><strong>3 documents</strong><br>Change bank details<br>Support Worker (multiple)<br>Travel in work</td>
+              <td class="govuk-table__cell">23 February 2026</td>
+              <td class="govuk-table__cell">Not started</td>
+              <td class="govuk-table__cell">{{ data['allocate-document'] }}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">20260223983272208413</td>
+              <td class="govuk-table__cell"><strong>2 documents</strong><br>Travel to work<br>One off costs (SAE)<br></td>
+              <td class="govuk-table__cell">5 March 2026</td>
+              <td class="govuk-table__cell">Not started</td>
+              <td class="govuk-table__cell">{{ data['allocate-document'] }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="govuk-button-group">
+          <button type="submit" class="govuk-button" data-module="govuk-button">Unallocate envelopes</button>
+          <a class="govuk-link" href="javascript:history.back()">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

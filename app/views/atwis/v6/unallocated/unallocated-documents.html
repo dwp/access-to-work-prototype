@@ -1,0 +1,314 @@
+\{% extends "layouts/main.html" %}
+
+{% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
+{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+
+{% block header %}
+{% if data['atwis-user-type'] == "team-leader" %}
+
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "unallocated-main-page",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../all-advisors",
+                  text: "All advisors"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% else %}
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "unallocated-main-page",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% endif %}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Unallocated cases – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{
+        dwpQuickReference({
+            ariaLabel: "User information",
+            primaryReference: {
+                text: 'User name:',
+                value: userName
+            },
+            secondaryReference: {
+                text: 'Your role and permissions:',
+                textDisplay: true,
+                value: userRole
+            }
+        })
+}}
+
+      {{ 
+      dwpHorizontalNavigation({
+            selectedItem: "unallocated-documents",
+            items: [
+                {
+                  text: "Priority cases (2)",
+                  href: "unallocated-main-page",
+                  id: "unallocated-priority-cases"
+                },
+                {
+                  text: "Other cases (2)",
+                  href: "unallocated-other-cases",
+                  id: "unallocated-other-cases"
+                },
+                {
+                  text: "CSI cases (1)",
+                  href: "unallocated-csi-cases",
+                  id: "unallocated-csi-cases"
+                },
+                {
+                  text: "Envelopes (37)",
+                  href: "unallocated-documents",
+                  id: "unallocated-documents"
+                }
+            ]
+        })
+}}
+
+<div class="govuk-tabs__panel">
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-third">
+
+    {{ govukButton({
+      text: "Apply selected filters"
+    }) }}
+
+    <p class="govuk-body-s">
+      <a href="#" class="govuk-link">Clear filters</a>
+    </p>
+
+{{ govukCheckboxes({
+  name: "cases-filter",
+  classes: "govuk-checkboxes--small",
+  fieldset: {
+    legend: {
+      text: "Document type",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "csi",
+      text: "CSI"
+    },
+    {
+      value: "support-worker",
+      text: "Support Worker"
+    },
+    {
+      value: "support-worker-welsh",
+      text: "Support Worker (Welsh)"
+    },
+    {
+      value: "support-worker-multiple",
+      text: "Support Worker (multiple)"
+    },
+    {
+      value: "one-off-costs-sae",
+      text: "One off costs (SAE)"
+    },
+    {
+      value: "one-off-costs-welsh",
+      text: "One of costs (Welsh)"
+    },
+    {
+      value: "travel-to-work",
+      text: "Travel to work"
+    },
+    {
+      value: "travel-to-work-welsh",
+      text: "Travel to work (Welsh)"
+    },
+    {
+      value: "travel-in-work",
+      text: "Travel in work"
+    },
+    {
+      value: "travel-in-work-welsh",
+      text: "Travel in work (Welsh)"
+    },
+    {
+      value: "change-bank-details",
+      text: "Change bank details"
+    },
+    {
+      value: "tesg-claim-form",
+      text: "TESG Claim form"
+    },
+    {
+      value: "progression-support-payment-1",
+      text: "Progression Support Payment 1"
+    },
+    {
+      value: "progression-support-payment-1",
+      text: "Progression Support Payment 1"
+    },
+    {
+      value: "tesg-application",
+      text: "TESG application"
+    },
+    {
+      value: "tesg-application-welsh",
+      text: "TESG application (Welsh)"
+    },
+    {
+      value: "internship-or-traineeship-application",
+      text: "Internship or traineeship application"
+    },
+    {
+      value: "customer-letter",
+      text: "Customer Letter"
+    },
+    {
+      value: "employer-letter",
+      text: "Employer Letter"
+    },
+    {
+      value: "medical-letter-travel",
+      text: "Medical Letter - travel"
+    },
+    {
+      value: "medical-letter-travel-welsh",
+      text: "Medical Letter - travel (Welsh)"
+    },
+    {
+      value: "whitemail",
+      text: "Whitemail"
+    }
+  ]    
+
+}) }}
+     
+  </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Unallocated envelopes (37)</h2>
+
+
+
+          <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Envelope details</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Name </th>
+                <th scope="col" class="govuk-table__header">Details</th>
+                <th scope="col" class="govuk-table__header">Oldest envelope</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-unallocated1">Gary Boyd</a></td>
+                <td class="govuk-table__cell">2 envelopes<br>5 documents</td>
+                <td class="govuk-table__cell">7 February 2026</td>
+              </tr>
+               <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-unallocated2">John Davis</a></td>
+                <td class="govuk-table__cell">2 envelopes<br>5 documents</td>
+                <td class="govuk-table__cell">7 February 2026</td>
+              </tr>
+              {% for case in cases  %}
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell"><a href="../documents/user-case-unallocated?id={{case.id}}">{{case.name}}</a></td>
+                <td class="govuk-table__cell">
+                  {{case.envelopes.length}} envelope{{'s' if case.envelopes.length > 1}}<br>
+                  {{case.totalDocuments}} document{{'s' if case.totalDocuments > 1}}
+                </td>
+                <td class="govuk-table__cell">{{case.oldestEnvelope | formatDate}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+     
+  </div>
+  </div>
+
+    
+
+    </div>
+
+{% endblock %}

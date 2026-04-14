@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
-{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+{% set userRole = "Service centre team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
 
 {% block header %}
 {% if data['atwis-user-type'] == "team-leader" %}
@@ -35,10 +35,6 @@
                 {
                   href: "../referrals/referrals",
                   text: "Referrals"
-                },
-                {
-                  href: "../data-retention/manage-data",
-                  text: "Manage data"
                 }
           ]
       }  
@@ -61,20 +57,8 @@
                   text: "Your cases"
                 },
                 {
-                  href: "../unallocated/unallocated-main-page",
-                  text: "Unallocated"
-                },
-                {
                   href: "../search/search",
                   text: "Search"
-                },
-                {
-                  href: "../referrals/referrals",
-                  text: "Referrals"
-                },
-                {
-                  href: "../data-retention/manage-data",
-                  text: "Manage data"
                 }
           ]
       }  
@@ -118,6 +102,7 @@
         })
 }}
 
+{% if data['atwis-user-type'] == "team-leader" %}
       {{ 
       dwpHorizontalNavigation({
             selectedItem: "your-priority-cases",
@@ -146,6 +131,39 @@
         })
 }}
 
+{% else %}
+
+      {{ dwpHorizontalNavigation({
+            selectedItem: "your-priority-cases",
+            items: [
+                {
+                  text: "Your other cases (0)",
+                  href: "../your-cases",
+                  id: "your-other-cases"
+                },
+                {
+                  text: "Your priority cases (0)",
+                  href: "your-priority-cases",
+                  id: "your-priority-cases"
+                },
+                {
+                  text: "Your CSI cases (0)",
+                  href: "../csi/your-csi-cases",
+                  id: "your-csi-cases"
+                },
+                {
+                  text: "Your envelopes (16)",
+                  href: "../documents/your-documents",
+                  id: "your-documents"
+                }
+            ]
+        })
+      }}
+
+{% endif %}
+
+
+
 <div class="govuk-tabs__panel">
 
     {% if data['answers-checked-enter-urn-priority-case']%}
@@ -160,6 +178,8 @@
   type: "success"
 }) }}
   {% endif %}
+
+  {% if data['atwis-user-type'] == "team-leader" %}
 
     <h2 class="govuk-heading-m">Your priority cases (1)</h2>
 
@@ -226,6 +246,12 @@
               ]
             ]
           }) }}
+{% else %}
+
+<h2 class="govuk-heading-m">Your priority cases (0)</h2>
+
+  {% endif %}
+
 
 
     </div>

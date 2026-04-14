@@ -1,0 +1,202 @@
+{% extends "layouts/main.html" %}
+
+{% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
+{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+
+{% block header %}
+{% if data['atwis-user-type'] == "team-leader" %}
+
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "../all-advisors",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "../unallocated/unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../all-advisors",
+                  text: "All advisors"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% else %}
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "../your-cases",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "../unallocated/unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% endif %}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<style>
+  
+
+.full-width-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #005ea5;
+  padding: 1rem 0;
+}
+
+.dwp-quick-reference--alternative {
+  background-color: transparent;
+}
+
+
+</style>
+
+<div class="full-width-wrapper">
+  <div class="govuk-width-container">
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2" style="color:white !important;">
+          Gary Boyd
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>NI number:</strong> AB123456C</p>
+        <p class="govuk-body govuk-!-margin-bottom-1" style="color:white !important;"><strong>URN:</strong> 6195739165</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Allocated envelopes</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Envelope</th>
+          <th scope="col" class="govuk-table__header">Document types</th>
+          <th scope="col" class="govuk-table__header">Date scanned</th>
+
+          <th class="govuk-table__header"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href = "#">View envelope</a> <br>20260206768364344364</td><td class="govuk-table__cell">
+            <strong>5 documents</strong><br>
+            One off costs (SAE)<br>
+            Travel in work<br>
+            Invoice<br>
+            Change bank details
+          </td>
+          <td class="govuk-table__cell">6 February 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href = "#">View envelope</a> <br>20260209328496619454</td><td class="govuk-table__cell">
+            <strong>1 document</strong><br>
+            Invoice
+          </td>
+          <td class="govuk-table__cell">9 February 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__cell"><a href = "#">View envelope</a> <br>20260307680797271492</td><td class="govuk-table__cell">
+            <strong>1 document</strong><br>
+            Support worker
+          </td>
+          <td class="govuk-table__cell">7 March 2026</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="govuk-body"><a href="../all-advisors/advisor-view-documents" class="govuk-link">Back to the full list of envelopes</a></p>
+  </div>
+  {% if userRole == "Case manager team leader" %} 
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">Allocated to</h2>
+      <p class="govuk-body">John Goldsmith</p>
+      {{ govukButton({
+        text: "Unallocate",
+        href: "user-case-unallocated1",
+        classes: "govuk-button--secondary"
+      }) }}
+    </div>
+
+    {% else %}
+
+      <div class="govuk-grid-column-one-third">
+      </div>
+
+    {% endif %} 
+</div>
+{% endblock %}

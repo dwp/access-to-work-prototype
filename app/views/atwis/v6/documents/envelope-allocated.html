@@ -1,0 +1,193 @@
+{% extends "layouts/main.html" %}
+
+{% set userName = "John Smith" if data['atwis-user-type'] == 'team-leader' else "Jane Doe"%}
+{% set userRole = "Case manager team leader" if data['atwis-user-type'] == 'team-leader' else "Service centre agent" %} 
+
+{% block header %}
+{% if data['atwis-user-type'] == "team-leader" %}
+
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "../your-cases",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "../unallocated/unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../all-advisors",
+                  text: "All advisors"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% else %}
+{{
+    dwpHeader({
+        serviceName: "Access to Work",
+        serviceHref: '/index',
+        action: userName,
+        actionHref: "#",
+        container: true,
+        navigation: {
+          selectedItem: "../your-cases",
+          items: [
+                {
+                  href: "../your-cases",
+                  text: "Your cases"
+                },
+                {
+                  href: "../unallocated/unallocated-main-page",
+                  text: "Unallocated"
+                },
+                {
+                  href: "../search/search",
+                  text: "Search"
+                },
+                {
+                  href: "../referrals/referrals",
+                  text: "Referrals"
+                },
+                {
+                  href: "../data-retention/manage-data",
+                  text: "Manage data"
+                }
+          ]
+      }  
+    })
+}}
+
+{% endif %}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Renewal case – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+{% import versionPath + "/includes/key-details.njk" as keyDetails %}
+
+
+{{ keyDetails.keyDetails({
+  name: case.name,
+  nino: case.niNumber,
+  urn: case.urn
+})}}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Documents scanned on {{envelope.dateScanned | formatDate }}</h2>
+
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Document details</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Document type</th>
+      <th scope="col" class="govuk-table__header">Form reference</th>
+      <th scope="col" class="govuk-table__header">Document ID</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for document in envelope.documents %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">{{document.type}}</td>
+      <td class="govuk-table__cell">{{document.formReference}}</td>
+      <td class="govuk-table__cell"><a href="#">View {{document.id}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3 class="govuk-heading-m">DRS envelope ID</h3>
+
+<p class="govuk-body">Use the envelope ID to find these documents on DRS.</p>
+
+<p class="govuk-body govuk-!-margin-bottom-5">Envelope ID: {{envelope.envelopeRef}}</p>
+
+<p class="govuk-body"><a href="your-documents" class="govuk-link">Back to your envelopes</a></p>
+
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+
+{{ govukSelect({
+  id: "update-status",
+  name: "update-status",
+  label: {
+    html: '<h2 class="govuk-heading-m">Update status</h2>'
+  },
+  items: [
+   {
+      value: "blank",
+      text: "",
+      selected: true
+    },
+    {
+      value: "not started",
+      text: "Not started"
+    },
+    {
+      value: "in progress",
+      text: "In progress"
+    },
+    {
+      value: "completed",
+      text: "Completed"
+    }
+  ]
+}) }}
+
+<form action="end-date" method="post" novalidate>
+
+{{ govukButton({
+  text: "Update"
+}) }}
+
+</form>
+     
+  </div>
+    
+</div>
+  </div>
+{% endblock %}

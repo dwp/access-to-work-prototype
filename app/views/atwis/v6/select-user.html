@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+{{ dwpHeader({
+  serviceName: "Access to Work",
+  serviceHref: '/index',
+  container: true,
+  classes: "govuk-header--blue"
+}) }}
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "/index",
+      text: "Home"
+    },
+    {
+      href: "/prototypes",
+      text: "View prototypes",
+      active: true
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block pageTitle %}
+  AtWIS version 5 – {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="your-cases" method="post" novalidate>
+
+        {{ govukRadios({
+          name: "atwis-user-type",
+          value: data['atwis-user-type'],
+          fieldset: {
+            legend: {
+              text: "Which role would you like to use?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "team-leader",
+              text: "Case manager team leader"
+            },
+            {
+              value: "service-centre-agent",
+              text: "Service centre agent"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
