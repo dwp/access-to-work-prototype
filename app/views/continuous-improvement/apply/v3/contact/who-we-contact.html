@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Who we contact – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/who-we-contact-answer" method="post">
+
+      <h1 class="govuk-heading-l">
+        Who we should contact
+      </h1>
+
+      <p class="govuk-body">If you would like someone else to deal with your application, like a family member or representative, we can contact them instead of you.</p>
+
+      <p class="govuk-body">We will need to contact you to start with to check your identity.</p>
+
+
+      {{ govukRadios({
+        name: "who-we-contact",
+        fieldset: {
+          legend: {
+            text: "Who should we contact about your application?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Me",
+            text: "Me"
+          },
+          {
+            value: "Someone else",
+            text: "Someone else"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

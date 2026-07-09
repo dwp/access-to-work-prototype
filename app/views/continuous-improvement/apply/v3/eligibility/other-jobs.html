@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Other jobs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Using this service to apply for Access to Work
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Civil service employment
+      </h2>
+
+      <p class="govuk-body">
+        Your employer will provide support instead of Access to Work.
+      </p>
+
+      {{ govukInsetText({
+        text: "You will need to contact your employer so they can assess and arrange the support you need."
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Other employment or self-employment
+      </h2>
+
+      <p class="govuk-body">You can still use this service to apply for Access to Work for:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>self-employment</li>
+        <li>non-civil service employment</li>
+      </ul>
+
+      
+      {{ govukButton({
+        "text": "Continue",
+        "href": "../eligibility/eligible"
+      }) }}
+                              
+    </div>
+
+
+  {% include versionPath + "/includes/get-help" %}
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

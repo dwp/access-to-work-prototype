@@ -1,0 +1,147 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers</h1>
+
+    <h2 class="govuk-heading-m">Workplace adjustments</h2>
+
+
+    {% set summaryRows = [{
+          key: {
+            text: "Need changes to workplace"
+          },
+          value: {
+            text: data['changes-to-work']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-changes/need-work-changes",
+                text: "Change",
+                visuallyHiddenText: "need changes to workplace"
+              }
+            ]
+          }
+        }] %}
+
+
+        {% if data['employer-1-adjustments-discussed'] %}
+
+        {% set summaryRows = summaryRows.concat({
+          key: {
+            text: "Discussed adjustments with employer"
+          },
+          value: {
+            text: data['employer-1-adjustments-discussed']
+          },
+          actions: {
+            items: [
+              {
+                href: versionPath + "/workplace-changes/employer-1",
+                text: "Change",
+                visuallyHiddenText: "adjustments discussed with employer"
+              }
+            ]
+          }
+        })  %}
+
+      {% endif %}
+
+    
+    {% if data['employer-1-adjustments'] %}
+      {% set summaryRows = summaryRows.concat({
+        key: {
+          text: "Adjustments made by employer"
+        },
+        value: {
+          text: data['employer-1-adjustments']
+        },
+        actions: {
+          items: [
+            {
+              href: versionPath + "/workplace-changes/adjustments-made",
+              text: "Change",
+              visuallyHiddenText: "adjustments made by employer"
+            }
+          ]
+        }
+      })
+    %}
+  {% endif %}
+
+  {% if data['adjustments-details'] %}
+    {% set summaryRows = summaryRows.concat({
+      key: {
+        text: "Details of adjustments made by employer"
+      },
+      value: {
+        text: data['adjustments-details']
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/workplace-changes/adjustments-made-details",
+            text: "Change",
+            visuallyHiddenText: "details of adjustments made by employer"
+          }
+        ]
+    }
+  })
+  %}
+  {% endif %}
+
+  
+
+
+
+
+
+
+
+    {{ govukSummaryList({
+      rows: summaryRows
+        
+    }) }} 
+    <form action="{{versionPath}}/workplace-changes/check-answers-post" method="post" novalidate>
+      <input type="hidden" name="answers-checked-workplace-changes" value="true">
+
+      <input type="hidden" name="answers-checked-your-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

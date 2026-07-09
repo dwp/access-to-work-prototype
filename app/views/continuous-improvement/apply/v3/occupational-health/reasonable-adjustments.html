@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Have you started your job? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1  class="govuk-heading-l">Reasonable adjustments in the workplace</h1>
+
+      <p>Your employer has a legal responsibility to make reasonable adjustments to your workplace. You should talk to them before applying for an Access to Work grant.</p>
+
+<p>We may ask to see an occupational health assessment report when you speak to us.</p>
+
+
+    
+
+      {{ govukButton({
+        text: "Continue",
+        href:"employer-1"
+      }) }}
+
+    
+
+      <p class="govuk-body">
+        <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

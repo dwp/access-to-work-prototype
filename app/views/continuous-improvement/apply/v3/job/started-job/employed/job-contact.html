@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Employer contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="../employed/contact-permission" method="post">
+
+        <h1 class="govuk-heading-l">Details of the person we should contact at {{data['company-name']}}</h1>
+
+      <p class="govuk-body">This should be a person that can confirm you work there, like a manager or an HR representative.</p>
+
+      <p class="govuk-body">If you need mental health support from Access to Work, we do not need to contact anyone at your workplace about this.</p>
+
+        {{ govukInput({
+          "label": {
+            "text": "Their full name"
+          },
+          "name": "job-contact-full-name"
+        }) }}
+
+        {{ govukInput({
+          "label": {
+            "text": "Their job title"
+          },
+          "name": "job-contact-job-title"
+        }) }}
+
+        {{ govukInput({
+          "label": {
+            "text": "Their work email address"
+          },
+          "name": "job-contact-email-address"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            "text": "Their work telephone number"
+          },
+          name: "job-contact-telephone-number",
+          classes: "govuk-input--width-20"
+        }) }}
+        
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

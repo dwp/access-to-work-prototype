@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What will your employment status be? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{versionPath}}/job-status-answer-starting-job" method="post">
+
+        {{ govukRadios({
+          name: "job-status-starting-job",
+          fieldset: {
+            legend: {
+              text: "What will your employment status be?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: "If you do not know, you can <a href='#'>find out more about different types of employment (opens in a new tab)</a>"
+          },
+          items: [
+            {
+              value: "Employed",
+              text: "Employed"
+            },
+            {
+              value: "Self-employed",
+              text: "Self-employed"
+            },
+            {
+              value: "Registered director",
+              text: "Registered director of a limited company"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

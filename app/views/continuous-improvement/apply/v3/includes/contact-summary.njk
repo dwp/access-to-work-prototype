@@ -1,0 +1,166 @@
+{% if data['who-we-contact'] =="Me" %}
+
+      <h2 class="govuk-heading-m">How we contact you</h2>
+
+      {% if data['telephone-number'] %}
+      {% set telephoneNumber = data['telephone-number'] %}
+      {% else %}
+      {% set telephoneNumber = "I find it difficult to hear or speak on the telephone" %}
+      {% endif %}
+
+      {% if data['email-address'] %}
+      {% set emailAddress = data['email-address'] %}
+      {% else %}
+      {% set emailAddress = data['email-address-reasonable-adjustment'] %}
+      {% endif %}
+
+      {% set rows = [
+
+      { 
+        key: {
+          text: "Who should we contact about your application?"
+        },
+        value: { 
+          text: data['who-we-contact']
+        }
+      },
+      { 
+        key: {
+          text: "Telephone number"
+        },
+        value: {
+          text: telephoneNumber
+        }
+      },
+      { 
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: emailAddress
+        }
+      }
+    ] %}
+
+    {% if data['best-times'] %}
+      {% set rows = rows.concat ({ 
+        key: {
+          text: "When are the best times to contact you?"
+        },
+        value: {
+          text: data['best-times']
+        }
+      }) %}
+      {% endif %}
+
+      {{ govukSummaryList ({ rows: rows }) }}
+
+      {% endif %}
+
+      {% if data['who-we-contact'] =="Someone else" %}
+
+      <h2 class="govuk-heading-m">How we contact you</h2>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Who should we contact about your application?"
+            },
+            value: {
+              text: data['who-we-contact']
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Details of the person we should contact</h2>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Their full name"
+            },
+            value: {
+              text: data['their-full-name']
+            }
+          },
+          {
+            key: {
+              text: "Their relationship to you"
+            },
+            value: {
+              text: data['relationship-to-you']
+            }
+          },
+          {
+            key: {
+              text: "Their telephone number"
+            },
+            value: {
+              text: data['their-telephone-number']
+            }
+          },
+          {
+            key: {
+              text: "Their email address"
+            },
+            value: {
+              text: data['their-email-address']
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Your contact details</h2>
+
+      {% if data['your-telephone-number'] %}
+      {% set yourTelephoneNumber = data['your-telephone-number'] %}
+      {% else %}
+      {% set yourTelephoneNumber = "I find it difficult to hear or speak on the telephone" %}
+      {% endif %}
+
+      {% if data['email-address'] %}
+      {% set yourEmailAddress = data['email-address'] %}
+      {% else %}
+      {% set yourEmailAddress = data['email-address-identity-adjustment'] %}
+      {% endif %}
+
+      {% set rows = [
+
+      { 
+        key: {
+          text: "Telephone number"
+        },
+        value: { 
+          text: yourTelephoneNumber
+        }
+      },
+      { 
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: yourEmailAddress
+        }
+      }
+    ] %}
+
+    {% if data['best-times'] %}
+      {% set rows = rows.concat ({ 
+        key: {
+          text: "When are the best times to contact you?"
+        },
+        value: {
+          text: data['best-times']
+        }
+      }) %}
+      {% endif %}
+
+      {{ govukSummaryList ({ rows: rows }) }}
+
+
+      {% endif %}

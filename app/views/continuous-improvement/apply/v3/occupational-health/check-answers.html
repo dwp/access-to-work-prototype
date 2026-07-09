@@ -1,0 +1,140 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers personal details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-l">Check your answers</h1>
+
+    <h2 class="govuk-heading-m">Occupational health assessments</h2>
+
+
+    {% set summaryRows = [{
+    key: {
+      text: "Occupational health assessment"
+    },
+    value: {
+      text: data['oha-done-choice']
+    },
+    actions: {
+      items: [
+        {
+          href: versionPath + "/occupational-health/oha-done-choice",
+          text: "Change",
+          visuallyHiddenText: "OHA done by employer"
+        }
+      ]
+    }
+  }] %}
+
+    
+  
+
+{% if data['oha-upload-choice'] == 'Yes' %}
+    {% set summaryRows = summaryRows.concat([{
+      key: {
+        text: "Want to upload OHA"
+      },
+      value: {
+        text: data['oha-upload-choice']
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/occupational-health/oha-upload-choice",
+            text: "Change",
+            visuallyHiddenText: "Want to upload OHA"
+          }
+        ]
+      }
+    },{
+      key: {
+        text: "Copy of the OHA "
+      },
+      value: {
+        text: data['oha-upload']
+      },
+      actions: {
+        items: [
+          {
+            href: versionPath + "/occupational-health/oha-upload",
+            text: "Change",
+            visuallyHiddenText: "Copy of the OHA"
+          }
+        ]}
+
+      }
+      ])
+    %}
+
+  {% else %}
+
+  {% set summaryRows = summaryRows.concat([{
+    key: {
+      text: "Want to upload OHA"
+    },
+    value: {
+      text: data['oha-upload-choice']
+    },
+    actions: {
+      items: [
+        {
+          href: versionPath + "/occupational-health/oha-upload-choice",
+          text: "Change",
+          visuallyHiddenText: "Want to upload OHA"
+        }
+      ]
+    }
+  }]) 
+  %}
+
+
+  {% endif %}
+
+
+
+
+
+    {{ govukSummaryList({
+      rows: summaryRows
+        
+    }) }} 
+    <form action="{{versionPath}}/Occupational-health/check-answers-post" method="post" novalidate>
+
+      <input type="hidden" name="answers-checked-your-details" value="true">
+
+      {{ govukButton({
+        text: "Confirm and continue"
+      }) }}
+
+    </form>
+
+    <p class="govuk-body">
+      <a href="{{versionPath}}/task-list" class="govuk-link">Return to tasks</a>
+    </p>
+    
+
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}
