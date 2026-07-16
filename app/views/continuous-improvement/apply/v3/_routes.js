@@ -340,9 +340,9 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
         if (jobStatus == "Employed"){
             res.redirect(versionPath + "/job/starting-job/employed/company")
         } else if (jobStatus == "Self-employed"){
-            res.redirect(versionPath + "/job/starting-job/self-employed/job-title")
+            res.redirect(versionPath + "/job/starting-job/self-employed/guidance")
         } else if (jobStatus == "Registered director"){
-            res.redirect(versionPath + "/job/starting-job/registered-director/job-title")
+            res.redirect(versionPath + "/job/starting-job/registered-director/guidance")
         }
     })
 
