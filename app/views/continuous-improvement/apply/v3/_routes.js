@@ -51,56 +51,56 @@ const TASKS = [
     secondQuestionRoute: versionPath + '/started-job-answer',
     checkAnswersRoute: versionPath + '/job/started-job/employed/another-job'
   },
-  {
-    key: 'occupational-health',
-    secondQuestionRoute: versionPath + '/occupational-health/employer-1-post',
-    checkAnswersRoute: versionPath + '/occupational-health/check-answers-post',
-    dependsOn: ['job']
-  },
+//   {
+//     key: 'occupational-health',
+//     secondQuestionRoute: versionPath + '/occupational-health/employer-1-post',
+//     checkAnswersRoute: versionPath + '/occupational-health/check-answers-post',
+//     dependsOn: ['job']
+//   },
   {
     key: 'specialist-equipment',
     secondQuestionRoute: versionPath + '/need-specialist-equipment-answer',
     checkAnswersRoute: versionPath + '/specialist-equipment/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'mental-health',
     checkAnswersRoute: versionPath + '/mental-health-support-answer',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'travel-to-work',
     secondQuestionRoute: versionPath + '/difficulty-driving-answer',
     checkAnswersRoute: versionPath + '/travel-to-work/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'travel-in-work',
     checkAnswersRoute: versionPath + '/travel-in-work/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'workplace-changes',
     secondQuestionRoute: versionPath + '/workplace-changes/need-work-changes-post',
     checkAnswersRoute: versionPath + '/workplace-changes/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'vehicle-changes',
     checkAnswersRoute: versionPath + '/vehicle-changes-answer',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'support-worker',
     secondQuestionRoute: versionPath + '/need-support-worker-answer',
     checkAnswersRoute: versionPath + '/support-worker/check-answers-post',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   },
   {
     key: 'other-information',
     secondQuestionRoute: versionPath + '/anything-else-answer',
     checkAnswersRoute: versionPath + '/other-information/check-answers',
-    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job', 'occupational-health']
+    dependsOn: ['your-details', 'contact', 'conditions-disabilities', 'job']
   }
   
 
@@ -331,6 +331,8 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
             res.redirect(versionPath + "/job/started-job/self-employed/guidance")
         } else if (jobStatus == "Registered director"){
             res.redirect(versionPath + "/job/started-job/registered-director/guidance")
+        } else if (jobStatus == "Freelancer or contractor"){
+            res.redirect(versionPath + "/job/started-job/freelancer-contractor/guidance")
         }
     })
 
@@ -343,6 +345,8 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
             res.redirect(versionPath + "/job/starting-job/self-employed/guidance")
         } else if (jobStatus == "Registered director"){
             res.redirect(versionPath + "/job/starting-job/registered-director/guidance")
+        } else if (jobStatus == "Freelancer or contractor"){
+            res.redirect(versionPath + "/job/starting-job/freelancer-contractor/guidance")
         }
     })
 
@@ -388,12 +392,12 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
     })
 
     router.post(versionPath + '/check-date', function (req, res) {
-        const day = parseInt(req.body['self-employed-start-date-day'], 10)
-        const month = parseInt(req.body['self-employed-start-date-month'], 10) - 1 // JavaScript months are 0-indexed
-        const year = parseInt(req.body['self-employed-start-date-year'], 10)
+        const day = parseInt(req.body['start-date-SE-day'], 10)
+        const month = parseInt(req.body['start-date-SE-month'], 10) - 1 // JavaScript months are 0-indexed
+        const year = parseInt(req.body['start-date-SE-year'], 10)
        
         const enteredDate = new Date(year, month, day)
-        const cutoffDate = new Date(2025, 3, 6) // 6 April 2025 (month 3 = April)
+        const cutoffDate = new Date(2026, 3, 6) // 6 April 2025 (month 3 = April)
        
         if (enteredDate < cutoffDate) {
           res.redirect(versionPath + '/job/started-job/self-employed/tax-year-earnings')
@@ -403,12 +407,12 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
       })
 
       router.post(versionPath + '/check-date-registered-director', function (req, res) {
-        const day = parseInt(req.body['registered-director-start-date-day'], 10)
-        const month = parseInt(req.body['registered-director-start-date-month'], 10) - 1 // JavaScript months are 0-indexed
-        const year = parseInt(req.body['registered-director-start-date-year'], 10)
+        const day = parseInt(req.body['start-date-RD-day'], 10)
+        const month = parseInt(req.body['start-date-RD-month'], 10) - 1 // JavaScript months are 0-indexed
+        const year = parseInt(req.body['start-date-RD-year'], 10)
        
         const enteredDate = new Date(year, month, day)
-        const cutoffDate = new Date(2025, 3, 6) // 6 April 2025 (month 3 = April)
+        const cutoffDate = new Date(2026, 3, 6) // 6 April 2025 (month 3 = April)
        
         if (enteredDate < cutoffDate) {
           res.redirect(versionPath + '/job/started-job/registered-director/tax-year-earnings')
@@ -417,9 +421,24 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
         }
       })
 
-      router.post(versionPath + '/have-utr-answer', function(req, res) {
+      router.post(versionPath + '/check-date-contractor', function (req, res) {
+        const day = parseInt(req.body['start-date-FC-day'], 10)
+        const month = parseInt(req.body['start-date-FC-month'], 10) - 1 // JavaScript months are 0-indexed
+        const year = parseInt(req.body['start-date-FC-year'], 10)
+       
+        const enteredDate = new Date(year, month, day)
+        const cutoffDate = new Date(2026, 3, 6) // 6 April 2025 (month 3 = April)
+       
+        if (enteredDate < cutoffDate) {
+          res.redirect(versionPath + '/job/started-job/freelancer-contractor/tax-year-earnings')
+        } else {
+          res.redirect(versionPath + '/job/started-job/freelancer-contractor/business-plan')
+        }
+      })
 
-        var haveUtr = req.session.data['have-utr']
+      router.post(versionPath + '/have-utr-SE-answer', function(req, res) {
+
+        var haveUtr = req.session.data['have-utr-SE']
         if (haveUtr == "Yes"){
             res.redirect(versionPath + "/job/started-job/self-employed/new-utr")
         } else {
@@ -429,17 +448,27 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
 
     router.post(versionPath + '/have-utr-answer-registered-director', function(req, res) {
 
-        var haveUtr = req.session.data['have-utr-registered-director']
+        var haveUtr = req.session.data['have-utr-RD']
         if (haveUtr == "Yes"){
             res.redirect(versionPath + "/job/started-job/registered-director/new-utr")
         } else {
-            res.redirect(versionPath + "/job/started-job/registered-director/support-in-place")
+            res.redirect(versionPath + "/job/started-job/registered-director/work-hours")
         }
     })
 
-    router.post(versionPath + '/another-job-answer-self-employed', function(req, res) {
+        router.post(versionPath + '/have-utr-answer-contractor', function(req, res) {
 
-        var anotherJob = req.session.data['add-another-job-self-employed']
+        var haveUtr = req.session.data['have-utr-FC']
+        if (haveUtr == "Yes"){
+            res.redirect(versionPath + "/job/started-job/freelancer-contractor/new-utr")
+        } else {
+            res.redirect(versionPath + "/job/started-job/freelancer-contractor/work-hours")
+        }
+    })
+
+    router.post(versionPath + '/another-job-answer-SE', function(req, res) {
+
+        var anotherJob = req.session.data['add-another-job-SE']
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
@@ -450,7 +479,7 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
 
     router.post(versionPath + '/another-job-answer-registered-director', function(req, res) {
 
-        var anotherJob = req.session.data['add-another-job-registered-director']
+        var anotherJob = req.session.data['add-another-job-RD']
         if (anotherJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
@@ -459,9 +488,20 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
         }
     })
 
-    router.post(versionPath + '/remove-job-answer-self-employed', function(req, res) {
+        router.post(versionPath + '/another-job-answer-contractor', function(req, res) {
 
-        var removeJob = req.session.data['remove-job-self-employed']
+        var anotherJob = req.session.data['add-another-job-contractor']
+        if (anotherJob == "Yes"){
+            res.redirect(versionPath + "/job/employment")
+        } else {
+            markTaskAsCompleted(req, 'job');
+            res.redirect(versionPath + "/task-list")
+        }
+    })
+
+    router.post(versionPath + '/remove-job-answer-SE', function(req, res) {
+
+        var removeJob = req.session.data['remove-job-SE']
         if (removeJob == "Yes"){
             res.redirect(versionPath + "/job/employment")
         } else {
@@ -476,6 +516,16 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
             res.redirect(versionPath + "/job/employment")
         } else {
             res.redirect(versionPath + "/job/started-job/registered-director/another-job")
+        }
+    })
+
+        router.post(versionPath + '/remove-job-answer-FC', function(req, res) {
+
+        var removeJob = req.session.data['remove-job-FC']
+        if (removeJob == "Yes"){
+            res.redirect(versionPath + "/job/employment")
+        } else {
+            res.redirect(versionPath + "/job/started-job/freelancer-contractor/another-job")
         }
     })
 
@@ -585,6 +635,17 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
         }
     })
 
+
+    router.post(versionPath + '/have-utr-answer-contractor-starting-job', function(req, res) {
+
+        var haveUtr = req.session.data['have-utr-contractor-starting-job']
+        if (haveUtr == "Yes"){
+            res.redirect(versionPath + "/job/starting-job/freelancer-contractor/utr")
+        } else {
+            res.redirect(versionPath + "/job/starting-job/freelancer-contractor/start-date")
+        }
+    })
+
     router.post(versionPath + '/days-will-work-answer-registered-director-starting-job', function(req, res) {
 
         var workingDays = req.session.data['days-will-work-registered-director-starting-job']
@@ -592,6 +653,16 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
             res.redirect(versionPath + "/job/starting-job/registered-director/work-days")
         } else {
             res.redirect(versionPath + "/job/starting-job/registered-director/job-address")
+        }
+    })
+
+    router.post(versionPath + '/days-will-work-answer-contractor-starting-job', function(req, res) {
+
+        var workingDays = req.session.data['days-will-work-contractor-starting-job']
+        if (workingDays == "Yes"){
+            res.redirect(versionPath + "/job/starting-job/freelancer-contractor/work-days")
+        } else {
+            res.redirect(versionPath + "/job/starting-job/freelancer-contractor/job-address")
         }
     })
 
@@ -606,6 +677,38 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
         }
     })
 
+        router.post(versionPath + '/another-job-answer-contractor-starting-job', function(req, res) {
+
+        var anotherJob = req.session.data['add-another-job-contractor-starting-job']
+        if (anotherJob == "Yes"){
+            res.redirect(versionPath + "/job/employment")
+        } else {
+            markTaskAsCompleted(req, 'job');
+            res.redirect(versionPath + "/task-list")
+        }
+    })
+
+            router.post(versionPath + '/another-job-answer-freelancer-contractor', function(req, res) {
+
+        var anotherJob = req.session.data['add-another-job-FC']
+        if (anotherJob == "Yes"){
+            res.redirect(versionPath + "/job/employment")
+        } else {
+            markTaskAsCompleted(req, 'job');
+            res.redirect(versionPath + "/task-list")
+        }
+    })
+
+        router.post(versionPath + '/remove-job-answer-contractor-starting-job', function(req, res) {
+
+        var removeJob = req.session.data['remove-job-contractor-starting-job']
+        if (removeJob == "Yes"){
+            res.redirect(versionPath + "/job/employment")
+        } else {
+            res.redirect(versionPath + "/job/starting-job/freelancer-contractor/another-job")
+        }
+    })
+
     router.post(versionPath + '/remove-job-answer-registered-director-starting-job', function(req, res) {
 
         var removeJob = req.session.data['remove-job-registered-director-starting-job']
@@ -614,36 +717,6 @@ router.post(versionPath + '/support-other-jobs-answer', function(req, res) {
         } else {
             res.redirect(versionPath + "/job/starting-job/registered-director/another-job")
         }
-    })
-
-    router.get('/show-address-row', function (req, res) {
-        req.session.data['showAddressRow'] = true
-        res.redirect(versionPath + '/job/starting-job/registered-director/check-answers-registered-director')
-    })
-
-    router.get('/show-address-row-self-employed', function (req, res) {
-        req.session.data['showAddressRowSelfEmployed'] = true
-        res.redirect(versionPath + '/job/starting-job/self-employed/check-answers-self-employed')
-    })
-
-    router.get('/show-address-row-employed', function (req, res) {
-        req.session.data['showAddressRowEmployed'] = true
-        res.redirect(versionPath + '/job/starting-job/employed/hybrid-worker')
-    })
-
-    router.get('/show-address-row-employed-started-work', function (req, res) {
-        req.session.data['showAddressRowEmployedStartedWork'] = true
-        res.redirect(versionPath + '/job/started-job/employed/hybrid-worker')
-    })
-
-    router.get('/show-address-row-self-employed-started-work', function (req, res) {
-        req.session.data['showAddressRowSelfEmployedStartedWork'] = true
-        res.redirect(versionPath + '/job/started-job/self-employed/check-answers-self-employed')
-    })
-
-    router.get('/show-address-row-registered-started-work', function (req, res) {
-        req.session.data['showAddressRowRegisteredDirectorStartedWork'] = true
-        res.redirect(versionPath + '/job/started-job/registered-director/check-answers-registered-director')
     })
 
     router.post(versionPath + '/anything-else-answer', function(req, res) {
@@ -809,12 +882,12 @@ router.post(versionPath + '/add-job-started-registered-director', function (req,
     res.redirect(versionPath + '/job/started-job/registered-director/another-job');
 });
 
-router.post(versionPath + '/add-job-started-self-employed', function (req, res) {
+router.post(versionPath + '/add-job-started-SE', function (req, res) {
     const newJob = {
         type: 'self employed',
         status: 'started',
-        title: req.body['job-title-self-employed'],
-        description: req.body['job-description-self-employed']
+        title: req.body['job-title-SE'],
+        description: req.body['job-description-SE']
     };
 
     if (!req.session.data['jobs']) {
@@ -824,6 +897,23 @@ router.post(versionPath + '/add-job-started-self-employed', function (req, res) 
     req.session.data['jobs'].push(newJob);
 
     res.redirect(versionPath + '/job/started-job/self-employed/another-job');
+});
+
+router.post(versionPath + '/add-job-started-contractor', function (req, res) {
+    const newJob = {
+        type: 'self employed',
+        status: 'started',
+        title: req.body['job-title-FC'],
+        description: req.body['job-description-FC']
+    };
+
+    if (!req.session.data['jobs']) {
+        req.session.data['jobs'] = [];
+    }
+
+    req.session.data['jobs'].push(newJob);
+
+    res.redirect(versionPath + '/job/started-job/freelancer-contractor/another-job');
 });
 
 router.post(versionPath + '/add-job-starting-job-employed', function (req, res) {
@@ -859,6 +949,23 @@ router.post(versionPath + '/add-job-starting-job-registered-director', function 
     req.session.data['jobs'].push(newJob);
 
     res.redirect(versionPath + '/job/starting-job/registered-director/another-job');
+});
+
+router.post(versionPath + '/add-job-starting-job-contractor', function (req, res) {
+    const newJob = {
+        type: 'contractor',
+        status: 'starting job',
+        title: req.body['job-title-contractor-starting-job'],
+        description: req.body['job-description-contractor-starting-job']
+    };
+
+    if (!req.session.data['jobs']) {
+        req.session.data['jobs'] = [];
+    }
+
+    req.session.data['jobs'].push(newJob);
+
+    res.redirect(versionPath + '/job/starting-job/freelancer-contractor/another-job');
 });
 
 router.post(versionPath + '/add-job-starting-job-self-employed', function (req, res) {

@@ -17,10 +17,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="../registered-director/have-utr" method="post">
+      <form class="form" action="../registered-director/crn" method="post">
 
         {{ govukCharacterCount({
           name: "job-description-registered-director-starting-job",
+          value: data['job-description-registered-director-starting-job'],
           maxlength: 1000,
           label: {
             text: "What will your job description be?",

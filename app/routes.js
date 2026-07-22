@@ -175,7 +175,7 @@ router.post('/task-list', function (req, res) {
         const year = parseInt(req.body['self-employed-start-date-year'], 10)
        
         const enteredDate = new Date(year, month, day)
-        const cutoffDate = new Date(2025, 3, 6) // 6 April 2025 (month 3 = April)
+        const cutoffDate = new Date(2026, 3, 6) // 6 April 2025 (month 3 = April)
        
         if (enteredDate < cutoffDate) {
           res.redirect('/apply/v1/job/started-job/self-employed/tax-year-earnings')
@@ -190,7 +190,7 @@ router.post('/task-list', function (req, res) {
         const year = parseInt(req.body['registered-director-start-date-year'], 10)
        
         const enteredDate = new Date(year, month, day)
-        const cutoffDate = new Date(2025, 3, 6) // 6 April 2025 (month 3 = April)
+        const cutoffDate = new Date(2026, 3, 6) // 6 April 2025 (month 3 = April)
        
         if (enteredDate < cutoffDate) {
           res.redirect('/apply/v1/job/started-job/registered-director/tax-year-earnings')
@@ -389,36 +389,6 @@ router.post('/task-list', function (req, res) {
         } else {
             response.redirect("/apply/v1/job/starting-job/registered-director/another-job")
         }
-    })
-
-    router.get('/show-address-row', function (req, res) {
-        req.session.data['showAddressRow'] = true
-        res.redirect('apply/v1/job/starting-job/registered-director/check-answers-registered-director')
-    })
-
-    router.get('/show-address-row-self-employed', function (req, res) {
-        req.session.data['showAddressRowSelfEmployed'] = true
-        res.redirect('apply/v1/job/starting-job/self-employed/check-answers-self-employed')
-    })
-
-    router.get('/show-address-row-employed', function (req, res) {
-        req.session.data['showAddressRowEmployed'] = true
-        res.redirect('apply/v1/job/starting-job/employed/hybrid-worker')
-    })
-
-    router.get('/show-address-row-employed-started-work', function (req, res) {
-        req.session.data['showAddressRowEmployedStartedWork'] = true
-        res.redirect('apply/v1/job/started-job/employed/hybrid-worker')
-    })
-
-    router.get('/show-address-row-self-employed-started-work', function (req, res) {
-        req.session.data['showAddressRowSelfEmployedStartedWork'] = true
-        res.redirect('apply/v1/job/started-job/self-employed/check-answers-self-employed')
-    })
-
-    router.get('/show-address-row-registered-started-work', function (req, res) {
-        req.session.data['showAddressRowRegisteredDirectorStartedWork'] = true
-        res.redirect('apply/v1/job/started-job/registered-director/check-answers-registered-director')
     })
 
     router.post('/anything-else-answer', function(request, response) {

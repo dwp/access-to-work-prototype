@@ -20,7 +20,8 @@
       <form class="form" action="../self-employed/job-address" method="post">
 
         {{ govukCheckboxes({
-          name: "work-days-self-employed",
+          name: "work-days-SE",
+          value: data['work-days-SE'],
           fieldset: {
             legend: {
               text: "Which days of the week do you work?",

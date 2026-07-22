@@ -24,7 +24,7 @@
       <p class="govuk-body">If you work in different locations, provide the address where you work most often.</p>
 
       <p class="govuk-body">
-        <a href="/show-address-row-registered-started-work" class="govuk-link">I do not know my workplace address</a>
+        <a href="check-answers-registered-director" class="govuk-link">I do not know my workplace address</a>
       </p>
 
         {{ govukInput({
@@ -32,7 +32,8 @@
             text: "Postcode"
           },
           classes: "govuk-input--width-10",
-          name: "postcode-job-address-registered-director"
+          name: "job-postcode-RD",
+          value: data['job-postcode-RD']
         }) }}
 
       {{ govukButton({

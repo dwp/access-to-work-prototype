@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  What is your Company Registration Number? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="../registered-director/have-utr" method="post">
+       <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+        <label class="govuk-label govuk-label--l" for="crn">What is your company registration number? (optional)</label></h1>
+        <div id="crn-hint" class="govuk-hint">Your company registration number is 8 characters long. You can find it by searching for your company on the <a href="#" class="govuk-link">Companies House</a> register.</div>
+        <input class="govuk-input govuk-input--width-10" id="crn" name="crn-registered-director-starting-job" type="text" value="{{ data['crn-registered-director-starting-job'] }}" aria-describedby="crn-hint">
+      </div>
+      <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+
+      <p class="govuk-body">
+        <a href="../../../task-list" class="govuk-link">Return to tasks</a>
+      </p>
+      
+    </div>
+
+   {% include versionPath + "/includes/get-help" %}
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

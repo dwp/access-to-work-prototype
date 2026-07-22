@@ -16,222 +16,68 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
-
     <h1 class="govuk-heading-l">Check your answers: {{data['job-title-self-employed-starting-job']}}</h1>
-
     <h2 class="govuk-heading-m">Employment details</h2>
-
-
-    {% set summaryRows = [] %}
- 
-      {% set summaryRows = summaryRows.concat([
-        {
-          key: { text: "Employment status" },
-          value: { text: data['job-status'] },
-          actions: {
-            items: [
-              {
-                href: "../../employment-status#job-status",
-                text: "Change",
-                visuallyHiddenText: "employment status"
-              }
-            ]
-          }
-        },
-        {
-          key: { text: "Job title" },
-          value: { text: data['job-title-self-employed-starting-job'] },
-          actions: {
-            items: [
-              {
-                href: "../self-employed/job-title#job-title-self-employed-starting-job",
-                text: "Change",
-                visuallyHiddenText: "job title"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Job description"
-          },
-          value: {
-            text: data['job-description-self-employed-starting-job']
-          },
-          actions: {
-            items: [
-              {
-                href: "../self-employed/job-description#job-description-self-employed-starting-job",
-                text: "Change",
-                visuallyHiddenText: "job description"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Do you have a Unique Taxpayer Reference (UTR)?"
-          },
-          value: {
-            text: data['have-utr-self-employed-starting-job']
-          },
-          actions: {
-            items: [
-              {
-                href: "../self-employed/have-utr#have-utr-self-employed-starting-job",
-                text: "Change",
-                visuallyHiddenText: "have unique taxpayer reference"
-              }
-            ]
-          }
-        }
-      ]) %}
-
-      
-      {% if data['have-utr-self-employed-starting-job'] == "Yes" %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
-            value: { text: data['utr-self-employed-starting-job'] },
-            actions: {
-              items: [
-                {
-                  href: "../self-employed/utr#utr-self-employed-starting-job",
-                  text: "Change",
-                  visuallyHiddenText: "unique taxpayer reference"
-                }
-              ]
-            }
-          }
-        ]) %}
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Employment status</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-status-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../employment-status">Change<span class="govuk-visually-hidden"> employment status</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job title</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-title-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="job-title">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job description</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-description-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="job-description">Change<span class="govuk-visually-hidden"> job description</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Do you have a Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value">{{ data['have-utr-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="have-utr">Change<span class="govuk-visually-hidden"> if you have a Unique Taxpayer reference</span></a></dd>
+      </div>
+      {% if data['have-utr-self-employed-starting-job']== "Yes" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value">{{ data['utr-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="utr">Change<span class="govuk-visually-hidden"> Unique Taxpayer Reference</span></a></dd>
+      </div>
       {% endif %}
-
-      {% set summaryRows = summaryRows.concat([
-        {
-          key: {
-            text: "When will you be starting your self-employment?"
-          },
-          value: {
-            text: data['self-employed-start-date-starting-job-day'] + '/' + data['self-employed-start-date-starting-job-month'] + '/' + data['self-employed-start-date-starting-job-year']
-          },
-          actions: {
-            items: [
-              {
-                href: "../self-employed/start-date#self-employed-start-date-starting-job-day",
-                text: "Change",
-                visuallyHiddenText: "start date"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "How many hours will you work per week?"
-          },
-          value: {
-            text: data['work-hours-self-employed-starting-job']
-          },
-          actions: {
-            items: [
-              {
-                href: "../self-employed/work-hours#work-hours-self-employed-starting-job",
-                text: "Change",
-                visuallyHiddenText: "work hours"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Do you know which days of the week you will be working?"
-          },
-          value: {
-            text: data['days-will-work-self-employed-starting-job']
-          },
-          actions: {
-            items: [
-              {
-                href: "../self-employed/days-will-work#days-will-work-self-employed-starting-job",
-                text: "Change",
-                visuallyHiddenText: "work days"
-              }
-            ]
-          }
-        }
-        ]) %}
-
-        
-      {% if data['days-will-work-self-employed-starting-job'] == "Yes" %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: {
-              text: "Which days of the week will you work?"
-            },
-            value: {
-              text: data['work-days-self-employed-starting-job']
-            },
-            actions: {
-              items: [
-                {
-                  href: "../self-employed/work-days#work-days-self-employed-starting-job",
-                  text: "Change",
-                  visuallyHiddenText: "work days"
-                }
-              ]
-            }
-          }
-        ]) %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">When will you be starting your self-employment?</dt>
+        <dd class="govuk-summary-list__value">{% if data['self-employed-start-date-starting-job-day'] !== "" %} {{ data['self-employed-start-date-starting-job-day'] + " " + data['self-employed-start-date-starting-job-month'] | monthName + " " + data['self-employed-start-date-starting-job-year'] }} {% endif %}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="start-date">Change<span class="govuk-visually-hidden"> start date</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">How many hours per week will you work?</dt>
+        <dd class="govuk-summary-list__value">{{ data['work-hours-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="work-hours">Change<span class="govuk-visually-hidden"> work hours</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Do you know which days of the week you will be working?</dt>
+        <dd class="govuk-summary-list__value">{{ data['days-will-work-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="days-will-work">Change<span class="govuk-visually-hidden"> if you know which days of the week you will be working</span></a></dd>
+      </div>
+      {% if data['days-will-work-self-employed-starting-job']=="Yes" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Which days of the week will you work?</dt>
+        <dd class="govuk-summary-list__value">{{ data['work-days-self-employed-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="work-days">Change<span class="govuk-visually-hidden"> which days of the week you will be working</span></a></dd>
+      </div>
       {% endif %}
-
-      
-      {% if data['job-address-select-self-employed-starting-job'] %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: {
-              text: "Workplace address"
-            },
-            value: {
-              text: data['job-address-select-self-employed-starting-job'] + ',' + ' ' + data['postcode-job-address-self-employed-starting-job']
-            },
-            actions: {
-              items: [
-                {
-                  href: "../self-employed/job-address#postcode-job-address-self-employed-starting-job",
-                  text: "Change",
-                  visuallyHiddenText: "employment address"
-                }
-              ]
-            }
-          }
-        ]) %}
-      {% endif %}
-
-      
-      {% if data['showAddressRowSelfEmployed'] %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: {
-              text: "Workplace address"
-            },
-            value: {
-              text: "I do not know my workplace address"
-            },
-            actions: {
-              items: [
-                {
-                  href: "../registered-director/job-address#postcode-job-address-registered-director-starting-job",
-                  text: "Change",
-                  visuallyHiddenText: "employment address"
-                }
-              ]
-            }
-          }
-        ]) %}
-      {% endif %}
-
-
- 
-{{ govukSummaryList({ rows: summaryRows }) }}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Workplace address</dt>
+        {% if data['job-address-select-self-employed-starting-job']!==""%}
+        <dd class="govuk-summary-list__value">{{ data['job-address-select-self-employed-starting-job'] + ", " + data['postcode-job-address-self-employed-starting-job']  or "I do not know my workplace address" }}</dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">I do not know my workplace address</dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="job-address">Change<span class="govuk-visually-hidden">workplace address</span></a></dd>
+      </div>
+    </dl>
 
     <form action="{{versionPath}}/add-job-starting-job-self-employed" method="post" novalidate>
 

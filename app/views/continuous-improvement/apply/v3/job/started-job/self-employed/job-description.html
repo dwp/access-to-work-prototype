@@ -20,7 +20,8 @@
       <form class="form" action="../self-employed/start-date" method="post">
 
         {{ govukCharacterCount({
-          name: "job-description-self-employed",
+          name: "job-description-SE",
+          value: data['job-description-SE'],
           maxlength: 1000,
           label: {
             text: "What is your job description?",

@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  What support have you put in place for yourself? – {{ serviceName }} – GOV.UK Prototype Kit
+  How many hours will you work? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -17,19 +17,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="../registered-director/working-director" method="post">
+      <form class="form" action="../freelancer-contractor/days-will-work" method="post">
 
-        {{ govukCharacterCount({
-          name: "support-in-place-registered-director",
-          maxlength: 1000,
+        <h1 class="govuk-heading-l">How many hours do you think you will work per week?</h1>
+
+      <p class="govuk-body">If your hours can be different each week, give an estimate of the number of hours you think you will work on average.</p>
+
+        {{ govukInput({
           label: {
-            text: "What support have you put in place for yourself?",
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: ""
           },
-          hint: {
-            text: "Hint text here"
-          }
+          classes: "govuk-input--width-3",
+          name: "work-hours-contractor-starting-job",
+          value: data['work-hours-contractor-starting-job'],
+          suffix: {
+            text: "hours per week"
+          },
+          spellcheck: false
         }) }}
 
       {{ govukButton({

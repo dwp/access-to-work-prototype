@@ -20,7 +20,8 @@
       <form class="form" action="../registered-director/start-date" method="post">
 
         {{ govukCharacterCount({
-          name: "job-description-registered-director",
+          name: "job-description-RD",
+          value: data["job-description-RD"],
           maxlength: 1000,
           label: {
             text: "What is your job description?",

@@ -20,7 +20,8 @@
       <form class="form" action="../registered-director/job-address" method="post">
 
         {{ govukCheckboxes({
-          name: "work-days-registered-director",
+          name: "work-days-RD",
+          value: data['work-days-RD'],
           fieldset: {
             legend: {
               text: "Which days of the week do you work?",

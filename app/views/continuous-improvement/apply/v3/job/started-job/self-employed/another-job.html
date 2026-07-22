@@ -25,7 +25,7 @@
           rows: [
             [
               {
-                text: data['job-title-self-employed']
+                text: data['job-title-SE']
               },
               {
                 html: "<a href='../self-employed/check-answers-self-employed' class='govuk-link govuk-!-padding-right-5'>Change</a> <a href='../self-employed/remove-job' class='govuk-link'>Remove</a>",
@@ -35,11 +35,11 @@
           ]
         }) }}
 
-        <form class="form" action="{{versionPath}}/another-job-answer-self-employed" method="post">
+        <form class="form" action="{{versionPath}}/another-job-answer-SE" method="post">
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          name: "add-another-job-self-employed",
+          name: "add-another-job-SE",
           fieldset: {
             legend: {
               text: "Do you need to add another job?",

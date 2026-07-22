@@ -20,7 +20,7 @@
       <form class="form" action="{{versionPath}}/check-date-registered-director" method="post">
 
         {{ govukDateInput({
-          namePrefix: "registered-director-start-date",
+          namePrefix: "start-date-RD",
           fieldset: {
             legend: {
               text: "When did you start this job?",
@@ -34,14 +34,17 @@
           items: [
             {
               name: "day",
+              value: data['start-date-RD-day'],
               classes: "govuk-input--width-2"
             },
             {
               name: "month",
+              value: data['start-date-RD-month'],
               classes: "govuk-input--width-2"
             },
             {
               name: "year",
+              value: data['start-date-RD-year'],
               classes: "govuk-input--width-4"
             }
           ]

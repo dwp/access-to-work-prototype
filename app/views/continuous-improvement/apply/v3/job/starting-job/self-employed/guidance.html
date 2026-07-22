@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Information you'll need - self-employed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Information you'll need - self-employed</h1>
+
+      <h2 class="govuk-heading-m">What you'll need to enter in this application</h2>
+      <p class="govuk-body">Your <a href="https://www.gov.uk/find-utr-number" class="govuk-link" rel="noreferrer noopener" target="_blank">Unique Taxpayer Reference (opens in new tab)</a> if you started trading before 1 April.</p>
+
+      <h2 class="govuk-heading-m">What you'll need to provide when a case manager contacts you</h2>
+      <p class="govuk-body">Your Unique Taxpayer Reference if you did not include it in your application.</p>
+      <p class="govuk-body">Your business plan and 3-year financial forecast that show you expect a turnover of more than the lower earnings limit.</p>
+      <p class="govuk-body">The lower earnings limit for 2026 to 2027 is £6,708.</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Previous years' lower earnings limits</span>
+        </summary>
+        <div class="govuk-details__text">
+          2025 to 2026 - £6,500<br>
+          2024 to 2025 - £6,396
+        </div>
+      </details>
+
+      <form class="form" action="../self-employed/job-title" method="post">
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      <p class="govuk-body"><a href="../../../task-list" class="govuk-link">Return to tasks</a></p>
+    </div>
+   {% include versionPath + "/includes/get-help" %}
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

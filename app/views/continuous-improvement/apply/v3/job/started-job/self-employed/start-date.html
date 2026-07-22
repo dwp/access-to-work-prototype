@@ -20,7 +20,8 @@
       <form class="form" action="{{versionPath}}/check-date" method="post">
 
         {{ govukDateInput({
-          namePrefix: "self-employed-start-date",
+          namePrefix: "start-date-SE",
+          value: data['start-date-SE'],
           fieldset: {
             legend: {
               text: "When did you start this job?",
@@ -34,14 +35,17 @@
           items: [
             {
               name: "day",
+              value: data['start-date-SE-day'],
               classes: "govuk-input--width-2"
             },
             {
               name: "month",
+              value: data['start-date-SE-month'],
               classes: "govuk-input--width-2"
             },
             {
               name: "year",
+              value: data['start-date-SE-year'],
               classes: "govuk-input--width-4"
             }
           ]

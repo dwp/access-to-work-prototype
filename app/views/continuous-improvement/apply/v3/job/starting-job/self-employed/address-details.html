@@ -29,6 +29,7 @@
         },
         id: "address-line-1",
         name: "job-address-line-1",
+        value: data['job-address-line-1'],
         autocomplete: "address-line1"
       }) }}
     
@@ -38,6 +39,7 @@
         },
         id: "address-line-2",
         name: "job-address-line-2",
+        value: data['job-address-line-2'],
         autocomplete: "address-line2"
       }) }}
     
@@ -48,6 +50,7 @@
         classes: "govuk-!-width-two-thirds",
         id: "address-town",
         name: "job-address-town",
+        value: data['job-address-town'],
         autocomplete: "address-level2"
       }) }}
     
@@ -56,8 +59,9 @@
           text: "County (optional)"
         },
         classes: "govuk-!-width-two-thirds",
-        id: "job-address-county",
-        name: "addressCounty"
+        id: "address-county",
+        name: "job-address-county",
+        value: data['job-address-county']
       }) }}
     
       {{ govukInput({
@@ -67,6 +71,7 @@
         classes: "govuk-input--width-10",
         id: "address-postcode",
         name: "job-address-postcode",
+        value: data['job-address-postcode'],
         autocomplete: "postal-code"
       }) }}
 

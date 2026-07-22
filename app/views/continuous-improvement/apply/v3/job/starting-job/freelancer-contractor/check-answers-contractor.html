@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers registered director – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">Check your answers: {{data['job-title-contractor-starting-job']}}</h1>
+    <h2 class="govuk-heading-m">Employment details</h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Employment status</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-status-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../employment-status">Change<span class="govuk-visually-hidden"> employment status</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job title</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-title-contractor-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="job-title">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job description</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-description-contractor-starting-job'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="job-description">Change<span class="govuk-visually-hidden"> job description</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your company registration number (CRN)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['crn-contractor-starting-job'] or "Not provided" }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="crn">Change<span class="govuk-visually-hidden"> company registration number</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Do you have a Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['have-utr-contractor-starting-job'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="have-utr">Change<span class="govuk-visually-hidden"> have unique taxpayer reference</span></a></dd>
+      </div>
+      {% if data['have-utr-contractor-starting-job']=="Yes" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['utr-contractor-starting-job'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="utr">Change<span class="govuk-visually-hidden"> unique taxpayer reference</span></a></dd>
+      </div>
+      {% endif %}
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">When will you start freelancing or contracting?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['contractor-start-date-starting-job-day'] + ' ' + data['contractor-start-date-starting-job-month']| monthName + ' ' + data['contractor-start-date-starting-job-year'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="start-date">Change<span class="govuk-visually-hidden"> start date</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">How many hours do you think you will work per week?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['work-hours-contractor-starting-job'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="work-hours">Change<span class="govuk-visually-hidden"> hours worked</span></a></dd>
+      </div>
+       <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Do you know which days of the week you will be working?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['days-will-work-contractor-starting-job'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="days-will-work">Change<span class="govuk-visually-hidden"> hours worked</span></a></dd>
+      </div>
+      {% if data['days-will-work-contractor-starting-job']=="Yes" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Which days of the week will you work?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['work-days-contractor-starting-job'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="work-days">Change<span class="govuk-visually-hidden"> days worked</span></a></dd>
+      </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Workplace address</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['job-address-select-contractor-starting-job'] + ',' + ' ' + data['postcode-job-address-contractor-starting-job'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="job-address">Change<span class="govuk-visually-hidden"> workplace address</span></a></dd>
+      </div>
+    </dl>
+    <form action="{{versionPath}}/add-job-starting-job-contractor" method="post" novalidate>
+      <input type="hidden" name="answers-checked-contractor-details-starting-job" value="true">
+      {{ govukButton({
+        text: "Confirm and continue"
+      }) }}
+    </form>
+    <p class="govuk-body"><a href="../../../task-list" class="govuk-link">Return to tasks</a></p>
+  </div>
+
+    {% include versionPath + "/includes/get-help" %}
+      </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

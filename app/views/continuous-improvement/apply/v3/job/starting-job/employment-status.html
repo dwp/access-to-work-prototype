@@ -21,6 +21,7 @@
 
         {{ govukRadios({
           name: "job-status-starting-job",
+          value: data['job-status-starting-job'],
           fieldset: {
             legend: {
               text: "What will your employment status be?",
@@ -43,6 +44,10 @@
             {
               value: "Registered director",
               text: "Registered director of a limited company"
+            },
+            {
+              value: "Freelancer or contractor",
+              text: "Freelancer or contractor"
             }
           ]
         }) }}
