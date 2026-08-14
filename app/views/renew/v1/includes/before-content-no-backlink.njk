@@ -1,0 +1,24 @@
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+
+<div class="language-and-back-link-container">
+  <div class="govuk-grid-row-toggle">
+    <div class="govuk-grid-column-one-third-toggle">
+      <nav class="dwp-language-toggle" aria-label="Language toggle">
+          <ul class="dwp-language-toggle__list">
+            <li class="dwp-language-toggle__list-item"> English </li>
+            <li lang="cy" class="dwp-language-toggle__list-item"><span class="govuk-visually-hidden">Newid yr iaith ir Gymraeg</span><a href="?lang=cy" class="govuk-link">Cymraeg</a></li>  
+          </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

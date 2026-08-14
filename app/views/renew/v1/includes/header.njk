@@ -1,0 +1,8 @@
+{% block header %}
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+    serviceName: "Renew Access to Work",
+    serviceUrl: versionPath + "/are-you-a-civil-servant"
+  }) }}
+{% endblock %}

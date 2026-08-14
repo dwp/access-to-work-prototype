@@ -1,0 +1,90 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Has the support you need changed? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="check-your-answers" method="post">
+        <h1 class="govuk-heading-xl">Getting in touch</h1>
+        <div class="govuk-form-group">
+
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">How can we contact you to discuss your renewal application?</h2>
+          </legend>
+          <div id="contact-hint" class="govuk-hint">Select at least one contact type.</div>
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="contact" name="contact" type="checkbox" value="email" data-aria-controls="conditional-contact" {{ checked('contact','email') }}> 
+              <label class="govuk-label govuk-checkboxes__label" for="contact">Email</label>
+            </div>
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact">
+              <div class="govuk-form-group" style="margin-bottom: 30px;">
+                <label class="govuk-label" for="contact-by-email">Email address</label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="contact-by-email" name="email-renew" value="{{ data['email-renew'] }}" type="email" spellcheck="false" autocomplete="email">
+              </div>
+
+              <details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">Email terms</span>
+                </summary>
+                <div class="govuk-details__text">
+                  <p class="govuk-body">Department for Work and Pensions (DWP) cannot guarantee external emails against:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>loss or non-delivery</li>
+                    <li>theft by third parties</li>
+                    <li>manipulation of data</li>
+                  </ul>
+                  <p class="govuk-body">Asking DWP to use email to get in touch with you in this application means you understand this risk. If you have any concerns then do not include your email address.</p>
+                </div>
+              </details>
+
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="emailterms" name="emailterms" type="checkbox" value="emailterms-agree">
+                  <label class="govuk-label govuk-checkboxes__label" for="emailterms">I agree to the email terms</label>
+                </div>
+              </div>
+
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="contact-2" name="contact" type="checkbox" value="phone" data-aria-controls="conditional-contact-2" {{ checked('contact','phone') }}>
+              <label class="govuk-label govuk-checkboxes__label" for="contact-2">Telephone</label>
+            </div>
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-2">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-phone">Telephone number</label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="contact-by-phone" name="phone-renew" value="{{ data['phone-renew'] }}"  type="tel" autocomplete="tel">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+   {% include versionPath + "/includes/get-help" %}
+  </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

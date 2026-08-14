@@ -13,7 +13,7 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
  {{ govukOneLoginServiceHeader({
     signOutLink: "/sign-out",
     serviceNavigationParams: {
-      serviceName: "Your service name",
+      serviceName: "Renew Access to Work",
       serviceUrl: "/",
       navigation: [
         { href: "/page-1", text: "Page 1" },
@@ -21,4 +21,28 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
       ]
     }
   }) }}
+{% endblock %}
+
+{% block footer %}
+{{
+    dwpFooter({
+        meta: {
+            visuallyHiddenTitle: "About this website",
+            items: [
+            {
+                href: "",
+                text: "Accessibility statement"
+            },
+            {
+                href: "",
+                text: "Privacy"
+            },
+            {
+                href: "/manage-prototype/clear-data",
+                text: "Clear data"
+              }
+            ]
+        }
+    }) 
+}}
 {% endblock %}

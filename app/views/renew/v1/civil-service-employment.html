@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Is your grant date before 1 April 2022? - {{ serviceName }} - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="full-name" method="post">
+        <h1 class="govuk-heading-xl">Civil service employment: grant end date on or after 1 April 2022</h1>
+        <p class="govuk-body">As your grant end date is on or after 1 April 2022, your employer will provide support instead of Access to Work.</p>
+        <p class="govuk-body">You will not be able to renew your Access to Work grant.</p>
+        <div class="govuk-inset-text">
+          You will need to contact your employer so they can assess and arrange the support you need.
+        </div>
+        <p class="govuk-body"><a href="#" class="govuk-link">Access to Work eligibility guidance on GOV.UK</a></p>
+      </form>                           
+    </div>
+    {% include versionPath + "/includes/get-help" %}
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

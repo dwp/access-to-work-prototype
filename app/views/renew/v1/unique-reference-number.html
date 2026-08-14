@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you have your unique reference number? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="support-changes" method="post">
+
+        {% set yesHtml %}
+        {{ govukInput({
+          id: "urn-yes-renew",
+          name: "urn-yes-renew",
+          value: data['urn-yes-renew'],
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Unique reference number"
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          classes: "govuk-radios",
+          name: "unique-reference-number",
+          value: data['unique-reference-number'],
+          fieldset: {
+            legend: {
+              text: "Do you have your unique reference number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "You'll find this on any correspondence we've sent you about your grant. It's 9 numbers long and begins with a 1."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: yesHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+   {% include versionPath + "/includes/get-help" %}
+  </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}

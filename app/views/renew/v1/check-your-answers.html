@@ -1,0 +1,123 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers before sending your renewal application – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include versionPath + "/includes/header" %}
+{% endblock %}
+
+{% block beforeContent %}
+{% include versionPath + "/includes/before-content" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="what-happens-next" method="post">
+        <h1 class="govuk-heading-xl">Check your answers before sending your renewal application</h1>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Name</dt>
+            <dd class="govuk-summary-list__value">{{ data['first-name-renew'] }} {{ data['last-name-renew'] }}</dd>
+            <dd class="govuk-summary-list__actions"><a class="govuk-link" href="full-name">Change<span class="govuk-visually-hidden"> name</span></a></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Date of birth</dt>
+            <dd class="govuk-summary-list__value">{{ data['dob-renew-day'] }} {{ data['dob-renew-month'] | monthName }} {{ data['dob-renew-year'] }} </dd>
+            <dd class="govuk-summary-list__actions"><a class="govuk-link" href="date-of-birth">Change<span class="govuk-visually-hidden"> date of birth</span></a></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Home address</dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['addressLine1-renew'] }}<br>
+              {% if data['addressLine2-renew'] %}
+                {{ data['addressLine2-renew'] }}<br>
+              {% endif %}
+              {{ data['addressTown-renew'] }}<br>
+               {% if data['addressCounty-renew'] %}
+                {{ data['addressCounty-renew'] }}<br>
+              {% endif %}
+              {{ data['addressPostcode-renew'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions"><a class="govuk-link" href="address">Change<span class="govuk-visually-hidden"> address</span></a></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Unique reference number</dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['unique-reference-number'] == "yes" %}
+                {{ data['urn-yes-renew'] or "Not given" }}
+              {% else %}
+                Not given
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions"><a class="govuk-link" href="unique-reference-number">Change<span class="govuk-visually-hidden"> unique reference number</span></a></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Support changes</dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['support-changes']=="No changes" %}
+                  No changes
+                {% else %}
+                <ul class="govuk-list govuk-list--bullet">
+                  {% for support in data['support-changes'] %}
+                    <li>{{ support }}</li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="support-changes">Change<span class="govuk-visually-hidden"> support changes</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Email address</dt>
+            <dd class="govuk-summary-list__value">
+              {% if checked('contact','email') %}
+                {{ data['email-renew'] }}
+              {% else %}
+                Not given
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions"><a class="govuk-link" href="getting-in-touch">Change<span class="govuk-visually-hidden"> email address</span></a></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Telephone</dt>
+            <dd class="govuk-summary-list__value">
+              {% if checked('contact','phone') %}
+                {{ data['phone-renew'] }}
+              {% else %}
+                Not given
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions"><a class="govuk-link" href="getting-in-touch">Change<span class="govuk-visually-hidden"> telephone number</span></a></dd>
+          </div>
+        </dl>
+        <h2 class="govuk-heading-m">Declaration</h2>
+        <p>By submitting this notification you are agreeing that:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the information in this renewal application is correct as far as you know</li>
+          <li>you'll tell the Access to Work team about any changes to your condition or circumstances, for example if your place of work changes</li>
+        </ul>
+        {{ govukWarningText({
+          text: "It might be a criminal offence if you knowingly give false information or do not report anything that would affect your grant, for example if your condition improves or you change where you work.",
+          iconFallbackText: "Warning"
+        }) }}
+
+        {{ govukButton({
+          text: "Accept and send application"
+        }) }}
+      </form>
+
+    </div>
+   {% include versionPath + "/includes/get-help" %}
+  </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% include versionPath + "/includes/footer" %}
+{% endblock %}
