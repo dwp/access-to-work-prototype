@@ -24,6 +24,7 @@
   },
   "overrides": {
     "govuk-prototype-kit": {
+      "immutable": "5.1.8",
       "express": {
         "qs": "6.14.1"
       },
