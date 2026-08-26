@@ -550,11 +550,11 @@ router.post(versionPath + '/job-status-answer-starting-job', function(req, res) 
     var jobStatus = req.session.data['job-status-starting-job']
     if (jobStatus == "Employed"){
         res.redirect(versionPath + "/job/starting-job/employed/company")
-    } else if (jobStatus == "Self-employed"){
+    } else if (jobStatus == "About to start self-employment"){
         res.redirect(versionPath + "/job/starting-job/self-employed/guidance")
-    } else if (jobStatus == "Registered director"){
+    } else if (jobStatus == "About to register as the director of a limited company"){
         res.redirect(versionPath + "/job/starting-job/registered-director/guidance")
-    } else if (jobStatus == "Freelancer or contractor"){
+    } else if (jobStatus == "About to start freelancing or contracting"){
         res.redirect(versionPath + "/job/starting-job/freelancer-contractor/guidance")
     }
 })

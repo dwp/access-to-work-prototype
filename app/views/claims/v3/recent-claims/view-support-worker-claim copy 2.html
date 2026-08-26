@@ -1,0 +1,190 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Declaration – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block header %}
+  {{ govukOneLoginServiceHeader({
+    signOutLink: "../sign-out",
+    oneLoginLink: "https://govuk-one-login-prototype-6d2545e2d700.herokuapp.com/page-index/home/account-home",
+    serviceNavigationParams: {
+      serviceName: "Claim money back from Access to Work",
+      serviceUrl: "/index"
+    }
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype. It is not a real service.'
+}) }}
+
+<div class="govuk-back-link-and-translation govuk-width-container">
+
+    {{ govukBreadcrumbs({
+      items: [
+        {
+          text: "Home",
+          href: "../account-home"
+        },
+        {
+          text: "Recent claims",
+          href: "recent-claims"
+        }
+      ]
+    }) }}
+
+  <div class="language-switcher">
+    <span class="govuk-body-s">English&nbsp;|&nbsp;
+    <a href="#" class="govuk-link">Cymraeg</a></span>
+  </div>
+  
+</div>
+
+<style>
+  .govuk-back-link-and-translation {
+    display: flex;
+    align-items: center;
+  }
+   
+  .language-switcher {
+    margin-left: auto; /* pushes this link to the far right */
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">Support worker claim details</h1>
+      <p class="govuk-body"><a href="#" class="govuk-link">Save and print claim details (opens in new window)</a></p>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Support received for June 2026</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">2 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">5 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">7 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">9 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">11 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">14 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">16 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">17 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">18 June 2026</dt>
+              <dd class="govuk-summary-list__value">5 hours and 0 minutes</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Total hours and costs</h2></div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Support worker or agency name</dt>
+              <dd class="govuk-summary-list__value">John Doe</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Total support</dt>
+              <dd class="govuk-summary-list__value">45 hours and 0 minutes</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Total cost of support worker</dt>
+              <dd class="govuk-summary-list__value">£810</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Receipts or invoices uploaded</dt>
+              <dd class="govuk-summary-list__value">INVOICE_108185.pdf</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Details of new person or company being paid</h2></div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Name</dt>
+              <dd class="govuk-summary-list__value">John Doe</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Email address</dt>
+              <dd class="govuk-summary-list__value">john.doe@gmail.com</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Details of the person or company who can confirm the support costs</h2></div>
+        <div class="govuk-summary-card__content">
+          <p class="govuk-body">This is the person or company who we'll contact to confirm your employee received the support they're claiming for.</p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Name</dt>
+              <dd class="govuk-summary-list__value">John Doe</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Email address</dt>
+              <dd class="govuk-summary-list__value">john.doe@gmail.com</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Claim submission details</h2></div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Claim submitted</dt>
+              <dd class="govuk-summary-list__value">21 August 2026</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Claim confirmed</dt>
+              <dd class="govuk-summary-list__value"></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

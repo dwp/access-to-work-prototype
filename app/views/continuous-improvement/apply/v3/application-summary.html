@@ -40,7 +40,6 @@
 
       {% include versionPath + "/includes/contact-summary" %}
 
-      {% include versionPath + "/includes/conditions-disabilities-summary" %}
 
       {% if data['answers-checked-employed-details'] %}
       {% include versionPath + "/includes/started-employed-summary" %}
@@ -49,10 +48,13 @@
       {% if data['answers-checked-self-employed-details'] %}
       {% include versionPath + "/includes/started-self-employed-summary" %}
       {% endif %}
-      
 
       {% if data['answers-checked-registered-director-details'] %}
       {% include versionPath + "/includes/started-registered-director-summary" %}
+      {% endif %}
+
+      {% if data['answers-checked-freelancer-contractor-details'] %}
+      {% include versionPath + "/includes/started-freelancer-contractor-summary" %}
       {% endif %}
 
       {% if data['answers-checked-employed-details-starting-job'] %}
@@ -66,6 +68,8 @@
       {% if data['answers-checked-registered-director-details-starting-job'] %}
       {% include versionPath + "/includes/starting-registered-director-summary" %}
       {% endif %}
+
+      {% include versionPath + "/includes/conditions-disabilities-summary" %}
 
       {% include versionPath + "/includes/specialist-equipment-summary" %}
 

@@ -1,115 +1,45 @@
 <h2 class="govuk-heading-m">Employment details</h2>
-
-
-    {% set summaryRows = [] %}
- 
-      {% set summaryRows = summaryRows.concat([
-        {
-          key: { text: "Employment status" },
-          value: { text: data['job-status'] }
-        },
-        {
-          key: { text: "Job title" },
-          value: { text: data['job-title-registered-director'] }
-        },
-        {
-          key: {
-            text: "Job description"
-          },
-          value: {
-            text: data['job-description-registered-director']
-          }
-        }
-      ]) %}
-
-      
-      {% if data['have-utr-registered-director'] %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: {
-              text: "Do you have a Unique Taxpayer Reference (UTR)?"
-            },
-            value: {
-              text: data['have-utr-registered-director']
-            }
-          }
-        ]) %}
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Employment status</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-status'] }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job title</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-title-RD'] }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job description</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-description-RD'] }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">When did you start this job?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['start-date-RD-day'] + ' ' + data['start-date-RD-month'] | monthName + ' ' + data['start-date-RD-year'] }}</p></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your company registration number?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['crn-RD'] }}</p></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Do you have a Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['have-utr-RD'] }}</p></dd>
+      </div>
+      {% if data['have-utr-RD']=="Yes" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['utr-new-RD'] }}</p></dd>
+      </div>
       {% endif %}
-      
-      
-      {% if data['have-utr-registered-director'] == "Yes" %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
-            value: { text: data['utr-new-registered-director'] }
-          }
-        ]) %}
-      {% endif %}
-
-      
-      {% if data['utr-registered-director'] %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: { text: "What is your Unique Taxpayer Reference (UTR)?" },
-            value: { text: data['utr-registered-director'] }
-          }
-        ]) %}
-      {% endif %}
-
-      {% set summaryRows = summaryRows.concat([
-        {
-          key: {
-            text: "When did you start this job?"
-          },
-          value: {
-            text: data['registered-director-start-date-day'] + '/' + data['registered-director-start-date-month'] + '/' + data['registered-director-start-date-year']
-          }
-        },
-        {
-          key: {
-            text: "How many hours do you work per week?"
-          },
-          value: {
-            text: data['work-hours-registered-director']
-          }
-        },
-        {
-          key: {
-            text: "Which days of the week do you work?"
-          },
-          value: {
-            text: data['work-days-registered-director']
-          }
-        }
-      ]) %}
-
-      
-      {% if data['job-address-select-registered-director'] %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: {
-              text: "Workplace address"
-            },
-            value: {
-              text: data['job-address-select-registered-director'] + ',' + ' ' + data['postcode-job-address-registered-director']
-            }
-          }
-        ]) %}
-      {% endif %}
-  
-      
-      {% if data['showAddressRowRegisteredDirectorStartedWork'] %}
-        {% set summaryRows = summaryRows.concat([
-          {
-            key: {
-              text: "Workplace address"
-            },
-            value: {
-              text: "I do not know my workplace address"
-            }
-          }
-        ]) %}
-      {% endif %}
-
- 
-{{ govukSummaryList({ rows: summaryRows }) }}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">How many hours do you work per week?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['work-hours-RD'] }}</p></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Which days of the week do you work?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['work-days-RD'] }}</p></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Workplace address</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['job-address-RD'] + ',' + ' ' + data['job-postcode-RD'] }}</p></dd>
+      </div>
+    </dl>

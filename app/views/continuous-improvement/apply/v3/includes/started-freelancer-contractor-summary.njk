@@ -1,0 +1,55 @@
+<h2 class="govuk-heading-m">Employment details</h2>
+<dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Employment status</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-status'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../employment-status">Change<span class="govuk-visually-hidden"> employment status</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job title</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-title-FC'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/job-title">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Job description</dt>
+        <dd class="govuk-summary-list__value">{{ data['job-description-FC'] }}</dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/job-description">Change<span class="govuk-visually-hidden"> job description</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">When did you start this job?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['start-date-FC-day'] + ' ' + data['start-date-FC-month'] | monthName + ' ' + data['start-date-FC-year'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/start-date">Change<span class="govuk-visually-hidden"> start date</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your company registration number?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['crn-FC'] or "Not provided" }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/crn">Change<span class="govuk-visually-hidden"> company registration number</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Do you have a Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['have-utr-FC'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/new-have-utr">Change<span class="govuk-visually-hidden"> have unique taxpayer reference</span></a></dd>
+      </div>
+      {% if data['have-utr-FC']=="Yes" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is your Unique Taxpayer Reference (UTR)?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['utr-new-FC'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/new-utr">Change<span class="govuk-visually-hidden"> unique taxpayer reference</span></a></dd>
+      </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">How many hours do you work per week?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['work-hours-FC'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/work-hours">Change<span class="govuk-visually-hidden"> hours worked</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Which days of the week do you work?</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['work-days-FC'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/work-days">Change<span class="govuk-visually-hidden"> days worked</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Workplace address</dt>
+        <dd class="govuk-summary-list__value"><p class="govuk-body">{{ data['job-address-FC'] + ',' + ' ' + data['job-postcode-FC'] }}</p></dd>
+        <dd class="govuk-summary-list__actions"><a class="govuk-link" href="../freelancer-contractor/job-address">Change<span class="govuk-visually-hidden"> hours worked</span></a></dd>
+      </div>
+    </dl>

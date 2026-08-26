@@ -16,62 +16,59 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <form class="form" action="../contact/your-telephone-number" method="post">
-
-        <h1 class="govuk-heading-l">
-          Details of the person we should contact
-        </h1>
+        <h1 class="govuk-heading-l">Details of the person we should contact</h1>
 
         {{ govukInput({
-          "label": {
-            "text": "Their full name"
+          label: {
+            text: "Their full name"
           },
-          "name": "their-full-name"
+          id: "their-name",
+          name: "theirName",
+          value: data['theirName']
         }) }}
 
         {{ govukInput({
-          "label": {
-            "text": "Their relationship to you"
+          label: {
+            text: "Their relationship to you"
           },
-          "name": "relationship-to-you"
+          id: "relationship-to-you",
+          name: "relationshipToYou",
+          value: data['relationshipToYou']
         }) }}
 
         {{ govukInput({
-          "label": {
-            "text": "Their telephone number"
+          label: {
+            text: "Their telephone number"
           },
-          "name": "their-telephone-number",
-          "classes": "govuk-!-width-two-thirds"
+          id: "their-telephone-number",
+          name: "theirTelephoneNumber",
+          value: data['theirTelephoneNumber'],
+          classes: "govuk-!-width-two-thirds"
         }) }}
 
         {{ govukInput({
-          "label": {
-            "text": "Their email address"
+          label: {
+            text: "Their email address"
           },
-          "name": "their-email-address"
+          id: "their-email-address",
+          name: "theirEmailAddress",
+          value: data['theirEmailAddress']
         }) }}
 
         {{ govukInsetText({
           text: "We may ask you to confirm your permission for us to contact this person at a later date."
         }) }}
                    
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
-    </form>
-
-      <p class="govuk-body">
-        <a href="../task-list" class="govuk-link">Return to tasks</a>
-      </p>
-      
-
+      </form>
+      <p class="govuk-body"><a href="../task-list" class="govuk-link">Return to tasks</a></p>
     </div>
-
    {% include versionPath + "/includes/get-help" %}
-        </div>
+  </div>
 
 {% endblock %}
 
