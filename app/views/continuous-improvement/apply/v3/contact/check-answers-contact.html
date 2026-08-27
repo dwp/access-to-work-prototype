@@ -228,7 +228,7 @@
       {% if data['email-address'] %}
       {% set yourEmailAddress = data['email-address'] %}
       {% else %}
-      {% set yourEmailAddress = data['email-address-identity-adjustment'] %}
+      {% set yourEmailAddress = data['email-address-reasonable-adjustment'] %}
       {% endif %}
 
       {% set rows = [
@@ -260,7 +260,7 @@
         actions: {
           items: [
             {
-              href: "../contact/email-address-identity-adjustment",
+              href: "../contact/email-address-reasonable-adjustment",
               text: "Change",
               visuallyHiddenText: "your email address"
             }

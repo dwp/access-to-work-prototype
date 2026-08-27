@@ -16,17 +16,10 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <form class="form" action="../contact/check-answers-contact" method="post">
-
-      <h1 class="govuk-heading-l">
-        What is your email address?
-      </h1>
-
-      <p class="govuk-body">We may be able to contact you by email.</p>
-      <p class="govuk-body">If you do not already have a reasonable adjustment agreed with the Department for Work and Pensions, we'll ask you to explain how your disability or health condition affects your ability to use the telephone.</p>
-
-      
+        <h1 class="govuk-heading-l">What is your email address?</h1>
+        <p class="govuk-body">We may be able to contact you by email.</p>
+        <p class="govuk-body">If you do not already have a reasonable adjustment agreed with the Department for Work and Pensions, we'll ask you to explain how your disability or health condition affects your ability to use the telephone.</p>
       {{ govukInput({
         "label": {
           "text": "Email address"
