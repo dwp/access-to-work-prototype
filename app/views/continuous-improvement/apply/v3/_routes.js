@@ -272,7 +272,7 @@ router.post(versionPath + '/job-status-answer', function(req, res) {
     var jobStatus = req.session.data['job-status']
     if (jobStatus == "Employed"){
         res.redirect(versionPath + "/job/started-job/employed/company")
-    } else if (jobStatus == "Self-employed"){
+    } else if (jobStatus == "Sole trader or partnership"){
         res.redirect(versionPath + "/job/started-job/self-employed/guidance")
     } else if (jobStatus == "Registered director"){
         res.redirect(versionPath + "/job/started-job/registered-director/guidance")
@@ -550,7 +550,7 @@ router.post(versionPath + '/job-status-answer-starting-job', function(req, res) 
     var jobStatus = req.session.data['job-status-starting-job']
     if (jobStatus == "Employed"){
         res.redirect(versionPath + "/job/starting-job/employed/company")
-    } else if (jobStatus == "About to start self-employment"){
+    } else if (jobStatus == "About to start trading"){
         res.redirect(versionPath + "/job/starting-job/self-employed/guidance")
     } else if (jobStatus == "About to register as the director of a limited company"){
         res.redirect(versionPath + "/job/starting-job/registered-director/guidance")
