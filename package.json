@@ -14,7 +14,7 @@
     "@ministryofjustice/frontend": "8.0.1",
     "@x-govuk/govuk-prototype-filters": "2.1.0",
     "govuk-frontend": "5.14.0",
-    "govuk-prototype-kit": "13.20.3",
+    "govuk-prototype-kit": "13.20.4",
     "hmrc-frontend": "6.117.0",
     "immutable": "5.1.9",
     "moment": "2.30.1",
