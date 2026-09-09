@@ -26,10 +26,10 @@
   "overrides": {
     "govuk-prototype-kit": {
       "express": {
-        "qs": "6.15.3"
+        "qs": "6.16.0"
       },
       "body-parser": {
-        "qs": "6.15.3"
+        "qs": "6.16.0"
       }
     }
   },
