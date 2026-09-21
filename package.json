@@ -1,21 +1,25 @@
 {
+
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
-    "start": "govuk-prototype-kit start",
-    "update:last-verified": "node scripts/update-last-verified.js",
-    "prepare": "husky"
+    "start": "govuk-prototype-kit start"
+   
   },
+  "name": "govuk-prototype-kit",
   "dependencies": {
-    "@dwp/dwp-frontend": "3.4.0",
+    "@dwp/dwp-frontend": "4.1.0",
     "@faker-js/faker": "10.5.0",
-    "@govuk-one-login/service-header": "5.0.0",
-    "@govuk-prototype-kit/common-templates": "2.0.1",
-    "@ministryofjustice/frontend": "8.0.1",
+    "@govuk-one-login/service-header": "6.0.0",
+    "@govuk-prototype-kit/common-templates": "3.0.1",
+    "@ministryofjustice/frontend": "9.0.0",
     "@x-govuk/govuk-prototype-filters": "2.2.0",
-    "govuk-frontend": "5.14.0",
-    "govuk-prototype-kit": "13.20.4",
-    "hmrc-frontend": "6.117.0",
+    "govuk-frontend": "6.5.1",
+    "govuk-prototype-kit": "13.20.2",
+    "hmrc-frontend": "7.35.0",
     "immutable": "5.1.9",
     "moment": "2.31.0",
     "nhsuk-frontend": "10.6.1",
@@ -38,3 +42,4 @@
     "js-yaml": "4.3.2"
   }
 }
+
