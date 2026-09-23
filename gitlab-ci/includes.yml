@@ -63,7 +63,7 @@ include:
     ref: 4.7.2
     file: ci-include-push-to-ecr-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/create-project-badges
-    ref: 2.5.0
+    ref: 2.5.2
     file: ci-include-create-project-badges-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/schedule-creation
     ref: 2.7.1
