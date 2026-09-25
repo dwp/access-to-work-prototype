@@ -57,7 +57,7 @@ include:
     ref: 2.10.1
     file: ci-include-container-structure-test-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/docker-compose-run
-    ref: 3.5.0
+    ref: 3.5.2
     file: ci-include-docker-compose-run-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/push-to-ecr
     ref: 4.7.2
