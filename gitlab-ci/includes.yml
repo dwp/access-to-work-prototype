@@ -24,7 +24,7 @@ include:
     ref: 4.0.0
     file: ci-include-es-lint-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/docker-lint
-    ref: 2.5.1
+    ref: 2.5.2
     file: ci-include-docker-lint-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-unit-test
     ref: 2-1-2
