@@ -48,7 +48,7 @@ include:
     ref: 5.1.1
     file: ci-include-docker-build-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/sast-container-check
-    ref: 2.11.1
+    ref: 2.11.3
     file: ci-include-sast-container-check-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/trivy-container-check
     ref: 2.21.0
