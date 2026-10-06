@@ -39,7 +39,7 @@ include:
     ref: 4.3.3
     file: ci-include-sonar-scanner-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-audit
-    ref: 3.0.0
+    ref: 3.1.2
     file: ci-include-node-audit-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-outdated
     ref: 2.5.3
