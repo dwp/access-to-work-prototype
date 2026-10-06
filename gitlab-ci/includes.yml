@@ -45,7 +45,7 @@ include:
     ref: 2.5.3
     file: ci-include-node-outdated-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/docker-build
-    ref: 5.1.1
+    ref: 5.4.0
     file: ci-include-docker-build-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/sast-container-check
     ref: 2.11.3
