@@ -27,7 +27,7 @@ include:
     ref: 2.5.2
     file: ci-include-docker-lint-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-unit-test
-    ref: 2-1-2
+    ref: 2.4.0
     file: ci-include-node-unit-test-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-nyc-test-coverage
     ref: 3.3.1
