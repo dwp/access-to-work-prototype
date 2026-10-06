@@ -33,7 +33,7 @@ include:
     ref: 3.3.1
     file: ci-nyc-test-coverage-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/node-stryker-mutation
-    ref: 3.23.0
+    ref: 3.24.1
     file: ci-include-node-stryker-mutation-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/sonarqube
     ref: 4.3.3
