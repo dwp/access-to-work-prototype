@@ -6,7 +6,7 @@ include:
     ref: 2.4.7
     file: ci-include-fragment-version-check-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/required-fragment-check
-    ref: 2.16.0
+    ref: 2.17.2
     file: ci-include-required-fragment-check-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/update-semver
     ref: 4.6.0
