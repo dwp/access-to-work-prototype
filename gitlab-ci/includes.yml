@@ -12,7 +12,7 @@ include:
     ref: 4.6.0
     file: ci-include-update-semver-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/gitleaks
-    ref: 3.1.4
+    ref: 3.2.1
     file: ci-include-gitleaks-base.yml
   - project: dwp/engineering/pipeline-solutions/gitlab/fragments/shell-check
     ref: 3.1.5
